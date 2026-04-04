@@ -1,0 +1,164 @@
+.smh-root{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 110% at 50% 0%, rgba(22,65,245,.12), transparent 40%),
+    linear-gradient(180deg, #fafaf8 0%, #f4f3ee 100%);
+}
+
+.smh-stage{
+  position:relative;
+  display:flex;
+  width:100%;
+  height:100%;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.smh-intro{
+  position:absolute;
+  top:50%;
+  left:50%;
+  z-index:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  pointer-events:none;
+}
+
+.smh-intro-title{
+  font-family:'Instrument Serif', Georgia, serif;
+  font-size:clamp(30px,4.4vw,54px);
+  font-weight:400;
+  line-height:1.02;
+  letter-spacing:-.03em;
+  color:#0c0c0b;
+}
+
+.smh-intro-sub{
+  margin-top:16px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.18em;
+  color:#6b6b67;
+}
+
+.smh-content{
+  position:absolute;
+  top:10%;
+  z-index:10;
+  display:flex;
+  width:100%;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:0 16px;
+  text-align:center;
+  pointer-events:none;
+}
+
+.smh-content-title{
+  margin-bottom:16px;
+  font-family:'Instrument Serif', Georgia, serif;
+  font-size:clamp(38px,5.2vw,72px);
+  line-height:1.04;
+  font-weight:400;
+  letter-spacing:-.04em;
+  color:#0c0c0b;
+}
+
+.smh-content-accent{
+  display:block;
+  color:#1641f5;
+  font-style:italic;
+}
+
+.smh-content-copy{
+  max-width:38rem;
+  font-size:clamp(14px,1.45vw,17px);
+  line-height:1.8;
+  color:#6b6b67;
+}
+
+.smh-break{display:none}
+
+.smh-canvas{
+  position:relative;
+  display:flex;
+  width:100%;
+  height:100%;
+  align-items:center;
+  justify-content:center;
+}
+
+.smh-card{cursor:pointer}
+
+.smh-card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+.smh-card-face{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:12px;
+  box-shadow:0 10px 24px rgba(12,12,11,.12);
+  border:1px solid rgba(12,12,11,.08);
+}
+
+.smh-card-front{background:#eceae2}
+
+.smh-card-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.smh-card-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(12,12,11,.04), rgba(12,12,11,.12));
+  transition:background .25s ease, opacity .25s ease;
+}
+
+.group:hover .smh-card-overlay{background:transparent;opacity:.4}
+
+.smh-card-back{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  border:1px solid rgba(22,65,245,.12);
+  background:linear-gradient(180deg, #0c0c0b, #1a1a18);
+}
+
+.smh-card-back-copy{text-align:center}
+
+.smh-card-kicker{
+  margin-bottom:4px;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#7da0ff;
+}
+
+.smh-card-label{
+  font-size:12px;
+  font-weight:600;
+  color:#fafaf8;
+}
+
+@media (min-width:768px){
+  .smh-break{display:block}
+}

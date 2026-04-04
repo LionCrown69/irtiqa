@@ -1,0 +1,564 @@
+[
+  {
+    "date": "2026-04-05",
+    "time": "10:00",
+    "booked": true,
+    "bookedBy": {
+      "name": "Test User",
+      "email": "test@example.com",
+      "company": "Test Company"
+    },
+    "reference": "AUDIT-1775335532882"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "11:30",
+    "booked": true,
+    "bookedBy": {
+      "name": "Test User 2",
+      "email": "test2@example.com",
+      "company": "Test Company 2"
+    },
+    "reference": "AUDIT-1775335808879"
+  },
+  {
+    "date": "2026-04-05",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-05",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-05",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-06",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-06",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-06",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-06",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-06",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-07",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-07",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-07",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-07",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-07",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-08",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-08",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-08",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-08",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-08",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-09",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-09",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-09",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-09",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-09",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-12",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-12",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-12",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-12",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-12",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-13",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-13",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-13",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-13",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-13",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-14",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-14",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-14",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-14",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-14",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-15",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-15",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-15",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-15",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-15",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-16",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-16",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-16",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-16",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-16",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-19",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-19",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-19",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-19",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-19",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-20",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-20",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-20",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-20",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-20",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-21",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-21",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-21",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-21",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-21",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-22",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-22",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-22",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-22",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-22",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-23",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-23",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-23",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-23",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-23",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-26",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-26",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-26",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-26",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-26",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-27",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-27",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-27",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-27",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-27",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-28",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-28",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-28",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-28",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-28",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-29",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-29",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-29",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-29",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-29",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-30",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-30",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-30",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-04-30",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-04-30",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-03",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-03",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-05-03",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-03",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-05-03",
+    "time": "16:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-04",
+    "time": "10:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-04",
+    "time": "11:30",
+    "booked": false
+  },
+  {
+    "date": "2026-05-04",
+    "time": "13:00",
+    "booked": false
+  },
+  {
+    "date": "2026-05-04",
+    "time": "14:30",
+    "booked": false
+  },
+  {
+    "date": "2026-05-04",
+    "time": "16:00",
+    "booked": false
+  }
+]
