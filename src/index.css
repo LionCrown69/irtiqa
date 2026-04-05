@@ -72,6 +72,15 @@ main{
 ::selection{background:rgba(22,65,245,.18);color:var(--ink)}
 
 #progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--b);width:0;z-index:10000;pointer-events:none}
+
+/* Global Visibility Control */
+.hide-mobile { display: block !important; }
+.hide-desktop { display: none !important; }
+
+@media (max-width: 1150px) {
+  .hide-mobile { display: none !important; }
+  .hide-desktop { display: block !important; }
+}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
 button{font-family:var(--ui);border:none;background:none}
@@ -120,6 +129,12 @@ nav{
   radial-gradient(circle at 50% 24%, rgba(22,65,245,.08) 0%, rgba(22,65,245,.03) 18%, rgba(22,65,245,0) 46%),
   linear-gradient(135deg, rgba(250,250,248,1) 0%, rgba(244,243,238,.64) 100%)}
 
+@media (max-height: 500px) {
+  #hero {
+    padding: 60px 24px 40px !important;
+  }
+}
+
 #hero::before{content:'';position:absolute;top:30%;left:50%;width:800px;height:600px;background:radial-gradient(ellipse at center,rgba(22,65,245,.06) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
 
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--w2);border:1px solid var(--rule);border-radius:100px;padding:7px 18px 7px 12px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin-bottom:44px;}
@@ -130,7 +145,7 @@ nav{
 .hero-h1 .h1-muted{color:var(--sub);display:block}
 .hero-h1-line,.hero-h1-accent{display:block}
 
-.hero-sub{margin-top:28px;font-size:clamp(15px,1.6vw,18px);color:var(--sub);max-width:520px;line-height:1.8;font-weight:300;}
+.hero-sub{margin-top:28px;font-size:clamp(14px,1.6vw,17px);color:var(--sub);max-width:520px;line-height:1.8;font-weight:300;text-align:center;margin-left:auto;margin-right:auto;}
 .hero-ctas{display:flex;align-items:center;gap:16px;margin-top:48px;flex-wrap:wrap;justify-content:center;}
 .primary-cta:hover{box-shadow:0 14px 48px rgba(22,65,245,.35);transform:translateY(-2px)}
 .primary-cta svg{transition:transform .3s}
@@ -6833,3 +6848,122 @@ main section{position:relative;--section-shift:0px}
     max-width:none;
   }
 }
+
+/* ════════════════════════════════════════
+   FINAL PRODUCTION POLISH - ACROSS ALL RATIOS
+   ════════════════════════════════════════ */
+
+/* Constrain content width on ultra-wide screens */
+.footer-new-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-new-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  text-align: left;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .footer-new-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-new-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: left;
+  }
+  .footer-brand-col {
+    align-items: flex-start;
+  }
+  .footer-contact-item {
+    justify-content: flex-start;
+  }
+  .footer-new-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 16px;
+  }
+}
+
+#book .book-form {
+  max-width: 580px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Force centering on all major mobile section headers */
+@media (max-width: 1150px) {
+  .section-chip,
+  .problem-title, .results-title, .infra-title, .process-title, .why-title, .testi-title, .book-title,
+  .problem-desc, .results-body, .infra-sub, .process-sub, .why-desc, .book-sub {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Internal Card Centering */
+  .pcard, .vcard, .process-v5-step, .why-card, .testi-v3-card {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .pcard-chip, .pcard-title, .pcard-desc,
+  .process-v5-step-num, .process-v5-step-copy,
+  .why-card-icon, .why-card-title, .why-card-desc {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .process-v5-step {
+    grid-template-columns: 1fr !important; /* Stack for centering */
+  }
+}
+
+/* Improved spacing for large devices */
+@media (min-width: 1400px) {
+  .footer-new-grid {
+    gap: 80px;
+  }
+}
+
+/* Visual consistency for visibility classes */
+.hide-mobile { display: block !important; }
+.hide-desktop { display: none !important; }
+
+@media (max-width: 1150px) {
+  .hide-mobile { display: none !important; }
+  .hide-desktop { display: block !important; }
+}
+
+/* Landscape orientation optimizations */
+@media (max-width: 932px) and (orientation: landscape) and (max-height: 500px) {
+  #hero {
+    min-height: auto;
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
+  }
+  .hero-h1 {
+    font-size: clamp(32px, 6vw, 48px) !important;
+  }
+  .hero-eyebrow {
+    margin-bottom: 20px !important;
+  }
+}
+

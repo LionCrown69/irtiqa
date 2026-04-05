@@ -263,12 +263,12 @@ const BookSection: React.FC = () => {
               </form>
             ) : (
               <div className="book-compact picker-view">
-                <div className="picker-header">
-                  <div>
+                <div className="picker-header" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem' }}>
+                  <button onClick={() => setStep('details')} className="btn-back" style={{ width: 'auto', padding: '6px 12px', fontSize: '0.75rem' }}>← BACK TO DETAILS</button>
+                  <div style={{ marginTop: '0.5rem' }}>
                     <h3>Select Date & Time</h3>
                     <p className="picker-subtitle">Anytime between 9:00 AM - 5:30 PM</p>
                   </div>
-                  <button onClick={() => setStep('details')} className="btn-back">← Back</button>
                 </div>
 
                 <div className="picker-calendly-layout">
