@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.irtiqaaiagency.com/sitemap.xml
+Host: www.irtiqaaiagency.com

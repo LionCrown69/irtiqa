@@ -40,6 +40,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
     { label: 'Infrastructure', href: '#services' },
     { label: 'How It Works', href: '#process' },
     { label: 'Results', href: '#results' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Why Irtiqa', href: '#why' },
     { label: 'Proof', href: '#testimonials' }
   ];

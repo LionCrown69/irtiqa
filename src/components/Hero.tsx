@@ -171,18 +171,18 @@ const Hero: React.FC = () => {
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          Built for service businesses
+          Irtiqa AI systems for service businesses
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Your Business</span>
-          <span className="hero-h1-line hero-h1-line-main">Runs on</span>
-          <em className="hero-h1-accent">Process.</em>
-          <span className="h1-muted h1-muted-compact">We Make It Run Itself.</span>
+          <span className="hero-h1-line hero-h1-line-main">Irtiqa AI</span>
+          <span className="hero-h1-line hero-h1-line-main">builds the</span>
+          <em className="hero-h1-accent">Process Layer.</em>
+          <span className="h1-muted h1-muted-compact">So your team scales without manual chaos.</span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
-          We help you respond faster, follow up automatically, and book more qualified calls without adding manual workload.
+          Irtiqa AI Agency helps you respond faster, follow up automatically, and book more qualified calls without adding manual workload.
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>

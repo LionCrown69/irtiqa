@@ -1,0 +1,16 @@
+{
+  "name": "Irtiqa AI Agency",
+  "short_name": "Irtiqa AI",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fafaf8",
+  "theme_color": "#0c0c0b",
+  "icons": [
+    {
+      "src": "/3-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

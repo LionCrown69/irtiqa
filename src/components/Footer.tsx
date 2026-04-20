@@ -6,16 +6,20 @@ const Footer: React.FC = () => {
 
   const platformLinks = [
     { label: 'Infrastructure', href: '#services' },
+    { label: 'AI Automation Services', href: '/ai-automation-services.html' },
+    { label: 'Lead Follow-Up Automation', href: '/lead-follow-up-automation.html' },
+    { label: 'AI Revenue Operations', href: '/revenue-operations-ai.html' },
     { label: 'Results', href: '#results' },
     { label: 'How It Works', href: '#process' },
-    { label: 'Book Audit', href: '#book' },
+    { label: 'Book Audit', href: '#book' }
   ];
 
   const companyLinks = [
     { label: 'Why Irtiqa', href: '#why' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Client Results', href: '#testimonials' },
     { label: 'The Problem', href: '#problem' },
-    { label: 'Contact', href: '#book' },
+    { label: 'Contact', href: '#book' }
   ];
 
   const marketLinks = [
@@ -122,7 +126,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="footer-new-bottom">
-          <span className="footer-copy">© {year} Irtiqa AI. All rights reserved.</span>
+          <span className="footer-copy">© {year} Irtiqa AI Agency. All rights reserved.</span>
           <span className="footer-slogan">Operational intelligence for service businesses that need to grow without adding friction.</span>
           <a
             href="#book"

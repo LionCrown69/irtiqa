@@ -9,6 +9,7 @@ import ResultsSection from './components/ResultsSection';
 import ProcessSection from './components/ProcessSection';
 import WhySection from './components/WhySection';
 import TestimonialsSection from './components/TestimonialsSection';
+import FaqSection from './components/FaqSection';
 import BookSection from './components/BookSection';
 import Footer from './components/Footer';
 import ProgressBar from './components/ProgressBar';
@@ -46,6 +47,7 @@ function App() {
         <ProcessSection />
         <WhySection />
         <TestimonialsSection />
+        <FaqSection />
         <BookSection />
       </main>
       <Footer />
