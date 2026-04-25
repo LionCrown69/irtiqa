@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*?*utm_
+Disallow: /*?*gclid=
+Disallow: /*?*fbclid=
+
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 Sitemap: https://www.irtiqaaiagency.com/sitemap.xml
 Host: www.irtiqaaiagency.com

@@ -171,18 +171,17 @@ const Hero: React.FC = () => {
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          Irtiqa AI systems for service businesses
+          Built for service businesses
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Irtiqa AI</span>
-          <span className="hero-h1-line hero-h1-line-main">builds the</span>
-          <em className="hero-h1-accent">Process Layer.</em>
-          <span className="h1-muted h1-muted-compact">So your team scales without manual chaos.</span>
+          <span className="hero-h1-line hero-h1-line-main">Irtiqa</span>
+          <em className="hero-h1-accent" style={{ paddingLeft: '15px' }}>AI</em>
+          <span className="h1-muted h1-muted-compact" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', display: 'block', marginTop: '20px', fontWeight: 500, letterSpacing: '0', lineHeight: 1.4 }}>AI Infrastructure for Revenue-Driven Businesses</span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
-          Irtiqa AI Agency helps you respond faster, follow up automatically, and book more qualified calls without adding manual workload.
+          We help you respond faster, follow up automatically, and book more qualified calls without adding manual workload.
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
@@ -208,12 +207,12 @@ const Hero: React.FC = () => {
             className="btn-outline"
             style={{ transition: 'none' }}
           >
-            See How It Works →
+            See How It Works
           </motion.a>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hero-mobile-proof" style={{ opacity: 1, animation: 'none' }}>
-          37% faster response • 42% less admin • 28% more bookings
+          37% faster response | 42% less admin | 28% more bookings
         </motion.div>
 
         {/* Keeping original mobile layout to maintain their mobile experience */}
@@ -283,3 +282,4 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+

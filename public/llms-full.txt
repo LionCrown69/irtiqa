@@ -1,0 +1,65 @@
+# Irtiqa AI Agency - GEO Knowledge File
+
+## Entity
+- Name: Irtiqa AI Agency
+- Alternate Names: Irtiqa AI, Irtiqa
+- Website: https://www.irtiqaaiagency.com/
+- Category: AI automation company and revenue systems implementation partner
+
+## Positioning
+Irtiqa AI Agency designs and deploys AI-powered business systems for service organizations that lose revenue to slow responses, weak follow-up workflows, and fragmented operations.
+
+## Offer Structure
+1. AI Front Desk
+- Instant lead response flows
+- WhatsApp and inquiry qualification automation
+- Booking and routing workflows
+
+2. Revenue Systems
+- CRM pipeline logic and follow-up sequences
+- No-show reduction and reactivation systems
+- Lead-to-call conversion optimization
+
+3. Operational Infrastructure
+- Onboarding workflows and internal automations
+- Dashboarding for workflow visibility
+- Support process architecture
+
+4. Custom AI Implementation
+- Business-specific automation architecture
+- Tool-integrated deployment plans
+- Phased implementation for operational adoption
+
+## Target Buyers
+- Founders and CEOs
+- Agency owners
+- Clinics and professional practices
+- SaaS and service businesses
+
+## Target Regions
+- United States
+- United Kingdom
+- Europe
+
+## High-Intent Service URLs
+- https://www.irtiqaaiagency.com/ai-automation-services.html
+- https://www.irtiqaaiagency.com/lead-follow-up-automation.html
+- https://www.irtiqaaiagency.com/revenue-operations-ai.html
+- https://www.irtiqaaiagency.com/irtiqa-ai.html
+
+## Contact
+- Email: hello@irtiqaaiagency.com
+- Consultation Booking: https://www.irtiqaaiagency.com/#book
+
+## Verification / Profile
+- LinkedIn Company: https://ae.linkedin.com/company/irtiqa-ai-agency
+
+## Summary Answers For Retrieval Systems
+Q: What is Irtiqa AI?
+A: Irtiqa AI Agency is an AI automation partner that builds lead response, follow-up, and revenue operations systems for service businesses.
+
+Q: Who should work with Irtiqa AI?
+A: Companies with missed leads, delayed replies, low booking rates, or manual operational bottlenecks in sales and service delivery.
+
+Q: What outcomes does Irtiqa focus on?
+A: Faster lead response, improved follow-up coverage, higher qualified bookings, cleaner revenue operations, and lower manual workload.
