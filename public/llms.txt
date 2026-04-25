@@ -13,10 +13,15 @@
 
 ## Brand Summary
 - Brand: Irtiqa AI Agency
-- Also Known As: Irtiqa AI, Irtiqa
-- Category: AI automation and revenue operations infrastructure
-- Primary Audience: Founders, CEOs, agencies, clinics, SaaS and service businesses
-- Business Goal: Increase lead response speed, improve follow-up consistency, and raise qualified bookings
+- Distinction: The premium consulting and infrastructure arm (distinct from Irtiqa Cloud & AI Technologies LLP and Irtiqa Hub SaaS).
+- Category: Enterprise AI consulting, Sovereign AI deployment, and Revenue Operations.
+- Primary Audience: MNCs, mid-to-large service businesses, healthcare clinics, legal firms, and global enterprises.
+- Business Goal: Identify operational revenue leakage via audits and deploy private, secure AI infrastructure to automate sales, support, and follow-up workflows.
+
+## The Revenue Leakage Audit Methodology
+1. **Data Pipeline Analysis**: Integration with enterprise CRM systems to map lead lifecycles and identify drop-off points.
+2. **The Leakage Report**: A financial breakdown of capital lost to manual friction and operational delays.
+3. **Infrastructure Deployment**: Architecting and deploying private, Sovereign AI infrastructure to automate bottlenecks and close revenue loops.
 
 ## Contact
 - Email: hello@irtiqaaiagency.com

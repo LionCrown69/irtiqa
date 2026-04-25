@@ -12,12 +12,15 @@ import TestimonialsSection from './components/TestimonialsSection';
 import BookSection from './components/BookSection';
 import Footer from './components/Footer';
 import ProgressBar from './components/ProgressBar';
+import RevenueLeakageAudit from './components/RevenueLeakageAudit';
+import BlogStructure from './components/BlogStructure';
 import useScrollReveal from './hooks/useScrollReveal';
 import useMobileLenis from './hooks/useMobileLenis';
 import useLuxuryMotion from './hooks/useLuxuryMotion';
 
 function App() {
   const [navHeight, setNavHeight] = useState(68);
+  const path = window.location.pathname;
   
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +35,14 @@ function App() {
   useScrollReveal();
   useMobileLenis(); // Native smooth scroll (disabled on mobile via media query)
   useLuxuryMotion(); // 3D tilt effects on desktop (disabled on mobile via media query)
+
+  if (path === '/audit') {
+    return <RevenueLeakageAudit />;
+  }
+
+  if (path === '/blog') {
+    return <BlogStructure />;
+  }
 
   return (
     <div className="App">

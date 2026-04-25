@@ -37,11 +37,11 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Infrastructure', href: '#services' },
-    { label: 'How It Works', href: '#process' },
-    { label: 'Results', href: '#results' },
-    { label: 'Why Irtiqa', href: '#why' },
-    { label: 'Proof', href: '#testimonials' }
+    { label: 'Infrastructure', href: '/#services' },
+    { label: 'How It Works', href: '/#process' },
+    { label: 'Results', href: '/#results' },
+    { label: 'Proof', href: '/#testimonials' },
+    { label: 'Insights', href: '/blog' }
   ];
 
   const menuVariants: Variants = {
@@ -69,9 +69,9 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
           ))}
         </ul>
         
-        <a href="#book" className="nav-btn nav-btn-desktop">
+        <a href="/audit" className="nav-btn nav-btn-desktop">
           <span className="nav-btn-dot"></span>
-          Book Free Audit
+          Enterprise Audit
         </a>
 
         <button 
@@ -110,8 +110,8 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
               >
-                <a href="#book" onClick={handleBookClick} className="btn-fill mobile-drawer-cta">
-                  Book Strategy Call
+                <a href="/audit" className="btn-fill mobile-drawer-cta">
+                  Enterprise Audit
                 </a>
               </motion.div>
             </div>

@@ -175,9 +175,10 @@ const Hero: React.FC = () => {
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Irtiqa</span>
-          <em className="hero-h1-accent" style={{ paddingLeft: '15px' }}>AI</em>
-          <span className="h1-muted h1-muted-compact" style={{ fontSize: 'clamp(1rem, 3vw, 1.5rem)', display: 'block', marginTop: '20px', fontWeight: 500, letterSpacing: '0', lineHeight: 1.4 }}>AI Infrastructure for Revenue-Driven Businesses</span>
+          <span className="hero-h1-line hero-h1-line-main">Your Business</span>
+          <span className="hero-h1-line hero-h1-line-main">Runs on</span>
+          <em className="hero-h1-accent">Process.</em>
+          <span className="h1-muted h1-muted-compact">We Make It Run Itself.</span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>

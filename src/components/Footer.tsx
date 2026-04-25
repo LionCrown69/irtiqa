@@ -5,17 +5,17 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   const platformLinks = [
-    { label: 'Infrastructure', href: '#services' },
-    { label: 'Results', href: '#results' },
-    { label: 'How It Works', href: '#process' },
-    { label: 'Book Audit', href: '#book' }
+    { label: 'Infrastructure', href: '/#services' },
+    { label: 'Results', href: '/#results' },
+    { label: 'How It Works', href: '/#process' },
+    { label: 'Enterprise Audit', href: '/audit' }
   ];
 
   const companyLinks = [
-    { label: 'Why Irtiqa', href: '#why' },
-    { label: 'Client Results', href: '#testimonials' },
-    { label: 'The Problem', href: '#problem' },
-    { label: 'Contact', href: '#book' }
+    { label: 'Why Irtiqa', href: '/#why' },
+    { label: 'Client Results', href: '/#testimonials' },
+    { label: 'Insights (Blog)', href: '/blog' },
+    { label: 'Contact', href: '/#book' }
   ];
 
   const marketLinks = [
@@ -143,10 +143,10 @@ const Footer: React.FC = () => {
           <span className="footer-copy">© {year} Irtiqa AI Agency. All rights reserved.</span>
           <span className="footer-slogan">Operational intelligence for service businesses that need to grow without adding friction.</span>
           <a
-            href="#book"
+            href="/audit"
             className="footer-bottom-cta"
           >
-            Book Free Strategy Call
+            Book Free Audit
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
             </svg>
