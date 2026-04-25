@@ -25,6 +25,13 @@ const Footer: React.FC = () => {
     { label: 'Local Service Business', href: '#services' },
   ];
 
+  const ecosystemLinks = [
+    { label: 'BillEase Enterprise', href: 'https://irtiqahub.com/billease/' },
+    { label: 'Inventra Systems', href: 'https://irtiqahub.com/inventra/' },
+    { label: 'TeamHub Governance', href: 'https://irtiqahub.com/teamhub/' },
+    { label: 'Free Revenue Calculators', href: 'https://irtiqahub.com/free-business-tools/' },
+  ];
+
   const contactInfo = [
     {
       icon: (
@@ -133,6 +140,15 @@ const Footer: React.FC = () => {
             <ul className="footer-links">
               {marketLinks.map((l) => (
                 <li key={l.label}><a href={l.href}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+          {/* Ecosystem */}
+          <div className="footer-nav-col">
+            <div className="footer-col-title">Proprietary Software</div>
+            <ul className="footer-links">
+              {ecosystemLinks.map((l) => (
+                <li key={l.label}><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
               ))}
             </ul>
           </div>

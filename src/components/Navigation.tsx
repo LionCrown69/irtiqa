@@ -38,6 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
 
   const navLinks = [
     { label: 'Infrastructure', href: '/#services' },
+    { label: 'Ecosystem', href: '/#ecosystem' },
     { label: 'How It Works', href: '/#process' },
     { label: 'Results', href: '/#results' },
     { label: 'Proof', href: '/#testimonials' },
