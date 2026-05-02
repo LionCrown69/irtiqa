@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   applicationName: "Irtiqa AI Agency",
   authors: [{ name: "Irtiqa AI Agency" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  themeColor: "#0c0c0b",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/",
     languages: {
@@ -39,6 +38,10 @@ export const metadata: Metadata = {
     description: "Irtiqa AI Agency builds AI systems for faster response, follow-up, and revenue operations.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo.jpeg"],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0c0c0b",
 };
 
 export default function RootLayout({
