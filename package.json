@@ -30,7 +30,7 @@
     "motion": "^12.37.0",
     "next": "^14.2.3",
     "next-intl": "^3.26.5",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "^6.0.0",
     "postprocessing": "^6.39.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
