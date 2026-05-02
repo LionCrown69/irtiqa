@@ -1,0 +1,14 @@
+{
+  "Navigation": {
+    "bookCall": "Book Discovery Call"
+  },
+  "Hero": {
+    "headline": "Your Business Runs on Process.",
+    "subheadline": "We Make It Run Itself.",
+    "cta": "Book My Free Audit"
+  },
+  "Pricing": {
+    "currency": "£",
+    "leakageFormat": "£1.9M"
+  }
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import BrandLogo from './BrandLogo';
@@ -8,15 +10,6 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleBookClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const bookSection = document.getElementById('book');
-    if (bookSection) {
-      bookSection.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
-    }
-  };
 
   useEffect(() => {
     const body = document.body;
@@ -38,7 +31,6 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
 
   const navLinks = [
     { label: 'Infrastructure', href: '/#services' },
-    { label: 'Ecosystem', href: '/#ecosystem' },
     { label: 'How It Works', href: '/#process' },
     { label: 'Results', href: '/#results' },
     { label: 'Proof', href: '/#testimonials' },

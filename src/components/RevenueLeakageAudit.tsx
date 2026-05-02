@@ -95,7 +95,7 @@ const RevenueLeakageAudit: React.FC = () => {
               { step: '01', title: 'Data Pipeline Analysis', desc: 'We integrate with your CRM (Salesforce, HubSpot) to map the lifecycle of every lead, identifying exact drop-off points and response-time delays.' },
               { step: '02', title: 'The Leakage Report', desc: 'You receive a comprehensive financial breakdown of capital lost to manual friction, missed follow-ups, and operational inefficiencies.' },
               { step: '03', title: 'Infrastructure Deployment', desc: 'We architect and deploy the private AI infrastructure required to automate those specific bottlenecks, creating a closed-loop revenue system.' }
-            ].map((phase, i) => (
+            ].map((phase) => (
               <div key={phase.step} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--rule)', borderRadius: '16px', padding: '40px' }}>
                 <span style={{ color: 'var(--b)', fontSize: '1.2rem', fontWeight: 600, display: 'block', marginBottom: '16px' }}>Phase {phase.step}</span>
                 <h3 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>{phase.title}</h3>
