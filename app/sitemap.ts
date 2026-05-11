@@ -13,7 +13,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
   const isFirstSitemap = id === 0;
 
   // Only include base routes and blogs in the first sitemap chunk
-  let baseAndBlogRoutes: any[] = [];
+  let baseAndBlogRoutes: MetadataRoute.Sitemap = [];
   
   if (isFirstSitemap) {
     const routes = [

@@ -51,6 +51,7 @@ export default function ProgrammaticPage({ params }: PageProps) {
 
   if (!industry || !location) {
     notFound();
+    return null;
   }
 
   // Generate LocalBusiness and SoftwareApplication JSON-LD Schema

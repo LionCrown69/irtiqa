@@ -43,6 +43,10 @@
   },
   "include": [
     "src",
+    "app",
+    "lib",
+    "**/*.ts",
+    "**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "references": [
