@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getIndustryBySlug, getLocationBySlug, industries, locations } from '../../../../src/data/programmatic-seo';
+import { getIndustryBySlug, getLocationBySlug } from '../../../../src/data/programmatic-seo';
 import ProgrammaticClientView from '../../../../src/components/ProgrammaticClientView';
 
 interface PageProps {
