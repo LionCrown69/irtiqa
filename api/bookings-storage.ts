@@ -103,7 +103,6 @@ function formatBookingTime(slot: BookingSlot): string {
   const date = new Date(slot.date + 'T00:00:00');
   const dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
   const monthDay = date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-  const [hours, minutes] = slot.time.split(':');
   const time = new Date(`2000-01-01T${slot.time}`).toLocaleTimeString('en-US', { 
     hour: 'numeric', 
     minute: '2-digit',
