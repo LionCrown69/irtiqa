@@ -1,6 +1,21 @@
 import React, { useEffect } from 'react';
 
-const ServicesSection: React.FC = () => {
+interface ServicesProps {
+  industry?: {
+    slug: string;
+    name: string;
+    title: string;
+    painPoint: string;
+  };
+  location?: {
+    slug: string;
+    name: string;
+    state: string;
+    country: string;
+  };
+}
+
+const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   const layers = [
     {
       num: '01',
@@ -61,8 +76,8 @@ const ServicesSection: React.FC = () => {
       </div>
 
       <div className="infra-header reveal">
-        <h2 className="infra-title">The Irtiqa Operational Model™</h2>
-        <p className="infra-sub">Four connected pillars that capture demand, route intent, and turn follow-up into booked revenue.</p>
+        <h2 className="infra-title">The Irtiqa Operational Model™ {industry ? `for ${industry.title}` : ''}</h2>
+        <p className="infra-sub">Four connected pillars that capture demand, route intent, and turn follow-up into booked revenue {location ? `in ${location.name}` : ''}.</p>
         <div className="infra-status">
           System Status: <span>Active</span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
         </div>

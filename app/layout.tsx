@@ -2,11 +2,11 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Automation for Service Businesses | Irtiqa AI Agency",
-  description: "Irtiqa AI Agency builds AI front desk, follow-up, and revenue systems for service businesses. Book a free automation consultation.",
-  keywords: "Irtiqa, Irtiqa AI, Irtiqa AI Agency, AI automation services, lead follow-up automation, revenue operations AI, service business automation",
-  applicationName: "Irtiqa AI Agency",
-  authors: [{ name: "Irtiqa AI Agency" }],
+  title: "AI Automation for Service Businesses | Irtiqa AI",
+  description: "Irtiqa AI builds AI front desk, follow-up, and revenue systems for service businesses. Book a free automation consultation.",
+  keywords: "Irtiqa, Irtiqa AI, AI automation services, lead follow-up automation, revenue operations AI, service business automation",
+  applicationName: "Irtiqa AI",
+  authors: [{ name: "Irtiqa AI" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/",
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AI Automation for Service Businesses | Irtiqa AI Agency",
+    title: "AI Automation for Service Businesses | Irtiqa AI",
     description: "AI front desk, follow-up, and revenue systems for service businesses in US, UK, and Europe.",
     type: "website",
-    siteName: "Irtiqa AI Agency",
+    siteName: "Irtiqa AI",
     locale: "en_US",
     alternateLocale: "en_GB",
     url: "https://www.irtiqaaiagency.com/",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Automation for Service Businesses | Irtiqa AI Agency",
-    description: "Irtiqa AI Agency builds AI systems for faster response, follow-up, and revenue operations.",
+    title: "AI Automation for Service Businesses | Irtiqa AI",
+    description: "Irtiqa AI builds AI systems for faster response, follow-up, and revenue operations.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo.jpeg"],
   },
 };
@@ -67,12 +67,12 @@ export default function RootLayout({
                 {
                   "@type": "Organization",
                   "@id": "https://www.irtiqaaiagency.com/#organization",
-                  "name": "Irtiqa AI Agency",
-                  "alternateName": ["Irtiqa AI", "Irtiqa"],
+                  "name": "Irtiqa AI",
+                  "alternateName": ["Irtiqa"],
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
                   "email": "hello@irtiqaaiagency.com",
-                  "description": "Irtiqa AI Agency is a premium consulting and infrastructure deployment firm. We specialize in identifying revenue leakage for MNCs and mid-to-large service businesses, and sealing it with bespoke Sovereign AI operations.",
+                  "description": "Irtiqa AI is a premium consulting and infrastructure deployment firm. We specialize in identifying revenue leakage for MNCs and mid-to-large service businesses, and sealing it with bespoke Sovereign AI operations.",
                   "knowsAbout": [
                     "Enterprise Revenue Operations",
                     "Sovereign AI Infrastructure",
@@ -132,7 +132,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": "https://www.irtiqaaiagency.com/#website",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "Irtiqa AI Agency",
+                  "name": "Irtiqa AI",
                   "publisher": {
                     "@id": "https://www.irtiqaaiagency.com/#organization"
                   },
@@ -145,8 +145,8 @@ export default function RootLayout({
                   "@type": "WebPage",
                   "@id": "https://www.irtiqaaiagency.com/#webpage",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "AI Automation for Service Businesses | Irtiqa AI Agency",
-                  "description": "Irtiqa AI Agency delivers AI automation for service businesses, including lead response systems, follow-up workflows, and revenue operations infrastructure.",
+                  "name": "AI Automation for Service Businesses | Irtiqa AI",
+                  "description": "Irtiqa AI delivers AI automation for service businesses, including lead response systems, follow-up workflows, and revenue operations infrastructure.",
                   "isPartOf": {
                     "@id": "https://www.irtiqaaiagency.com/#website"
                   },

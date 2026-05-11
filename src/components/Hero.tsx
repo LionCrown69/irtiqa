@@ -29,7 +29,22 @@ const Counter = ({ from, to, delay, animateValue = true }: { from: number; to: n
   return <span className="count-h" ref={nodeRef}>{from}</span>;
 };
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  industry?: {
+    slug: string;
+    name: string;
+    title: string;
+    painPoint: string;
+  };
+  location?: {
+    slug: string;
+    name: string;
+    state: string;
+    country: string;
+  };
+}
+
+const Hero: React.FC<HeroProps> = ({ industry, location }) => {
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
   const { scrollY } = useScroll();
   const yBg = useTransform(scrollY, [0, 1000], [0, 250]);
@@ -171,7 +186,7 @@ const Hero: React.FC = () => {
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          Built for service businesses
+          Built for {industry ? `${industry.title} in ${location?.name || 'Your City'}` : 'service businesses'}
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
@@ -182,7 +197,7 @@ const Hero: React.FC = () => {
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
-          We help you respond faster, follow up automatically, and book more qualified calls without adding manual workload.
+          We help you respond faster, follow up automatically, and book more qualified calls without adding manual workload. {industry ? `Say goodbye to ${industry.painPoint}.` : ''}
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>

@@ -1,6 +1,21 @@
 import React from 'react';
 
-const ProblemSection: React.FC = () => {
+interface ProblemProps {
+  industry?: {
+    slug: string;
+    name: string;
+    title: string;
+    painPoint: string;
+  };
+  location?: {
+    slug: string;
+    name: string;
+    state: string;
+    country: string;
+  };
+}
+
+const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const problems = [
     {
       num: '01',
@@ -35,10 +50,10 @@ const ProblemSection: React.FC = () => {
         <div>
           <div className="section-chip reveal">The Problem</div>
           <h2 className="problem-title reveal d1">
-            Right now, your business is <em>bleeding revenue</em> — silently.
+            Right now, your {industry ? industry.title.toLowerCase() : 'business'} is <em>bleeding revenue</em> — silently.
           </h2>
           <p className="problem-desc reveal d2">
-            Most service businesses lose revenue through slow response and broken follow-up, not lack of demand.
+            Most {industry ? industry.title.toLowerCase() : 'service businesses'} {location ? `in ${location.name}` : ''} lose revenue through slow response and broken follow-up, not lack of demand.
           </p>
 
           <div className="problem-points reveal d3">
