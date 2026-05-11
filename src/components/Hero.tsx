@@ -190,14 +190,14 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Revenue Operations</span>
-          <span className="hero-h1-line hero-h1-line-main">Infrastructure</span>
-          <em className="hero-h1-accent">Powered by Agentic AI.</em>
-          <span className="h1-muted h1-muted-compact">We find the leakage. We fix the machine.</span>
+          <span className="hero-h1-line hero-h1-line-main">Your Business Runs on</span>
+          <em className="hero-h1-accent">Process.</em>
+          <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Make It Run Itself.</span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
-          Irtiqa AI designs, builds, and operates the revenue engine behind growth: capture, qualification, follow-up, booking, onboarding, and retention — connected as one system. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
+          <strong>We find the leakage. We fix the machine.</strong><br/>
+          Irtiqa AI builds the operational engine behind your growth: autonomous capture, intelligent routing, and multi-agent follow-up. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>

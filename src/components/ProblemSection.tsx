@@ -19,23 +19,23 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const problems = [
     {
       num: '01',
-      title: 'Leads arrive and disappear',
-      desc: 'Intent hits your website, inbox, WhatsApp, DMs, and phone — then vanishes when routing and ownership are unclear.'
+      title: 'Silent Revenue Leakage',
+      desc: 'Most businesses don\'t lose revenue dramatically. They lose it quietly when leads vanish due to unclear routing and ownership.'
     },
     {
       num: '02',
       title: 'Follow-up breaks when it matters most',
-      desc: 'Interested prospects don’t get consistent, timely follow-up. Warm conversations go cold quietly.'
+      desc: 'Warm conversations go cold because the internal machinery to follow up consistently doesn\'t exist. Money is left on the table.'
     },
     {
       num: '03',
       title: 'Your team is doing work systems should own',
-      desc: 'Scheduling, data entry, qualification, CRM updates, reminders, handoffs — hours spent here are hours not spent on revenue.'
+      desc: 'Scheduling, data entry, qualification, CRM updates, handoffs — hours spent here are hours not spent on revenue-generating activities.'
     },
     {
       num: '04',
-      title: 'More leads into a broken machine is more waste',
-      desc: 'If the revenue journey is inefficient, extra traffic just increases cost while leakage stays the same.'
+      title: 'More leads into a broken machine is waste',
+      desc: 'If the revenue journey is inefficient, extra traffic just increases your cost of acquisition while leakage stays exactly the same.'
     },
     {
       num: '05',
