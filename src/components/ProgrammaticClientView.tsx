@@ -14,9 +14,9 @@ import TestimonialsSection from './TestimonialsSection';
 import BookSection from './BookSection';
 import Footer from './Footer';
 import ProgressBar from './ProgressBar';
-import useScrollReveal from '../../hooks/useScrollReveal';
-import useMobileLenis from '../../hooks/useMobileLenis';
-import useLuxuryMotion from '../../hooks/useLuxuryMotion';
+import useScrollReveal from '../hooks/useScrollReveal';
+import useMobileLenis from '../hooks/useMobileLenis';
+import useLuxuryMotion from '../hooks/useLuxuryMotion';
 
 interface ProgrammaticClientViewProps {
   industry: {
