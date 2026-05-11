@@ -53,7 +53,7 @@ export default function ConsentManager() {
       </h3>
       <p style={{ fontSize: '0.85rem', opacity: 0.7, marginBottom: '20px', lineHeight: 1.5 }}>
         {isEU 
-          ? "As a sovereign AI provider, we enforce strict GDPR compliance. We do not load any tracking scripts without your explicit consent."
+          ? "We enforce strict GDPR compliance. We do not load any tracking scripts without your explicit consent."
           : "We use essential cookies to run this site. We also use analytics to improve our content."}
       </p>
       <div style={{ display: 'flex', gap: '12px' }}>

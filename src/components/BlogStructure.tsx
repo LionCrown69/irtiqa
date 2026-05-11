@@ -10,22 +10,22 @@ const BlogStructure: React.FC = () => {
 
   const articles = [
     {
-      title: "The $2.4M Revenue Leak: Why Enterprise Sales Teams Need Sovereign AI",
-      category: "Enterprise Infrastructure",
+      title: "The Quiet Revenue Leak: Why Most Growth Problems Aren’t Marketing",
+      category: "Revenue Infrastructure",
       date: "May 12, 2026",
-      excerpt: "How mid-market corporations are losing millions to slow follow-up, and the private AI architecture required to stop it."
+      excerpt: "Where revenue leaks in the lead-to-client journey — and how infrastructure fixes it before you scale lead volume."
     },
     {
-      title: "Sovereign AI vs. SaaS: Securing Healthcare Revenue Operations",
-      category: "Healthcare RevOps",
+      title: "Multi-Agent AI Systems: From Lead Research to Booked Calls",
+      category: "Agentic AI",
       date: "May 05, 2026",
-      excerpt: "Why clinics and hospitals cannot rely on public LLMs for patient intake, and how sovereign models protect HIPAA compliance while driving revenue."
+      excerpt: "How coordinated AI agents handle research, personalization, outreach, response classification, and booking — end-to-end."
     },
     {
-      title: "Automating the Discovery Call: The New MNC Playbook",
-      category: "Sales Automation",
+      title: "Audit Call → Growth Report → Build: The Irtiqa Engagement",
+      category: "Operations",
       date: "April 28, 2026",
-      excerpt: "Analyzing the transition from manual SDR outreach to fully autonomous scheduling systems in high-ticket consulting firms."
+      excerpt: "A clear model for diagnosing root causes and deploying the minimum viable infrastructure that compounds growth."
     }
   ];
 
@@ -40,7 +40,7 @@ const BlogStructure: React.FC = () => {
             Irtiqa AI Insights
           </h1>
           <p style={{ fontSize: '1.2rem', opacity: 0.7, maxWidth: '600px', lineHeight: 1.6 }}>
-            Deep-dive analysis on Sovereign AI, Revenue Operations, and Enterprise Infrastructure.
+            Deep-dive analysis on revenue operations infrastructure, agentic AI systems, and business growth architecture.
           </p>
         </header>
 

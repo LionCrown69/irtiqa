@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: PageProps) {
   if (!city) return { title: 'Not Found' };
 
   return {
-    title: `AI Booking Solutions for Industries in ${city.name} | Irtiqa AI`,
-    description: `Browse Irtiqa AI booking and automation solutions for various industries in ${city.name}, ${city.state}.`,
+    title: `Revenue Infrastructure Use-Cases in ${city.name} | Irtiqa AI`,
+    description: `Browse Irtiqa AI revenue operations infrastructure and agentic AI use-cases for industries in ${city.name}, ${city.state}.`,
   };
 }
 
@@ -66,7 +66,7 @@ export default function DirectoryLevel3({ params }: PageProps) {
             }}
           >
             <span style={{ fontWeight: 600 }}>{industry.title}</span>
-            <span style={{ fontSize: '0.9rem', color: 'var(--w5)' }}>AI Booking System for {industry.name}</span>
+            <span style={{ fontSize: '0.9rem', color: 'var(--w5)' }}>Revenue operations infrastructure for {industry.name}</span>
           </Link>
         ))}
       </div>

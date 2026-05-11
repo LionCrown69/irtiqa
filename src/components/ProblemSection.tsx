@@ -19,28 +19,28 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const problems = [
     {
       num: '01',
-      title: 'Every missed call is a missed contract',
-      desc: 'Prospects call once. If your intake isn\'t instant and intelligent, they\'ve already called your competitor by the time you pick up.'
+      title: 'Leads arrive and disappear',
+      desc: 'Intent hits your website, inbox, WhatsApp, DMs, and phone — then vanishes when routing and ownership are unclear.'
     },
     {
       num: '02',
-      title: 'Speed is conversion. You\'re too slow.',
-      desc: 'Studies show responding within 5 minutes increases conversion by 9×. Most businesses respond in hours — or days.'
+      title: 'Follow-up breaks when it matters most',
+      desc: 'Interested prospects don’t get consistent, timely follow-up. Warm conversations go cold quietly.'
     },
     {
       num: '03',
-      title: 'Your team is doing work automation should own',
-      desc: 'Scheduling, data entry, follow-ups, intake, CRM updates — every hour your team spends on these is an hour not generating revenue.'
+      title: 'Your team is doing work systems should own',
+      desc: 'Scheduling, data entry, qualification, CRM updates, reminders, handoffs — hours spent here are hours not spent on revenue.'
     },
     {
       num: '04',
-      title: 'Hiring is not a scaling strategy',
-      desc: 'Every new hire increases fragility. Operations that rely on people will always hit a ceiling. Infrastructure removes the ceiling entirely.'
+      title: 'More leads into a broken machine is more waste',
+      desc: 'If the revenue journey is inefficient, extra traffic just increases cost while leakage stays the same.'
     },
     {
       num: '05',
-      title: 'Inconsistency destroys premium positioning',
-      desc: 'A chaotic client experience signals an untrustworthy business. Automation doesn\'t just save time — it makes you look elite.'
+      title: 'The founder becomes the bottleneck',
+      desc: 'When one person carries sales, ops, delivery, and strategy, growth stalls — not because demand is low, but because infrastructure is missing.'
     }
   ];
 
@@ -50,10 +50,10 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
         <div>
           <div className="section-chip reveal">The Problem</div>
           <h2 className="problem-title reveal d1">
-            Right now, your {industry ? industry.title.toLowerCase() : 'business'} is <em>bleeding revenue</em> — silently.
+            Most {industry ? industry.title.toLowerCase() : 'businesses'} don’t lose revenue dramatically. They lose it <em>quietly.</em>
           </h2>
           <p className="problem-desc reveal d2">
-            Most {industry ? industry.title.toLowerCase() : 'service businesses'} {location ? `in ${location.name}` : ''} lose revenue through slow response and broken follow-up, not lack of demand.
+            The real issue is rarely marketing. It’s revenue operations infrastructure: routing, follow-up, qualification, booking, onboarding, and retention — disconnected, manual, or nonexistent{location ? ` in ${location.name}` : ''}.
           </p>
 
           <div className="problem-points reveal d3">

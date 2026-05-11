@@ -64,7 +64,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
         
         <a href="/audit" className="nav-btn nav-btn-desktop">
           <span className="nav-btn-dot"></span>
-          Enterprise Audit
+          Free Audit Call
         </a>
 
         <button 
@@ -104,7 +104,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
               >
                 <a href="/audit" className="btn-fill mobile-drawer-cta">
-                  Enterprise Audit
+                  Free Audit Call
                 </a>
               </motion.div>
             </div>

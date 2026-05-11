@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     { label: 'Infrastructure', href: '/#services' },
     { label: 'Results', href: '/#results' },
     { label: 'How It Works', href: '/#process' },
-    { label: 'Enterprise Audit', href: '/audit' }
+    { label: 'Audit Call', href: '/audit' }
   ];
 
   const companyLinks = [
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
               <BrandLogo size="sm" showWordmark={true} showArabic={true} lightText={true} />
             </div>
             <p className="footer-tagline">
-              Clear operational systems that help service businesses respond faster, convert more leads, and scale without adding headcount.
+              Revenue operations infrastructure that stops silent leakage and lets businesses scale without chaos.
             </p>
             <div className="footer-contact-list">
               {contactInfo.map(({ icon, text, href }) => (
@@ -140,13 +140,13 @@ const Footer: React.FC = () => {
 
         {/* Bottom bar */}
         <div className="footer-new-bottom">
-          <span className="footer-copy">© {year} Irtiqa AI Agency. All rights reserved.</span>
+          <span className="footer-copy">© {year} Irtiqa AI. All rights reserved.</span>
           <span className="footer-slogan">Operational intelligence for service businesses that need to grow without adding friction.</span>
           <a
             href="/audit"
             className="footer-bottom-cta"
           >
-            Book Free Audit
+            Book Audit Call
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
             </svg>

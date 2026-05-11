@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: PageProps) {
   if (!country) return { title: 'Not Found' };
 
   return {
-    title: `AI Booking Solutions in ${country.name} | Irtiqa AI`,
-    description: `Browse Irtiqa AI booking and automation deployments across cities in ${country.name}.`,
+    title: `Revenue Infrastructure Solutions in ${country.name} | Irtiqa AI`,
+    description: `Browse Irtiqa AI revenue operations infrastructure use-cases across cities in ${country.name}.`,
   };
 }
 
@@ -37,7 +37,7 @@ export default function DirectoryLevel2({ params }: PageProps) {
       
       <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>{country.name} Locations</h1>
       <p style={{ fontSize: '1.2rem', marginBottom: '40px', color: 'var(--w5)' }}>
-        Select a city in {country.name} to view industry-specific AI booking solutions.
+        Select a city in {country.name} to view industry-specific revenue operations infrastructure use-cases.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '16px' }}>

@@ -8,29 +8,29 @@ const WhySection: React.FC = () => {
       impact: 'Reduces process failure points by design.'
     },
     {
-      title: 'Revenue-mapped outcomes',
-      note: 'Every workflow is tied to a measurable revenue objective.',
-      impact: 'Keeps execution focused on ROI, not vanity metrics.'
+      title: 'Commercial problem first',
+      note: 'We diagnose where money is being left on the table before choosing tools or models.',
+      impact: 'Fixes root causes, not symptoms.'
+    },
+    {
+      title: 'Multi-agent AI systems',
+      note: 'Specialized agents coordinate to handle multi-step workflows end-to-end.',
+      impact: 'Turns whole operational functions into autonomous systems.'
+    },
+    {
+      title: 'Multi-model AI infrastructure',
+      note: 'We deploy the right model for the right task — speed, accuracy, and cost-efficiency.',
+      impact: 'Higher performance without overpaying for every action.'
     },
     {
       title: 'Full-stack integration',
-      note: 'Intake, CRM, follow-up, reminders, and reporting work together.',
-      impact: 'Prevents data leakage and operational blind spots.'
+      note: 'Intake, CRM, follow-up, booking, onboarding, and reporting work together.',
+      impact: 'Prevents blind spots and silent revenue leakage.'
     },
     {
-      title: 'Built for scale, not demos',
-      note: 'Production-ready workflows that hold under growing volume.',
-      impact: 'Avoids frequent rebuilds as the business expands.'
-    },
-    {
-      title: 'Ongoing optimization',
-      note: 'Continuous tuning from live operational feedback loops.',
-      impact: 'Compounds performance month over month.'
-    },
-    {
-      title: 'No hidden tool dependencies',
-      note: 'Transparent stack decisions with clear ownership boundaries.',
-      impact: 'Reduces vendor lock-in and surprise recurring costs.'
+      title: 'Operated, not just built',
+      note: 'We monitor, optimize, and evolve systems from live performance — not a one-time setup.',
+      impact: 'Keeps infrastructure aligned as the business changes.'
     }
   ];
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,10 +40,10 @@ const WhySection: React.FC = () => {
       <div className="why-layout">
         <div>
           <div className="section-chip reveal">Why Irtiqa</div>
-          <h2 className="why-title reveal d1">Simple systems that <em>actually run.</em></h2>
-          <p className="why-desc reveal d2">We build reliable infrastructure that improves response speed, follow-up quality, and booking consistency.</p>
+          <h2 className="why-title reveal d1">Infrastructure, not <em>tools.</em></h2>
+          <p className="why-desc reveal d2">We build and operate revenue operations infrastructure that stops leakage, improves conversion, and scales without chaos.</p>
           <div className="why-slogan reveal d3">Built to support your team, not replace your business identity.</div>
-          <a href="#book" className="btn-fill reveal d4" style={{ width: 'fit-content', marginTop: '22px' }}>Get My Audit</a>
+          <a href="#book" className="btn-fill reveal d4" style={{ width: 'fit-content', marginTop: '22px' }}>Book Free Audit Call</a>
         </div>
 
         <div className="reveal d2">

@@ -5,26 +5,26 @@ const ProcessSection: React.FC = () => {
   const steps = [
     {
       quarter: 'Step 01',
-      title: 'Audit',
-      description: 'Map leakage points across generation, capture, follow-up, qualification, and booking.',
+      title: 'Audit Call',
+      description: 'Free, one hour, maximum depth: map your revenue journey and identify the leakage points blocking growth.',
       status: 'done' as const
     },
     {
       quarter: 'Step 02',
-      title: 'Blueprint',
-      description: 'Define the operating architecture, integrations, triggers, and scope before build starts.',
+      title: 'Growth Report',
+      description: 'Within 24 hours: findings, commercial impact estimates, and the minimum viable infrastructure to fix root causes.',
       status: 'in-progress' as const
     },
     {
       quarter: 'Step 03',
-      title: 'Deploy',
-      description: 'Launch, validate, and hand over the live infrastructure without breaking current lead flow.',
+      title: 'Build',
+      description: 'Design the architecture, then implement in phases — systems, integrations, agents, and workflows — tested before handover.',
       status: 'upcoming' as const
     },
     {
       quarter: 'Step 04',
-      title: 'Compound',
-      description: 'Optimize what performs, expand capacity, and keep the system compounding from live data.',
+      title: 'Operate',
+      description: 'Ongoing partnership: monitor, optimize, and evolve the system as the business evolves. First month is free.',
       status: 'upcoming' as const
     }
   ];
@@ -34,8 +34,8 @@ const ProcessSection: React.FC = () => {
       <div className="process-v6-wrap">
         <div className="process-header reveal">
           <div className="process-kicker">Deployment Process</div>
-          <h2 className="process-title">From audit to <em>operational.</em></h2>
-          <p className="process-sub">A clear four-phase path from diagnosis to live, compounding operations.</p>
+          <h2 className="process-title">From audit to <em>infrastructure.</em></h2>
+          <p className="process-sub">A clear path from diagnosis to a live revenue operations system your team can run.</p>
         </div>
 
         <div className="process-v6-shell reveal d2">

@@ -19,31 +19,31 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   const layers = [
     {
       num: '01',
-      tag: 'Intake Layer',
-      title: 'Generate & Capture Demand',
-      desc: 'We build the infrastructure that generates leads and catches every signal the moment intent appears.',
-      metrics: ['lead generation', '24/7 capture', 'instant qualification']
+      tag: 'Capture Layer',
+      title: 'Lead Generation + Intake',
+      desc: 'Autonomous lead gen plus always-on intake across web, calls, and WhatsApp — with instant qualification.',
+      metrics: ['lead generation infrastructure', 'AI receptionist', 'instant qualification']
     },
     {
       num: '02',
-      tag: 'Routing Engine',
-      title: 'Route with Precision',
-      desc: 'Every lead is scored, structured, and sent into the right motion path automatically.',
-      metrics: ['smart scoring', 'clean routing', 'pipeline integrity']
+      tag: 'Conversion Layer',
+      title: 'Outreach + Booking',
+      desc: 'Multi-channel outreach, intelligent follow-up, response handling, and booking automation that turns intent into calls.',
+      metrics: ['autonomous outreach system', 'intelligent follow-up', 'appointment setting']
     },
     {
       num: '03',
-      tag: 'Engagement System',
-      title: 'Nurture & Reactivate',
-      desc: 'Automated follow-ups move active prospects and recover cold opportunities.',
-      metrics: ['sequence automation', 'reactivation loops', 'conversion lift']
+      tag: 'Ops Layer',
+      title: 'CRM + Pipeline Automation',
+      desc: 'Custom CRM architecture, routing, stage automation, tasks, and reporting — built around how you actually sell.',
+      metrics: ['AI powered CRM automation', 'pipeline governance', 'revenue dashboards']
     },
     {
       num: '04',
-      tag: 'Control Framework',
-      title: 'Govern & Scale',
-      desc: 'Data governance, trigger logic, and live visibility keep growth predictable.',
-      metrics: ['data hygiene', 'live reporting', 'scalable controls']
+      tag: 'Lifecycle Layer',
+      title: 'Onboard + Retain',
+      desc: 'Automated onboarding, retention triggers, re-engagement, and referral activation — so growth compounds after the close.',
+      metrics: ['client onboarding automation', 'retention systems', 're-engagement loops']
     }
   ];
 
@@ -72,12 +72,12 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   return (
     <section id="services">
       <div className="infra-top reveal">
-        <div className="infra-kicker-line">Operational Model</div>
+        <div className="infra-kicker-line">Revenue Infrastructure</div>
       </div>
 
       <div className="infra-header reveal">
-        <h2 className="infra-title">The Irtiqa Operational Model™ {industry ? `for ${industry.title}` : ''}</h2>
-        <p className="infra-sub">Four connected pillars that capture demand, route intent, and turn follow-up into booked revenue {location ? `in ${location.name}` : ''}.</p>
+        <h2 className="infra-title">The Irtiqa Revenue Operations Model™ {industry ? `for ${industry.title}` : ''}</h2>
+        <p className="infra-sub">Four connected pillars that take a stranger to a loyal client — automatically, intelligently, and at scale{location ? ` in ${location.name}` : ''}.</p>
         <div className="infra-status">
           System Status: <span>Active</span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
         </div>
@@ -100,8 +100,8 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
       </div>
 
       <div className="infra-cta reveal d4">
-        <a href="#book" className="btn-fill">Get My Audit</a>
-        <span className="cta-note">Blueprint + timeline + deployment scope in one call.</span>
+        <a href="#book" className="btn-fill">Book Free Audit Call</a>
+        <span className="cta-note">Audit call → Growth Report in 24 hours → build roadmap.</span>
       </div>
     </section>
   );

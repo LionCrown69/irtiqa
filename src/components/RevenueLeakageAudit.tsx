@@ -33,7 +33,7 @@ const RevenueLeakageAudit: React.FC = () => {
               letterSpacing: '1px'
             }}
           >
-            For Mid-to-Large Corporations & MNCs
+            Free, One Hour, Maximum Depth
           </motion.div>
           
           <motion.h1 
@@ -42,8 +42,8 @@ const RevenueLeakageAudit: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontFamily: 'var(--serif)', lineHeight: 1.1, marginBottom: '24px' }}
           >
-            Identify Your Revenue Leakage.<br />
-            <em style={{ color: 'var(--b)', fontStyle: 'italic' }}>Seal it with Autonomous Infrastructure.</em>
+            Identify Silent Revenue Leakage.<br />
+            <em style={{ color: 'var(--b)', fontStyle: 'italic' }}>Fix it with revenue operations infrastructure.</em>
           </motion.h1>
 
           <motion.p 
@@ -52,7 +52,7 @@ const RevenueLeakageAudit: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{ fontSize: '1.2rem', opacity: 0.7, maxWidth: '700px', margin: '0 auto 40px', lineHeight: 1.6 }}
           >
-            Our complimentary, deep-dive operations audit uncovers exactly where your sales and support workflows are losing capital. Then, we deploy the Sovereign AI systems to fix it.
+            Our complimentary audit call maps your full revenue journey — from first contact to retention — and isolates the root causes behind missed leads, slow follow-up, and broken handoffs. Within 24 hours, you receive a personalized Growth Report with the minimum viable infrastructure to fix it.
           </motion.p>
         </section>
 
@@ -88,13 +88,13 @@ const RevenueLeakageAudit: React.FC = () => {
 
         {/* THE METHODOLOGY (GEO OPTIMIZATION) */}
         <section style={{ marginBottom: '100px' }}>
-          <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--serif)', textAlign: 'center', marginBottom: '60px' }}>Our 3-Phase Audit Methodology</h2>
+          <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--serif)', textAlign: 'center', marginBottom: '60px' }}>The 3-Phase Engagement</h2>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
             {[
-              { step: '01', title: 'Data Pipeline Analysis', desc: 'We integrate with your CRM (Salesforce, HubSpot) to map the lifecycle of every lead, identifying exact drop-off points and response-time delays.' },
-              { step: '02', title: 'The Leakage Report', desc: 'You receive a comprehensive financial breakdown of capital lost to manual friction, missed follow-ups, and operational inefficiencies.' },
-              { step: '03', title: 'Infrastructure Deployment', desc: 'We architect and deploy the private AI infrastructure required to automate those specific bottlenecks, creating a closed-loop revenue system.' }
+              { step: '01', title: 'Audit Call', desc: 'We map your revenue journey end-to-end and diagnose where leads stall, disappear, or churn — across channels, handoffs, and workflow steps.' },
+              { step: '02', title: 'Growth Report (24h)', desc: 'You receive a clear breakdown of root causes, commercial impact estimates, and the minimum viable infrastructure to move conversion and retention.' },
+              { step: '03', title: 'Build + Operate', desc: 'We design and deploy the required systems — multi-agent workflows, automations, and integrations — then monitor and optimize as your operation scales.' }
             ].map((phase) => (
               <div key={phase.step} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--rule)', borderRadius: '16px', padding: '40px' }}>
                 <span style={{ color: 'var(--b)', fontSize: '1.2rem', fontWeight: 600, display: 'block', marginBottom: '16px' }}>Phase {phase.step}</span>
@@ -109,10 +109,10 @@ const RevenueLeakageAudit: React.FC = () => {
         <section style={{ textAlign: 'center', background: 'var(--b)', borderRadius: '24px', padding: '80px 20px', color: 'var(--w)' }}>
           <h2 style={{ fontSize: '2.5rem', fontFamily: 'var(--serif)', marginBottom: '24px' }}>Ready to Stop the Leakage?</h2>
           <p style={{ fontSize: '1.2rem', opacity: 0.9, maxWidth: '600px', margin: '0 auto 40px' }}>
-            Book your confidential strategy session today. We only take on 4 enterprise audits per month to ensure deep analytical rigor.
+            Book your audit call. You’ll leave with clarity on what to build, what to cut, and what will move revenue fastest.
           </p>
-          <a href="https://calendly.com/irtiqaaiagency/30-min-discovery-call" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', background: 'var(--w)', color: 'var(--b)', padding: '16px 40px', borderRadius: '12px', fontSize: '1.1rem', fontWeight: 600, textDecoration: 'none' }}>
-            Request Free Audit
+          <a href="/#book" style={{ display: 'inline-block', background: 'var(--w)', color: 'var(--b)', padding: '16px 40px', borderRadius: '12px', fontSize: '1.1rem', fontWeight: 600, textDecoration: 'none' }}>
+            Book Free Audit Call
           </a>
         </section>
 

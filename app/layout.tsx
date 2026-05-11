@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Automation for Service Businesses | Irtiqa AI",
-  description: "Irtiqa AI builds AI front desk, follow-up, and revenue systems for service businesses. Book a free automation consultation.",
-  keywords: "Irtiqa, Irtiqa AI, AI automation services, lead follow-up automation, revenue operations AI, service business automation",
+  title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
+  description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to capture leads, automate follow-up, and stop revenue leakage.",
+  keywords: "revenue operations infrastructure, AI revenue infrastructure, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
   applicationName: "Irtiqa AI",
   authors: [{ name: "Irtiqa AI" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "AI Automation for Service Businesses | Irtiqa AI",
-    description: "AI front desk, follow-up, and revenue systems for service businesses in US, UK, and Europe.",
+    title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
+    description: "Revenue operations infrastructure and agentic AI systems that find and fix silent revenue leakage across lead capture, follow-up, booking, onboarding, and retention.",
     type: "website",
     siteName: "Irtiqa AI",
     locale: "en_US",
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
-        alt: "Irtiqa AI Agency logo",
+        alt: "Irtiqa AI logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Automation for Service Businesses | Irtiqa AI",
-    description: "Irtiqa AI builds AI systems for faster response, follow-up, and revenue operations.",
+    title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
+    description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to stop silent revenue leakage.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo.jpeg"],
   },
 };
@@ -72,13 +72,16 @@ export default function RootLayout({
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
                   "email": "hello@irtiqaaiagency.com",
-                  "description": "Irtiqa AI is a premium consulting and infrastructure deployment firm. We specialize in identifying revenue leakage for MNCs and mid-to-large service businesses, and sealing it with bespoke Sovereign AI operations.",
+                  "description": "Irtiqa AI is the infrastructure layer serious businesses build on when they want to scale without chaos. We design, build, and operate revenue operations infrastructure and agentic AI systems that stop silent revenue leakage.",
                   "knowsAbout": [
-                    "Enterprise Revenue Operations",
-                    "Sovereign AI Infrastructure",
-                    "Revenue Leakage Audits",
-                    "Sales Pipeline Automation",
-                    "Bespoke AI Consulting"
+                    "Revenue operations infrastructure",
+                    "Agentic AI systems for business",
+                    "Multi-agent AI business systems",
+                    "Multi-model AI infrastructure",
+                    "Revenue leakage detection",
+                    "AI receptionist and front desk systems",
+                    "Autonomous outreach and appointment setting",
+                    "CRM and pipeline automation"
                   ],
                   "areaServed": [
                     { "@type": "Country", "name": "United States" },
@@ -145,8 +148,8 @@ export default function RootLayout({
                   "@type": "WebPage",
                   "@id": "https://www.irtiqaaiagency.com/#webpage",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "AI Automation for Service Businesses | Irtiqa AI",
-                  "description": "Irtiqa AI delivers AI automation for service businesses, including lead response systems, follow-up workflows, and revenue operations infrastructure.",
+                  "name": "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
+                  "description": "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems that stop silent revenue leakage across lead capture, follow-up, booking, onboarding, and retention.",
                   "isPartOf": {
                     "@id": "https://www.irtiqaaiagency.com/#website"
                   },

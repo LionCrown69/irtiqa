@@ -166,8 +166,8 @@ const ResultsSection: React.FC = () => {
       <div className="results-layout">
         <div className="results-left-column">
           <div className="section-chip reveal">Measured Impact</div>
-          <h2 className="results-title reveal d1">Infrastructure that <em>pays</em> for itself.</h2>
-          <p className="results-body reveal d2">Irtiqa deploys execution systems that make service businesses faster, more responsive, and harder to outcompete. These results reflect real implementation across lead handling, follow-up, booking, and recovery.</p>
+          <h2 className="results-title reveal d1">Revenue operations infrastructure that <em>pays</em> for itself.</h2>
+          <p className="results-body reveal d2">Irtiqa AI deploys systems that improve response speed, follow-up quality, booking conversion, and pipeline recovery — without adding headcount. These results reflect real implementation across the full lead-to-client journey.</p>
           <div className="results-slogan reveal d3">Measurable revenue impact without replacing your operational identity.</div>
         </div>
 

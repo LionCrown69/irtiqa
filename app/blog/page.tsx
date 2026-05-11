@@ -6,7 +6,7 @@ import { getAllPosts } from '../../lib/mdx';
 
 export const metadata = {
   title: 'Irtiqa AI Insights | Blog',
-  description: 'Deep-dive analysis on Sovereign AI, Revenue Operations, and Enterprise Infrastructure.',
+  description: 'Deep-dive analysis on revenue operations infrastructure, agentic AI systems, and business growth architecture.',
 };
 
 export default function BlogIndex() {
@@ -24,7 +24,7 @@ export default function BlogIndex() {
             Irtiqa AI Insights
           </h1>
           <p style={{ fontSize: '1.2rem', opacity: 0.7, maxWidth: '600px', lineHeight: 1.6 }}>
-            Deep-dive analysis on Sovereign AI, Revenue Operations, and Enterprise Infrastructure.
+            Deep-dive analysis on revenue operations infrastructure, agentic AI systems, and business growth architecture.
           </p>
         </header>
 

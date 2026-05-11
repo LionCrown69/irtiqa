@@ -53,24 +53,24 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
   const mobileHighlights = [
     { label: 'Average reply speed', value: '< 5 min' },
     { label: 'Follow-up coverage', value: '24/7' },
-    { label: 'Discovery path', value: 'Audit to Call' }
+    { label: 'Delivery path', value: 'Audit to Build' }
   ] as const;
 
   const mobileStoryCards = [
     {
       step: '01',
       title: 'A lead lands on the page',
-      body: 'The first screen immediately routes them toward a reply, an answer, or the booking path.'
+      body: 'Every signal gets captured, qualified, and routed into the right revenue path automatically.'
     },
     {
       step: '02',
       title: 'Momentum keeps moving',
-      body: 'Follow-up, reminders, and context keep the conversation active before the lead cools off.'
+      body: 'Follow-up, reminders, and context keep intent alive before it leaks away quietly.'
     },
     {
       step: '03',
       title: 'The discovery call gets booked',
-      body: 'Every section narrows the choice down to one action: book a qualified appointment.'
+      body: 'Qualified prospects get booked, onboarded, and nurtured without your team chasing steps.'
     }
   ] as const;
 
@@ -186,18 +186,18 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          Built for {industry ? `${industry.title} in ${location?.name || 'Your City'}` : 'service businesses'}
+          Built for {industry ? `${industry.title} teams in ${location?.name || 'your city'}` : 'serious businesses that want to scale without chaos'}
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Your Business</span>
-          <span className="hero-h1-line hero-h1-line-main">Runs on</span>
-          <em className="hero-h1-accent">Process.</em>
-          <span className="h1-muted h1-muted-compact">We Make It Run Itself.</span>
+          <span className="hero-h1-line hero-h1-line-main">Revenue Operations</span>
+          <span className="hero-h1-line hero-h1-line-main">Infrastructure</span>
+          <em className="hero-h1-accent">Powered by Agentic AI.</em>
+          <span className="h1-muted h1-muted-compact">We find the leakage. We fix the machine.</span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
-          We help you respond faster, follow up automatically, and book more qualified calls without adding manual workload. {industry ? `Say goodbye to ${industry.painPoint}.` : ''}
+          Irtiqa AI designs, builds, and operates the revenue engine behind growth: capture, qualification, follow-up, booking, onboarding, and retention — connected as one system. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
@@ -208,7 +208,7 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
             className="btn-fill primary-cta"
             style={{ transition: 'none' }} // Disabled CSS transition to favor framer
           >
-            Book My Free Audit
+            Book Free Audit Call
             <motion.svg
               whileHover={{ x: 4 }}
               width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"

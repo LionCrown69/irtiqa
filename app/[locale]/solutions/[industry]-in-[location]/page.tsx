@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: { industry: string,
   const cleanLocation = params.location.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
   return {
-    title: `${cleanIndustry} Services in ${cleanLocation} | Irtiqa AI Agency`,
-    description: `Stop revenue leakage with custom ${cleanIndustry} solutions explicitly built for service businesses operating in ${cleanLocation}.`
+    title: `Revenue Operations Infrastructure for ${cleanIndustry} in ${cleanLocation} | Irtiqa AI`,
+    description: `Stop silent revenue leakage with ${cleanIndustry} revenue infrastructure and agentic AI systems built for teams operating in ${cleanLocation}.`
   };
 }
 
@@ -53,7 +53,7 @@ export default function PseoLandingPage({ params }: { params: { locale: string, 
             {cleanIndustry} in <br/> <em style={{ color: 'var(--w)' }}>{cleanLocation}</em>
           </h1>
           <p style={{ fontSize: '1.25rem', opacity: 0.7, maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
-            Irtiqa AI provides sovereign infrastructure and automation specifically tailored for {cleanIndustry.toLowerCase()} providers located in {cleanLocation}.
+            Irtiqa AI designs, builds, and operates revenue operations infrastructure and agentic AI systems tailored for {cleanIndustry.toLowerCase()} teams in {cleanLocation}.
           </p>
         </header>
 

@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `AI Booking System for ${industry.title} in ${location.name} | Irtiqa`;
-  const description = `Stop losing ${industry.painPoint}. Irtiqa provides the leading AI appointment booking system for ${industry.name.toLowerCase()} in ${location.name}, ${location.state}. Capture leads 24/7.`;
+  const title = `Revenue Operations Infrastructure for ${industry.title} in ${location.name} | Irtiqa AI`;
+  const description = `Stop losing ${industry.painPoint}. Irtiqa AI builds revenue operations infrastructure and agentic AI systems for ${industry.name.toLowerCase()} teams in ${location.name}, ${location.state} — capture leads, automate follow-up, and book qualified calls.`;
 
   return {
     title,
@@ -54,32 +54,46 @@ export default function ProgrammaticPage({ params }: PageProps) {
     return null;
   }
 
-  // Generate LocalBusiness and SoftwareApplication JSON-LD Schema
+  const canonicalUrl = `https://www.irtiqaaiagency.com/use-cases/${params.industry}/${params.city}`;
+  const title = `Revenue Operations Infrastructure for ${industry.title} in ${location.name} | Irtiqa AI`;
+  const description = `Irtiqa AI builds revenue operations infrastructure and agentic AI systems for ${industry.name.toLowerCase()} teams in ${location.name}, ${location.state} — capture leads, automate follow-up, and book qualified calls without chaos.`;
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': ['SoftwareApplication', 'Product'],
-    name: `Irtiqa AI Booking for ${industry.name}`,
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Any',
-    description: `AI-powered booking and lead capture system for ${industry.title.toLowerCase()} in ${location.name}.`,
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-    },
-    audience: {
-      '@type': 'Audience',
-      audienceType: industry.name,
-      geographicArea: {
-        '@type': 'City',
-        name: location.name,
-        containedInPlace: {
-          '@type': 'State',
-          name: location.state
-        }
-      }
-    }
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: title,
+        description,
+        isPartOf: { '@id': 'https://www.irtiqaaiagency.com/#website' },
+        about: { '@id': 'https://www.irtiqaaiagency.com/#organization' },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'Service',
+        '@id': `${canonicalUrl}#service`,
+        name: `Revenue Operations Infrastructure for ${industry.name}`,
+        serviceType: [
+          'Revenue operations infrastructure',
+          'Agentic AI systems for business',
+          'Intelligent follow-up and booking automation',
+        ],
+        provider: { '@id': 'https://www.irtiqaaiagency.com/#organization' },
+        areaServed: {
+          '@type': 'City',
+          name: location.name,
+          containedInPlace: {
+            '@type': 'State',
+            name: location.state,
+            containedInPlace: { '@type': 'Country', name: location.country },
+          },
+        },
+        description: `A done-for-you infrastructure build for ${industry.title.toLowerCase()} teams: lead capture, qualification, follow-up, booking, and reporting — designed to stop silent revenue leakage.`,
+        url: canonicalUrl,
+      },
+    ],
   };
 
   return (

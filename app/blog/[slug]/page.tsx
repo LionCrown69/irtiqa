@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         description: post.excerpt,
         type: 'article',
         publishedTime: post.date,
-        authors: ['Irtiqa AI Agency'],
+        authors: ['Irtiqa AI'],
       },
       twitter: {
         card: 'summary_large_image',
@@ -53,11 +53,11 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     "description": post.excerpt,
     "author": {
       "@type": "Organization",
-      "name": "Irtiqa AI Agency"
+      "name": "Irtiqa AI"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Irtiqa AI Agency",
+      "name": "Irtiqa AI",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg"

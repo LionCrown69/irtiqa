@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getCountries } from '../../src/data/programmatic-seo';
 
 export const metadata = {
-  title: 'Global AI Booking Directory | Irtiqa AI',
-  description: 'Browse Irtiqa AI booking and automation solutions by country and city.',
+  title: 'Global Revenue Infrastructure Directory | Irtiqa AI',
+  description: 'Browse Irtiqa AI revenue operations infrastructure and agentic AI use-cases by country and city.',
 };
 
 export default function DirectoryLevel1() {
@@ -14,7 +14,7 @@ export default function DirectoryLevel1() {
       <div style={{ padding: '120px 20px', maxWidth: '1200px', margin: '0 auto', color: 'var(--w1, #ffffff)' }}>
         <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>Global Directory</h1>
         <p style={{ fontSize: '1.2rem', marginBottom: '40px', color: 'var(--w5)' }}>
-          Select a country to view our AI automation and booking deployment zones.
+          Select a country to view revenue operations infrastructure use-cases by city.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
