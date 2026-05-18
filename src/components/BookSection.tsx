@@ -172,7 +172,8 @@ const BookSection: React.FC = () => {
             <div className="reveal">
               <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Free Audit Call</div>
               <h2 className="book-title">Book your free<br /><em>Audit Call.</em></h2>
-              <p className="book-sub">One hour, maximum depth. Within 24 hours you receive a Growth Report with findings, impact estimates, and the minimum viable infrastructure to fix what’s leaking revenue.</p>
+              <p className="book-sub desktop-only">One hour, maximum depth. Within 24 hours you receive a Growth Report with findings, impact estimates, and the minimum viable infrastructure to fix what’s leaking revenue.</p>
+              <p className="book-sub mobile-only">Free 1-hour audit. Growth Report in 24 hours.</p>
             </div>
 
             {step === 'details' ? (

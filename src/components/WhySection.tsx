@@ -41,7 +41,8 @@ const WhySection: React.FC = () => {
         <div>
           <div className="section-chip reveal">Why Irtiqa</div>
           <h2 className="why-title reveal d1">Infrastructure, not <em>tools.</em></h2>
-          <p className="why-desc reveal d2">We build and operate revenue operations infrastructure that stops leakage, improves conversion, and scales without chaos.</p>
+          <p className="why-desc reveal d2 desktop-only">We build and operate revenue operations infrastructure that stops leakage, improves conversion, and scales without chaos.</p>
+          <p className="why-desc reveal d2 mobile-only">Stop leakage. Improve conversion. Scale without chaos.</p>
           <div className="why-slogan reveal d3">Built to support your team, not replace your business identity.</div>
           <a href="#book" className="btn-fill reveal d4" style={{ width: 'fit-content', marginTop: '22px' }}>Book Free Audit Call</a>
         </div>

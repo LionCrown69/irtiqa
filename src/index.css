@@ -54,6 +54,14 @@ section{
   z-index:1;
 }
 
+/* Responsive copy helpers */
+.desktop-only{display:block}
+.mobile-only{display:none}
+@media(max-width:640px){
+  .desktop-only{display:none}
+  .mobile-only{display:block}
+}
+
 #hero,#logos,#problem,#services,#results,#process,#why,#testimonials,#book,footer{
   display:block!important;
   visibility:visible!important;

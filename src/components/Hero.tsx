@@ -195,9 +195,14 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
           <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Make It Run Itself.</span>
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none' }}>
+        <motion.p variants={itemVariants} className="hero-sub desktop-only" style={{ opacity: 1, animation: 'none' }}>
           <strong>We find the leakage. We fix the machine.</strong><br/>
           Irtiqa AI builds the operational engine behind your growth: autonomous capture, intelligent routing, and multi-agent follow-up. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
+        </motion.p>
+
+        <motion.p variants={itemVariants} className="hero-sub mobile-only" style={{ opacity: 1, animation: 'none' }}>
+          <strong>We find the leakage. We fix the machine.</strong><br/>
+          Revenue infrastructure that captures leads, follows up, and books qualified calls — automatically. {industry ? `Stop ${industry.painPoint}.` : 'Stop silent leakage.'}
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>

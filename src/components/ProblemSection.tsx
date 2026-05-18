@@ -52,8 +52,11 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
           <h2 className="problem-title reveal d1">
             Most {industry ? industry.title.toLowerCase() : 'businesses'} don’t lose revenue dramatically. They lose it <em>quietly.</em>
           </h2>
-          <p className="problem-desc reveal d2">
+          <p className="problem-desc reveal d2 desktop-only">
             The real issue is rarely marketing. It’s revenue operations infrastructure: routing, follow-up, qualification, booking, onboarding, and retention — disconnected, manual, or nonexistent{location ? ` in ${location.name}` : ''}.
+          </p>
+          <p className="problem-desc reveal d2 mobile-only">
+            Revenue leaks at routing, follow-up, booking, and onboarding{location ? ` in ${location.name}` : ''}.
           </p>
 
           <div className="problem-points reveal d3">
