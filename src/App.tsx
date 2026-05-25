@@ -10,6 +10,7 @@ import ProcessSection from './components/ProcessSection';
 import WhySection from './components/WhySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import RecentBlogsSection from './components/RecentBlogsSection';
+import KnowledgeDirectory from './components/KnowledgeDirectory';
 import BookSection from './components/BookSection';
 import Footer from './components/Footer';
 import ProgressBar from './components/ProgressBar';
@@ -70,6 +71,7 @@ function App() {
         <WhySection />
         <TestimonialsSection />
         <RecentBlogsSection />
+        <KnowledgeDirectory />
         <BookSection />
       </main>
       <Footer />

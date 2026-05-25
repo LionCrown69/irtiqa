@@ -12,6 +12,7 @@ import ProcessSection from '../src/components/ProcessSection';
 import WhySection from '../src/components/WhySection';
 import TestimonialsSection from '../src/components/TestimonialsSection';
 import RecentBlogsSection from '../src/components/RecentBlogsSection';
+import KnowledgeDirectory from '../src/components/KnowledgeDirectory';
 import BookSection from '../src/components/BookSection';
 import Footer from '../src/components/Footer';
 import ProgressBar from '../src/components/ProgressBar';
@@ -50,6 +51,7 @@ export default function Home() {
         <WhySection />
         <TestimonialsSection />
         <RecentBlogsSection />
+        <KnowledgeDirectory />
         <BookSection />
       </main>
       <Footer />
