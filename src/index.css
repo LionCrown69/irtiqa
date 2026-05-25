@@ -19,32 +19,6 @@
   --fast: cubic-bezier(.4,0,.2,1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --w:    #0C0C0B;
-    --w2:   #151514;
-    --w3:   #1F1F1E;
-    --ink:  #FAFAF8;
-    --ink2: #ECEAE2;
-    --sub:  #9C9C98;
-    --dim:  #4E4E4B;
-    --b-lo: rgba(22,65,245,.15);
-    --rule: rgba(250,250,248,.08);
-  }
-}
-
-:root[data-theme="dark"] {
-  --w:    #0C0C0B;
-  --w2:   #151514;
-  --w3:   #1F1F1E;
-  --ink:  #FAFAF8;
-  --ink2: #ECEAE2;
-  --sub:  #9C9C98;
-  --dim:  #4E4E4B;
-  --b-lo: rgba(22,65,245,.15);
-  --rule: rgba(250,250,248,.08);
-}
-
 /* ════════════════════════════════════════
    RESET & GLOBAL OVERRIDES
 ════════════════════════════════════════ */
@@ -68,6 +42,7 @@ body{background:var(--w);color:var(--ink);font-family:var(--ui);font-weight:400;
 ::-webkit-scrollbar-thumb:hover {
   background: var(--sub);
 }
+
 /* ════════════════════════════════════════
    ROBUST LAYOUT - PREVENT BLACK SECTIONS
 ════════════════════════════════════════ */

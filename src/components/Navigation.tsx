@@ -10,7 +10,6 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const body = document.body;
@@ -29,21 +28,6 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
       html.style.overflow = '';
     };
   }, [mobileMenuOpen]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-    setTheme(initialTheme);
-    document.documentElement.setAttribute('data-theme', initialTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
 
   const navLinks = [
     { label: 'Infrastructure', href: '/#services' },
@@ -79,35 +63,6 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
         </ul>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--ink)',
-              opacity: 0.8,
-              transition: 'opacity 0.2s ease',
-            }}
-            onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
-            onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
-          >
-            {theme === 'dark' ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-              </svg>
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </svg>
-            )}
-          </button>
-
           <a href="/audit" className="nav-btn">
             <span className="nav-btn-dot"></span>
             Free Audit Call
@@ -151,34 +106,6 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', width: '100%' }}
               >
-                <button
-                  onClick={toggleTheme}
-                  aria-label="Toggle theme"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    color: 'var(--ink)',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    background: 'none',
-                    border: 'none',
-                    opacity: 0.8
-                  }}
-                >
-                  {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
-                  {theme === 'dark' ? (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-                    </svg>
-                  ) : (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                    </svg>
-                  )}
-                </button>
-
                 <a href="/audit" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
                   Free Audit Call
                 </a>
