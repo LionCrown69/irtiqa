@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import PeopleAlsoAsk from './PeopleAlsoAsk';
-import { getFaqsForCategory } from '../lib/faq';
+import { getFaqsForCategory } from '../../lib/faq';
 
 interface BlogPostDetailProps {
   slug: string;
