@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import Navigation from './Navigation';
 import Footer from './Footer';
 
@@ -29,8 +28,8 @@ function AuthorAvatar({ name }: { name: string }) {
         width: '32px',
         height: '32px',
         borderRadius: '50%',
-        background: `${color}22`,
-        border: `1px solid ${color}44`,
+        background: `${color}14`,
+        border: `1px solid ${color}33`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -77,14 +76,14 @@ const BlogStructure: React.FC = () => {
 
   if (loading) {
     return (
-      <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ fontFamily: 'var(--ui)', opacity: 0.5 }}>Loading Insights Content...</div>
       </div>
     );
   }
 
   return (
-    <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
       <Navigation navHeight={68} />
       
       {/* ─── HERO HEADER ─── */}
@@ -96,7 +95,7 @@ const BlogStructure: React.FC = () => {
           paddingRight: '24px',
           maxWidth: '1200px',
           margin: '0 auto',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--rule)',
         }}
       >
         <div
@@ -129,13 +128,13 @@ const BlogStructure: React.FC = () => {
 
         <h1
           style={{
-            fontFamily: 'Instrument Serif, Georgia, serif',
+            fontFamily: 'var(--serif)',
             fontSize: 'clamp(3rem, 6vw, 5.5rem)',
             fontWeight: 400,
             lineHeight: 1.05,
             marginBottom: '28px',
             letterSpacing: '-0.02em',
-            color: '#fdfdfc'
+            color: 'var(--ink)'
           }}
         >
           Research that turns
@@ -147,10 +146,10 @@ const BlogStructure: React.FC = () => {
         <p
           style={{
             fontSize: '1.15rem',
-            opacity: 0.6,
+            color: 'var(--sub)',
             maxWidth: '580px',
             lineHeight: 1.7,
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: 'var(--ui)',
           }}
         >
           Deep analysis on AI systems, booking automation, CRM architecture, lead generation,
@@ -164,11 +163,11 @@ const BlogStructure: React.FC = () => {
             style={{
               padding: '5px 14px',
               borderRadius: '100px',
-              background: selectedCategory === null ? '#1641F5' : 'rgba(255,255,255,0.05)',
-              border: selectedCategory === null ? '1px solid #1641F5' : '1px solid rgba(255,255,255,0.1)',
+              background: selectedCategory === null ? '#1641F5' : 'var(--w2)',
+              border: selectedCategory === null ? '1px solid #1641F5' : '1px solid var(--rule)',
               fontSize: '0.78rem',
               fontWeight: 600,
-              color: selectedCategory === null ? '#fff' : 'rgba(253,253,252,0.8)',
+              color: selectedCategory === null ? '#fff' : 'var(--sub)',
               cursor: 'pointer',
               transition: 'all 0.2s ease'
             }}
@@ -184,8 +183,8 @@ const BlogStructure: React.FC = () => {
                 style={{
                   padding: '5px 14px',
                   borderRadius: '100px',
-                  background: isSelected ? color : `${color}14`,
-                  border: isSelected ? `1px solid ${color}` : `1px solid ${color}33`,
+                  background: isSelected ? color : `${color}10`,
+                  border: isSelected ? `1px solid ${color}` : `1px solid ${color}25`,
                   fontSize: '0.78rem',
                   fontWeight: 600,
                   color: isSelected ? '#fff' : color,
@@ -202,7 +201,7 @@ const BlogStructure: React.FC = () => {
 
       <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 120px' }}>
         
-        {/* ─── FEATURED ARTICLE (Only shown when not filtering, or if category matches featured) ─── */}
+        {/* ─── FEATURED ARTICLE ─── */}
         {featured && (!selectedCategory || featured.category === selectedCategory) && (
           <section style={{ marginTop: '72px', marginBottom: '80px' }}>
             <div
@@ -211,7 +210,7 @@ const BlogStructure: React.FC = () => {
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 letterSpacing: '2px',
-                color: 'rgba(255,255,255,0.3)',
+                color: 'var(--sub)',
                 marginBottom: '20px',
               }}
             >
@@ -223,10 +222,10 @@ const BlogStructure: React.FC = () => {
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   gap: '0',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  border: '1px solid var(--rule)',
                   borderRadius: '24px',
                   overflow: 'hidden',
-                  background: 'rgba(255,255,255,0.02)',
+                  background: 'var(--w2)',
                   transition: 'all 0.25s ease',
                   cursor: 'pointer',
                 }}
@@ -251,25 +250,25 @@ const BlogStructure: React.FC = () => {
                       >
                         {featured.category}
                       </span>
-                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Outfit, sans-serif' }}>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
                         {featured.readingTime}
                       </span>
                     </div>
 
                     <h2
                       style={{
-                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontFamily: 'var(--serif)',
                         fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)',
                         fontWeight: 400,
                         lineHeight: 1.2,
                         marginBottom: '20px',
                         letterSpacing: '-0.015em',
-                        color: '#fdfdfc'
+                        color: 'var(--ink)'
                       }}
                     >
                       {featured.title}
                     </h2>
-                    <p style={{ opacity: 0.55, lineHeight: 1.7, fontSize: '0.95rem', fontFamily: 'Outfit, sans-serif' }}>
+                    <p style={{ color: 'var(--sub)', lineHeight: 1.7, fontSize: '0.95rem', fontFamily: 'var(--ui)' }}>
                       {featured.excerpt}
                     </p>
                   </div>
@@ -278,8 +277,8 @@ const BlogStructure: React.FC = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <AuthorAvatar name={featured.author || 'Priya Nair'} />
                       <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{featured.author || 'Priya Nair'}</div>
-                        <div style={{ fontSize: '0.75rem', opacity: 0.45, fontFamily: 'Outfit, sans-serif' }}>{featured.authorRole || 'Lead AI Engineer'}</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 600, fontFamily: 'var(--ui)' }}>{featured.author || 'Priya Nair'}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>{featured.authorRole || 'Lead AI Engineer'}</div>
                       </div>
                     </div>
                     <div
@@ -290,7 +289,7 @@ const BlogStructure: React.FC = () => {
                         color: '#1641F5',
                         fontWeight: 600,
                         fontSize: '0.9rem',
-                        fontFamily: 'Outfit, sans-serif',
+                        fontFamily: 'var(--ui)',
                       }}
                     >
                       Read Article
@@ -304,14 +303,15 @@ const BlogStructure: React.FC = () => {
                 {/* Right: decorative panel */}
                 <div
                   style={{
-                    background: 'linear-gradient(135deg, rgba(22,65,245,0.12) 0%, rgba(124,58,237,0.08) 50%, rgba(0,0,0,0) 100%)',
-                    borderLeft: '1px solid rgba(255,255,255,0.05)',
+                    background: 'linear-gradient(135deg, rgba(22,65,245,0.06) 0%, rgba(124,58,237,0.03) 50%, rgba(0,0,0,0) 100%)',
+                    borderLeft: '1px solid var(--rule)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
                     overflow: 'hidden',
                     minHeight: '360px',
+                    backgroundColor: 'var(--w3)'
                   }}
                 >
                   <div
@@ -323,22 +323,22 @@ const BlogStructure: React.FC = () => {
                       width: '220px',
                       height: '220px',
                       borderRadius: '50%',
-                      background: 'radial-gradient(circle, rgba(22,65,245,0.15) 0%, transparent 70%)',
+                      background: 'radial-gradient(circle, rgba(22,65,245,0.08) 0%, transparent 70%)',
                     }}
                   />
                   <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
                     <div
                       style={{
                         fontSize: 'clamp(3.5rem, 5vw, 5rem)',
-                        fontFamily: 'Instrument Serif, Georgia, serif',
-                        color: 'rgba(22,65,245,0.25)',
+                        fontFamily: 'var(--serif)',
+                        color: 'rgba(22,65,245,0.15)',
                         lineHeight: 1,
                         marginBottom: '12px',
                       }}
                     >
                       No.1
                     </div>
-                    <div style={{ fontSize: '0.8rem', opacity: 0.3, fontFamily: 'Outfit, sans-serif', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--sub)', fontFamily: 'var(--ui)', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                       Featured
                     </div>
                   </div>
@@ -358,7 +358,7 @@ const BlogStructure: React.FC = () => {
               marginBottom: '32px',
             }}
           >
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--sub)' }}>
               {selectedCategory ? `${selectedCategory} Articles` : 'All Articles'} — {filteredPosts.length} Insights Found
             </div>
           </div>
@@ -375,9 +375,9 @@ const BlogStructure: React.FC = () => {
                 <article
                   style={{
                     padding: '32px',
-                    border: '1px solid rgba(255,255,255,0.07)',
+                    border: '1px solid var(--rule)',
                     borderRadius: '16px',
-                    background: 'rgba(255,255,255,0.015)',
+                    background: 'var(--w2)',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
@@ -387,13 +387,13 @@ const BlogStructure: React.FC = () => {
                   }}
                   className="blog-card"
                   onMouseOver={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(22,65,245,0.3)';
-                    e.currentTarget.style.background = 'rgba(22,65,245,0.04)';
+                    e.currentTarget.style.borderColor = 'rgba(22,65,245,0.2)';
+                    e.currentTarget.style.background = 'var(--w3)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.015)';
+                    e.currentTarget.style.borderColor = 'var(--rule)';
+                    e.currentTarget.style.background = 'var(--w2)';
                     e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
@@ -414,30 +414,30 @@ const BlogStructure: React.FC = () => {
                       >
                         {post.category}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', fontFamily: 'Outfit, sans-serif' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
                         {post.readingTime}
                       </span>
                     </div>
 
                     <h2
                       style={{
-                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontFamily: 'var(--serif)',
                         fontSize: '1.4rem',
                         fontWeight: 400,
                         lineHeight: 1.3,
                         marginBottom: '14px',
                         letterSpacing: '-0.01em',
-                        color: '#fdfdfc'
+                        color: 'var(--ink)'
                       }}
                     >
                       {post.title}
                     </h2>
                     <p
                       style={{
-                        opacity: 0.45,
+                        color: 'var(--sub)',
                         lineHeight: 1.65,
                         fontSize: '0.88rem',
-                        fontFamily: 'Outfit, sans-serif',
+                        fontFamily: 'var(--ui)',
                         display: '-webkit-box',
                         WebkitLineClamp: 3,
                         WebkitBoxOrient: 'vertical',
@@ -448,12 +448,12 @@ const BlogStructure: React.FC = () => {
                     </p>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--rule)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <AuthorAvatar name={post.author || 'Priya Nair'} />
                       <div>
-                        <div style={{ fontSize: '0.78rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{post.author || 'Priya Nair'}</div>
-                        <div style={{ fontSize: '0.7rem', opacity: 0.35, fontFamily: 'Outfit, sans-serif' }}>{post.date}</div>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 600, fontFamily: 'var(--ui)' }}>{post.author || 'Priya Nair'}</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>{post.date}</div>
                       </div>
                     </div>
                     <svg
@@ -475,7 +475,7 @@ const BlogStructure: React.FC = () => {
           </div>
 
           {filteredPosts.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '80px 0', opacity: 0.3, fontFamily: 'Outfit, sans-serif' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
               No insights published yet in this category. Check back soon.
             </div>
           )}
@@ -488,8 +488,9 @@ const BlogStructure: React.FC = () => {
             padding: '64px 48px',
             borderRadius: '24px',
             border: '1px solid rgba(22,65,245,0.2)',
-            background: 'linear-gradient(135deg, rgba(22,65,245,0.08) 0%, rgba(0,0,0,0) 100%)',
+            background: 'linear-gradient(135deg, rgba(22,65,245,0.04) 0%, rgba(0,0,0,0) 100%)',
             textAlign: 'center',
+            backgroundColor: 'var(--w2)'
           }}
         >
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: '#1641F5', marginBottom: '20px' }}>
@@ -497,17 +498,17 @@ const BlogStructure: React.FC = () => {
           </div>
           <h3
             style={{
-              fontFamily: 'Instrument Serif, Georgia, serif',
+              fontFamily: 'var(--serif)',
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 400,
               marginBottom: '18px',
               letterSpacing: '-0.02em',
-              color: '#fdfdfc'
+              color: 'var(--ink)'
             }}
           >
             Stop reading. Start fixing.
           </h3>
-          <p style={{ opacity: 0.5, fontSize: '1rem', fontFamily: 'Outfit, sans-serif', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
+          <p style={{ color: 'var(--sub)', fontSize: '1rem', fontFamily: 'var(--ui)', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
             One hour. We map every point where your pipeline is leaking revenue and give you the exact infrastructure to fix it.
           </p>
           <a
@@ -522,7 +523,7 @@ const BlogStructure: React.FC = () => {
               borderRadius: '10px',
               fontWeight: 600,
               fontSize: '0.95rem',
-              fontFamily: 'Outfit, sans-serif',
+              fontFamily: 'var(--ui)',
               textDecoration: 'none',
               letterSpacing: '-0.01em',
             }}
@@ -537,7 +538,7 @@ const BlogStructure: React.FC = () => {
 
       <style>{`
         .featured-card:hover {
-          border-color: rgba(22,65,245,0.35) !important;
+          border-color: rgba(22,65,245,0.3) !important;
           transform: translateY(-2px);
         }
         @media (max-width: 768px) {

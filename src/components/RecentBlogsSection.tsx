@@ -41,8 +41,8 @@ export default function RecentBlogsSection() {
       style={{
         padding: '130px 52px',
         borderBottom: '1px solid var(--rule)',
-        background: 'var(--ink)',
-        color: 'var(--w)',
+        background: 'var(--w)',
+        color: 'var(--ink)',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -71,7 +71,8 @@ export default function RecentBlogsSection() {
               fontWeight: 400,
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
-              margin: 0
+              margin: 0,
+              color: 'var(--ink)'
             }}>
               Strategic research for <br/>
               <em style={{ fontStyle: 'italic', color: 'var(--b)' }}>service business scale.</em>
@@ -86,9 +87,9 @@ export default function RecentBlogsSection() {
               gap: '8px',
               fontSize: '13px',
               fontWeight: 600,
-              color: 'rgba(255,255,255,0.7)',
+              color: 'var(--sub)',
               textDecoration: 'none',
-              borderBottom: '1px solid rgba(255,255,255,0.3)',
+              borderBottom: '1px solid var(--rule)',
               paddingBottom: '4px',
               transition: 'all 0.2s ease',
             }}
@@ -97,8 +98,8 @@ export default function RecentBlogsSection() {
               e.currentTarget.style.borderColor = '#1641F5';
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.color = 'rgba(255,255,255,0.7)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+              e.currentTarget.style.color = 'var(--sub)';
+              e.currentTarget.style.borderColor = 'var(--rule)';
             }}
           >
             View all 60+ articles
@@ -125,8 +126,8 @@ export default function RecentBlogsSection() {
                   justifyContent: 'space-between',
                   padding: '32px',
                   borderRadius: '16px',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  background: 'rgba(255,255,255,0.015)',
+                  border: '1px solid var(--rule)',
+                  background: 'var(--w2)',
                   textDecoration: 'none',
                   color: 'inherit',
                   transition: 'all 0.3s ease',
@@ -134,12 +135,12 @@ export default function RecentBlogsSection() {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(22,65,245,0.3)';
-                  e.currentTarget.style.background = 'rgba(22,65,245,0.04)';
+                  e.currentTarget.style.background = 'var(--w3)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.015)';
+                  e.currentTarget.style.borderColor = 'var(--rule)';
+                  e.currentTarget.style.background = 'var(--w2)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -160,7 +161,7 @@ export default function RecentBlogsSection() {
                     >
                       {post.category}
                     </span>
-                    <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.3)', fontFamily: 'var(--ui)' }}>
+                    <span style={{ fontSize: '11px', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
                       {post.readingTime}
                     </span>
                   </div>
@@ -172,12 +173,12 @@ export default function RecentBlogsSection() {
                     lineHeight: 1.25,
                     marginBottom: '16px',
                     letterSpacing: '-0.01em',
-                    color: '#fdfdfc'
+                    color: 'var(--ink)'
                   }}>
                     {post.title}
                   </h3>
                   <p style={{
-                    opacity: 0.5,
+                    color: 'var(--sub)',
                     lineHeight: 1.6,
                     fontSize: '14px',
                     fontFamily: 'var(--ui)',
@@ -196,11 +197,11 @@ export default function RecentBlogsSection() {
                   justifyContent: 'space-between',
                   marginTop: '32px',
                   paddingTop: '20px',
-                  borderTop: '1px solid rgba(255,255,255,0.05)'
+                  borderTop: '1px solid var(--rule)'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: 600, color: '#fdfdfc' }}>{post.author}</div>
-                    <div style={{ fontSize: '11px', opacity: 0.4 }}>{post.date}</div>
+                    <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>{post.author}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--sub)' }}>{post.date}</div>
                   </div>
                   <svg
                     width="14"
@@ -233,7 +234,7 @@ export default function RecentBlogsSection() {
           borderRadius: '50%',
           background: 'radial-gradient(circle, #1641F5 0%, transparent 70%)',
           pointerEvents: 'none',
-          opacity: 0.04,
+          opacity: 0.03,
           mixBlendMode: 'screen'
         }}
       />

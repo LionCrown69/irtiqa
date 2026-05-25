@@ -170,8 +170,8 @@ function AuthorAvatar({ name }: { name: string }) {
         width: '48px',
         height: '48px',
         borderRadius: '50%',
-        background: `${color}18`,
-        border: `1.5px solid ${color}40`,
+        background: `${color}14`,
+        border: `1.5px solid ${color}33`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -214,7 +214,7 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
 
   if (loading) {
     return (
-      <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ fontFamily: 'var(--ui)', opacity: 0.5 }}>Loading article insights...</div>
       </div>
     );
@@ -222,11 +222,11 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
 
   if (error || !post) {
     return (
-      <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
+      <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
         <Navigation navHeight={68} />
         <main style={{ padding: '160px 24px', maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <h1 style={{ fontFamily: 'var(--serif)', fontSize: '2.5rem', marginBottom: '20px' }}>Article Not Found</h1>
-          <p style={{ opacity: 0.6, marginBottom: '40px' }}>The requested publication could not be found or has been moved.</p>
+          <h1 style={{ fontFamily: 'var(--serif)', fontSize: '2.5rem', marginBottom: '20px', color: 'var(--ink)' }}>Article Not Found</h1>
+          <p style={{ color: 'var(--sub)', marginBottom: '40px' }}>The requested publication could not be found or has been moved.</p>
           <a
             href="/blog"
             style={{
@@ -252,7 +252,7 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
   const parsedContent = parseMarkdown(post.content);
 
   return (
-    <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
       <Navigation navHeight={68} />
 
       {/* ─── ARTICLE HERO ─── */}
@@ -264,11 +264,11 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           margin: '0 auto',
           paddingLeft: '24px',
           paddingRight: '24px',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--rule)',
         }}
       >
         {/* Breadcrumb */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '32px', fontSize: '0.8rem', fontFamily: 'Outfit, sans-serif', opacity: 0.4 }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '32px', fontSize: '0.8rem', fontFamily: 'var(--ui)', color: 'var(--sub)', opacity: 0.8 }}>
           <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</a>
           <span>/</span>
           <a href="/blog" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
@@ -289,12 +289,12 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
               color: catColor,
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              fontFamily: 'Outfit, sans-serif',
+              fontFamily: 'var(--ui)',
             }}
           >
             {post.category}
           </span>
-          <span style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Outfit, sans-serif' }}>
+          <span style={{ fontSize: '0.82rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
             {post.readingTime}
           </span>
         </div>
@@ -302,12 +302,13 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
         {/* Title */}
         <h1
           style={{
-            fontFamily: 'Instrument Serif, Georgia, serif',
+            fontFamily: 'var(--serif)',
             fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
             fontWeight: 400,
             lineHeight: 1.12,
             marginBottom: '28px',
             letterSpacing: '-0.025em',
+            color: 'var(--ink)'
           }}
         >
           {post.title}
@@ -317,9 +318,9 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
         <p
           style={{
             fontSize: '1.15rem',
-            opacity: 0.55,
+            color: 'var(--sub)',
             lineHeight: 1.75,
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: 'var(--ui)',
             marginBottom: '40px',
           }}
         >
@@ -334,16 +335,16 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
             gap: '16px',
             padding: '20px 24px',
             borderRadius: '12px',
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.06)',
+            background: 'var(--w2)',
+            border: '1px solid var(--rule)',
           }}
         >
           <AuthorAvatar name={post.author} />
           <div>
-            <div style={{ fontWeight: 600, fontSize: '0.95rem', fontFamily: 'Outfit, sans-serif', marginBottom: '3px' }}>
+            <div style={{ fontWeight: 600, fontSize: '0.95rem', fontFamily: 'var(--ui)', marginBottom: '3px', color: 'var(--ink)' }}>
               {post.author}
             </div>
-            <div style={{ fontSize: '0.8rem', opacity: 0.4, fontFamily: 'Outfit, sans-serif' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
               {post.authorRole} · {post.date}
             </div>
           </div>
@@ -355,10 +356,10 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
                   style={{
                     padding: '3px 10px',
                     borderRadius: '100px',
-                    background: 'rgba(255,255,255,0.05)',
+                    background: 'var(--w3)',
                     fontSize: '0.72rem',
-                    fontFamily: 'Outfit, sans-serif',
-                    opacity: 0.5,
+                    fontFamily: 'var(--ui)',
+                    color: 'var(--sub)',
                   }}
                 >
                   {tag}
@@ -391,15 +392,16 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
             border: `1px solid ${catColor}33`,
             background: `linear-gradient(135deg, ${catColor}0a 0%, rgba(0,0,0,0) 100%)`,
             textAlign: 'center',
+            backgroundColor: 'var(--w2)'
           }}
         >
-          <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: catColor, marginBottom: '16px', fontFamily: 'Outfit, sans-serif' }}>
+          <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: catColor, marginBottom: '16px', fontFamily: 'var(--ui)' }}>
             Free Growth Audit
           </p>
-          <h3 style={{ fontFamily: 'Instrument Serif, Georgia, serif', fontSize: '2rem', fontWeight: 400, marginBottom: '14px', letterSpacing: '-0.02em' }}>
+          <h3 style={{ fontFamily: 'var(--serif)', fontSize: '2rem', fontWeight: 400, marginBottom: '14px', letterSpacing: '-0.02em', color: 'var(--ink)' }}>
             Ready to find where you're leaking revenue?
           </h3>
-          <p style={{ opacity: 0.45, fontSize: '0.95rem', fontFamily: 'Outfit, sans-serif', marginBottom: '32px', maxWidth: '420px', margin: '0 auto 32px' }}>
+          <p style={{ color: 'var(--sub)', fontSize: '0.95rem', fontFamily: 'var(--ui)', marginBottom: '32px', maxWidth: '420px', margin: '0 auto 32px' }}>
             One hour. We map your pipeline, identify silent leakage, and hand you the exact infrastructure to fix it.
           </p>
           <a
@@ -414,7 +416,7 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
               borderRadius: '10px',
               fontWeight: 600,
               fontSize: '0.92rem',
-              fontFamily: 'Outfit, sans-serif',
+              fontFamily: 'var(--ui)',
               textDecoration: 'none',
             }}
           >
@@ -428,17 +430,17 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
 
       <style>{`
         .prose-irtiqa {
-          font-family: Outfit, sans-serif;
+          font-family: var(--ui);
           font-size: 1.05rem;
           line-height: 1.8;
-          color: rgba(253,253,252,0.75);
+          color: rgba(12,12,11,0.8);
         }
         .prose-irtiqa h1,
         .prose-irtiqa h2,
         .prose-irtiqa h3 {
-          font-family: 'Instrument Serif', Georgia, serif;
+          font-family: var(--serif);
           font-weight: 400;
-          color: #fdfdfc;
+          color: var(--ink);
           letter-spacing: -0.02em;
           margin-top: 2.5rem;
           margin-bottom: 1rem;
@@ -447,7 +449,7 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
         .prose-irtiqa h2 { font-size: 2rem; }
         .prose-irtiqa h3 { font-size: 1.4rem; }
         .prose-irtiqa p { margin-bottom: 1.4rem; }
-        .prose-irtiqa strong { color: #fdfdfc; font-weight: 600; }
+        .prose-irtiqa strong { color: var(--ink); font-weight: 600; }
         .prose-irtiqa em { color: #1641F5; font-style: normal; font-weight: 600; }
         .prose-irtiqa ul, .prose-irtiqa ol {
           margin: 1.2rem 0 1.6rem 1.4rem;
@@ -455,19 +457,19 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           flex-direction: column;
           gap: 0.6rem;
         }
-        .prose-irtiqa li { opacity: 0.8; }
+        .prose-irtiqa li { color: rgba(12,12,11,0.85); }
         .prose-irtiqa blockquote {
           border-left: 3px solid #1641F5;
           padding: 16px 24px;
           margin: 2rem 0;
-          background: rgba(22,65,245,0.06);
+          background: rgba(22,65,245,0.04);
           border-radius: 0 10px 10px 0;
           font-style: normal;
-          color: rgba(253,253,252,0.75);
+          color: var(--sub);
         }
         .prose-irtiqa hr {
           border: none;
-          border-top: 1px solid rgba(255,255,255,0.07);
+          border-top: 1px solid var(--rule);
           margin: 3rem 0;
         }
         .prose-irtiqa a {
@@ -482,27 +484,27 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           font-size: 0.9rem;
         }
         .prose-irtiqa th {
-          background: rgba(22,65,245,0.1);
+          background: rgba(22,65,245,0.06);
           padding: 12px 16px;
           text-align: left;
           font-weight: 600;
-          color: #fdfdfc;
-          border-bottom: 1px solid rgba(22,65,245,0.3);
+          color: var(--ink);
+          border-bottom: 1px solid rgba(22,65,245,0.2);
         }
         .prose-irtiqa td {
           padding: 11px 16px;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
+          border-bottom: 1px solid var(--rule);
         }
         .prose-irtiqa code {
-          background: rgba(22,65,245,0.12);
+          background: rgba(22,65,245,0.06);
           padding: 2px 7px;
           border-radius: 4px;
           font-size: 0.88em;
-          color: #a5b4fc;
+          color: #1641F5;
         }
         .prose-irtiqa pre {
-          background: rgba(255,255,255,0.02);
-          border: 1px solid rgba(255,255,255,0.05);
+          background: var(--w2);
+          border: 1px solid var(--rule);
           padding: 20px;
           border-radius: 12px;
           overflow-x: auto;

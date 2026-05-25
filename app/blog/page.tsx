@@ -40,8 +40,8 @@ function AuthorAvatar({ name }: { name: string }) {
         width: '32px',
         height: '32px',
         borderRadius: '50%',
-        background: `${color}22`,
-        border: `1px solid ${color}44`,
+        background: `${color}14`,
+        border: `1px solid ${color}33`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -62,7 +62,7 @@ export default function BlogIndex() {
   const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   return (
-    <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
       <Navigation navHeight={68} />
 
       {/* ─── HERO HEADER ─── */}
@@ -73,7 +73,7 @@ export default function BlogIndex() {
           padding: '140px 24px 80px',
           maxWidth: '1200px',
           margin: '0 auto',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid var(--rule)',
         }}
       >
         <div
@@ -106,7 +106,7 @@ export default function BlogIndex() {
 
         <h1
           style={{
-            fontFamily: 'Instrument Serif, Georgia, serif',
+            fontFamily: 'var(--serif)',
             fontSize: 'clamp(3rem, 6vw, 5.5rem)',
             fontWeight: 400,
             lineHeight: 1.05,
@@ -123,10 +123,10 @@ export default function BlogIndex() {
         <p
           style={{
             fontSize: '1.15rem',
-            opacity: 0.6,
+            color: 'var(--sub)',
             maxWidth: '580px',
             lineHeight: 1.7,
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: 'var(--ui)',
           }}
         >
           Deep analysis on AI systems, booking automation, CRM architecture, lead generation,
@@ -141,8 +141,8 @@ export default function BlogIndex() {
               style={{
                 padding: '5px 14px',
                 borderRadius: '100px',
-                background: `${color}14`,
-                border: `1px solid ${color}33`,
+                background: `${color}10`,
+                border: `1px solid ${color}25`,
                 fontSize: '0.78rem',
                 fontWeight: 600,
                 color: color,
@@ -166,7 +166,7 @@ export default function BlogIndex() {
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 letterSpacing: '2px',
-                color: 'rgba(255,255,255,0.3)',
+                color: 'var(--sub)',
                 marginBottom: '20px',
               }}
             >
@@ -178,10 +178,10 @@ export default function BlogIndex() {
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   gap: '0',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  border: '1px solid var(--rule)',
                   borderRadius: '24px',
                   overflow: 'hidden',
-                  background: 'rgba(255,255,255,0.02)',
+                  background: 'var(--w2)',
                   transition: 'border-color 0.25s ease, transform 0.25s ease',
                   cursor: 'pointer',
                 }}
@@ -206,24 +206,25 @@ export default function BlogIndex() {
                       >
                         {featured.category}
                       </span>
-                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Outfit, sans-serif' }}>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
                         {featured.readingTime}
                       </span>
                     </div>
 
                     <h2
                       style={{
-                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontFamily: 'var(--serif)',
                         fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)',
                         fontWeight: 400,
                         lineHeight: 1.2,
                         marginBottom: '20px',
                         letterSpacing: '-0.015em',
+                        color: 'var(--ink)'
                       }}
                     >
                       {featured.title}
                     </h2>
-                    <p style={{ opacity: 0.55, lineHeight: 1.7, fontSize: '0.95rem', fontFamily: 'Outfit, sans-serif' }}>
+                    <p style={{ color: 'var(--sub)', lineHeight: 1.7, fontSize: '0.95rem', fontFamily: 'var(--ui)' }}>
                       {featured.excerpt}
                     </p>
                   </div>
@@ -232,8 +233,8 @@ export default function BlogIndex() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <AuthorAvatar name={featured.author} />
                       <div>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{featured.author}</div>
-                        <div style={{ fontSize: '0.75rem', opacity: 0.45, fontFamily: 'Outfit, sans-serif' }}>{featured.authorRole}</div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 600, fontFamily: 'var(--ui)' }}>{featured.author}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>{featured.authorRole}</div>
                       </div>
                     </div>
                     <div
@@ -244,7 +245,7 @@ export default function BlogIndex() {
                         color: '#1641F5',
                         fontWeight: 600,
                         fontSize: '0.9rem',
-                        fontFamily: 'Outfit, sans-serif',
+                        fontFamily: 'var(--ui)',
                       }}
                     >
                       Read Article
@@ -258,14 +259,15 @@ export default function BlogIndex() {
                 {/* Right: decorative panel */}
                 <div
                   style={{
-                    background: 'linear-gradient(135deg, rgba(22,65,245,0.12) 0%, rgba(124,58,237,0.08) 50%, rgba(0,0,0,0) 100%)',
-                    borderLeft: '1px solid rgba(255,255,255,0.05)',
+                    background: 'linear-gradient(135deg, rgba(22,65,245,0.06) 0%, rgba(124,58,237,0.03) 50%, rgba(0,0,0,0) 100%)',
+                    borderLeft: '1px solid var(--rule)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
                     overflow: 'hidden',
                     minHeight: '360px',
+                    backgroundColor: 'var(--w3)'
                   }}
                 >
                   <div
@@ -277,22 +279,22 @@ export default function BlogIndex() {
                       width: '220px',
                       height: '220px',
                       borderRadius: '50%',
-                      background: 'radial-gradient(circle, rgba(22,65,245,0.15) 0%, transparent 70%)',
+                      background: 'radial-gradient(circle, rgba(22,65,245,0.08) 0%, transparent 70%)',
                     }}
                   />
                   <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
                     <div
                       style={{
                         fontSize: 'clamp(3.5rem, 5vw, 5rem)',
-                        fontFamily: 'Instrument Serif, Georgia, serif',
-                        color: 'rgba(22,65,245,0.25)',
+                        fontFamily: 'var(--serif)',
+                        color: 'rgba(22,65,245,0.15)',
                         lineHeight: 1,
                         marginBottom: '12px',
                       }}
                     >
                       No.1
                     </div>
-                    <div style={{ fontSize: '0.8rem', opacity: 0.3, fontFamily: 'Outfit, sans-serif', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--sub)', fontFamily: 'var(--ui)', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
                       Featured
                     </div>
                   </div>
@@ -312,7 +314,7 @@ export default function BlogIndex() {
               marginBottom: '32px',
             }}
           >
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--sub)' }}>
               All Articles — {posts.length} Published
             </div>
           </div>
@@ -329,9 +331,9 @@ export default function BlogIndex() {
                 <article
                   style={{
                     padding: '32px',
-                    border: '1px solid rgba(255,255,255,0.07)',
+                    border: '1px solid var(--rule)',
                     borderRadius: '16px',
-                    background: 'rgba(255,255,255,0.015)',
+                    background: 'var(--w2)',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
@@ -358,29 +360,30 @@ export default function BlogIndex() {
                       >
                         {post.category}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', fontFamily: 'Outfit, sans-serif' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
                         {post.readingTime}
                       </span>
                     </div>
 
                     <h2
                       style={{
-                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontFamily: 'var(--serif)',
                         fontSize: '1.4rem',
                         fontWeight: 400,
                         lineHeight: 1.3,
                         marginBottom: '14px',
                         letterSpacing: '-0.01em',
+                        color: 'var(--ink)'
                       }}
                     >
                       {post.title}
                     </h2>
                     <p
                       style={{
-                        opacity: 0.45,
+                        color: 'var(--sub)',
                         lineHeight: 1.65,
                         fontSize: '0.88rem',
-                        fontFamily: 'Outfit, sans-serif',
+                        fontFamily: 'var(--ui)',
                         display: '-webkit-box',
                         WebkitLineClamp: 3,
                         WebkitBoxOrient: 'vertical',
@@ -391,12 +394,12 @@ export default function BlogIndex() {
                     </p>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid var(--rule)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <AuthorAvatar name={post.author} />
                       <div>
-                        <div style={{ fontSize: '0.78rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{post.author}</div>
-                        <div style={{ fontSize: '0.7rem', opacity: 0.35, fontFamily: 'Outfit, sans-serif' }}>{post.date}</div>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 600, fontFamily: 'var(--ui)' }}>{post.author}</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>{post.date}</div>
                       </div>
                     </div>
                     <svg
@@ -418,7 +421,7 @@ export default function BlogIndex() {
           </div>
 
           {posts.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '80px 0', opacity: 0.3, fontFamily: 'Outfit, sans-serif' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>
               No insights published yet. Check back soon.
             </div>
           )}
@@ -431,8 +434,9 @@ export default function BlogIndex() {
             padding: '64px 48px',
             borderRadius: '24px',
             border: '1px solid rgba(22,65,245,0.2)',
-            background: 'linear-gradient(135deg, rgba(22,65,245,0.08) 0%, rgba(0,0,0,0) 100%)',
+            background: 'linear-gradient(135deg, rgba(22,65,245,0.04) 0%, rgba(0,0,0,0) 100%)',
             textAlign: 'center',
+            backgroundColor: 'var(--w2)'
           }}
         >
           <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: '#1641F5', marginBottom: '20px' }}>
@@ -440,16 +444,17 @@ export default function BlogIndex() {
           </div>
           <h3
             style={{
-              fontFamily: 'Instrument Serif, Georgia, serif',
+              fontFamily: 'var(--serif)',
               fontSize: 'clamp(2rem, 4vw, 3rem)',
               fontWeight: 400,
               marginBottom: '18px',
               letterSpacing: '-0.02em',
+              color: 'var(--ink)'
             }}
           >
             Stop reading. Start fixing.
           </h3>
-          <p style={{ opacity: 0.5, fontSize: '1rem', fontFamily: 'Outfit, sans-serif', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
+          <p style={{ color: 'var(--sub)', fontSize: '1rem', fontFamily: 'var(--ui)', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
             One hour. We map every point where your pipeline is leaking revenue and give you the exact infrastructure to fix it.
           </p>
           <a
@@ -464,7 +469,7 @@ export default function BlogIndex() {
               borderRadius: '10px',
               fontWeight: 600,
               fontSize: '0.95rem',
-              fontFamily: 'Outfit, sans-serif',
+              fontFamily: 'var(--ui)',
               textDecoration: 'none',
               letterSpacing: '-0.01em',
             }}
@@ -479,12 +484,12 @@ export default function BlogIndex() {
 
       <style>{`
         .featured-card:hover {
-          border-color: rgba(22,65,245,0.35) !important;
+          border-color: rgba(22,65,245,0.3) !important;
           transform: translateY(-2px);
         }
         .blog-card:hover {
-          border-color: rgba(22,65,245,0.3) !important;
-          background: rgba(22,65,245,0.04) !important;
+          border-color: rgba(22,65,245,0.2) !important;
+          background: var(--w3) !important;
           transform: translateY(-2px);
         }
         @media (max-width: 768px) {
