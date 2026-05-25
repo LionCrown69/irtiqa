@@ -4,7 +4,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import Navigation from '../../../src/components/Navigation';
 import Footer from '../../../src/components/Footer';
+import PeopleAlsoAsk from '../../../src/components/PeopleAlsoAsk';
 import { getPostBySlug, getBlogSlugs, getAllPosts } from '../../../lib/mdx';
+import { getFaqsForCategory } from '../../../lib/faq';
 
 export async function generateStaticParams() {
   const slugs = getBlogSlugs();
@@ -92,6 +94,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     .filter((p) => p.slug !== post.slug && p.category === post.category)
     .slice(0, 3);
 
+  const faqs = getFaqsForCategory(post.category);
+
+  // Blog Posting Metadata
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -124,6 +129,20 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     keywords: post.tags?.join(', '),
   };
 
+  // FAQ Page Schema
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   const catColor = getCategoryColor(post.category);
 
   return (
@@ -131,6 +150,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navigation navHeight={68} />
 
@@ -259,6 +282,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <article className="prose-irtiqa">
           <MDXRemote source={post.content} />
         </article>
+
+        {/* ─── PAA / FAQ SECTION ─── */}
+        <PeopleAlsoAsk faqs={faqs} />
 
         {/* ─── CTA INLINE ─── */}
         <div

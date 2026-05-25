@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import PeopleAlsoAsk from './PeopleAlsoAsk';
+import { getFaqsForCategory } from '../lib/faq';
 
 interface BlogPostDetailProps {
   slug: string;
@@ -188,6 +190,7 @@ function AuthorAvatar({ name }: { name: string }) {
 
 export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
   const [post, setPost] = useState<any>(null);
+  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -204,6 +207,19 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
       .then((data) => {
         setPost(data);
         setLoading(false);
+        
+        // Fetch related posts
+        fetch('/api/blogs')
+          .then((res) => res.json())
+          .then((allPosts) => {
+            if (Array.isArray(allPosts)) {
+              const filtered = allPosts
+                .filter((p: any) => p.slug !== data.slug && p.category === data.category)
+                .slice(0, 3);
+              setRelatedPosts(filtered);
+            }
+          })
+          .catch((err) => console.error('Failed to load related posts:', err));
       })
       .catch((err) => {
         console.error('Failed to load blog post:', err);
@@ -250,9 +266,28 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
 
   const catColor = getCategoryColor(post.category);
   const parsedContent = parseMarkdown(post.content);
+  const faqs = getFaqsForCategory(post.category);
+
+  // FAQ Page Schema
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
 
   return (
     <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Navigation navHeight={68} />
 
       {/* ─── ARTICLE HERO ─── */}
@@ -383,6 +418,9 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           dangerouslySetInnerHTML={{ __html: parsedContent }}
         />
 
+        {/* ─── PAA / FAQ SECTION ─── */}
+        <PeopleAlsoAsk faqs={faqs} />
+
         {/* ─── CTA INLINE ─── */}
         <div
           style={{
@@ -426,6 +464,53 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
             </svg>
           </a>
         </div>
+
+        {/* ─── RELATED ARTICLES ─── */}
+        {relatedPosts.length > 0 && (
+          <section
+            style={{
+              marginTop: '80px',
+              borderTop: '1px solid var(--rule)',
+              paddingTop: '64px',
+            }}
+          >
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--sub)', marginBottom: '32px', fontFamily: 'var(--ui)' }}>
+              Related Articles
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+              {relatedPosts.map((p) => (
+                <a key={p.slug} href={`/blog/${p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <article
+                    style={{
+                      padding: '28px',
+                      border: '1px solid var(--rule)',
+                      borderRadius: '14px',
+                      background: 'var(--w2)',
+                      cursor: 'pointer',
+                      transition: 'border-color 0.2s ease, transform 0.2s ease',
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between'
+                    }}
+                    className="blog-card"
+                  >
+                    <div>
+                      <div style={{ display: 'flex', gap: '10px', marginBottom: '14px', alignItems: 'center' }}>
+                        <span style={{ padding: '3px 10px', borderRadius: '100px', background: `${getCategoryColor(p.category)}14`, border: `1px solid ${getCategoryColor(p.category)}33`, fontSize: '0.7rem', fontWeight: 700, color: getCategoryColor(p.category), textTransform: 'uppercase', letterSpacing: '0.8px', fontFamily: 'var(--ui)' }}>
+                          {p.category}
+                        </span>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--sub)', fontFamily: 'var(--ui)' }}>{p.readingTime}</span>
+                      </div>
+                      <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.2rem', fontWeight: 400, lineHeight: 1.3, marginBottom: '10px', color: 'var(--ink)' }}>{p.title}</h3>
+                      <p style={{ color: 'var(--sub)', fontSize: '0.83rem', fontFamily: 'var(--ui)', lineHeight: 1.6, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.excerpt}</p>
+                    </div>
+                  </article>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
 
       <style>{`
@@ -462,7 +547,7 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           border-left: 3px solid #1641F5;
           padding: 16px 24px;
           margin: 2rem 0;
-          background: rgba(22,65,245,0.04);
+          background: rgba(22, 65, 245, 0.04);
           border-radius: 0 10px 10px 0;
           font-style: normal;
           color: var(--sub);
@@ -484,19 +569,19 @@ export default function BlogPostDetail({ slug }: BlogPostDetailProps) {
           font-size: 0.9rem;
         }
         .prose-irtiqa th {
-          background: rgba(22,65,245,0.06);
+          background: rgba(22, 65, 245, 0.06);
           padding: 12px 16px;
           text-align: left;
           font-weight: 600;
           color: var(--ink);
-          border-bottom: 1px solid rgba(22,65,245,0.2);
+          border-bottom: 1px solid rgba(22, 65, 245, 0.2);
         }
         .prose-irtiqa td {
           padding: 11px 16px;
           border-bottom: 1px solid var(--rule);
         }
         .prose-irtiqa code {
-          background: rgba(22,65,245,0.06);
+          background: rgba(22, 65, 245, 0.06);
           padding: 2px 7px;
           border-radius: 4px;
           font-size: 0.88em;
