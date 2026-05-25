@@ -1,0 +1,168 @@
+---
+title: "The 90-Day AI Infrastructure Build: What Businesses Deploy and in What Order"
+description: "A practical 90-day roadmap for service businesses building AI revenue infrastructure — from day one quick wins to the full multi-agent system that handles intake, follow-up, and lifecycle management."
+date: "2026-04-26"
+publishedAt: "2026-04-26"
+category: "AI Infrastructure"
+tags: ["AI implementation", "90-day roadmap", "automation build", "AI infrastructure"]
+author: "Priya Nair"
+authorRole: "Lead AI Engineer, Irtiqa AI"
+readingTime: "10 min read"
+featured: false
+excerpt: "Building AI infrastructure isn't a single project — it's a sequenced deployment. Each layer builds on the previous one. Get the sequence wrong and later layers don't compound. Get it right and by day 90, you have a revenue engine that runs without constant human input."
+---
+
+# The 90-Day AI Infrastructure Build
+
+One of the most common questions we get after a growth audit: "Where do we start?"
+
+The answer always depends on the specific business — but the sequencing principle is universal. **You build the capture layer before the conversion layer, the conversion layer before the ops layer, and the ops layer before the lifecycle layer.**
+
+This sequencing matters because each layer provides the data that makes the next layer smarter, and the foundations that make the next layer possible.
+
+Here's what a properly sequenced 90-day build looks like.
+
+---
+
+## Days 1-30: The Capture Layer (Stop the Bleeding)
+
+The highest-priority, fastest-return work is almost always in the capture layer — because this is where leads are being lost before anything else can happen.
+
+### Week 1: CRM Cleanup and Lead Logging
+
+Before you build any automation, you need a clean data foundation.
+
+**Tasks:**
+- Audit all lead sources — list every channel where inbound leads can come from (forms, calls, email, social, referrals, events)
+- Verify each source has a direct path to the CRM — no source should be a manual step
+- Clean existing CRM data — deduplicate, add missing fields, archive dead deals
+- Configure pipeline stages to match actual sales process (not a generic template)
+
+**Output:** A CRM where you trust the data. This sounds basic. It usually isn't — most CRMs I inherit are messy enough that nothing built on top of them would function correctly.
+
+---
+
+### Week 2-3: AI Intake and First Response
+
+**Tasks:**
+- Deploy AI-powered first response across all channels — web chat, email inbox, phone (if volume warrants)
+- Configure the knowledge base (services, pricing parameters, FAQs, qualification criteria)
+- Build intake form with the five key qualification questions
+- Test and iterate until response quality meets the standard
+- Set up real-time CRM logging from all intake touchpoints
+
+**Output:** Every inbound lead gets a personalised, intelligent response within 90 seconds, 24/7. Every lead is logged to CRM with intake data.
+
+**Revenue impact (immediate):** Average 18-32% increase in lead-to-call-booked rate from faster response alone.
+
+---
+
+### Week 4: Response Time Monitoring
+
+**Tasks:**
+- Set up a response time tracking dashboard — visible to management in real-time
+- Configure escalation alerts — if any lead goes uncontacted for more than 1 hour during business hours, alert fires
+- Review first week of AI intake performance — check for gaps, errors, unusual patterns
+- Brief the team on the new system and their role within it
+
+**Output:** Response time below 5 minutes for 95%+ of business-hours leads. After-hours leads captured and queued for morning follow-up.
+
+---
+
+## Days 31-60: The Conversion Layer (Recover the Pipeline)
+
+With leads being captured properly, the focus shifts to converting more of them — specifically by building the infrastructure that handles follow-up and booking consistently.
+
+### Week 5-6: Discovery Call Show-Rate System
+
+**Tasks:**
+- Build multi-stage confirmation sequence (booking confirmation → 48h reminder → 2h reminder with agenda)
+- Configure no-show follow-up (if call is missed, automated rebook message fires within 30 minutes)
+- Add pre-call preparation email (agenda, what to bring, what to prepare)
+- Track show rate before and after — establish baseline
+
+**Output:** Discovery call show rate should move from ~74% to 90%+ within 4 weeks.
+
+---
+
+### Week 6-7: Proposal Follow-Up System
+
+**Tasks:**
+- Build 7-day proposal follow-up sequence (Day 1 case study, Day 3 specific reference, Day 5 social proof, Day 7 direct ask)
+- Configure trigger: sequence fires automatically when deal moves to "Proposal Sent"
+- Build pause logic: sequence halts when any reply is received
+- Set up human task: when reply received, task assigned to deal owner for same-day response
+
+**Output:** Proposal acceptance rate increases by 15-30% from structured follow-up.
+
+---
+
+### Week 8: Qualification Gate
+
+**Tasks:**
+- Add pre-qualification intake form before discovery call booking
+- Configure routing logic: high-qualify leads get priority booking and senior notification; low-qualify leads get graceful redirect
+- Review first 30 days of qualification data — is the scoring accurate?
+
+**Output:** Discovery calls are pre-qualified. Senior salespeople spend time with high-probability prospects. Bad-fit leads are handled without burning team capacity.
+
+---
+
+## Days 61-90: The Ops Layer (Intelligence and Efficiency)
+
+With capture and conversion running, the focus shifts to operational intelligence and efficiency.
+
+### Week 9-10: Pipeline Intelligence Dashboard
+
+**Tasks:**
+- Configure live dashboard: pipeline by stage, deal health, response time trends, close rate by source
+- Set up weekly automated pipeline report emailed to leadership every Monday morning
+- Configure stall alerts: any deal with no activity in 5 business days creates a priority task
+- Build lead source attribution report: which sources generate highest-value, fastest-closing deals
+
+**Output:** Leadership has real-time revenue intelligence. Stalled deals are caught and addressed 5 days in, not 60 days in.
+
+---
+
+### Week 11: Onboarding System
+
+**Tasks:**
+- Build client onboarding sequence (triggered by deal marked "Won")
+- Day 0: welcome + logistics confirmation; Day 3: first substantive touchpoint prompt; Day 14: check-in prompt; Day 30: month-one review prompt
+- Configure all as human-prompted rather than fully automated (these should be personal, not robotic)
+
+**Output:** Every new client has a consistent, professional onboarding experience. Churn risk in first 30 days reduces significantly.
+
+---
+
+### Week 12: Reporting and Review
+
+**Tasks:**
+- Run 90-day comparison: all key metrics before vs. after the build
+- Identify any components that underperformed expectations
+- Plan months 4-6 focus: typically lifecycle layer (retention, expansion, referral)
+- Document the system for internal training
+
+**Output:** A clear before/after picture of what the 90-day build delivered. Confidence in the system. A roadmap for the next phase.
+
+---
+
+## Typical 90-Day Results
+
+Based on deployments across service businesses with similar starting points:
+
+| Metric | Pre-build | Post-build |
+|---|---|---|
+| Average response time | 6-24 hours | Under 5 minutes |
+| After-hours capture | 0% | 95%+ |
+| Discovery call show rate | 72% | 91% |
+| Proposal follow-up consistency | ~40% | 100% |
+| Close rate (full funnel) | 8-12% | 17-24% |
+| Pipeline data accuracy | 45-60% | 90%+ |
+| Admin hours per week | 18-25 hours | 6-9 hours |
+
+The revenue impact at typical service business deal sizes: £3,000-£6,000 additional monthly revenue within the first 60 days, compounding as the system matures.
+
+---
+
+*[Book a free audit call](/#book) to get a personalised 90-day build plan for your specific business — including which components to prioritise first based on where your biggest revenue leakage is.*

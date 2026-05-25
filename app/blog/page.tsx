@@ -2,65 +2,501 @@ import React from 'react';
 import Link from 'next/link';
 import Navigation from '../../src/components/Navigation';
 import Footer from '../../src/components/Footer';
-import { getAllPosts } from '../../lib/mdx';
+import { getAllPosts, getFeaturedPost } from '../../lib/mdx';
 
 export const metadata = {
-  title: 'Irtiqa AI Insights | Blog',
-  description: 'Deep-dive analysis on revenue operations infrastructure, agentic AI systems, and business growth architecture.',
+  title: 'Irtiqa AI Insights — Revenue Operations, Agentic AI, Growth Architecture',
+  description: 'Deep-dive analysis on revenue leakage, AI infrastructure for service businesses, booking systems, CRM automation, and growth consulting.',
+  openGraph: {
+    title: 'Irtiqa AI Insights',
+    description: 'Deep-dive research on AI infrastructure, revenue leakage, and growth systems for serious service businesses.',
+    type: 'website',
+  },
 };
+
+const categoryColors: Record<string, string> = {
+  'Revenue Leakage': '#1641F5',
+  'AI Infrastructure': '#7C3AED',
+  'Booking Systems': '#059669',
+  'CRM & Follow-Up': '#D97706',
+  'Lead Generation': '#DC2626',
+  'Growth Consulting': '#0891B2',
+  'Industry Insights': '#BE185D',
+  'Agentic AI': '#7C3AED',
+  'Operations': '#059669',
+};
+
+function getCategoryColor(cat: string): string {
+  return categoryColors[cat] || '#1641F5';
+}
+
+function AuthorAvatar({ name }: { name: string }) {
+  const initials = name.split(' ').map((n) => n[0]).join('').slice(0, 2);
+  const colors = ['#1641F5', '#7C3AED', '#059669', '#D97706', '#DC2626'];
+  const color = colors[name.charCodeAt(0) % colors.length];
+  return (
+    <div
+      style={{
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        background: `${color}22`,
+        border: `1px solid ${color}44`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '0.7rem',
+        fontWeight: 700,
+        color: color,
+        flexShrink: 0,
+      }}
+    >
+      {initials}
+    </div>
+  );
+}
 
 export default function BlogIndex() {
   const posts = getAllPosts();
+  const featured = getFeaturedPost();
+  const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   return (
-    <div className="blog-page" style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
-      {/* Navigation requires client side state for scroll, we pass a static height here for SSR or make Navigation a client component */}
+    <div style={{ backgroundColor: '#0c0c0b', color: '#fdfdfc', minHeight: '100vh' }}>
       <Navigation navHeight={68} />
-      
-      <main style={{ paddingTop: '120px', paddingBottom: '80px', maxWidth: '1000px', margin: '0 auto', padding: '120px 20px 80px' }}>
-        
-        <header style={{ marginBottom: '80px', borderBottom: '1px solid var(--rule)', paddingBottom: '60px' }}>
-          <h1 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', fontFamily: 'var(--serif)', lineHeight: 1.1, marginBottom: '24px' }}>
-            Irtiqa AI Insights
-          </h1>
-          <p style={{ fontSize: '1.2rem', opacity: 0.7, maxWidth: '600px', lineHeight: 1.6 }}>
-            Deep-dive analysis on revenue operations infrastructure, agentic AI systems, and business growth architecture.
-          </p>
-        </header>
 
-        <section className="blog-grid" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          {posts.map((post) => (
-            <Link href={`/blog/${post.slug}`} key={post.slug} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <article 
-                style={{ padding: '32px', border: '1px solid var(--rule)', borderRadius: '16px', background: 'rgba(255,255,255,0.01)', cursor: 'pointer', transition: 'transform 0.2s ease, border-color 0.2s ease' }}
+      {/* ─── HERO HEADER ─── */}
+      <header
+        style={{
+          paddingTop: '140px',
+          paddingBottom: '80px',
+          padding: '140px 24px 80px',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '5px 14px',
+            border: '1px solid rgba(22,65,245,0.3)',
+            borderRadius: '20px',
+            fontSize: '0.78rem',
+            fontWeight: 600,
+            color: '#1641F5',
+            textTransform: 'uppercase',
+            letterSpacing: '1.5px',
+            marginBottom: '28px',
+          }}
+        >
+          <span
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              background: '#1641F5',
+              display: 'inline-block',
+            }}
+          />
+          Irtiqa AI Insights
+        </div>
+
+        <h1
+          style={{
+            fontFamily: 'Instrument Serif, Georgia, serif',
+            fontSize: 'clamp(3rem, 6vw, 5.5rem)',
+            fontWeight: 400,
+            lineHeight: 1.05,
+            marginBottom: '28px',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Research that turns
+          <br />
+          <em style={{ color: '#1641F5', fontStyle: 'italic' }}>revenue leakage</em>
+          <br />
+          into infrastructure.
+        </h1>
+        <p
+          style={{
+            fontSize: '1.15rem',
+            opacity: 0.6,
+            maxWidth: '580px',
+            lineHeight: 1.7,
+            fontFamily: 'Outfit, sans-serif',
+          }}
+        >
+          Deep analysis on AI systems, booking automation, CRM architecture, lead generation,
+          and the operational infrastructure that makes serious service businesses scale.
+        </p>
+
+        {/* Cluster nav pills */}
+        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '36px' }}>
+          {Object.entries(categoryColors).slice(0, 6).map(([cat, color]) => (
+            <span
+              key={cat}
+              style={{
+                padding: '5px 14px',
+                borderRadius: '100px',
+                background: `${color}14`,
+                border: `1px solid ${color}33`,
+                fontSize: '0.78rem',
+                fontWeight: 600,
+                color: color,
+                cursor: 'pointer',
+              }}
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+      </header>
+
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 120px' }}>
+
+        {/* ─── FEATURED ARTICLE ─── */}
+        {featured && (
+          <section style={{ marginTop: '72px', marginBottom: '80px' }}>
+            <div
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                color: 'rgba(255,255,255,0.3)',
+                marginBottom: '20px',
+              }}
+            >
+              Featured Article
+            </div>
+            <Link href={`/blog/${featured.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <article
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '0',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  background: 'rgba(255,255,255,0.02)',
+                  transition: 'border-color 0.25s ease, transform 0.25s ease',
+                  cursor: 'pointer',
+                }}
+                className="featured-card"
               >
-                <div style={{ display: 'flex', gap: '16px', marginBottom: '16px', fontSize: '0.85rem', color: 'var(--b)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>
-                  <span>{post.category}</span>
-                  <span style={{ color: 'rgba(253,253,252,0.4)' }}>•</span>
-                  <span style={{ color: 'rgba(253,253,252,0.4)' }}>{post.date}</span>
+                {/* Left: content */}
+                <div style={{ padding: '52px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '24px' }}>
+                      <span
+                        style={{
+                          padding: '4px 12px',
+                          borderRadius: '100px',
+                          background: `${getCategoryColor(featured.category)}18`,
+                          border: `1px solid ${getCategoryColor(featured.category)}40`,
+                          fontSize: '0.75rem',
+                          fontWeight: 700,
+                          color: getCategoryColor(featured.category),
+                          textTransform: 'uppercase',
+                          letterSpacing: '1px',
+                        }}
+                      >
+                        {featured.category}
+                      </span>
+                      <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', fontFamily: 'Outfit, sans-serif' }}>
+                        {featured.readingTime}
+                      </span>
+                    </div>
+
+                    <h2
+                      style={{
+                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)',
+                        fontWeight: 400,
+                        lineHeight: 1.2,
+                        marginBottom: '20px',
+                        letterSpacing: '-0.015em',
+                      }}
+                    >
+                      {featured.title}
+                    </h2>
+                    <p style={{ opacity: 0.55, lineHeight: 1.7, fontSize: '0.95rem', fontFamily: 'Outfit, sans-serif' }}>
+                      {featured.excerpt}
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '36px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <AuthorAvatar name={featured.author} />
+                      <div>
+                        <div style={{ fontSize: '0.85rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{featured.author}</div>
+                        <div style={{ fontSize: '0.75rem', opacity: 0.45, fontFamily: 'Outfit, sans-serif' }}>{featured.authorRole}</div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#1641F5',
+                        fontWeight: 600,
+                        fontSize: '0.9rem',
+                        fontFamily: 'Outfit, sans-serif',
+                      }}
+                    >
+                      Read Article
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-                <h2 style={{ fontSize: '2rem', fontFamily: 'var(--serif)', marginBottom: '16px', lineHeight: 1.2 }}>
-                  {post.title}
-                </h2>
-                <p style={{ opacity: 0.7, lineHeight: 1.6, marginBottom: '24px' }}>
-                  {post.excerpt}
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--w)', fontWeight: 500 }}>
-                  Read Article 
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
-                  </svg>
+
+                {/* Right: decorative panel */}
+                <div
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(22,65,245,0.12) 0%, rgba(124,58,237,0.08) 50%, rgba(0,0,0,0) 100%)',
+                    borderLeft: '1px solid rgba(255,255,255,0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    minHeight: '360px',
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '220px',
+                      height: '220px',
+                      borderRadius: '50%',
+                      background: 'radial-gradient(circle, rgba(22,65,245,0.15) 0%, transparent 70%)',
+                    }}
+                  />
+                  <div style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                    <div
+                      style={{
+                        fontSize: 'clamp(3.5rem, 5vw, 5rem)',
+                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        color: 'rgba(22,65,245,0.25)',
+                        lineHeight: 1,
+                        marginBottom: '12px',
+                      }}
+                    >
+                      No.1
+                    </div>
+                    <div style={{ fontSize: '0.8rem', opacity: 0.3, fontFamily: 'Outfit, sans-serif', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+                      Featured
+                    </div>
+                  </div>
                 </div>
               </article>
             </Link>
-          ))}
-          
+          </section>
+        )}
+
+        {/* ─── ARTICLE GRID ─── */}
+        <section>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '32px',
+            }}
+          >
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(255,255,255,0.3)' }}>
+              All Articles — {posts.length} Published
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            {rest.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <article
+                  style={{
+                    padding: '32px',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    borderRadius: '16px',
+                    background: 'rgba(255,255,255,0.015)',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    cursor: 'pointer',
+                    transition: 'border-color 0.2s ease, background 0.2s ease, transform 0.2s ease',
+                  }}
+                  className="blog-card"
+                >
+                  <div>
+                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '18px' }}>
+                      <span
+                        style={{
+                          padding: '3px 10px',
+                          borderRadius: '100px',
+                          background: `${getCategoryColor(post.category)}14`,
+                          border: `1px solid ${getCategoryColor(post.category)}33`,
+                          fontSize: '0.7rem',
+                          fontWeight: 700,
+                          color: getCategoryColor(post.category),
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.8px',
+                        }}
+                      >
+                        {post.category}
+                      </span>
+                      <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', fontFamily: 'Outfit, sans-serif' }}>
+                        {post.readingTime}
+                      </span>
+                    </div>
+
+                    <h2
+                      style={{
+                        fontFamily: 'Instrument Serif, Georgia, serif',
+                        fontSize: '1.4rem',
+                        fontWeight: 400,
+                        lineHeight: 1.3,
+                        marginBottom: '14px',
+                        letterSpacing: '-0.01em',
+                      }}
+                    >
+                      {post.title}
+                    </h2>
+                    <p
+                      style={{
+                        opacity: 0.45,
+                        lineHeight: 1.65,
+                        fontSize: '0.88rem',
+                        fontFamily: 'Outfit, sans-serif',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      {post.excerpt}
+                    </p>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '28px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <AuthorAvatar name={post.author} />
+                      <div>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>{post.author}</div>
+                        <div style={{ fontSize: '0.7rem', opacity: 0.35, fontFamily: 'Outfit, sans-serif' }}>{post.date}</div>
+                      </div>
+                    </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="rgba(22,65,245,0.6)"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+
           {posts.length === 0 && (
-            <p style={{ opacity: 0.5 }}>No insights published yet. Check back soon.</p>
+            <div style={{ textAlign: 'center', padding: '80px 0', opacity: 0.3, fontFamily: 'Outfit, sans-serif' }}>
+              No insights published yet. Check back soon.
+            </div>
           )}
         </section>
+
+        {/* ─── CTA STRIP ─── */}
+        <section
+          style={{
+            marginTop: '100px',
+            padding: '64px 48px',
+            borderRadius: '24px',
+            border: '1px solid rgba(22,65,245,0.2)',
+            background: 'linear-gradient(135deg, rgba(22,65,245,0.08) 0%, rgba(0,0,0,0) 100%)',
+            textAlign: 'center',
+          }}
+        >
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: '#1641F5', marginBottom: '20px' }}>
+            Free Growth Audit
+          </div>
+          <h3
+            style={{
+              fontFamily: 'Instrument Serif, Georgia, serif',
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 400,
+              marginBottom: '18px',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            Stop reading. Start fixing.
+          </h3>
+          <p style={{ opacity: 0.5, fontSize: '1rem', fontFamily: 'Outfit, sans-serif', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
+            One hour. We map every point where your pipeline is leaking revenue and give you the exact infrastructure to fix it.
+          </p>
+          <a
+            href="/#book"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              background: '#1641F5',
+              color: '#fff',
+              padding: '14px 32px',
+              borderRadius: '10px',
+              fontWeight: 600,
+              fontSize: '0.95rem',
+              fontFamily: 'Outfit, sans-serif',
+              textDecoration: 'none',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            Book Free Audit Call
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 7h10M7 2l5 5-5 5" />
+            </svg>
+          </a>
+        </section>
       </main>
-      
+
+      <style>{`
+        .featured-card:hover {
+          border-color: rgba(22,65,245,0.35) !important;
+          transform: translateY(-2px);
+        }
+        .blog-card:hover {
+          border-color: rgba(22,65,245,0.3) !important;
+          background: rgba(22,65,245,0.04) !important;
+          transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+          .featured-card {
+            grid-template-columns: 1fr !important;
+          }
+          .featured-card > div:last-child {
+            display: none !important;
+          }
+        }
+      `}</style>
+
       <Footer />
     </div>
   );

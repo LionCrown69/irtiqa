@@ -1,57 +1,46 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 import { getBlogSlugs } from '../lib/mdx';
-import { getAllCombinations, getCitiesByCountry, getCountries } from '../src/data/programmatic-seo';
+
+const BASE_URL = 'https://www.irtiqaaiagency.com';
+const LOCALES = ['en-us', 'en-gb', 'en-eu'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.irtiqaaiagency.com';
   const lastModified = new Date();
 
-  const routes: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified, changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/audit`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/blog`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/directory`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
-
-    // Static SEO landing pages (served from /public)
-    { url: `${baseUrl}/ai-automation-services.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/lead-follow-up-automation.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/revenue-operations-ai.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/irtiqa-ai.html`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  const coreRoutes: MetadataRoute.Sitemap = [
+    { url: BASE_URL, lastModified, changeFrequency: 'weekly', priority: 1 },
+    { url: `${BASE_URL}/audit`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE_URL}/founder`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/blog`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/directory`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${BASE_URL}/ai-automation-services.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/lead-follow-up-automation.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/revenue-operations-ai.html`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/irtiqa-ai.html`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
   ];
 
-  const slugs = getBlogSlugs();
-  const blogRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
-    url: `${baseUrl}/blog/${slug.replace(/\.mdx$/, '')}`,
+  const blogSlugs = getBlogSlugs();
+  const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map((filename) => ({
+    url: `${BASE_URL}/blog/${filename.replace(/\.mdx$/, '')}`,
     lastModified,
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
-  const countries = getCountries();
-  const directoryRoutes: MetadataRoute.Sitemap = [
-    ...countries.map((country) => ({
-      url: `${baseUrl}/directory/${country.slug}`,
+  const localeRoutes: MetadataRoute.Sitemap = LOCALES.flatMap((locale) => [
+    {
+      url: `${BASE_URL}/${locale}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/${locale}/data-hub`,
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
-    })),
-    ...countries.flatMap((country) =>
-      getCitiesByCountry(country.slug).map((city) => ({
-        url: `${baseUrl}/directory/${country.slug}/${city.slug}`,
-        lastModified,
-        changeFrequency: 'monthly' as const,
-        priority: 0.5,
-      }))
-    ),
-  ];
+    },
+  ]);
 
-  const combinations = getAllCombinations();
-  const programmaticRoutes: MetadataRoute.Sitemap = combinations.map((combo) => ({
-    url: `${baseUrl}/use-cases/${combo.industry}/${combo.city}`,
-    lastModified,
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
-
-  return [...routes, ...blogRoutes, ...directoryRoutes, ...programmaticRoutes];
+  return [...coreRoutes, ...blogRoutes, ...localeRoutes];
 }

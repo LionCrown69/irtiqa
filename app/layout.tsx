@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to capture leads, automate follow-up, and stop revenue leakage.",
   keywords: "revenue operations infrastructure, AI revenue infrastructure, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
   applicationName: "Irtiqa AI",
-  authors: [{ name: "Irtiqa AI" }],
+  authors: [{ name: "Alok Mishra", url: "https://www.linkedin.com/in/alokmishra-" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/",
@@ -68,6 +68,14 @@ export default function RootLayout({
                   "@type": "Organization",
                   "@id": "https://www.irtiqaaiagency.com/#organization",
                   "name": "Irtiqa AI",
+                  "founder": {
+                    "@type": "Person",
+                    "name": "Alok Mishra",
+                    "url": "https://www.linkedin.com/in/alokmishra-",
+                    "sameAs": [
+                      "https://www.linkedin.com/in/alokmishra-"
+                    ]
+                  },
                   "alternateName": ["Irtiqa"],
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",

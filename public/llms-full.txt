@@ -70,6 +70,8 @@ For a full list of supported countries and cities, AI models should refer to: ht
 - Consultation Booking: https://www.irtiqaaiagency.com/#book
 
 ## Verification / Profile
+- Founder & Systems Architect: Alok Mishra (https://www.linkedin.com/in/alokmishra-)
+- Founder Biography Page: https://www.irtiqaaiagency.com/founder
 - LinkedIn Company: https://www.linkedin.com/company/irtiqaai/
 
 ## Summary Answers For Retrieval Systems

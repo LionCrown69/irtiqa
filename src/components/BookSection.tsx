@@ -41,6 +41,23 @@ const BookSection: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [selectedSlot, setSelectedSlot] = useState<BookingSlot | null>(null);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+  const [challengeSelect, setChallengeSelect] = useState<string>('');
+
+  const handleChallengeSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val = e.target.value;
+    setChallengeSelect(val);
+    if (val !== 'other') {
+      setFormData(prev => ({
+        ...prev,
+        challenge: val
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        challenge: ''
+      }));
+    }
+  };
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -234,16 +251,36 @@ const BookSection: React.FC = () => {
                   </div>
                   <div className="form-field full">
                     <label className="form-label">Biggest operational challenge right now</label>
-                    <input
-                      className="form-input"
-                      type="text"
-                      name="challenge"
-                      value={formData.challenge}
-                      onChange={handleChange}
-                      placeholder="e.g. We're losing leads, too much manual admin..."
+                    <select
+                      className="form-select"
+                      name="challengeSelect"
+                      value={challengeSelect}
+                      onChange={handleChallengeSelectChange}
                       required
-                    />
+                    >
+                      <option value="" disabled>Select your primary challenge</option>
+                      <option value="Losing leads / slow response times">Losing leads / slow response times</option>
+                      <option value="Too much manual admin / scheduling overhead">Too much manual admin / scheduling overhead</option>
+                      <option value="Follow-up breaks on warm conversations">Follow-up breaks on warm conversations</option>
+                      <option value="Founder is the bottleneck for sales/ops">Founder is the bottleneck for sales/ops</option>
+                      <option value="Disconnected CRM / untracked pipeline">Disconnected CRM / untracked pipeline</option>
+                      <option value="other">Other (Specify custom challenge...)</option>
+                    </select>
                   </div>
+                  {challengeSelect === 'other' && (
+                    <div className="form-field full" style={{ marginTop: '1rem' }}>
+                      <label className="form-label">Specify your challenge</label>
+                      <input
+                        className="form-input"
+                        type="text"
+                        name="challenge"
+                        value={formData.challenge}
+                        onChange={handleChange}
+                        placeholder="e.g. We need custom API integrations..."
+                        required
+                      />
+                    </div>
+                  )}
                 </div>
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
                   {isLoadingSlots ? 'Loading Calendar...' : 'Continue to Schedule →'}

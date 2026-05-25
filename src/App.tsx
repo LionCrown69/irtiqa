@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import ProgressBar from './components/ProgressBar';
 import RevenueLeakageAudit from './components/RevenueLeakageAudit';
 import BlogStructure from './components/BlogStructure';
+import FounderClient from './components/FounderClient';
 import useScrollReveal from './hooks/useScrollReveal';
 import useMobileLenis from './hooks/useMobileLenis';
 import useLuxuryMotion from './hooks/useLuxuryMotion';
@@ -42,6 +43,10 @@ function App() {
 
   if (path === '/blog') {
     return <BlogStructure />;
+  }
+
+  if (path === '/founder') {
+    return <FounderClient />;
   }
 
   return (

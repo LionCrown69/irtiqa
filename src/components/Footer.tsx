@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 
   const companyLinks = [
     { label: 'Why Irtiqa', href: '/#why' },
-    { label: 'Client Results', href: '/#testimonials' },
+    { label: 'Founder', href: '/founder' },
     { label: 'Insights (Blog)', href: '/blog' },
     { label: 'Contact', href: '/#book' }
   ];

@@ -190,9 +190,25 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
-          <span className="hero-h1-line hero-h1-line-main">Your Business Runs on</span>
-          <em className="hero-h1-accent">Process.</em>
-          <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Make It Run Itself.</span>
+          {industry || location ? (
+            <>
+              <span className="hero-h1-line hero-h1-line-main">
+                {industry ? `${industry.name} Operations` : 'Your Business Runs on'}
+              </span>
+              <em className="hero-h1-accent">
+                {location ? `in ${location.name}.` : 'Process.'}
+              </em>
+              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">
+                We Make It Run Itself.
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="hero-h1-line hero-h1-line-main">Your Business Runs on</span>
+              <em className="hero-h1-accent">Process.</em>
+              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Make It Run Itself.</span>
+            </>
+          )}
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub desktop-only" style={{ opacity: 1, animation: 'none' }}>

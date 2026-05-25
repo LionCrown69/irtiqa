@@ -77,7 +77,8 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
 
       <div className="infra-header reveal">
         <h2 className="infra-title">The Irtiqa Revenue Operations Model™ {industry ? `for ${industry.title}` : ''}</h2>
-        <p className="infra-sub">Four connected pillars that take a stranger to a loyal client — automatically, intelligently, and at scale{location ? ` in ${location.name}` : ''}.</p>
+        <p className="infra-sub desktop-only">Four connected pillars that take a stranger to a loyal client — automatically, intelligently, and at scale{location ? ` in ${location.name}` : ''}.</p>
+        <p className="infra-sub mobile-only">Four connected pillars that automate your lead-to-client pipeline{location ? ` in ${location.name}` : ''}.</p>
         <div className="infra-status">
           System Status: <span>Active</span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
         </div>
