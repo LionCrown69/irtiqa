@@ -52,10 +52,15 @@ export function getPostBySlug(slug: string): BlogPost {
 
 export function getAllPosts(): BlogPost[] {
   const slugs = getBlogSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
-  return posts;
+  const posts: BlogPost[] = [];
+  for (const slug of slugs) {
+    try {
+      posts.push(getPostBySlug(slug));
+    } catch (error) {
+      console.error(`Error loading blog post ${slug}:`, error);
+    }
+  }
+  return posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 }
 
 export function getFeaturedPost(): BlogPost | null {

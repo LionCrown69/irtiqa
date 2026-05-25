@@ -2,6 +2,7 @@ import { defineConfig, type Connect } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import fs from 'fs'
+import matter from 'gray-matter'
 
 const readBody = (req: NodeJS.ReadableStream) =>
   new Promise<string>((resolve, reject) => {
@@ -156,16 +157,117 @@ const attachBookAuditHandler = (middlewares: Connect.Server) => {
   })
 }
 
+const BLOGS_DIR = path.join(process.cwd(), 'content/blog')
+
+const getBlogs = () => {
+  if (!fs.existsSync(BLOGS_DIR)) return []
+  try {
+    const files = fs.readdirSync(BLOGS_DIR).filter(f => f.endsWith('.mdx'))
+    const posts = files.map(file => {
+      const filePath = path.join(BLOGS_DIR, file)
+      const fileContents = fs.readFileSync(filePath, 'utf-8')
+      const { data, content } = matter(fileContents)
+      return {
+        slug: file.replace(/\.mdx$/, ''),
+        title: data.title || '',
+        description: data.description || data.excerpt || '',
+        date: data.date || data.publishedAt || '',
+        publishedAt: data.publishedAt || data.date || '',
+        excerpt: data.excerpt || '',
+        category: data.category || 'Insights',
+        tags: data.tags || [],
+        author: data.author || 'Irtiqa AI Team',
+        authorRole: data.authorRole || 'Revenue Operations',
+        readingTime: data.readingTime || '5 min read',
+        featured: data.featured || false,
+        content
+      }
+    })
+    return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
+  } catch (error) {
+    console.error('Error loading blogs for Vite middleware:', error)
+    return []
+  }
+}
+
+const attachBlogsApiHandler = (middlewares: Connect.Server) => {
+  middlewares.use('/api/blogs', (req, res, next) => {
+    if (req.method !== 'GET') {
+      next()
+      return
+    }
+
+    const url = new URL(req.url || '', `http://${req.headers.host}`)
+    const pathname = url.pathname.replace(/\/$/, '')
+
+    res.setHeader('Content-Type', 'application/json')
+
+    if (pathname === '/latest') {
+      res.statusCode = 200
+      const blogs = getBlogs().slice(0, 3).map(post => ({
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        category: post.category,
+        readingTime: post.readingTime,
+        date: post.date,
+        author: post.author
+      }))
+      res.end(JSON.stringify(blogs))
+      return
+    }
+
+    if (pathname === '/post') {
+      const slug = url.searchParams.get('slug')
+      if (!slug) {
+        res.statusCode = 400
+        res.end(JSON.stringify({ error: 'Missing slug parameter' }))
+        return
+      }
+      const blogs = getBlogs()
+      const post = blogs.find(p => p.slug === slug)
+      if (!post) {
+        res.statusCode = 404
+        res.end(JSON.stringify({ error: 'Post not found' }))
+        return
+      }
+      res.statusCode = 200
+      res.end(JSON.stringify(post))
+      return
+    }
+
+    if (pathname === '' || pathname === '/') {
+      res.statusCode = 200
+      const blogs = getBlogs().map(post => ({
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        category: post.category,
+        readingTime: post.readingTime,
+        date: post.date,
+        author: post.author,
+        featured: post.featured
+      }))
+      res.end(JSON.stringify(blogs))
+      return
+    }
+
+    next()
+  })
+}
+
 export default defineConfig({
   plugins: [
     react(),
     {
-      name: 'book-audit-dev-api',
+      name: 'dev-api-endpoints',
       configureServer(server) {
         attachBookAuditHandler(server.middlewares)
+        attachBlogsApiHandler(server.middlewares)
       },
       configurePreviewServer(server) {
         attachBookAuditHandler(server.middlewares)
+        attachBlogsApiHandler(server.middlewares)
       }
     }
   ],

@@ -9,11 +9,13 @@ import ResultsSection from './components/ResultsSection';
 import ProcessSection from './components/ProcessSection';
 import WhySection from './components/WhySection';
 import TestimonialsSection from './components/TestimonialsSection';
+import RecentBlogsSection from './components/RecentBlogsSection';
 import BookSection from './components/BookSection';
 import Footer from './components/Footer';
 import ProgressBar from './components/ProgressBar';
 import RevenueLeakageAudit from './components/RevenueLeakageAudit';
 import BlogStructure from './components/BlogStructure';
+import BlogPostDetail from './components/BlogPostDetail';
 import FounderClient from './components/FounderClient';
 import useScrollReveal from './hooks/useScrollReveal';
 import useMobileLenis from './hooks/useMobileLenis';
@@ -45,6 +47,11 @@ function App() {
     return <BlogStructure />;
   }
 
+  if (path.startsWith('/blog/')) {
+    const slug = path.replace(/^\/blog\//, '');
+    return <BlogPostDetail slug={slug} />;
+  }
+
   if (path === '/founder') {
     return <FounderClient />;
   }
@@ -62,6 +69,7 @@ function App() {
         <ProcessSection />
         <WhySection />
         <TestimonialsSection />
+        <RecentBlogsSection />
         <BookSection />
       </main>
       <Footer />
