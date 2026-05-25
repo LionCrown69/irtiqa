@@ -96,7 +96,7 @@ export default function KnowledgeDirectory() {
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: '40px 32px'
         }}>
-          {Object.entries(blogsByCategory).map(([category, posts]) => {
+          {(Object.entries(blogsByCategory) as [string, any[]][]).map(([category, posts]) => {
             const catColor = getCategoryColor(category);
             return (
               <div key={category} style={{ display: 'flex', flexDirection: 'column' }}>
