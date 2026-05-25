@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllPosts } from '../../../lib/mdx';
+import { getAllPosts } from '../../../../lib/mdx';
 
 export async function GET() {
   try {
