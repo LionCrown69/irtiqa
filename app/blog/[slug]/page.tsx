@@ -117,7 +117,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       name: 'Irtiqa AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.irtiqaaiagency.com/irtiqa-logo.jpeg',
+        url: 'https://www.irtiqaaiagency.com/irtiqa-logo-solid.png',
       },
     },
     datePublished: new Date(post.publishedAt || post.date).toISOString(),

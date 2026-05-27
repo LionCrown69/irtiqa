@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://www.irtiqaaiagency.com/",
     images: [
       {
-        url: "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
+        url: "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
         alt: "Irtiqa AI logo",
       },
     ],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
     description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to stop silent revenue leakage.",
-    images: ["https://www.irtiqaaiagency.com/irtiqa-logo.jpeg"],
+    images: ["https://www.irtiqaaiagency.com/irtiqa-logo-solid.png"],
   },
 };
 
@@ -52,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/jpeg" href="/irtiqa-logo.jpeg" />
-        <link rel="apple-touch-icon" href="/irtiqa-logo.jpeg" />
+        <link rel="icon" type="image/png" href="/irtiqa-logo-solid.png" />
+        <link rel="apple-touch-icon" href="/irtiqa-logo-solid.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -78,7 +78,7 @@ export default function RootLayout({
                   },
                   "alternateName": ["Irtiqa"],
                   "url": "https://www.irtiqaaiagency.com/",
-                  "logo": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
+                  "logo": "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
                   "email": "hello@irtiqaaiagency.com",
                   "description": "Irtiqa AI is the infrastructure layer serious businesses build on when they want to scale without chaos. We design, build, and operate revenue operations infrastructure and agentic AI systems that stop silent revenue leakage.",
                   "knowsAbout": [
@@ -164,7 +164,7 @@ export default function RootLayout({
                   "about": {
                     "@id": "https://www.irtiqaaiagency.com/#organization"
                   },
-                  "primaryImageOfPage": "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
+                  "primaryImageOfPage": "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
                   "inLanguage": "en"
                 }
               ]

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "profile",
     images: [
       {
-        url: "https://www.irtiqaaiagency.com/irtiqa-logo.jpeg",
+        url: "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
         alt: "Alok Mishra | Irtiqa AI",
       }
     ]

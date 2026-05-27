@@ -13,7 +13,7 @@ const BrandLogo: React.FC<BrandLogoProps> = ({
   showArabic = false,
   lightText = false
 }) => {
-  const markLogoSrc = '/3-removebg-preview.png';
+  const markLogoSrc = '/irtiqa-logo-transparent.png';
   const altText = showArabic ? 'Irtiqa AI logo with Arabic wordmark' : 'Irtiqa logo';
 
   return (
