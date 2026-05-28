@@ -189,8 +189,8 @@ const BookSection: React.FC = () => {
             <div className="reveal">
               <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Free Audit Call</div>
               <h2 className="book-title">Book your free<br /><em>Audit Call.</em></h2>
-              <p className="book-sub desktop-only">One hour, maximum depth. Within 24 hours you receive a Growth Report with findings, impact estimates, and the minimum viable infrastructure to fix what’s leaking revenue.</p>
-              <p className="book-sub mobile-only">Free 1-hour audit. Growth Report in 24 hours.</p>
+              <p className="book-sub desktop-only">One hour, maximum depth. Even if you decide we aren\'t the right fit, you will walk away knowing exactly where your business is leaking revenue and what to do about it. That is worth the hour regardless. Within 24 hours, you receive a custom Growth Report.</p>
+              <p className="book-sub mobile-only">Free 1-hour audit. Walk away knowing exactly where your business is leaking revenue — worth the time even if you never hire us.</p>
             </div>
 
             {step === 'details' ? (
@@ -283,7 +283,7 @@ const BookSection: React.FC = () => {
                   )}
                 </div>
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
-                  {isLoadingSlots ? 'Loading Calendar...' : 'Continue to Schedule →'}
+                  {isLoadingSlots ? 'Loading Calendar...' : "Show Me Where I'm Leaking Revenue →"}
                 </button>
                 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>

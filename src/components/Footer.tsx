@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
               <BrandLogo size="sm" showWordmark={true} showArabic={true} lightText={false} />
             </div>
             <p className="irtiqa-footer-tagline">
-              We design, build, and operate revenue operations infrastructure and agentic AI systems that stop silent revenue leakage.
+              We find where your business is quietly losing revenue — and we build the infrastructure that stops it.
             </p>
             
             {/* Newsletter form */}

@@ -4,6 +4,11 @@ import { TestimonialsColumn, type TestimonialsColumnItem } from './ui/testimonia
 const TestimonialsSection: React.FC = () => {
   const testimonials: TestimonialsColumnItem[] = [
     {
+      text: 'What surprised me most was how much thinking went into understanding our business before anything was built. The audit alone changed how I understood where we were losing revenue. The systems came after — and they work — but the clarity from the process was the real value.',
+      name: 'Marcus K.',
+      role: 'Founder, Enterprise Advisory Group'
+    },
+    {
       text: 'Before Irtiqa, replies sat for hours and we leaked high-intent leads daily. After launch, first-response speed and appointment quality improved in the same month.',
       name: 'Ayaan K.',
       role: 'Founder, Growth Advisory'

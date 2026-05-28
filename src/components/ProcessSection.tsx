@@ -6,25 +6,25 @@ const ProcessSection: React.FC = () => {
     {
       quarter: 'Step 01',
       title: 'Audit Call',
-      description: 'Free, one hour, maximum depth: map your revenue journey and identify the leakage points blocking growth.',
+      description: 'One hour with our team. No pitch. We ask the right questions, listen to how your business actually runs, and map exactly where revenue is being lost.',
       status: 'done' as const
     },
     {
       quarter: 'Step 02',
       title: 'Growth Report',
-      description: 'Within 24 hours: findings, commercial impact estimates, and the minimum viable infrastructure to fix root causes.',
+      description: 'Within 24 hours you receive a written report — specific to your business, not a template. It tells you exactly what is leaking, what it is costing you, and what we recommend building to fix it.',
       status: 'in-progress' as const
     },
     {
       quarter: 'Step 03',
       title: 'Build',
-      description: 'Design the architecture, then implement in phases — systems, integrations, agents, and workflows — tested before handover.',
+      description: 'Design the architecture, then implement in phases — systems, integrations, agents, and workflows. You approve everything before we build anything.',
       status: 'upcoming' as const
     },
     {
       quarter: 'Step 04',
-      title: 'Operate',
-      description: 'Ongoing partnership: monitor, optimize, and evolve the system as the business evolves. First month is free.',
+      title: 'Partner',
+      description: 'This is where Irtiqa becomes a long-term part of your business — not a vendor you manage but a partner who is invested in your results.',
       status: 'upcoming' as const
     }
   ];

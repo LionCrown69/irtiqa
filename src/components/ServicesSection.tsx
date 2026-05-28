@@ -19,31 +19,31 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   const layers = [
     {
       num: '01',
-      tag: 'Capture Layer',
-      title: 'Lead Generation + Intake',
-      desc: 'Autonomous lead gen plus always-on intake across web, calls, and WhatsApp — with instant qualification.',
-      metrics: ['lead generation infrastructure', 'AI receptionist', 'instant qualification']
+      tag: 'Find the Leaks',
+      title: 'We audit where revenue is leaving your business',
+      desc: 'We go through your entire lead journey — how inquiries arrive, how they are handled, where they go cold. We find every point where money is quietly walking out.',
+      metrics: ['Lead journey mapping', 'Leakage identification', 'Impact reports']
     },
     {
       num: '02',
-      tag: 'Conversion Layer',
-      title: 'Outreach + Booking',
-      desc: 'Multi-channel outreach, intelligent follow-up, response handling, and booking automation that turns intent into calls.',
-      metrics: ['autonomous outreach system', 'intelligent follow-up', 'appointment setting']
+      tag: 'Fix the Gaps',
+      title: 'We design the systems that close them',
+      desc: 'Once we know where the leakage is, we design the specific infrastructure to fix it. Every recommendation is built around your business — not a template.',
+      metrics: ['Custom solution design', 'Technology scoping', 'Workflow mapping']
     },
     {
       num: '03',
-      tag: 'Ops Layer',
-      title: 'CRM + Pipeline Automation',
-      desc: 'Custom CRM architecture, routing, stage automation, tasks, and reporting — built around how you actually sell.',
-      metrics: ['AI powered CRM automation', 'pipeline governance', 'revenue dashboards']
+      tag: 'Build the Infrastructure',
+      title: 'We deploy it and make it run',
+      desc: 'We build and integrate everything ourselves. You do not manage vendors or navigate tools. We own the delivery from design to live system.',
+      metrics: ['API engineering', 'CRM & pipeline setup', 'End-to-end testing']
     },
     {
       num: '04',
-      tag: 'Lifecycle Layer',
-      title: 'Onboard + Retain',
-      desc: 'Automated onboarding, retention triggers, re-engagement, and referral activation — so growth compounds after the close.',
-      metrics: ['client onboarding automation', 'retention systems', 're-engagement loops']
+      tag: 'Stay and Operate',
+      title: 'We remain your partner as the business evolves',
+      desc: 'We do not hand over and disappear. We monitor, optimise, and evolve the infrastructure alongside your business. First month always included.',
+      metrics: ['Proactive optimization', 'Continuous support', 'First month included']
     }
   ];
 

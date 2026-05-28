@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface ProblemProps {
   industry?: {
@@ -16,6 +16,29 @@ interface ProblemProps {
 }
 
 const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
+  const [dealValue, setDealValue] = useState(1500);
+  const [leadsCount, setLeadsCount] = useState(50);
+  const [responseTime, setResponseTime] = useState('30-120mins');
+
+  // Response time leakage factor
+  const getLeakFactor = (time: string) => {
+    switch (time) {
+      case '<5mins': return 0.03;
+      case '5-30mins': return 0.12;
+      case '30-120mins': return 0.25;
+      case '2+hours': return 0.42;
+      case 'nextday': return 0.58;
+      default: return 0.25;
+    }
+  };
+
+  const leakFactor = getLeakFactor(responseTime);
+  const missedLeads = Math.round(leadsCount * dealValue * leakFactor);
+  const adminHours = Math.round((leadsCount * 0.4) * 45); // Assuming 0.4 hours admin per lead at $45/hour
+  const noShows = Math.round(leadsCount * 0.25 * 0.12 * dealValue); // Assuming 25% book a call, 12% no-show without follow-up reminders
+  const churn = Math.round(leadsCount * 0.035 * dealValue); // 3.5% churn due to slow manual handoff
+  const totalLeakage = missedLeads + adminHours + noShows + churn;
+
   const problems = [
     {
       num: '01',
@@ -74,39 +97,109 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
 
         <div className="reveal d2">
           <div className="cost-stack">
-            <div className="cost-visual">
-              <div className="cost-title">Estimated Monthly Revenue Leakage</div>
+            {/* Interactive Calculator Inputs */}
+            <div style={{ background: 'var(--w2)', border: '1px solid var(--rule)', borderRadius: '14px', padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div className="cost-title" style={{ margin: 0, color: 'var(--ink)' }}>Leakage Calculator</div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>
+                  <span>Avg Client Value</span>
+                  <strong style={{ color: 'var(--b)' }}>${dealValue.toLocaleString()}</strong>
+                </div>
+                <input 
+                  type="range" 
+                  min="200" 
+                  max="15000" 
+                  step="100" 
+                  value={dealValue} 
+                  onChange={(e) => setDealValue(Number(e.target.value))}
+                  style={{ width: '100%', accentColor: 'var(--b)', cursor: 'pointer' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>
+                  <span>New Leads / Month</span>
+                  <strong style={{ color: 'var(--b)' }}>{leadsCount}</strong>
+                </div>
+                <input 
+                  type="range" 
+                  min="5" 
+                  max="300" 
+                  step="5" 
+                  value={leadsCount} 
+                  onChange={(e) => setLeadsCount(Number(e.target.value))}
+                  style={{ width: '100%', accentColor: 'var(--b)', cursor: 'pointer' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>Avg Response Time</label>
+                <select
+                  value={responseTime}
+                  onChange={(e) => setResponseTime(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '8px',
+                    border: '1px solid var(--rule)',
+                    background: 'var(--w)',
+                    color: 'var(--ink)',
+                    fontSize: '13px',
+                    fontFamily: 'var(--ui)',
+                    fontWeight: 500,
+                    outline: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="<5mins">Under 5 Minutes</option>
+                  <option value="5-30mins">5 - 30 Minutes</option>
+                  <option value="30-120mins">30 - 120 Minutes</option>
+                  <option value="2+hours">2+ Hours</option>
+                  <option value="nextday">Next Day / Slower</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Dynamic Results Display */}
+            <div className="cost-visual" style={{ background: 'linear-gradient(160deg,#fff,var(--w2))', border: '1px solid var(--rule)', borderRadius: '14px', padding: '24px 20px', boxShadow: '0 8px 24px rgba(12,12,11,.03)' }}>
+              <div className="cost-title" style={{ margin: '0 0 16px' }}>Calculated Monthly Leakage</div>
+              
               <div className="cost-row">
                 <div>
                   <div className="cost-item-name">Missed / Delayed Leads</div>
-                  <div className="cost-item-sub">≈ 3–5 missed prospects/month @ avg deal value</div>
+                  <div className="cost-item-sub">Leads lost to slow response speed</div>
                 </div>
-                <div className="cost-item-val">−$4,200</div>
+                <div className="cost-item-val">−${missedLeads.toLocaleString()}</div>
               </div>
+              
               <div className="cost-row">
                 <div>
                   <div className="cost-item-name">Manual Admin Hours</div>
-                  <div className="cost-item-sub">20 hrs/week × $40 opportunity cost</div>
+                  <div className="cost-item-sub">Routing, data entry & CRM updates</div>
                 </div>
-                <div className="cost-item-val">−$3,200</div>
+                <div className="cost-item-val">−${adminHours.toLocaleString()}</div>
               </div>
+
               <div className="cost-row">
                 <div>
-                  <div className="cost-item-name">No-Shows & Lost Appointments</div>
-                  <div className="cost-item-sub">No automated reminder or recovery system</div>
+                  <div className="cost-item-name">No-Shows & Lost Calls</div>
+                  <div className="cost-item-sub">Appointments lost without recovery reminders</div>
                 </div>
-                <div className="cost-item-val">−$1,800</div>
+                <div className="cost-item-val">−${noShows.toLocaleString()}</div>
               </div>
+
               <div className="cost-row">
                 <div>
-                  <div className="cost-item-name">Churn from Slow Follow-Up</div>
-                  <div className="cost-item-sub">Warm leads going cold, retainers not renewed</div>
+                  <div className="cost-item-name">Handoff & Follow-Up Churn</div>
+                  <div className="cost-item-sub">Warm conversations going cold silently</div>
                 </div>
-                <div className="cost-item-val">−$2,600</div>
+                <div className="cost-item-val">−${churn.toLocaleString()}</div>
               </div>
-              <div className="cost-total">
-                <span className="cost-total-label">Total Monthly Leakage</span>
-                <span className="cost-total-val">−$11,800+</span>
+
+              <div className="cost-total" style={{ background: 'var(--b)', marginTop: '20px' }}>
+                <span className="cost-total-label" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Est. Monthly Leakage</span>
+                <span className="cost-total-val" style={{ color: '#fff', fontStyle: 'normal', fontWeight: 'bold' }}>−${totalLeakage.toLocaleString()}</span>
               </div>
             </div>
           </div>

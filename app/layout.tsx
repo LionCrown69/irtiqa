@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
-  description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to capture leads, automate follow-up, and stop revenue leakage.",
+  title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
+  description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
   keywords: "revenue operations infrastructure, AI revenue infrastructure, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
   applicationName: "Irtiqa AI",
   authors: [{ name: "Alok Mishra", url: "https://www.linkedin.com/in/alokmishra-" }],
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
-    description: "Revenue operations infrastructure and agentic AI systems that find and fix silent revenue leakage across lead capture, follow-up, booking, onboarding, and retention.",
+    title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
+    description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
     type: "website",
     siteName: "Irtiqa AI",
     locale: "en_US",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
-    description: "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems to stop silent revenue leakage.",
+    title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
+    description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo-solid.png"],
   },
 };
@@ -80,7 +80,7 @@ export default function RootLayout({
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
                   "email": "hello@irtiqaaiagency.com",
-                  "description": "Irtiqa AI is the infrastructure layer serious businesses build on when they want to scale without chaos. We design, build, and operate revenue operations infrastructure and agentic AI systems that stop silent revenue leakage.",
+                  "description": "Irtiqa AI is the growth partner service businesses build on to stop revenue leakage. We find where your business is quietly losing revenue — and we build the infrastructure that stops it.",
                   "knowsAbout": [
                     "Revenue operations infrastructure",
                     "Agentic AI systems for business",
@@ -156,8 +156,8 @@ export default function RootLayout({
                   "@type": "WebPage",
                   "@id": "https://www.irtiqaaiagency.com/#webpage",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "Revenue Operations Infrastructure & Agentic AI | Irtiqa AI",
-                  "description": "Irtiqa AI builds and operates revenue operations infrastructure and agentic AI systems that stop silent revenue leakage across lead capture, follow-up, booking, onboarding, and retention.",
+                  "name": "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
+                  "description": "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
                   "isPartOf": {
                     "@id": "https://www.irtiqaaiagency.com/#website"
                   },

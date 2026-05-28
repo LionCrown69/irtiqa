@@ -177,7 +177,9 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         animate="show"
         style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
       >
-        <motion.div variants={itemVariants} className="hero-eyebrow" style={{ opacity: 1, animation: 'none' }}>
+
+
+        <motion.div variants={itemVariants} className="hero-eyebrow" style={{ opacity: 1, animation: 'none', marginBottom: '32px' }}>
           <motion.span
             className="hero-eyebrow-dot"
             animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
@@ -193,32 +195,32 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
           {industry || location ? (
             <>
               <span className="hero-h1-line hero-h1-line-main">
-                {industry ? `${industry.name} Operations` : 'Your Business Runs on'}
+                {industry ? `${industry.name} Revenue Leakage` : 'Your Business Is Losing'}
               </span>
               <em className="hero-h1-accent">
-                {location ? `in ${location.name}.` : 'Process.'}
+                {location ? `in ${location.name}.` : 'Revenue.'}
               </em>
               <span className="hero-h1-line hero-h1-line-main h1-muted-compact">
-                We Make It Run Itself.
+                We Find It. We Fix It.
               </span>
             </>
           ) : (
             <>
-              <span className="hero-h1-line hero-h1-line-main">Your Business Runs on</span>
-              <em className="hero-h1-accent">Process.</em>
-              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Make It Run Itself.</span>
+              <span className="hero-h1-line hero-h1-line-main">Your Business Is Losing</span>
+              <em className="hero-h1-accent">Revenue.</em>
+              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">We Find It. We Fix It.</span>
             </>
           )}
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub desktop-only" style={{ opacity: 1, animation: 'none' }}>
-          <strong>We find the leakage. We fix the machine.</strong><br/>
-          Irtiqa AI builds the operational engine behind your growth: autonomous capture, intelligent routing, and multi-agent follow-up. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
+          <strong>We find the leakage. We fix what's causing it.</strong><br/>
+          We go deep into your operations, identify exactly where money is quietly leaving, and build the infrastructure that stops it — permanently. {industry ? `Stop ${industry.painPoint}.` : 'Stop losing leads in follow-up.'}
         </motion.p>
 
         <motion.p variants={itemVariants} className="hero-sub mobile-only" style={{ opacity: 1, animation: 'none' }}>
-          <strong>We find the leakage. We fix the machine.</strong><br/>
-          Revenue infrastructure that captures leads, follows up, and books qualified calls — automatically. {industry ? `Stop ${industry.painPoint}.` : 'Stop silent leakage.'}
+          <strong>We find the leakage. We fix what's causing it.</strong><br/>
+          We go deep into your operations, identify exactly where money is quietly leaving, and build the infrastructure that stops it — permanently. {industry ? `Stop ${industry.painPoint}.` : 'Stop silent leakage.'}
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
@@ -289,21 +291,21 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         >
           <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
             <div className="hstat-val">
-              <Counter from={0} to={37} delay={0.6} animateValue={!isMobile} />
+              <Counter from={30} to={37} delay={0.6} animateValue={!isMobile} />
               <span className="hstat-unit">%</span>
             </div>
             <div className="hstat-label">Faster Lead Response</div>
           </motion.div>
           <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
             <div className="hstat-val">
-              <Counter from={0} to={42} delay={0.78} animateValue={!isMobile} />
+              <Counter from={35} to={42} delay={0.78} animateValue={!isMobile} />
               <span className="hstat-unit">%</span>
             </div>
             <div className="hstat-label">Less Manual Admin</div>
           </motion.div>
           <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
             <div className="hstat-val">
-              <Counter from={0} to={28} delay={0.96} animateValue={!isMobile} />
+              <Counter from={22} to={28} delay={0.96} animateValue={!isMobile} />
               <span className="hstat-unit">%</span>
             </div>
             <div className="hstat-label">More Conversions</div>
