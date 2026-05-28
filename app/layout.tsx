@@ -69,12 +69,7 @@ export default function RootLayout({
                   "@id": "https://www.irtiqaaiagency.com/#organization",
                   "name": "Irtiqa AI",
                   "founder": {
-                    "@type": "Person",
-                    "name": "Alok Mishra",
-                    "url": "https://www.linkedin.com/in/alokmishra-",
-                    "sameAs": [
-                      "https://www.linkedin.com/in/alokmishra-"
-                    ]
+                    "@id": "https://www.irtiqaaiagency.com/founder/#person"
                   },
                   "alternateName": ["Irtiqa"],
                   "url": "https://www.irtiqaaiagency.com/",
@@ -138,6 +133,23 @@ export default function RootLayout({
                       }
                     ]
                   }
+                },
+                {
+                  "@type": "Person",
+                  "@id": "https://www.irtiqaaiagency.com/founder/#person",
+                  "name": "Alok Mishra",
+                  "jobTitle": "Founder & Company Owner",
+                  "email": "alok@irtiqaaiagency.com",
+                  "url": "https://www.irtiqaaiagency.com/founder",
+                  "sameAs": [
+                    "https://www.linkedin.com/in/alokmishra-",
+                    "https://www.instagram.com/irtiqaai/",
+                    "https://www.linkedin.com/company/irtiqaai/"
+                  ],
+                  "worksFor": {
+                    "@id": "https://www.irtiqaaiagency.com/#organization"
+                  },
+                  "description": "Alok Mishra is the Founder and Company Owner at Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems to stop silent revenue leakage."
                 },
                 {
                   "@type": "WebSite",

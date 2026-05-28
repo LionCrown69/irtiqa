@@ -98,7 +98,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
         <div className="reveal d2">
           <div className="cost-stack">
             {/* Interactive Calculator Inputs */}
-            <div style={{ background: 'var(--w2)', border: '1px solid var(--rule)', borderRadius: '14px', padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className="calculator-panel">
               <div className="cost-title" style={{ margin: 0, color: 'var(--ink)' }}>Leakage Calculator</div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
@@ -162,8 +162,8 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
             </div>
 
             {/* Dynamic Results Display */}
-            <div className="cost-visual" style={{ background: 'linear-gradient(160deg,#fff,var(--w2))', border: '1px solid var(--rule)', borderRadius: '14px', padding: '24px 20px', boxShadow: '0 8px 24px rgba(12,12,11,.03)' }}>
-              <div className="cost-title" style={{ margin: '0 0 16px' }}>Calculated Monthly Leakage</div>
+            <div className="cost-visual">
+              <div className="cost-title">Calculated Monthly Leakage</div>
               
               <div className="cost-row">
                 <div>
@@ -197,9 +197,9 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
                 <div className="cost-item-val">−${churn.toLocaleString()}</div>
               </div>
 
-              <div className="cost-total" style={{ background: 'var(--b)', marginTop: '20px' }}>
-                <span className="cost-total-label" style={{ color: 'rgba(255,255,255,0.85)' }}>Total Est. Monthly Leakage</span>
-                <span className="cost-total-val" style={{ color: '#fff', fontStyle: 'normal', fontWeight: 'bold' }}>−${totalLeakage.toLocaleString()}</span>
+              <div className="cost-total">
+                <span className="cost-total-label">Total Est. Monthly Leakage</span>
+                <span className="cost-total-val">−${totalLeakage.toLocaleString()}</span>
               </div>
             </div>
           </div>

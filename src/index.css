@@ -6976,3 +6976,35 @@ main section{position:relative;--section-shift:0px}
   }
 }
 
+/* Custom responsive utility classes for the rebrand */
+.rebrand-card {
+  background: linear-gradient(165deg, #fff, var(--w2));
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 8px 32px rgba(12,12,11,.05);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.rebrand-card-accent {
+  border-color: rgba(22,65,245,0.12);
+  box-shadow: 0 8px 32px rgba(22,65,245,.04);
+}
+.calculator-panel {
+  background: var(--w2);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+@media (max-width: 640px) {
+  .rebrand-card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+  .calculator-panel {
+    padding: 18px 14px;
+    gap: 14px;
+  }
+}

@@ -26,19 +26,19 @@ const WhySection: React.FC = () => {
 
         <div className="reveal d2" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Card 1 */}
-          <div style={{ background: 'linear-gradient(165deg, #fff, var(--w2))', border: '1px solid var(--rule)', borderRadius: '16px', padding: '30px 24px', boxShadow: '0 8px 32px rgba(12,12,11,.05)' }}>
+          <div className="rebrand-card">
             <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: 'var(--ink)', marginBottom: '10px' }}>Custom Infrastructure</h3>
             <p style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.7' }}>Everything we build is specific to you. We do not install generic systems. We design infrastructure around how your business actually works, your clients, your team, and your commercial goals.</p>
           </div>
           
           {/* Card 2 */}
-          <div style={{ background: 'linear-gradient(165deg, #fff, var(--w2))', border: '1px solid var(--rule)', borderRadius: '16px', padding: '30px 24px', boxShadow: '0 8px 32px rgba(12,12,11,.05)' }}>
+          <div className="rebrand-card">
             <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: 'var(--ink)', marginBottom: '10px' }}>A Partner Who Stays</h3>
             <p style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.7' }}>We know you have probably seen this before — tools that get built, handed over, and stop working the moment something changes. That is not what we do. We stay. We maintain. We are invested in the result because our model only works if yours does.</p>
           </div>
 
           {/* Card 3 (Case Study) */}
-          <div style={{ background: 'linear-gradient(165deg, #fff, var(--w2))', border: '1px solid rgba(22,65,245,0.12)', borderRadius: '16px', padding: '30px 24px', boxShadow: '0 8px 32px rgba(22,65,245,.04)' }}>
+          <div className="rebrand-card rebrand-card-accent">
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
               <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '2px 8px', borderRadius: '4px' }}>CASE STUDY</span>
             </div>
