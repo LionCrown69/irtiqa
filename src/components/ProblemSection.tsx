@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ProblemProps {
   industry?: {
@@ -19,6 +19,15 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const [dealValue, setDealValue] = useState(1500);
   const [leadsCount, setLeadsCount] = useState(50);
   const [responseTime, setResponseTime] = useState('30-120mins');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 640px)');
+    const sync = () => setIsMobile(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
 
   // Response time leakage factor
   const getLeakFactor = (time: string) => {
@@ -103,7 +112,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>
-                  <span>Avg Client Value</span>
+                  <span>{isMobile ? 'Avg deal value' : 'Avg Client Value'}</span>
                   <strong style={{ color: 'var(--b)' }}>${dealValue.toLocaleString()}</strong>
                 </div>
                 <input 
@@ -119,7 +128,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>
-                  <span>New Leads / Month</span>
+                  <span>{isMobile ? 'Leads / month' : 'New Leads / Month'}</span>
                   <strong style={{ color: 'var(--b)' }}>{leadsCount}</strong>
                 </div>
                 <input 
@@ -133,30 +142,18 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
                 />
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>Avg Response Time</label>
+              <div className="calculator-field">
+                <label className="calculator-field-title">{isMobile ? 'Response speed' : 'Avg Response Time'}</label>
                 <select
+                  className="calculator-select"
                   value={responseTime}
                   onChange={(e) => setResponseTime(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '10px 12px',
-                    borderRadius: '8px',
-                    border: '1px solid var(--rule)',
-                    background: 'var(--w)',
-                    color: 'var(--ink)',
-                    fontSize: '13px',
-                    fontFamily: 'var(--ui)',
-                    fontWeight: 500,
-                    outline: 'none',
-                    cursor: 'pointer'
-                  }}
                 >
-                  <option value="<5mins">Under 5 Minutes</option>
-                  <option value="5-30mins">5 - 30 Minutes</option>
-                  <option value="30-120mins">30 - 120 Minutes</option>
-                  <option value="2+hours">2+ Hours</option>
-                  <option value="nextday">Next Day / Slower</option>
+                  <option value="<5mins">{isMobile ? '< 5 min' : 'Under 5 Minutes'}</option>
+                  <option value="5-30mins">{isMobile ? '5 - 30 min' : '5 - 30 Minutes'}</option>
+                  <option value="30-120mins">{isMobile ? '30 - 120 min' : '30 - 120 Minutes'}</option>
+                  <option value="2+hours">{isMobile ? '2+ hours' : '2+ Hours'}</option>
+                  <option value="nextday">{isMobile ? 'Next day+' : 'Next Day / Slower'}</option>
                 </select>
               </div>
             </div>

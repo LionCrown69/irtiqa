@@ -19,6 +19,7 @@ function getCategoryColor(cat: string): string {
 export default function RecentBlogsSection() {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     fetch('/api/blogs/latest')
@@ -33,7 +34,62 @@ export default function RecentBlogsSection() {
       });
   }, []);
 
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 640px)');
+    const sync = () => setIsMobile(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+
   if (loading || blogs.length === 0) return null;
+
+  if (isMobile) {
+    const compactBlogs = blogs.slice(0, 3);
+
+    return (
+      <section id="insights" className="insights-mobile" aria-label="Recent insights">
+        <div className="insights-mobile-shell">
+          <header className="insights-mobile-head">
+            <span className="insights-mobile-kicker">Latest Insights</span>
+            <h2>Three concise reads for smarter execution.</h2>
+            <a href="/blog" className="insights-mobile-link">
+              View all 60+ articles
+            </a>
+          </header>
+
+          <div className="insights-mobile-rail" role="list">
+            {compactBlogs.map((post) => {
+              const catColor = getCategoryColor(post.category);
+              return (
+                <a
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  role="listitem"
+                  className="insights-mobile-card"
+                  style={
+                    {
+                      '--insight-cat-color': catColor,
+                      '--insight-cat-bg': `${catColor}14`,
+                      '--insight-cat-border': `${catColor}30`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div className="insights-mobile-card-top">
+                    <span className="insights-mobile-card-cat">{post.category}</span>
+                    <span className="insights-mobile-card-time">{post.readingTime}</span>
+                  </div>
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <span className="insights-mobile-card-date">{post.date}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section 

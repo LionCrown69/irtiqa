@@ -307,6 +307,22 @@ nav{
 .cost-total-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .cost-total-val{font-family:var(--serif);font-size:28px;color:var(--w);font-style:italic;letter-spacing:-.01em}
 .cost-stack{display:flex;flex-direction:column;gap:14px}
+.calculator-field{display:flex;flex-direction:column;gap:6px}
+.calculator-field-title{font-size:12px;font-weight:600;color:var(--ink)}
+.calculator-select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid var(--rule);
+  background:var(--w);
+  color:var(--ink);
+  font-size:13px;
+  font-family:var(--ui);
+  font-weight:500;
+  outline:none;
+  cursor:pointer;
+}
+.calculator-select:focus{border-color:rgba(22,65,245,.42)}
 .cost-mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .cost-mini{background:linear-gradient(165deg,#fff,var(--w2));border:1px solid var(--rule);border-radius:12px;padding:14px 14px 12px;box-shadow:0 6px 18px rgba(12,12,11,.06)}
 .cost-mini-title{font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--sub);margin-bottom:10px}

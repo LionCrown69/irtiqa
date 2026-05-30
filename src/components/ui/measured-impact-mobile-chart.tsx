@@ -33,8 +33,8 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const PERIODS = {
-  '6m': { key: '6m', label: 'Last 6 months' },
-  '10m': { key: '10m', label: 'Full 10 months' },
+  '6m': { key: '6m', label: '6 months' },
+  '10m': { key: '10m', label: '10 months' },
 } as const;
 
 type PeriodKey = keyof typeof PERIODS;
@@ -100,7 +100,7 @@ const MeasuredImpactMobileChart: React.FC = () => {
           </div>
           <CardToolbar className="mi2-card-toolbar">
             <div className="mi2-select-wrap">
-              <span className="mi2-select-caption">View window</span>
+              <span className="mi2-select-caption">Range</span>
               <Select value={selectedPeriod} onValueChange={(value) => setSelectedPeriod(value as PeriodKey)}>
                 <SelectTrigger className="mi2-select-trigger">
                   <SelectValue placeholder="Choose range" />
@@ -118,9 +118,7 @@ const MeasuredImpactMobileChart: React.FC = () => {
         </CardHeader>
 
         <CardContent className="mi2-card-content">
-          <div className="mi2-data-note">
-            Cohort: 14 service businesses · anonymized median data.
-          </div>
+          <div className="mi2-data-note">Cohort: 14 service businesses - anonymized median data.</div>
           <div className="mi2-kpi-row">
             <div className="mi2-kpi">
               <span>Avg monthly revenue</span>
