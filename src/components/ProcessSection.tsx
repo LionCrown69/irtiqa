@@ -6,27 +6,27 @@ const ProcessSection: React.FC = () => {
     {
       quarter: 'Step 01',
       title: 'Audit Call',
-      description: 'One hour with our team. No pitch. We ask the right questions, listen to how your business actually runs, and map exactly where revenue is being lost.',
-      status: 'done' as const
+      description: 'One focused session to map exactly where revenue leakage is happening in your current flow.',
+      status: 'done' as const,
     },
     {
       quarter: 'Step 02',
       title: 'Growth Report',
-      description: 'Within 24 hours you receive a written report — specific to your business, not a template. It tells you exactly what is leaking, what it is costing you, and what we recommend building to fix it.',
-      status: 'in-progress' as const
+      description: 'Within 24 hours, you receive a clear report with leakage points, impact, and build priorities.',
+      status: 'in-progress' as const,
     },
     {
       quarter: 'Step 03',
       title: 'Build',
-      description: 'Design the architecture, then implement in phases — systems, integrations, agents, and workflows. You approve everything before we build anything.',
-      status: 'upcoming' as const
+      description: 'We design and deploy approved systems, integrations, and workflows in controlled phases.',
+      status: 'upcoming' as const,
     },
     {
       quarter: 'Step 04',
       title: 'Partner',
-      description: 'This is where Irtiqa becomes a long-term part of your business — not a vendor you manage but a partner who is invested in your results.',
-      status: 'upcoming' as const
-    }
+      description: 'We stay involved to optimize, monitor, and compound outcomes over time.',
+      status: 'upcoming' as const,
+    },
   ];
 
   return (
@@ -34,7 +34,9 @@ const ProcessSection: React.FC = () => {
       <div className="process-v6-wrap">
         <div className="process-header reveal">
           <div className="process-kicker">Deployment Process</div>
-          <h2 className="process-title">From audit to <em>infrastructure.</em></h2>
+          <h2 className="process-title">
+            From audit to <em>infrastructure.</em>
+          </h2>
           <p className="process-sub">A clear path from diagnosis to a live system.</p>
         </div>
 

@@ -65,7 +65,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
           <a href="/audit" className="nav-btn">
             <span className="nav-btn-dot"></span>
-            Free Audit Call
+            <span className="nav-btn-mobile-hide">Free </span>Audit Call
           </a>
         </div>
 

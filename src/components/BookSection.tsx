@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookingConfirmation from './BookingConfirmation';
 import { 
   bookSlot, 
@@ -42,6 +42,15 @@ const BookSection: React.FC = () => {
   const [selectedSlot, setSelectedSlot] = useState<BookingSlot | null>(null);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [challengeSelect, setChallengeSelect] = useState<string>('');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 640px)');
+    const sync = () => setIsMobile(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
 
   const handleChallengeSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -190,7 +199,7 @@ const BookSection: React.FC = () => {
               <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Free Audit Call</div>
               <h2 className="book-title">Book your free<br /><em>Audit Call.</em></h2>
               <p className="book-sub desktop-only">One hour, maximum depth. Even if you decide we aren\'t the right fit, you will walk away knowing exactly where your business is leaking revenue and what to do about it. That is worth the hour regardless. Within 24 hours, you receive a custom Growth Report.</p>
-              <p className="book-sub mobile-only">Free 1-hour audit. Leave with a clear leakage map and next steps.</p>
+              <p className="book-sub mobile-only">Free one-hour audit with a clear leakage map and next steps.</p>
             </div>
 
             {step === 'details' ? (
@@ -283,7 +292,7 @@ const BookSection: React.FC = () => {
                   )}
                 </div>
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
-                  {isLoadingSlots ? 'Loading Calendar...' : "Show Me Where I'm Leaking Revenue →"}
+                  {isLoadingSlots ? 'Loading Calendar...' : isMobile ? 'See Revenue Gaps ->' : "Show Me Where I'm Leaking Revenue ->"}
                 </button>
                 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
