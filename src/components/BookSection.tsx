@@ -190,7 +190,7 @@ const BookSection: React.FC = () => {
               <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Free Audit Call</div>
               <h2 className="book-title">Book your free<br /><em>Audit Call.</em></h2>
               <p className="book-sub desktop-only">One hour, maximum depth. Even if you decide we aren\'t the right fit, you will walk away knowing exactly where your business is leaking revenue and what to do about it. That is worth the hour regardless. Within 24 hours, you receive a custom Growth Report.</p>
-              <p className="book-sub mobile-only">Free 1-hour audit. Walk away knowing exactly where your business is leaking revenue — worth the time even if you never hire us.</p>
+              <p className="book-sub mobile-only">Free 1-hour audit. Leave with a clear leakage map and next steps.</p>
             </div>
 
             {step === 'details' ? (

@@ -35,7 +35,7 @@ const ProcessSection: React.FC = () => {
         <div className="process-header reveal">
           <div className="process-kicker">Deployment Process</div>
           <h2 className="process-title">From audit to <em>infrastructure.</em></h2>
-          <p className="process-sub">A clear path from diagnosis to a live revenue operations system your team can run.</p>
+          <p className="process-sub">A clear path from diagnosis to a live system.</p>
         </div>
 
         <div className="process-v6-shell reveal d2">

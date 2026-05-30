@@ -90,13 +90,13 @@ const MeasuredImpactMobileChart: React.FC = () => {
       <h2 className="results-title reveal d1">
         Infrastructure that <em>pays</em> for itself.
       </h2>
-      <p className="results-body reveal d2">Observed monthly revenue metrics from real service-business operations.</p>
+      <p className="results-body reveal d2">Observed monthly revenue outcomes from real deployments.</p>
 
       <Card className="mi2-card reveal d2">
         <CardHeader className="mi2-card-header">
           <div className="mi2-head-copy">
             <CardTitle className="mi2-card-title">Revenue Lift Monitor</CardTitle>
-            <p className="mi2-card-note">Median monthly revenue trend vs manual workflow baseline.</p>
+            <p className="mi2-card-note">Revenue trend versus a manual baseline.</p>
           </div>
           <CardToolbar className="mi2-card-toolbar">
             <div className="mi2-select-wrap">
@@ -119,7 +119,7 @@ const MeasuredImpactMobileChart: React.FC = () => {
 
         <CardContent className="mi2-card-content">
           <div className="mi2-data-note">
-            Cohort: 14 service businesses · anonymized median performance · rolling operational data.
+            Cohort: 14 service businesses · anonymized median data.
           </div>
           <div className="mi2-kpi-row">
             <div className="mi2-kpi">

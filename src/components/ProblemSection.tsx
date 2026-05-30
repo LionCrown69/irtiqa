@@ -79,7 +79,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
             The real issue is rarely marketing. It’s revenue operations infrastructure: routing, follow-up, qualification, booking, onboarding, and retention — disconnected, manual, or nonexistent{location ? ` in ${location.name}` : ''}.
           </p>
           <p className="problem-desc reveal d2 mobile-only">
-            Revenue leaks at routing, follow-up, booking, and onboarding{location ? ` in ${location.name}` : ''}.
+            Revenue leaks at routing, follow-up, and booking{location ? ` in ${location.name}` : ''}.
           </p>
 
           <div className="problem-points reveal d3">

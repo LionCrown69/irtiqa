@@ -2291,3 +2291,198 @@
   background: rgba(12, 12, 11, 0.02);
   width: 100%;
 }
+
+/* Final Mobile Polish Layer (keeps desktop unchanged) */
+@media (max-width: 640px) {
+  #hero {
+    padding: 84px 14px 24px !important;
+  }
+
+  #hero .hero-content {
+    max-width: 340px !important;
+  }
+
+  #hero .hero-h1 {
+    font-size: clamp(32px, 10vw, 38px) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  #hero .hero-sub {
+    margin-top: 8px !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    max-width: 30ch !important;
+  }
+
+  #hero .hero-mobile-proof {
+    margin-top: 10px !important;
+    font-size: 9px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  #hero .hero-ctas {
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+
+  #hero .hero-ctas .btn-fill,
+  #hero .hero-ctas .btn-outline {
+    min-height: 44px !important;
+    font-size: 10px !important;
+  }
+
+  #logos {
+    padding-top: 8px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .logo-item-text {
+    font-size: 8px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  #problem,
+  #services,
+  #results,
+  #process,
+  #why,
+  #testimonials,
+  #book {
+    padding-top: 52px !important;
+    padding-bottom: 52px !important;
+  }
+
+  .problem-title,
+  .infra-title,
+  .results-title,
+  .process-title,
+  .why-title,
+  .testi-title,
+  .book-title {
+    font-size: clamp(30px, 9.2vw, 36px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .problem-desc,
+  .infra-sub,
+  .results-body,
+  .process-sub,
+  .why-desc,
+  .book-sub {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    max-width: 30ch !important;
+  }
+
+  .problem-desc,
+  .infra-sub,
+  .results-body,
+  .process-sub,
+  .why-desc,
+  .book-sub,
+  #results .rcard-desc,
+  #services .layer-desc,
+  .roadmap-card-item-desc,
+  #testimonials .tc1-text,
+  #why .rebrand-card p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #problem .pp {
+    padding: 12px 11px !important;
+  }
+
+  #problem .pp-title {
+    font-size: 13px !important;
+  }
+
+  #problem .pp-desc {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #services .layer {
+    padding: 14px 12px !important;
+  }
+
+  #services .layer-title {
+    font-size: 22px !important;
+    line-height: 1.06 !important;
+  }
+
+  #services .layer-metrics span {
+    font-size: 9px !important;
+    min-height: 26px !important;
+    padding: 0 8px !important;
+  }
+
+  #results .rcard {
+    padding: 12px 11px !important;
+  }
+
+  #results .rcard-val {
+    font-size: 30px !important;
+  }
+
+  #results .rcard-desc {
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  .mi2-card-title {
+    font-size: 22px !important;
+  }
+
+  .mi2-card-note,
+  .mi2-data-note {
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+  }
+
+  .roadmap-card-title {
+    font-size: 28px !important;
+  }
+
+  .roadmap-card-item-title {
+    font-size: 20px !important;
+  }
+
+  .roadmap-card-item-desc {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  #testimonials .tc1-card {
+    min-height: 136px !important;
+  }
+
+  #testimonials .tc1-text {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  #book .book-form {
+    padding: 14px !important;
+  }
+
+  #book .form-label {
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  #book .form-input,
+  #book .form-select,
+  #book .form-submit {
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+}

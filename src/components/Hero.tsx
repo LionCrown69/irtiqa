@@ -51,8 +51,8 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
   const opacityGrid = useTransform(scrollY, [0, 400], [0.35, 0]);
 
   const mobileHighlights = [
-    { label: 'Average reply speed', value: '< 5 min' },
-    { label: 'Follow-up coverage', value: '24/7' },
+    { label: 'Reply speed', value: '< 5 min' },
+    { label: 'Coverage', value: '24/7' },
     { label: 'Delivery path', value: 'Audit to Build' }
   ] as const;
 
@@ -60,17 +60,17 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
     {
       step: '01',
       title: 'A lead lands on the page',
-      body: 'Every signal gets captured, qualified, and routed into the right revenue path automatically.'
+      body: 'Leads are captured, qualified, and routed instantly.'
     },
     {
       step: '02',
       title: 'Momentum keeps moving',
-      body: 'Follow-up, reminders, and context keep intent alive before it leaks away quietly.'
+      body: 'Follow-up and reminders keep intent active.'
     },
     {
       step: '03',
       title: 'The discovery call gets booked',
-      body: 'Qualified prospects get booked, onboarded, and nurtured without your team chasing steps.'
+      body: 'Qualified prospects book without manual chasing.'
     }
   ] as const;
 
@@ -220,7 +220,7 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
 
         <motion.p variants={itemVariants} className="hero-sub mobile-only" style={{ opacity: 1, animation: 'none' }}>
           <strong>We find the leakage. We fix what's causing it.</strong><br/>
-          We go deep into your operations, identify exactly where money is quietly leaving, and build the infrastructure that stops it — permanently. {industry ? `Stop ${industry.painPoint}.` : 'Stop silent leakage.'}
+          We audit your flow, locate the loss, and deploy the system that stops it.
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
@@ -270,7 +270,7 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
               ))}
             </div>
             <div className="hero-mobile-panel-note">
-              Scroll the stack below to see how the page turns intent into appointments.
+              Scroll to see how intent turns into booked calls.
             </div>
           </div>
           <div className="hero-mobile-story">
