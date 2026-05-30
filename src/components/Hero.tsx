@@ -179,7 +179,7 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
       >
 
 
-        <motion.div variants={itemVariants} className="hero-eyebrow" style={{ opacity: 1, animation: 'none', marginBottom: '32px' }}>
+        <motion.div variants={itemVariants} className="hero-eyebrow desktop-only" style={{ opacity: 1, animation: 'none', marginBottom: '32px' }}>
           <motion.span
             className="hero-eyebrow-dot"
             animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
@@ -189,6 +189,15 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
             }}
           />
           Built for {industry ? `${industry.title} teams in ${location?.name || 'your city'}` : 'serious businesses that want to scale without chaos'}
+        </motion.div>
+        <motion.div variants={itemVariants} className="hero-eyebrow mobile-only" style={{ opacity: 1, animation: 'none', marginBottom: '16px' }}>
+          <motion.span
+            className="hero-eyebrow-dot"
+            animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{ boxShadow: '0 0 0 3px rgba(22,65,245,0.15)' }}
+          />
+          {industry ? `For ${industry.title} teams` : 'Revenue systems for serious businesses'}
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
