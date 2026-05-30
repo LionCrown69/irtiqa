@@ -24,7 +24,7 @@
 
   .nav-links,
   .nav-btn-desktop {
-    display: none;
+    display: none !important;
   }
 
   .nav-hamburger {
@@ -2656,10 +2656,22 @@
 
 @media (max-width: 640px) {
   /* Final mobile polish pass */
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+
   nav {
     height: 56px !important;
     min-height: 56px !important;
     padding: 0 10px !important;
+  }
+
+  .nav-btn-desktop {
+    display: none !important;
   }
 
   .nav-btn {
@@ -2686,6 +2698,14 @@
 
   #logos .logos-subheading {
     display: none !important;
+  }
+
+  #problem .problem-desc {
+    text-align: left !important;
+    max-width: none !important;
+    margin: 0 0 14px !important;
+    font-size: 12px !important;
+    line-height: 1.55 !important;
   }
 
   #process .process-sub {
@@ -2877,8 +2897,13 @@
     border-radius: 12px !important;
   }
 
+  #problem .cost-visual::before {
+    display: none !important;
+  }
+
   #problem .cost-row {
     padding: 8px 0 !important;
+    align-items: flex-end !important;
   }
 
   #problem .cost-item-name {
@@ -2886,8 +2911,7 @@
   }
 
   #problem .cost-item-sub {
-    font-size: 9px !important;
-    line-height: 1.35 !important;
+    display: none !important;
   }
 
   #problem .cost-item-val {
@@ -2905,5 +2929,103 @@
 
   #problem .cost-total-val {
     font-size: 23px !important;
+  }
+
+  #problem .cost-total {
+    min-height: 44px !important;
+  }
+
+  #problem .calculator-panel input[type='range'] {
+    margin-top: 1px !important;
+    margin-bottom: 3px !important;
+  }
+
+  #problem .calculator-panel .cost-title {
+    letter-spacing: 0.11em !important;
+  }
+
+  .irtiqa-footer {
+    padding: 48px 14px 28px !important;
+  }
+
+  .irtiqa-footer-grid {
+    gap: 24px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .irtiqa-footer-tagline {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    max-width: none !important;
+  }
+
+  .irtiqa-footer-newsletter {
+    margin-top: 6px !important;
+  }
+
+  .irtiqa-newsletter-title {
+    font-size: 11px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .irtiqa-newsletter-sub {
+    display: none !important;
+  }
+
+  .irtiqa-newsletter-input {
+    font-size: 13px !important;
+    padding: 10px 42px 10px 12px !important;
+  }
+
+  .irtiqa-newsletter-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .irtiqa-footer-col-title {
+    font-size: 10px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .irtiqa-footer-links {
+    gap: 8px !important;
+  }
+
+  .irtiqa-footer-link {
+    font-size: 12px !important;
+  }
+
+  .irtiqa-footer-contact-list {
+    gap: 10px !important;
+  }
+
+  .irtiqa-footer-contact-link {
+    font-size: 12px !important;
+    gap: 8px !important;
+  }
+
+  .irtiqa-footer-bottom {
+    padding-top: 18px !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+
+  .irtiqa-footer-bottom-info {
+    gap: 6px !important;
+  }
+
+  .irtiqa-footer-copy,
+  .irtiqa-footer-slogan {
+    font-size: 11px !important;
+  }
+
+  .irtiqa-footer-audit-cta {
+    width: 100% !important;
+    justify-content: center !important;
+    border: 1px solid rgba(22, 65, 245, 0.18) !important;
+    border-radius: 10px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    border-bottom-width: 1px !important;
   }
 }
