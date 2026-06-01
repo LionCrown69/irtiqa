@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getIndustryBySlug, getLocationBySlug } from '../../../../src/data/programmatic-seo';
 import ProgrammaticClientView from '../../../../src/components/ProgrammaticClientView';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 interface PageProps {
   params: {
@@ -43,6 +44,7 @@ function parseSlug(slug: string) {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  unstable_setRequestLocale(params.locale);
   const parsed = parseSlug(params.slug);
   if (!parsed) return { title: 'Not Found' };
 
@@ -76,6 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default function PseoSolutionPage({ params }: PageProps) {
+  unstable_setRequestLocale(params.locale);
   const parsed = parseSlug(params.slug);
   if (!parsed) {
     notFound();
