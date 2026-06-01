@@ -10,6 +10,15 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const q = window.matchMedia('(max-width: 640px)');
+    const sync = () => setIsMobile(q.matches);
+    sync();
+    q.addEventListener('change', sync);
+    return () => q.removeEventListener('change', sync);
+  }, []);
 
   useEffect(() => {
     const body = document.body;
@@ -62,12 +71,14 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
           ))}
         </ul>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
-          <a href="/audit" className="nav-btn">
-            <span className="nav-btn-dot"></span>
-            Free Audit Call
-          </a>
-        </div>
+        {!isMobile && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
+            <a href="#book" className="nav-btn">
+              <span className="nav-btn-dot"></span>
+              Free Audit Call
+            </a>
+          </div>
+        )}
 
         <button 
           className="nav-hamburger" 
@@ -104,11 +115,14 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
                 className="mobile-drawer-footer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', width: '100%' }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
               >
-                <a href="/audit" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
-                  Free Audit Call
+                <a href="#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
+                  Book Free Audit Call
                 </a>
+                <span style={{ fontSize: '10px', color: 'var(--sub)', letterSpacing: '0.04em', textAlign: 'center' }}>
+                  No commitment · 1 hour · Revenue map included
+                </span>
               </motion.div>
             </div>
           </motion.div>

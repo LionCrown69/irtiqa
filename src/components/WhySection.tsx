@@ -12,11 +12,14 @@ const WhySection: React.FC = () => {
             Most businesses that struggle with revenue leakage do not have a tool problem. They have a clarity problem — nobody has sat down with them and mapped exactly where the money is going.
           </p>
           <p className="why-desc reveal d2 mobile-only">
-            Clarity first, tools second. We map exactly where your money is going before we build anything.
+            Clarity first, tools second. We map where your money is going before we build anything.
           </p>
-          
-          <div className="why-slogan reveal d3">
+
+          <div className="why-slogan reveal d3 desktop-only">
             That is what Irtiqa does first. Before we build anything, we audit. Before we recommend anything, we understand your specific situation.
+          </div>
+          <div className="why-slogan reveal d3 mobile-only">
+            Audit first. Build second. Results always.
           </div>
           
           <a href="#book" className="btn-fill reveal d4" style={{ width: 'fit-content', marginTop: '28px' }}>
