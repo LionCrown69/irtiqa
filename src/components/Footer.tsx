@@ -291,8 +291,8 @@ const Footer: React.FC = () => {
           border-radius: 6px;
           cursor: pointer;
           display: flex;
-          alignItems: center;
-          justifyContent: center;
+          align-items: center;
+          justify-content: center;
           transition: opacity 0.2s ease;
         }
         .irtiqa-newsletter-btn:hover {
