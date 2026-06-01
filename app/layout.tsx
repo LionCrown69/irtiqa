@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
   description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
-  keywords: "revenue operations infrastructure, AI revenue infrastructure, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
+  keywords: "revenue operations infrastructure, AI revenue infrastructure, CRM automation, AI CRM automation, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
   applicationName: "Irtiqa AI",
   authors: [{ name: "Alok Mishra", url: "https://www.linkedin.com/in/alokmishra-" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
