@@ -51,6 +51,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const adminHours = Math.round(leadsCount * 0.4 * 45);
   const noShows = Math.round(leadsCount * 0.25 * 0.12 * dealValue);
   const churn = Math.round(leadsCount * 0.035 * dealValue);
+  const meetingLoss = noShows + churn;
   const totalLeakage = missedLeads + adminHours + noShows + churn;
 
   const problems = [
@@ -96,7 +97,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
             {location ? ` in ${location.name}` : ''}.
           </p>
           <p className="problem-desc reveal d2 mobile-only">
-            Revenue leaks in routing, follow-up, and booking{location ? ` in ${location.name}` : ''}.
+            Revenue leaks at routing, follow-up, and booking{location ? ` in ${location.name}` : ''}.
           </p>
 
           <div className="problem-points reveal d3">
@@ -184,35 +185,51 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
 
               <div className="cost-row">
                 <div>
-                  <div className="cost-item-name">Missed / Delayed Leads</div>
-                  <div className="cost-item-sub">Leads lost to slow response speed</div>
+                  <div className="cost-item-name">{isMobile ? 'Missed leads' : 'Missed / Delayed Leads'}</div>
+                  <div className="cost-item-sub">
+                    {isMobile ? 'Lost from slower response' : 'Leads lost to slow response speed'}
+                  </div>
                 </div>
                 <div className="cost-item-val">-${missedLeads.toLocaleString()}</div>
               </div>
 
               <div className="cost-row">
                 <div>
-                  <div className="cost-item-name">Manual Admin Hours</div>
-                  <div className="cost-item-sub">Routing, data entry and CRM updates</div>
+                  <div className="cost-item-name">{isMobile ? 'Manual operations' : 'Manual Admin Hours'}</div>
+                  <div className="cost-item-sub">
+                    {isMobile ? 'Routing, CRM, admin work' : 'Routing, data entry and CRM updates'}
+                  </div>
                 </div>
                 <div className="cost-item-val">-${adminHours.toLocaleString()}</div>
               </div>
 
-              <div className="cost-row">
-                <div>
-                  <div className="cost-item-name">No-Shows and Lost Calls</div>
-                  <div className="cost-item-sub">Appointments lost without recovery reminders</div>
+              {isMobile ? (
+                <div className="cost-row">
+                  <div>
+                    <div className="cost-item-name">No-shows + churn</div>
+                    <div className="cost-item-sub">Booked calls and warm leads lost</div>
+                  </div>
+                  <div className="cost-item-val">-${meetingLoss.toLocaleString()}</div>
                 </div>
-                <div className="cost-item-val">-${noShows.toLocaleString()}</div>
-              </div>
+              ) : (
+                <>
+                  <div className="cost-row">
+                    <div>
+                      <div className="cost-item-name">No-Shows and Lost Calls</div>
+                      <div className="cost-item-sub">Appointments lost without recovery reminders</div>
+                    </div>
+                    <div className="cost-item-val">-${noShows.toLocaleString()}</div>
+                  </div>
 
-              <div className="cost-row">
-                <div>
-                  <div className="cost-item-name">Handoff and Follow-Up Churn</div>
-                  <div className="cost-item-sub">Warm conversations going cold silently</div>
-                </div>
-                <div className="cost-item-val">-${churn.toLocaleString()}</div>
-              </div>
+                  <div className="cost-row">
+                    <div>
+                      <div className="cost-item-name">Handoff and Follow-Up Churn</div>
+                      <div className="cost-item-sub">Warm conversations going cold silently</div>
+                    </div>
+                    <div className="cost-item-val">-${churn.toLocaleString()}</div>
+                  </div>
+                </>
+              )}
 
               <div className="cost-total">
                 <span className="cost-total-label">Total Est. Monthly Leakage</span>
