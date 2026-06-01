@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getBlogSlugs } from '../lib/mdx';
 
 const BASE_URL = 'https://www.irtiqaaiagency.com';
-const LOCALES = ['en-us', 'en-gb', 'en-eu'] as const;
+const LOCALES = ['en-us', 'en-gb', 'en-eu', 'en-ca', 'en-au'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

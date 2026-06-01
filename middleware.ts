@@ -2,7 +2,7 @@ import createMiddleware from 'next-intl/middleware';
  
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ['en-us', 'en-gb', 'en-eu'],
+  locales: ['en-us', 'en-gb', 'en-eu', 'en-ca', 'en-au'],
  
   // Used when no locale matches
   defaultLocale: 'en-us',
@@ -11,5 +11,5 @@ export default createMiddleware({
  
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/', '/(en-us|en-gb|en-eu)/:path*']
+  matcher: ['/', '/(en-us|en-gb|en-eu|en-ca|en-au)/:path*']
 };

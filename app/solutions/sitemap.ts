@@ -1,26 +1,29 @@
 import type { MetadataRoute } from 'next';
+import { getAllCombinations } from '../../src/data/programmatic-seo';
 
 const BASE_URL = 'https://www.irtiqaaiagency.com';
-const LOCALES = ['en-gb', 'en-us', 'en-eu'] as const;
-const INDUSTRIES = ['healthcare-automation', 'legal-ai-front-desk', 'finance-revenue-ops'] as const;
-const LOCATIONS = ['london', 'new-york', 'berlin'] as const;
+const LOCALES = ['en-us', 'en-gb', 'en-eu', 'en-ca', 'en-au'] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  const routes: MetadataRoute.Sitemap = [];
+export async function generateSitemaps() {
+  // Generate 5 sitemaps (one for each locale)
+  return LOCALES.map((locale, index) => ({ id: index }));
+}
 
-  for (const locale of LOCALES) {
-    for (const industry of INDUSTRIES) {
-      for (const location of LOCATIONS) {
-        routes.push({
-          url: `${BASE_URL}/${locale}/solutions/${industry}-in-${location}`,
-          lastModified,
-          changeFrequency: 'monthly',
-          priority: 0.55,
-        });
-      }
-    }
+export default function sitemap({ params }: { params: { id: string | number } }): MetadataRoute.Sitemap {
+  const index = Number(params.id);
+  const locale = LOCALES[index];
+
+  if (!locale) {
+    return [];
   }
 
-  return routes;
+  const lastModified = new Date();
+  const combinations = getAllCombinations();
+
+  return combinations.map((combo) => ({
+    url: `${BASE_URL}/${locale}/solutions/${combo.industry}-in-${combo.city}`,
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }));
 }
