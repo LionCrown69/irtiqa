@@ -63,7 +63,7 @@ export default function FounderClient() {
               backgroundColor: 'var(--w2)'
             }}>
               <span style={{ width: '6px', height: '6px', background: 'var(--b)', borderRadius: '50%' }}></span>
-              Founder & Systems Architect
+              Founder & Revenue Architect
             </div>
             
             <h1 className="hero-h1" style={{ 
@@ -245,6 +245,29 @@ export default function FounderClient() {
           .problem-title {
             position: relative !important;
             top: 0 !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          #founder-hero {
+            padding: 100px 16px 48px !important;
+          }
+          #founder-philosophy {
+            padding: 60px 16px !important;
+          }
+          #founder-stats {
+            padding: 48px 16px !important;
+          }
+          .founder-grid-container {
+            gap: 28px !important;
+          }
+          .stat-card {
+            padding: 24px 16px !important;
+            border-radius: 12px !important;
+          }
+          .stat-val {
+            font-size: 40px !important;
+            margin-bottom: 8px !important;
           }
         }
       `}</style>

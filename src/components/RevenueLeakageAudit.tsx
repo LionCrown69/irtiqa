@@ -56,35 +56,77 @@ const RevenueLeakageAudit: React.FC = () => {
           </motion.p>
         </section>
 
-        {/* VEO VIDEO PLACEHOLDER */}
+        {/* DELIVERABLES SHOWCASE */}
         <motion.section 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           style={{ marginBottom: '100px' }}
         >
-          <div style={{ 
-            width: '100%', 
-            aspectRatio: '16/9', 
-            background: 'linear-gradient(145deg, rgba(22,65,245,0.1) 0%, rgba(12,12,11,1) 100%)',
-            border: '1px solid var(--rule)',
-            borderRadius: '24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative',
-            overflow: 'hidden'
-          }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ width: '80px', height: '80px', background: 'var(--b)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', cursor: 'pointer', boxShadow: '0 0 40px rgba(22,65,245,0.4)' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--w)" stroke="none">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
+          <h2 style={{ fontSize: '2.2rem', fontFamily: 'var(--serif)', textAlign: 'center', marginBottom: '48px', color: '#fdfdfc' }}>
+            What you receive in the <em style={{ color: 'var(--b)', fontStyle: 'italic' }}>Growth Report</em>
+          </h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+            {[
+              {
+                num: '01',
+                title: 'Commercial Leakage Model',
+                desc: 'A complete financial audit mapping slow response speeds, manual data entry points, and missing follow-up sequences back to actual missed pipeline value.',
+                points: ['Response speed impact estimates', 'Manual admin cost calculations', 'Handoff drop-off mapping']
+              },
+              {
+                num: '02',
+                title: 'Systems Infrastructure Blueprint',
+                desc: 'A customized architectural design of your future revenue stack — showing exactly how CRM pipelines, routing logic, and AI agents should connect.',
+                points: ['Custom pipeline layout', 'Routing & ownership flows', 'AI agent integration map']
+              },
+              {
+                num: '03',
+                title: 'Execution Roadmap',
+                desc: 'A phased implementation plan detailing the minimum viable infrastructure to deploy first, and the optimization steps needed to scale capacity.',
+                points: ['Immediate high-impact fixes', 'Phased build roadmap', 'Resource & tech stack scoping']
+              }
+            ].map((d) => (
+              <div key={d.num} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '32px' }} className="deliverable-card">
+                <span style={{ color: 'var(--b)', fontSize: '0.9rem', fontWeight: 600, display: 'inline-block', padding: '4px 10px', background: 'rgba(22,65,245,0.1)', borderRadius: '999px', marginBottom: '20px' }}>
+                  {d.num}
+                </span>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '12px', fontWeight: 500, color: '#fdfdfc' }}>{d.title}</h3>
+                <p style={{ opacity: 0.7, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '20px' }}>{d.desc}</p>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {d.points.map((p, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', opacity: 0.85 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--b)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 style={{ fontSize: '1.2rem', fontFamily: 'var(--ui)', fontWeight: 500 }}>Watch: How We Audit Enterprise Revenue</h3>
-            </div>
+            ))}
           </div>
         </motion.section>
+
+        <style>{`
+          @media (max-width: 640px) {
+            .audit-page main {
+              padding: 92px 16px 48px !important;
+            }
+            .audit-page h1 {
+              font-size: 2.2rem !important;
+              line-height: 1.15 !important;
+              margin-bottom: 16px !important;
+            }
+            .audit-page p {
+              font-size: 1.05rem !important;
+            }
+            .deliverable-card {
+              padding: 24px 20px !important;
+            }
+          }
+        `}</style>
 
         {/* THE METHODOLOGY (GEO OPTIMIZATION) */}
         <section style={{ marginBottom: '100px' }}>

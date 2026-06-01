@@ -27,9 +27,9 @@ export default function FounderPage() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Alok Mishra",
-    "jobTitle": "Founder & Company Owner",
+    "jobTitle": "Founder & Revenue Architect",
     "email": "alok@irtiqaaiagency.com",
-    "description": "Alok Mishra is the Founder and Company Owner at Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems to stop silent revenue leakage.",
+    "description": "Alok Mishra is the Founder & Revenue Architect at Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems to stop silent revenue leakage.",
     "worksFor": {
       "@type": "Organization",
       "name": "Irtiqa AI",
