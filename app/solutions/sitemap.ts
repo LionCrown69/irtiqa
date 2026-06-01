@@ -9,11 +9,11 @@ export async function generateSitemaps() {
   return LOCALES.map((locale, index) => ({ id: index }));
 }
 
-export default function sitemap({ params }: { params?: { id: string | number } } = {}): MetadataRoute.Sitemap {
-  if (!params || params.id === undefined) {
+export default function sitemap({ id }: { id?: string | number } = {}): MetadataRoute.Sitemap {
+  if (id === undefined) {
     return [];
   }
-  const index = Number(params.id);
+  const index = Number(id);
   const locale = LOCALES[index];
 
   if (!locale) {
