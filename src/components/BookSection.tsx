@@ -295,14 +295,12 @@ const BookSection: React.FC = () => {
                   {isLoadingSlots ? 'Loading Calendar...' : isMobile ? 'See Revenue Gaps ->' : "Show Me Where I'm Leaking Revenue ->"}
                 </button>
                 
-                {!isMobile && (
-                  <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-                    <p style={{ fontSize: '0.85rem', opacity: 0.6, marginBottom: '0.5rem', fontFamily: 'var(--ui)' }}>- OR -</p>
-                    <a href="https://calendly.com/irtiqaaiagency/30-min-discovery-call" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', color: 'var(--ink)', border: '1px solid var(--rule)', borderRadius: '8px', padding: '10px 20px', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', transition: 'all 0.2s', background: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.background='rgba(12,12,11,0.05)'} onMouseOut={(e) => e.currentTarget.style.background='transparent'}>
-                      Book via Calendly
-                    </a>
-                  </div>
-                )}
+                <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.6, marginBottom: '0.5rem', fontFamily: 'var(--ui)' }}>- OR -</p>
+                  <a href="https://calendly.com/irtiqaaiagency/30-min-discovery-call" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', color: 'var(--ink)', border: '1px solid var(--rule)', borderRadius: '8px', padding: '10px 20px', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', transition: 'all 0.2s', background: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.background='rgba(12,12,11,0.05)'} onMouseOut={(e) => e.currentTarget.style.background='transparent'}>
+                    Book via Calendly
+                  </a>
+                </div>
                 
                 {status === 'error' && (
                   <div className="form-success form-error" style={{ marginTop: '1.5rem', padding: '1rem', borderLeft: '3px solid var(--r)' }}>

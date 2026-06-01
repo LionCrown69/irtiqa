@@ -62,10 +62,10 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
           ))}
         </ul>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop hide-mobile">
-          <a href="#book" className="nav-btn">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
+          <a href="/audit" className="nav-btn">
             <span className="nav-btn-dot"></span>
-            Book Call
+            <span className="nav-btn-mobile-hide">Free </span>Audit Call
           </a>
         </div>
 
@@ -104,13 +104,10 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight }) => {
                 className="mobile-drawer-footer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', width: '100%' }}
               >
-                <a href="#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
-                  Book Free Audit Call
-                </a>
-                <a href="#book" style={{ fontSize: '11px', color: 'var(--sub)', letterSpacing: '0.04em' }} onClick={() => setMobileMenuOpen(false)}>
-                  No commitment · 1 hour · Revenue map included
+                <a href="/audit" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
+                  Free Audit Call
                 </a>
               </motion.div>
             </div>
