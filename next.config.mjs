@@ -12,6 +12,11 @@ const deprecatedUseCasesDir = path.resolve('app/use-cases/[industry]');
 if (fs.existsSync(deprecatedUseCasesDir)) {
   fs.rmSync(deprecatedUseCasesDir, { recursive: true, force: true });
 }
+
+const deprecatedSitemapFile = path.resolve('app/sitemap.ts');
+if (fs.existsSync(deprecatedSitemapFile)) {
+  fs.rmSync(deprecatedSitemapFile, { force: true });
+}
  
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
  
