@@ -202,6 +202,82 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
           </div>
         </div>
       </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .calculator-panel {
+          background: rgba(244, 243, 230, 0.4) !important;
+          backdrop-filter: blur(12px) !important;
+          -webkit-backdrop-filter: blur(12px) !important;
+          border: 1px solid var(--rule) !important;
+          border-radius: 14px !important;
+          padding: 24px !important;
+        }
+        .cost-stack input[type="range"] {
+          -webkit-appearance: none;
+          appearance: none;
+          background: var(--w3) !important;
+          height: 6px !important;
+          border-radius: 3px !important;
+          outline: none !important;
+          width: 100% !important;
+          margin: 10px 0 !important;
+        }
+        .cost-stack input[type="range"]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px !important;
+          height: 18px !important;
+          border-radius: 50% !important;
+          background: var(--b) !important;
+          cursor: pointer !important;
+          border: 2px solid var(--w) !important;
+          transition: transform 0.1s ease, background-color 0.2s !important;
+          box-shadow: 0 2px 8px rgba(22, 65, 245, 0.35) !important;
+        }
+        .cost-stack input[type="range"]::-webkit-slider-thumb:hover {
+          transform: scale(1.25);
+          background: var(--b2) !important;
+        }
+        .cost-stack input[type="range"]::-moz-range-thumb {
+          width: 18px !important;
+          height: 18px !important;
+          border-radius: 50% !important;
+          background: var(--b) !important;
+          cursor: pointer !important;
+          border: 2px solid var(--w) !important;
+          transition: transform 0.1s ease, background-color 0.2s !important;
+          box-shadow: 0 2px 8px rgba(22, 65, 245, 0.35) !important;
+        }
+        .cost-stack input[type="range"]::-moz-range-thumb:hover {
+          transform: scale(1.25);
+          background: var(--b2) !important;
+        }
+        .calculator-select {
+          background: var(--w) !important;
+          border: 1px solid var(--rule) !important;
+          border-radius: 8px !important;
+          padding: 10px 14px !important;
+          font-family: var(--ui) !important;
+          font-size: 13.5px !important;
+          color: var(--ink) !important;
+          outline: none !important;
+          cursor: pointer !important;
+          transition: border-color 0.2s !important;
+          width: 100% !important;
+          margin-top: 6px !important;
+        }
+        .calculator-select:focus {
+          border-color: var(--b) !important;
+        }
+        .cost-visual {
+          transition: all 0.3s var(--ease) !important;
+        }
+        .cost-row {
+          transition: background-color 0.2s ease !important;
+        }
+        .cost-row:hover {
+          background: rgba(22, 65, 245, 0.02) !important;
+        }
+      ` }} />
     </section>
   );
 };

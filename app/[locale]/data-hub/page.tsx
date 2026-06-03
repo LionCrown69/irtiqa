@@ -17,7 +17,13 @@ export default function DataHub() {
     "description": "A comprehensive dataset tracking the average lead response time and resulting revenue leakage across 50 mid-market B2B service firms.",
     "creator": {
       "@type": "Organization",
-      "name": "Irtiqa AI"
+      "@id": "https://www.irtiqaaiagency.com/#organization",
+      "name": "Irtiqa AI",
+      "url": "https://www.irtiqaaiagency.com/",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q140042854",
+        "https://www.linkedin.com/company/irtiqaai/"
+      ]
     },
     "citation": "Irtiqa AI (2026). B2B Revenue Leakage Statistics.",
     "keywords": ["Revenue Leakage", "Lead Response Time", "B2B Sales", "AI Automation"],

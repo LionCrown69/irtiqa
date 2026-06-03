@@ -92,6 +92,7 @@ export default function RootLayout({
                     { "@type": "Place", "name": "Europe" }
                   ],
                   "sameAs": [
+                    "https://www.wikidata.org/wiki/Q140042854",
                     "https://www.linkedin.com/company/irtiqaai/",
                     "https://www.instagram.com/irtiqaai/"
                   ],
@@ -142,6 +143,7 @@ export default function RootLayout({
                   "email": "alok@irtiqaaiagency.com",
                   "url": "https://www.irtiqaaiagency.com/founder",
                   "sameAs": [
+                    "https://www.wikidata.org/wiki/Q140042745",
                     "https://www.linkedin.com/in/alokmishra-",
                     "https://www.instagram.com/irtiqaai/",
                     "https://www.linkedin.com/company/irtiqaai/"

@@ -25,6 +25,18 @@ export default function FounderClient() {
   useMobileLenis();
   useLuxuryMotion();
 
+  const ventures = [
+    "Revenue Infrastructure",
+    "Agentic Automation",
+    "Creative Direction",
+    "Film Production",
+    "Digital Brand Strategy",
+    "E-Commerce Ventures",
+    "Media & Publishing",
+    "Systems Architecture",
+    "Product Strategy"
+  ];
+
   return (
     <div className="App" style={{ backgroundColor: 'var(--w)', color: 'var(--ink)' }}>
       <ProgressBar />
@@ -32,7 +44,7 @@ export default function FounderClient() {
       
       <main className="lux-main">
         {/* ─── HERO SECTION ─── */}
-        <section id="founder-hero" style={{ padding: '160px 24px 100px', position: 'relative', overflow: 'hidden' }}>
+        <section id="founder-hero" style={{ padding: '160px 24px 80px', position: 'relative', overflow: 'hidden' }}>
           {/* Ambient Glow */}
           <div style={{
             position: 'absolute',
@@ -40,7 +52,7 @@ export default function FounderClient() {
             left: '50%',
             width: '800px',
             height: '500px',
-            background: 'radial-gradient(circle, rgba(22,65,245,0.06) 0%, rgba(124,58,237,0.03) 50%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(22,65,245,0.04) 0%, rgba(124,58,237,0.01) 50%, transparent 70%)',
             transform: 'translate(-50%, -50%)',
             pointerEvents: 'none',
             zIndex: 0
@@ -63,134 +75,187 @@ export default function FounderClient() {
               backgroundColor: 'var(--w2)'
             }}>
               <span style={{ width: '6px', height: '6px', background: 'var(--b)', borderRadius: '50%' }}></span>
-              Founder & Revenue Architect
+              Co-Founder Profiles
             </div>
             
             <h1 className="hero-h1" style={{ 
-              fontSize: 'clamp(44px, 7.5vw, 92px)', 
-              margin: '0 auto 24px', 
+              fontSize: 'clamp(44px, 7.5vw, 84px)', 
+              margin: '0 auto 20px', 
               lineHeight: 1.02, 
               fontFamily: 'var(--serif)', 
               fontWeight: 400, 
               color: 'var(--ink)',
               letterSpacing: '-0.025em'
             }}>
-              Alok Mishra
+              The Founders
             </h1>
             
             <p className="hero-sub" style={{ 
-              fontSize: 'clamp(16px, 1.8vw, 20px)', 
-              maxWidth: '680px', 
+              fontSize: 'clamp(15px, 1.6vw, 18px)', 
+              maxWidth: '600px', 
               lineHeight: 1.65, 
-              margin: '0 auto 48px', 
+              margin: '0 auto 40px', 
               color: 'var(--sub)', 
               fontFamily: 'var(--ui)',
               fontWeight: 300
             }}>
-              Building the infrastructure serious businesses rely on to eliminate silent revenue leakage, optimize operations, and scale without chaos.
+              We combine startup builder experience with deep business consulting expertise to design and deploy operations infrastructure that stops silent revenue leakage.
             </p>
             
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <a 
-                href="https://www.linkedin.com/in/alokmishra-" 
+                href="#founders" 
                 className="btn-fill" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '13px', fontWeight: 600 }}
+                style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px', fontWeight: 600 }}
               >
-                Connect on LinkedIn
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '8px' }}>
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" />
-                </svg>
+                Meet the Founders
               </a>
               <a 
                 href="/audit" 
                 className="btn-outline"
-                style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '13px', fontWeight: 600 }}
+                style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '12px', fontWeight: 600 }}
               >
-                Book Growth Audit
+                Book An Audit
               </a>
             </div>
           </div>
         </section>
 
-        {/* ─── PHILOSOPHY SECTION ─── */}
-        <section id="founder-philosophy" style={{ padding: '120px 24px', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)', background: 'var(--w2)' }}>
-          <div style={{ maxWidth: '1100px', margin: '0 auto' }} className="founder-grid-container">
-            <div className="reveal d1 left-col">
-              <h2 className="problem-title" style={{ 
-                fontSize: 'clamp(32px, 4vw, 48px)', 
-                lineHeight: 1.1, 
-                fontFamily: 'var(--serif)', 
-                fontWeight: 400, 
-                color: 'var(--ink)',
-                margin: 0,
-                position: 'sticky',
-                top: '120px'
-              }}>
-                The Philosophy: <br/>
-                <span style={{ fontStyle: 'italic', color: 'var(--b)' }}>No Fluff. No Templates.</span>
-              </h2>
-            </div>
+        {/* ─── CO-FOUNDERS SECTION ─── */}
+        <section id="founders" style={{ padding: '40px 24px 120px', borderTop: '1px solid var(--rule)', background: 'var(--w)' }}>
+          <div className="founder-grid-container" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px' }}>
             
-            <div className="reveal d2 right-col" style={{ display: 'grid', gap: '28px', fontSize: '15.5px', lineHeight: 1.8, color: 'var(--sub)', fontWeight: 300, fontFamily: 'var(--ui)' }}>
-              <p>
-                In the era of AI hype, most service providers offer simple chatbot setups or cookie-cutter Zapier templates. They treat the symptoms of growth friction while ignoring the underlying cause: <strong>broken revenue machinery</strong>.
-              </p>
+            {/* Card 1: Alok Mishra */}
+            <div className="reveal d1" style={{
+              background: 'rgba(244, 243, 238, 0.75)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(12, 12, 11, 0.08)',
+              borderRadius: '16px',
+              padding: '40px 32px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '24px',
+              boxShadow: '0 8px 32px rgba(12, 12, 11, 0.015)'
+            }}>
+              <div>
+                <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '4px 10px', borderRadius: '4px', display: 'inline-block', marginBottom: '16px' }}>Operations & Business</span>
+                <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '4px' }}>Alok Mishra</h2>
+                <span style={{ fontSize: '13px', color: 'var(--sub)' }}>Co-Founder & Operations</span>
+              </div>
               
-              <p>
-                As the founder of Irtiqa AI, my mission is to build true <strong>Revenue Operations Infrastructure</strong>. This means designing and operating multi-agent AI ecosystems that seamlessly integrate with your CRM, automate lead intake, route tasks intelligently, and monitor pipeline health. 
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)', padding: '16px 0', fontSize: '13px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Age</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>19 Years</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Startup Experience</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>9 Previous Ventures</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Location</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>New Delhi, India</span>
+                </div>
+              </div>
+
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--sub)', fontWeight: 300 }}>
+                Alok designs custom operations infrastructure, database automations, and CRM pipelines. His background building 9 previous ventures helps translate business needs into production software.
               </p>
-              
-              <p>
-                We look at your commercial metrics first. Before writing a line of code or deploying a single model, we identify exactly where leads are falling through the cracks, where your team is wasting manual effort, and where conversion rates are lagging. 
-              </p>
-              
-              <blockquote style={{ 
-                borderLeft: '4px solid var(--b)', 
-                padding: '24px 32px', 
-                margin: '24px 0', 
-                fontFamily: 'var(--serif)', 
-                fontSize: '24px', 
-                fontStyle: 'italic', 
-                color: 'var(--ink)',
-                background: 'var(--w)',
-                borderRadius: '0 12px 12px 0',
-                boxShadow: '0 4px 20px rgba(12, 12, 11, 0.02)',
-                borderRight: '1px solid var(--rule)',
-                borderTop: '1px solid var(--rule)',
-                borderBottom: '1px solid var(--rule)'
-              }}>
-                "We don't sell tools. We build the infrastructure that allows businesses to double their capacity without doubling their headcount."
-              </blockquote>
-              
-              <p>
-                Whether you are running a high-ticket legal practice, a specialized medical clinic, a B2B SaaS platform, or a growing real estate development firm, we build the custom engine that keeps your momentum moving 24/7.
-              </p>
+
+              <a 
+                href="https://www.linkedin.com/in/alokmishra-" 
+                className="btn-outline" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ marginTop: 'auto', padding: '10px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%' }}
+              >
+                LinkedIn Profile
+              </a>
             </div>
+
+            {/* Card 2: Georgy Steponav */}
+            <div className="reveal d2" style={{
+              background: 'rgba(244, 243, 238, 0.75)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(12, 12, 11, 0.08)',
+              borderRadius: '16px',
+              padding: '40px 32px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '24px',
+              boxShadow: '0 8px 32px rgba(12, 12, 11, 0.015)'
+            }}>
+              <div>
+                <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '4px 10px', borderRadius: '4px', display: 'inline-block', marginBottom: '16px' }}>Consultation & Audits</span>
+                <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '4px' }}>Georgy Steponav</h2>
+                <span style={{ fontSize: '13px', color: 'var(--sub)' }}>Co-Founder & Consultation</span>
+              </div>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)', padding: '16px 0', fontSize: '13px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Age</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>19 Years</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Consulting Experience</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>100+ Businesses Audited</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'var(--sub)' }}>Location</span>
+                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>Global / Remote</span>
+                </div>
+              </div>
+
+              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--sub)', fontWeight: 300 }}>
+                Georgy handles client consultation and runs our complimentary audit calls. He has personally consulted for 100+ businesses, diagnosing pipeline friction points at scale.
+              </p>
+
+              <a 
+                href="#book" 
+                className="btn-fill" 
+                style={{ marginTop: 'auto', padding: '10px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%' }}
+              >
+                Book Audit With Georgy
+              </a>
+            </div>
+
           </div>
         </section>
 
-        {/* ─── STATS SECTION ─── */}
-        <section id="founder-stats" style={{ padding: '100px 24px', background: 'var(--w)' }}>
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
-              gap: '24px' 
+        {/* ─── VENTURES GRID SECTION ─── */}
+        <section style={{ padding: '100px 24px', borderTop: '1px solid var(--rule)', background: 'var(--w2)' }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+            <h2 className="reveal" style={{ 
+              fontFamily: 'var(--serif)', 
+              fontSize: 'clamp(28px, 3.5vw, 44px)', 
+              fontWeight: 400, 
+              color: 'var(--ink)',
+              marginBottom: '40px'
             }}>
-              <div className="reveal d1 stat-card">
-                <div className="stat-val">5+</div>
-                <div className="stat-desc">Years Architecture</div>
-              </div>
-              <div className="reveal d2 stat-card">
-                <div className="stat-val">$10M+</div>
-                <div className="stat-desc">Leaked Revenue Tracked</div>
-              </div>
-              <div className="reveal d3 stat-card">
-                <div className="stat-val">100%</div>
-                <div className="stat-desc">Operated Infrastructure</div>
-              </div>
+              Areas of Operation & Building
+            </h2>
+            <div className="reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
+              {ventures.map((venture, i) => (
+                <div 
+                  key={i} 
+                  style={{
+                    padding: '10px 20px',
+                    background: 'var(--w)',
+                    border: '1px solid var(--rule)',
+                    borderRadius: '30px',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    color: 'var(--sub)',
+                    transition: 'all 0.3s var(--ease)',
+                    cursor: 'default'
+                  }}
+                  className="venture-chip"
+                >
+                  {venture}
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -199,42 +264,16 @@ export default function FounderClient() {
       <style>{`
         .founder-grid-container {
           display: grid;
-          grid-template-columns: 1.1fr 1.3fr;
-          gap: 64px;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 40px;
         }
         
-        .stat-card {
-          padding: 36px 24px;
-          background: var(--w2);
-          border-radius: 16px;
-          border: 1px solid var(--rule);
-          text-align: center;
-          transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
-          cursor: default;
-        }
-        
-        .stat-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(22, 65, 245, 0.2);
-          box-shadow: 0 20px 48px rgba(12, 12, 11, 0.04);
-        }
-        
-        .stat-val {
-          font-size: 56px;
-          font-family: var(--serif);
-          font-weight: 400;
+        .venture-chip:hover {
           color: var(--b);
-          line-height: 1;
-          margin-bottom: 12px;
-        }
-        
-        .stat-desc {
-          font-size: 11px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-          color: var(--sub);
-          font-family: var(--ui);
+          border-color: rgba(22, 65, 245, 0.25);
+          background: #fff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(22, 65, 245, 0.05);
         }
 
         @media (max-width: 868px) {
@@ -242,32 +281,11 @@ export default function FounderClient() {
             grid-template-columns: 1fr;
             gap: 40px;
           }
-          .problem-title {
-            position: relative !important;
-            top: 0 !important;
-          }
         }
         
         @media (max-width: 640px) {
-          #founder-hero {
-            padding: 100px 16px 48px !important;
-          }
-          #founder-philosophy {
-            padding: 60px 16px !important;
-          }
-          #founder-stats {
-            padding: 48px 16px !important;
-          }
           .founder-grid-container {
-            gap: 28px !important;
-          }
-          .stat-card {
-            padding: 24px 16px !important;
-            border-radius: 12px !important;
-          }
-          .stat-val {
-            font-size: 40px !important;
-            margin-bottom: 8px !important;
+            gap: 32px !important;
           }
         }
       `}</style>

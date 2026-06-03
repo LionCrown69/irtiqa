@@ -79,10 +79,32 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
         <h2 className="infra-title">The Irtiqa Revenue Operations Model™ {industry ? `for ${industry.title}` : ''}</h2>
         <p className="infra-sub desktop-only">Four connected pillars that take a stranger to a loyal client — automatically, intelligently, and at scale{location ? ` in ${location.name}` : ''}.</p>
         <p className="infra-sub mobile-only">Four connected pillars that automate your lead-to-client pipeline{location ? ` in ${location.name}` : ''}.</p>
-        <div className="infra-status">
-          System Status: <span>Active</span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
+        <div className="infra-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          System Status: <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#10B981', fontWeight: 600 }}>
+            <span className="status-dot-pulse" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block', boxShadow: '0 0 8px #10B981' }}></span>
+            Active
+          </span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
         </div>
       </div>
+      
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes statusPulse {
+          0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+          70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+          100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .status-dot-pulse {
+          animation: statusPulse 2s infinite;
+        }
+        .infra-pillar-grid .layer {
+          transition: all 0.4s var(--ease);
+        }
+        .infra-pillar-grid .layer:hover {
+          transform: translateY(-4px);
+          border-color: rgba(22, 65, 245, 0.2);
+          box-shadow: 0 12px 30px rgba(12, 12, 11, 0.04);
+        }
+      ` }} />
 
       <div className="infra-pillar-grid reveal d1">
         {layers.map(({ num, tag, title, desc, metrics }) => (
