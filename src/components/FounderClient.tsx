@@ -139,7 +139,7 @@ export default function FounderClient() {
               </div>
               
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
-                Alok handles executive management, business operations, and client process SOPs at Irtiqa. A founder of 9 previous ventures, he evaluates workflows, makes strategic decisions, and coordinates our growing, fluid team of 50+ specialists to ensure seamless client delivery.
+                Alok handles executive management, business operations, and client process SOPs at Irtiqa. A founder of 9 previous ventures, he evaluates workflows, designs operational systems, and makes strategic decisions to ensure seamless client delivery.
               </p>
 
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
@@ -147,9 +147,8 @@ export default function FounderClient() {
                   <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
                   9 Startups Built
                 </span>
-                <span className="founder-pill active">
-                  <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
-                  50+ Fluid Team
+                <span className="founder-pill">
+                  19 y/o
                 </span>
                 <span className="founder-pill">
                   New Delhi

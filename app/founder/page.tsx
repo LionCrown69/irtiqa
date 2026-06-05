@@ -3,14 +3,14 @@ import FounderClient from '../../src/components/FounderClient';
 
 export const metadata: Metadata = {
   title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and process SOPs, coordinating a growing team of 50+ specialists.",
+  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and client process SOPs to stop operational leakage.",
   keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, executive director, Irtiqa AI founder, Alok Mishra Delhi, Irtiqa management",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/founder",
   },
   openGraph: {
     title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and process SOPs, coordinating a growing team of 50+ specialists.",
+    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and client process SOPs to stop operational leakage.",
     url: "https://www.irtiqaaiagency.com/founder",
     type: "profile",
     images: [
@@ -32,7 +32,7 @@ export default function FounderPage() {
         "name": "Alok Mishra",
         "jobTitle": "Founder & Executive Director",
         "email": "alok@irtiqaaiagency.com",
-        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He oversees executive management, client process SOPs, and coordinates our growing team of 50+ specialists.",
+        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He oversees executive management, business operations, and client process SOPs.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
