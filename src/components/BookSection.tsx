@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import BookingConfirmation from './BookingConfirmation';
-import { 
-  bookSlot, 
-  getAvailableDates, 
+import {
+  bookSlot,
+  getAvailableDates,
   getAvailableSlotsForDate,
   BookingSlot
 } from '../lib/firebase-bookings';
@@ -34,7 +34,7 @@ const BookSection: React.FC = () => {
   const [step, setStep] = useState<'details' | 'picker'>('details');
   const [errorMessage, setErrorMessage] = useState('');
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
-  
+
   // Picker state
   const [availableDates, setAvailableDates] = useState<string[]>([]);
   const [availableSlots, setAvailableSlots] = useState<BookingSlot[]>([]);
@@ -143,7 +143,7 @@ const BookSection: React.FC = () => {
         formattedTime,
         reference: result.reference
       });
-      
+
       // Zero-Backend API Email Dispatch
       try {
         await fetch('https://api.web3forms.com/submit', {
@@ -285,14 +285,14 @@ const BookSection: React.FC = () => {
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
                   {isLoadingSlots ? 'Loading Calendar...' : "Show Me Where I'm Leaking Revenue →"}
                 </button>
-                
+
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
                   <p style={{ fontSize: '0.85rem', opacity: 0.6, marginBottom: '0.5rem', fontFamily: 'var(--ui)' }}>- OR -</p>
-                  <a href="https://calendly.com/irtiqaaiagency/30-min-discovery-call" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', color: 'var(--ink)', border: '1px solid var(--rule)', borderRadius: '8px', padding: '10px 20px', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', transition: 'all 0.2s', background: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.background='rgba(12,12,11,0.05)'} onMouseOut={(e) => e.currentTarget.style.background='transparent'}>
+                  <a href="https://calendly.com/irtiqaaiagency/audit-call" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', color: 'var(--ink)', border: '1px solid var(--rule)', borderRadius: '8px', padding: '10px 20px', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none', transition: 'all 0.2s', background: 'transparent' }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(12,12,11,0.05)'} onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>
                     Book via Calendly
                   </a>
                 </div>
-                
+
                 {status === 'error' && (
                   <div className="form-success form-error" style={{ marginTop: '1.5rem', padding: '1rem', borderLeft: '3px solid var(--r)' }}>
                     <h3 style={{ fontSize: '0.9rem', color: 'var(--r)' }}>{errorMessage}</h3>
@@ -315,7 +315,7 @@ const BookSection: React.FC = () => {
                     <label className="picker-label-desk">Select Date</label>
                     <div className="date-picker-scroll calendly-dates">
                       {availableDates.map(date => (
-                        <button 
+                        <button
                           key={date}
                           className={`date-chip ${selectedDate === date ? 'active' : ''}`}
                           onClick={() => handleDateSelect(date)}
@@ -348,10 +348,10 @@ const BookSection: React.FC = () => {
                                   >
                                     {slot.time}
                                   </button>
-                                  
+
                                   {isSelected && (
-                                    <button 
-                                      className="calendly-confirm-btn" 
+                                    <button
+                                      className="calendly-confirm-btn"
                                       onClick={handleConfirmBooking}
                                       disabled={status === 'submitting'}
                                     >
