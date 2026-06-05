@@ -209,35 +209,30 @@ export default function FounderClient() {
           </div>
         </section>
 
-        {/* ─── VENTURES GRID SECTION ─── */}
-        <section style={{ padding: '100px 24px', borderTop: '1px solid var(--rule)', background: 'var(--w2)' }}>
-          <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+        {/* ─── VENTURES MARQUEE SECTION ─── */}
+        <section style={{ padding: '80px 0', borderTop: '1px solid var(--rule)', background: 'var(--w2)', overflow: 'hidden' }}>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <h2 className="reveal" style={{ 
               fontFamily: 'var(--serif)', 
-              fontSize: 'clamp(28px, 3.5vw, 44px)', 
+              fontSize: 'clamp(24px, 3vw, 36px)', 
               fontWeight: 400, 
-              color: 'var(--ink)',
-              marginBottom: '40px'
+              color: 'var(--ink)'
             }}>
               Areas of Operation & Building
             </h2>
-            <div className="reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
+          </div>
+          
+          <div className="reveal marquee-wrapper">
+            <div className="marquee-track">
+              {/* First loop */}
               {ventures.map((venture, i) => (
-                <div 
-                  key={i} 
-                  style={{
-                    padding: '10px 20px',
-                    background: 'var(--w)',
-                    border: '1px solid var(--rule)',
-                    borderRadius: '30px',
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    color: 'var(--sub)',
-                    transition: 'all 0.3s var(--ease)',
-                    cursor: 'default'
-                  }}
-                  className="venture-chip"
-                >
+                <div key={`loop-1-${i}`} className="venture-chip">
+                  {venture}
+                </div>
+              ))}
+              {/* Second loop to ensure seamless looping */}
+              {ventures.map((venture, i) => (
+                <div key={`loop-2-${i}`} className="venture-chip">
                   {venture}
                 </div>
               ))}
@@ -353,12 +348,57 @@ export default function FounderClient() {
           transform: translateY(-1px);
         }
         
+        .marquee-wrapper {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          padding: 10px 0;
+          display: flex;
+          align-items: center;
+          mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+        }
+        
+        .marquee-track {
+          display: flex;
+          gap: 20px;
+          width: max-content;
+          animation: marquee-scroll 25s linear infinite;
+        }
+        
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+        
+        .venture-chip {
+          padding: 12px 24px;
+          background: var(--w);
+          border: 1px solid var(--rule);
+          border-radius: 30px;
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--sub);
+          transition: all 0.3s var(--ease);
+          cursor: default;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(12, 12, 11, 0.02);
+        }
+        
         .venture-chip:hover {
           color: var(--b);
           border-color: rgba(22, 65, 245, 0.25);
           background: #fff;
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(22, 65, 245, 0.05);
+          box-shadow: 0 8px 24px rgba(22, 65, 245, 0.06);
+        }
+        
+        @keyframes marquee-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
         }
 
         @media (max-width: 868px) {
