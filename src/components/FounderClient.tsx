@@ -75,7 +75,7 @@ export default function FounderClient() {
               backgroundColor: 'var(--w2)'
             }}>
               <span style={{ width: '6px', height: '6px', background: 'var(--b)', borderRadius: '50%' }}></span>
-              Co-Founder Profiles
+              Founding Leadership
             </div>
             
             <h1 className="hero-h1" style={{ 
@@ -121,101 +121,85 @@ export default function FounderClient() {
           </div>
         </section>
 
-        {/* ─── CO-FOUNDERS SECTION ─── */}
+        {/* ─── LEADERSHIP SECTION ─── */}
         <section id="founders" style={{ padding: '40px 24px 120px', borderTop: '1px solid var(--rule)', background: 'var(--w)' }}>
-          <div className="founder-grid-container" style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '40px' }}>
+          <div className="founder-grid-container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
             
             {/* Card 1: Alok Mishra */}
-            <div className="reveal d1" style={{
-              background: 'rgba(244, 243, 238, 0.75)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(12, 12, 11, 0.08)',
-              borderRadius: '16px',
-              padding: '40px 32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '24px',
-              boxShadow: '0 8px 32px rgba(12, 12, 11, 0.015)'
-            }}>
-              <div>
-                <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '4px 10px', borderRadius: '4px', display: 'inline-block', marginBottom: '16px' }}>Operations & Business</span>
-                <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '4px' }}>Alok Mishra</h2>
-                <span style={{ fontSize: '13px', color: 'var(--sub)' }}>Co-Founder & Operations</span>
+            <div className="founder-card reveal d1">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div className="founder-avatar" style={{ background: 'linear-gradient(135deg, var(--ink) 0%, var(--b) 100%)' }}>
+                  AM
+                </div>
+                <div>
+                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Operations & Business</span>
+                  <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '2px', letterSpacing: '-0.01em', lineHeight: 1.1 }}>Alok Mishra</h2>
+                  <span style={{ fontSize: '13px', color: 'var(--sub)', fontWeight: 500 }}>Founder & Executive Director</span>
+                </div>
               </div>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)', padding: '16px 0', fontSize: '13px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Age</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>19 Years</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Startup Experience</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>9 Previous Ventures</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Location</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>New Delhi, India</span>
-                </div>
-              </div>
-
-              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--sub)', fontWeight: 300 }}>
-                Alok designs custom operations infrastructure, database automations, and CRM pipelines. His background building 9 previous ventures helps translate business needs into production software.
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
+                Alok orchestrates the core operational architecture and intelligent workflows at Irtiqa. A builder at heart with a track record of 9 previous ventures, he designs custom automation systems, CRM integrations, and predictive databases. By translating complex business logic into high-efficiency engines, Alok enables organizations to scale rapidly and eliminate operational friction.
               </p>
+
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
+                <span className="founder-pill active">
+                  <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
+                  9 Startups Built
+                </span>
+                <span className="founder-pill">
+                  19 y/o
+                </span>
+                <span className="founder-pill">
+                  New Delhi
+                </span>
+              </div>
 
               <a 
                 href="https://www.linkedin.com/in/alokmishra-" 
                 className="btn-outline" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                style={{ marginTop: 'auto', padding: '10px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%' }}
+                style={{ padding: '12px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%', borderRadius: '8px' }}
               >
                 LinkedIn Profile
               </a>
             </div>
 
             {/* Card 2: Georgy Steponav */}
-            <div className="reveal d2" style={{
-              background: 'rgba(244, 243, 238, 0.75)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(12, 12, 11, 0.08)',
-              borderRadius: '16px',
-              padding: '40px 32px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '24px',
-              boxShadow: '0 8px 32px rgba(12, 12, 11, 0.015)'
-            }}>
-              <div>
-                <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '4px 10px', borderRadius: '4px', display: 'inline-block', marginBottom: '16px' }}>Consultation & Audits</span>
-                <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '4px' }}>Georgy Steponav</h2>
-                <span style={{ fontSize: '13px', color: 'var(--sub)' }}>Co-Founder & Consultation</span>
+            <div className="founder-card reveal d2">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div className="founder-avatar" style={{ background: 'linear-gradient(135deg, var(--sub) 0%, var(--ink) 100%)' }}>
+                  GS
+                </div>
+                <div>
+                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Consultation & Audits</span>
+                  <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '2px', letterSpacing: '-0.01em', lineHeight: 1.1 }}>Georgy Steponav</h2>
+                  <span style={{ fontSize: '13px', color: 'var(--sub)', fontWeight: 500 }}>Co-founder & Strategic Director</span>
+                </div>
               </div>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)', padding: '16px 0', fontSize: '13px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Age</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>19 Years</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Consulting Experience</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>100+ Businesses Audited</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'var(--sub)' }}>Location</span>
-                  <span style={{ fontWeight: 600, color: 'var(--ink)' }}>Global / Remote</span>
-                </div>
-              </div>
-
-              <p style={{ fontSize: '14px', lineHeight: 1.6, color: 'var(--sub)', fontWeight: 300 }}>
-                Georgy handles client consultation and runs our complimentary audit calls. He has personally consulted for 100+ businesses, diagnosing pipeline friction points at scale.
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
+                Georgy commands the strategic consulting arm and leads Irtiqa's audit diagnostics. With deep expertise consulting for over 100 businesses, he conducts audit calls to identify workflow bottlenecks and map growth trajectories. Georgy's diagnostic precision ensures that our systems target direct revenue leaks and maximize overall business efficiency.
               </p>
+
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
+                <span className="founder-pill active">
+                  <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
+                  100+ Audited Firms
+                </span>
+                <span className="founder-pill">
+                  19 y/o
+                </span>
+                <span className="founder-pill">
+                  Remote
+                </span>
+              </div>
 
               <a 
                 href="#book" 
                 className="btn-fill" 
-                style={{ marginTop: 'auto', padding: '10px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%' }}
+                style={{ padding: '12px 16px', fontSize: '11px', textAlign: 'center', justifyContent: 'center', width: '100%', borderRadius: '8px' }}
               >
                 Book Audit With Georgy
               </a>
@@ -266,6 +250,106 @@ export default function FounderClient() {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 40px;
+        }
+        
+        .founder-card {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 250, 248, 0.6) 100%);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(12, 12, 11, 0.05);
+          border-radius: 20px;
+          padding: 44px 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 0 8px 32px rgba(12, 12, 11, 0.02),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        
+        .founder-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, var(--b) 0%, #7c3aed 100%);
+          opacity: 0;
+          transition: opacity 0.4s var(--ease);
+        }
+        
+        .founder-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(22, 65, 245, 0.15);
+          box-shadow: 0 24px 48px -12px rgba(22, 65, 245, 0.06),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        .founder-card:hover::before {
+          opacity: 1;
+        }
+
+        .founder-avatar {
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--w);
+          font-family: var(--ui);
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          box-shadow: 0 4px 12px rgba(12, 12, 11, 0.08);
+          position: relative;
+          flex-shrink: 0;
+        }
+
+        .founder-avatar::after {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 50%;
+          border: 1px solid rgba(22, 65, 245, 0.12);
+          pointer-events: none;
+        }
+
+        .founder-pill {
+          font-size: 11px;
+          font-weight: 500;
+          color: var(--sub);
+          background: rgba(236, 234, 226, 0.4);
+          border: 1px solid rgba(12, 12, 11, 0.04);
+          padding: 5px 12px;
+          border-radius: 100px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.3s var(--ease);
+        }
+        
+        .founder-pill.active {
+          color: var(--b);
+          background: var(--b-lo);
+          border-color: rgba(22, 65, 245, 0.1);
+        }
+        
+        .founder-card:hover .founder-pill.active {
+          background: rgba(22, 65, 245, 0.08);
+          border-color: rgba(22, 65, 245, 0.18);
+          transform: translateY(-1px);
+        }
+        
+        .founder-card:hover .founder-pill:not(.active) {
+          background: rgba(236, 234, 226, 0.75);
+          border-color: rgba(12, 12, 11, 0.06);
+          color: var(--ink);
+          transform: translateY(-1px);
         }
         
         .venture-chip:hover {

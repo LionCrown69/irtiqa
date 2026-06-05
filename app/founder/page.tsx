@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import FounderClient from '../../src/components/FounderClient';
 
 export const metadata: Metadata = {
-  title: "Alok Mishra | Founder, Irtiqa AI",
-  description: "Alok Mishra is the founder of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
+  title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
+  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
   keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, revenue operations architect, agentic AI, Irtiqa AI founder, Alok Mishra Delhi",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/founder",
   },
   openGraph: {
-    title: "Alok Mishra | Founder, Irtiqa AI",
-    description: "Alok Mishra is the founder of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
+    title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
+    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
     url: "https://www.irtiqaaiagency.com/founder",
     type: "profile",
     images: [
@@ -32,7 +32,7 @@ export default function FounderPage() {
         "name": "Alok Mishra",
         "jobTitle": "Founder & Executive Director",
         "email": "alok@irtiqaaiagency.com",
-        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs custom revenue operations infrastructure and automated pipelines.",
+        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He orchestrates the core operational architecture, database integrations, and CRM pipelines at Irtiqa.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
@@ -68,8 +68,8 @@ export default function FounderPage() {
         "@type": "Person",
         "@id": "https://www.irtiqaaiagency.com/founder/#georgy",
         "name": "Georgy Steponav",
-        "jobTitle": "Co-Founder & Strategic Director",
-        "description": "Georgy Steponav is the Co-Founder & Strategic Director of Irtiqa AI. He manages client consultations and operations audits.",
+        "jobTitle": "Co-founder & Strategic Director",
+        "description": "Georgy Steponav is the Co-founder & Strategic Director of Irtiqa AI. He leads the strategic consulting arm, client discovery audits, and workflow diagnostics.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
