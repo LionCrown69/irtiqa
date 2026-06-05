@@ -3,14 +3,14 @@ import FounderClient from '../../src/components/FounderClient';
 
 export const metadata: Metadata = {
   title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
-  keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, revenue operations architect, agentic AI, Irtiqa AI founder, Alok Mishra Delhi",
+  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and process SOPs, coordinating a growing team of 50+ specialists.",
+  keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, executive director, Irtiqa AI founder, Alok Mishra Delhi, Irtiqa management",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/founder",
   },
   openGraph: {
     title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems for global service businesses.",
+    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and process SOPs, coordinating a growing team of 50+ specialists.",
     url: "https://www.irtiqaaiagency.com/founder",
     type: "profile",
     images: [
@@ -32,7 +32,7 @@ export default function FounderPage() {
         "name": "Alok Mishra",
         "jobTitle": "Founder & Executive Director",
         "email": "alok@irtiqaaiagency.com",
-        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He orchestrates the core operational architecture, database integrations, and CRM pipelines at Irtiqa.",
+        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He oversees executive management, client process SOPs, and coordinates our growing team of 50+ specialists.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
@@ -57,11 +57,11 @@ export default function FounderPage() {
           "https://www.linkedin.com/company/irtiqaai/"
         ],
         "knowsAbout": [
-          "Revenue operations infrastructure",
-          "Agentic AI systems for business",
-          "Multi-agent AI business systems",
-          "CRM and pipeline automation",
-          "Silent revenue leakage"
+          "Executive business management",
+          "Operational process design",
+          "Client onboarding SOPs",
+          "Scaling startup workflows",
+          "Team coordination and management"
         ]
       },
       {
@@ -69,7 +69,7 @@ export default function FounderPage() {
         "@id": "https://www.irtiqaaiagency.com/founder/#georgy",
         "name": "Georgy Steponav",
         "jobTitle": "Co-founder & Strategic Director",
-        "description": "Georgy Steponav is the Co-founder & Strategic Director of Irtiqa AI. He leads the strategic consulting arm, client discovery audits, and workflow diagnostics.",
+        "description": "Georgy Steponav is the Co-founder & Strategic Director of Irtiqa AI. He leads strategic research, business consultations, and discovery audits.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
@@ -82,14 +82,19 @@ export default function FounderPage() {
           ]
         },
         "url": "https://www.irtiqaaiagency.com/founder",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "Poland"
+        },
         "sameAs": [
           "https://www.linkedin.com/company/irtiqaai/"
         ],
         "knowsAbout": [
-          "Business operations consulting",
+          "Strategic business research",
+          "Operations consulting",
           "Workflow diagnostics",
-          "Revenue leakage mapping",
-          "Client acquisition design"
+          "Client audit and diagnostics",
+          "Custom growth blueprints"
         ]
       }
     ]

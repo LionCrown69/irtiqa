@@ -132,14 +132,14 @@ export default function FounderClient() {
                   AM
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Operations & Business</span>
+                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Management & Process</span>
                   <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '2px', letterSpacing: '-0.01em', lineHeight: 1.1 }}>Alok Mishra</h2>
                   <span style={{ fontSize: '13px', color: 'var(--sub)', fontWeight: 500 }}>Founder & Executive Director</span>
                 </div>
               </div>
               
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
-                Alok orchestrates the core operational architecture and intelligent workflows at Irtiqa. A builder at heart with a track record of 9 previous ventures, he designs custom automation systems, CRM integrations, and predictive databases. By translating complex business logic into high-efficiency engines, Alok enables organizations to scale rapidly and eliminate operational friction.
+                Alok handles executive management, business operations, and client process SOPs at Irtiqa. A founder of 9 previous ventures, he evaluates workflows, makes strategic decisions, and coordinates our growing, fluid team of 50+ specialists to ensure seamless client delivery.
               </p>
 
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
@@ -147,8 +147,9 @@ export default function FounderClient() {
                   <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
                   9 Startups Built
                 </span>
-                <span className="founder-pill">
-                  19 y/o
+                <span className="founder-pill active">
+                  <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
+                  50+ Fluid Team
                 </span>
                 <span className="founder-pill">
                   New Delhi
@@ -173,14 +174,14 @@ export default function FounderClient() {
                   GS
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Consultation & Audits</span>
+                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Research & Consultation</span>
                   <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '2px', letterSpacing: '-0.01em', lineHeight: 1.1 }}>Georgy Steponav</h2>
                   <span style={{ fontSize: '13px', color: 'var(--sub)', fontWeight: 500 }}>Co-founder & Strategic Director</span>
                 </div>
               </div>
               
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
-                Georgy commands the strategic consulting arm and leads Irtiqa's audit diagnostics. With deep expertise consulting for over 100 businesses, he conducts audit calls to identify workflow bottlenecks and map growth trajectories. Georgy's diagnostic precision ensures that our systems target direct revenue leaks and maximize overall business efficiency.
+                Georgy drives Irtiqa’s strategic research and business consultations. Having diagnosed bottlenecks and consulted for over 100 companies, he leads our audit discovery calls and investigates market processes to craft custom growth blueprints.
               </p>
 
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
@@ -188,11 +189,12 @@ export default function FounderClient() {
                   <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
                   100+ Audited Firms
                 </span>
-                <span className="founder-pill">
-                  19 y/o
+                <span className="founder-pill active">
+                  <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
+                  Poland
                 </span>
                 <span className="founder-pill">
-                  Remote
+                  19 y/o
                 </span>
               </div>
 
