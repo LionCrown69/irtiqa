@@ -325,11 +325,25 @@
     font-size: 9px;
     letter-spacing: 0.11em;
     padding: 7px 14px 7px 10px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: normal;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+    line-height: 1.4;
   }
 
   .hero-eyebrow-dot {
     background: var(--b);
     box-shadow: 0 0 0 3px rgba(22, 65, 245, 0.14) !important;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
   }
 
   .hero-h1 {
