@@ -22,7 +22,15 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
  
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Config options
+  async redirects() {
+    return [
+      {
+        source: '/audit-prep',
+        destination: 'https://ydauufjb.formester.com/f/MfmasjdOH',
+        permanent: false,
+      },
+    ];
+  },
 };
  
 export default withNextIntl(nextConfig);
