@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { sendEmail } from '../src/lib/email.js';
 import { getConfirmationEmailHtmlLight } from '../src/emails/templates.js';
 import { getReminderEmailHtml12hr, getReminderEmailHtml5min } from '../src/emails/reminder-templates.js';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 
 // Load .env since this runs outside Next.js
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,6 +23,7 @@ if (fs.existsSync(envPath)) {
 }
 
 const token = process.env.CALENDLY_PAT;
+const redis = Redis.fromEnv();
 
 if (!token) {
   console.error("❌ ERROR: CALENDLY_PAT not found in .env");
@@ -50,7 +51,7 @@ async function syncCalendlyEvents() {
   let processedEvents: Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }> = {};
   
   try {
-    const raw = await kv.get('processed_events');
+    const raw = await redis.get('processed_events');
     if (raw) {
       if (Array.isArray(raw)) {
         raw.forEach(uri => {
@@ -61,7 +62,7 @@ async function syncCalendlyEvents() {
       }
     }
   } catch(e) {
-    console.error("Error fetching processed events from KV", e);
+    console.error("Error fetching processed events from Redis", e);
   }
 
   try {
@@ -181,8 +182,8 @@ async function syncCalendlyEvents() {
       }
     }
 
-    // 5. Save updated processed list back to KV
-    await kv.set('processed_events', processedEvents);
+    // 5. Save updated processed list back to Redis
+    await redis.set('processed_events', processedEvents);
 
     console.log(`\n✅ Sync complete. Sent ${sentCount} new emails.`);
 

@@ -4,7 +4,9 @@ import path from 'path';
 import { sendEmail } from '@/lib/email';
 import { getConfirmationEmailHtmlLight } from '@/emails/templates';
 import { getReminderEmailHtml12hr, getReminderEmailHtml5min } from '@/emails/reminder-templates';
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
 
 // Ensure this runs securely using a secret key
 const CRON_SECRET = process.env.CRON_SECRET || 'dev-secret';
@@ -42,7 +44,7 @@ export async function GET(req: Request) {
   let processedEvents: Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }> = {};
   
   try {
-    const raw = await kv.get('processed_events');
+    const raw = await redis.get('processed_events');
     if (raw) {
       if (Array.isArray(raw)) {
         raw.forEach(uri => {
@@ -53,7 +55,7 @@ export async function GET(req: Request) {
       }
     }
   } catch(e) {
-    console.error("Error fetching processed events from KV", e);
+    console.error("Error fetching processed events from Redis", e);
   }
 
   try {
@@ -163,8 +165,8 @@ export async function GET(req: Request) {
       }
     }
 
-    // 4. Save updated processed list back to KV
-    await kv.set('processed_events', processedEvents);
+    // 4. Save updated processed list back to Redis
+    await redis.set('processed_events', processedEvents);
 
     return NextResponse.json({ success: true, newEmailsSent: sentCount });
 
