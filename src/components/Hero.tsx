@@ -248,6 +248,15 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
           >
             See How It Works
           </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.02, borderColor: "var(--b)", color: "var(--b)" }}
+            whileTap={{ scale: 0.98 }}
+            href="/program"
+            className="btn-outline"
+            style={{ transition: 'none' }}
+          >
+            Revenue Partners Programme
+          </motion.a>
         </motion.div>
 
         <motion.div variants={itemVariants} className="hero-mobile-proof" style={{ opacity: 1, animation: 'none' }}>
