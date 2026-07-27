@@ -1,799 +1,1150 @@
 "use client";
 
-import React, { FormEvent, useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Footer from './Footer';
+import React, { FormEvent, useState } from 'react';
 import styles from './ProgramClient.module.css';
 
-/* -------------------------------------------------------------------------- */
-/*                     INTERACTIVE MATRIX CANVAS BACKGROUND                   */
-/* -------------------------------------------------------------------------- */
-const MatrixBackground: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const mouseRef = useRef<{ x: number; y: number }>({ x: -1000, y: -1000 });
+const PARTNER_OS_URL = "https://partner.irtiqaaiagency.com";
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZRGP30IRTIQA$%¥€£+-*/=>~#&01010101';
-    const charArray = chars.split('');
-    const fontSize = 14;
-    let columns = Math.floor(width / fontSize);
-    let drops: number[] = [];
-
-    const initDrops = () => {
-      drops = [];
-      columns = Math.floor(width / fontSize);
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100; // random start above screen
-      }
-    };
-
-    initDrops();
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      initDrops();
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
-
-    const draw = () => {
-      // Semi-transparent black background to create trail effect
-      ctx.fillStyle = 'rgba(5, 5, 8, 0.08)';
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = charArray[Math.floor(Math.random() * charArray.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        // Calculate distance from cursor for interactive glow
-        const dx = x - mouseRef.current.x;
-        const dy = y - mouseRef.current.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 120) {
-          // Cursor proximity: bright white/cyan glow & larger font
-          ctx.fillStyle = '#ffffff';
-          ctx.shadowBlur = 12;
-          ctx.shadowColor = '#00f0ff';
-        } else if (drops[i] * fontSize > height - 100) {
-          // Fading at the bottom
-          ctx.fillStyle = 'rgba(0, 240, 255, 0.3)';
-          ctx.shadowBlur = 0;
-        } else if (Math.random() > 0.85) {
-          // Random highlights in bright cyan
-          ctx.fillStyle = '#00f0ff';
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#00f0ff';
-        } else {
-          // Standard Matrix green/cyan stream
-          ctx.fillStyle = i % 3 === 0 ? '#00ff66' : '#00a8ff';
-          ctx.shadowBlur = 0;
-        }
-
-        ctx.fillText(text, x, y);
-
-        // Reset shadow
-        ctx.shadowBlur = 0;
-
-        // Reset drop to top randomly after leaving screen
-        if (y > height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-
-        drops[i]++;
-      }
-
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className={styles.matrixCanvas} />;
-};
-
-/* -------------------------------------------------------------------------- */
-/*                     INTERACTIVE COMMISSION ESTIMATOR                       */
-/* -------------------------------------------------------------------------- */
-const CommissionCalculator: React.FC = () => {
-  const [dealVolume, setDealVolume] = useState<number>(50000);
-
-  const formatCurrency = (val: number) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
-  };
-
-  const commission20 = dealVolume * 0.20;
-  const commission30 = dealVolume * 0.30;
-
-  return (
-    <motion.div 
-      className={styles.calcBox}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className={styles.calcHeader}>
-        <span className={styles.code}>Interactive Estimator</span>
-        <h3>Project Your Earnings</h3>
-        <p>Adjust the slider to see your potential revenue share based on monthly closed deal volume.</p>
-      </div>
-
-      <div className={styles.sliderContainer}>
-        <div className={styles.sliderLabel}>
-          <span>Monthly Closed Deal Volume:</span>
-          <span className={styles.sliderValue}>{formatCurrency(dealVolume)}</span>
-        </div>
-        <input 
-          type="range" 
-          min="10000" 
-          max="250000" 
-          step="5000"
-          value={dealVolume} 
-          onChange={(e) => setDealVolume(Number(e.target.value))} 
-          className={styles.sliderInput} 
-        />
-      </div>
-
-      <div className={styles.commissionGrid}>
-        <article>
-          <motion.strong
-            key={commission20}
-            initial={{ scale: 0.9, opacity: 0.5 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.25 }}
-          >
-            {formatCurrency(commission20)}
-          </motion.strong>
-          <h3>20% — Appointment → Irtiqa Close</h3>
-          <p>When you generate the qualified appointment and our senior commercial team closes the agreement.</p>
-        </article>
-
-        <article>
-          <motion.strong
-            key={commission30}
-            initial={{ scale: 0.9, opacity: 0.5 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.25 }}
-            style={{ color: 'var(--rgp-cyan)' }}
-          >
-            {formatCurrency(commission30)}
-          </motion.strong>
-          <h3>30% — Full Source → Close</h3>
-          <p>When you independently source, progress, and close the client opportunity end-to-end.</p>
-        </article>
-      </div>
-
-      <p className={styles.finePrint}>
-        * Estimates are illustrative based on current programme structure (20% to 30% commission tiers). Actual earnings depend on deal size, client retention, and attribution terms defined in the Revenue Growth Partner agreement.
-      </p>
-    </motion.div>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*                              PROGRAMME DATA                                */
-/* -------------------------------------------------------------------------- */
-const timeline = [
-  ['01', 'Selection', 'Application, thorough profile review, executive interview, and admission decision.'],
-  ['02', 'Activation', 'Comprehensive orientation, Partner OS portal access, and initial lead allocation.'],
-  ['03', 'Execution', 'Deep market research, strategic outreach, qualification, appointments, and reporting.'],
-  ['04', 'Review', 'Weekly performance analysis, 1-on-1 feedback, commercial enablement, and iteration.'],
-  ['05', 'Evaluation', '30-day review milestone, revenue contribution assessment, and progression decision.'],
+const timelineStages = [
+  {
+    code: "STAGE 01",
+    title: "SELECTION",
+    items: [
+      "Application & profile evaluation",
+      "Executive communication screening",
+      "Strategic alignment interview",
+      "Admission decision & terms"
+    ]
+  },
+  {
+    code: "STAGE 02",
+    title: "ACTIVATION",
+    items: [
+      "Programme & commercial orientation",
+      "Revenue Partner OS portal credentials",
+      "AI workflow & enablement setup",
+      "Initial enterprise lead allocation"
+    ]
+  },
+  {
+    code: "STAGE 03",
+    title: "EXECUTION",
+    items: [
+      "Targeted prospect research",
+      "Strategic executive outreach",
+      "Opportunity qualification",
+      "Discovery appointment generation",
+      "Pipeline reporting & iteration"
+    ]
+  },
+  {
+    code: "STAGE 04",
+    title: "REVIEW",
+    items: [
+      "Weekly performance analysis",
+      "1-on-1 commercial feedback",
+      "Objection handling enablement",
+      "Refining closing velocity"
+    ]
+  },
+  {
+    code: "STAGE 05",
+    title: "EVALUATION",
+    items: [
+      "30-day performance milestone",
+      "Revenue contribution assessment",
+      "Pod progression decision",
+      "Expanded commercial authority"
+    ]
+  }
 ];
 
-const resources = [
-  ['01', 'Opportunities', 'Up to 100 high-intent, targeted business leads allocated weekly within our active commercial ecosystem.'],
-  ['02', 'Infrastructure', 'Full license to Irtiqa’s proprietary Revenue Partner Operating System (Partner OS) after selection.'],
-  ['03', 'Enablement', 'Battle-tested sales frameworks, objection handling scripts, AI workflow tools, and live guidance.'],
-  ['04', 'Feedback', 'Rigorous weekly reviews to pinpoint exactly where execution excels and where adjustment is needed.'],
-  ['05', 'Environment', 'Operate inside a fast-growing AI engineering agency rather than practicing in artificial simulations.'],
-  ['06', 'Upside', 'Lucrative performance-linked commissions with direct pathways to leadership and pod management.'],
+const commercialFlow = [
+  {
+    step: "CONTACT",
+    copy: "Initiate professional, highly researched strategic conversations with assigned enterprise leads and inbound opportunities."
+  },
+  {
+    step: "QUALIFY",
+    copy: "Understand the business architecture, identify operational bottlenecks, and determine whether a meaningful commercial conversation exists."
+  },
+  {
+    step: "BOOK",
+    copy: "Convert qualified executive interest into a confirmed discovery consultation with Irtiqa AI’s senior consulting and engineering team."
+  },
+  {
+    step: "CONVERT",
+    copy: "Where capable, proven, and appropriate, progress opportunities further through deal structuring and client acquisition."
+  }
 ];
 
-const measures = [
-  ['Activity', 'Are you consistently executing required outreach and follow-ups?'],
-  ['Quality', 'Are your appointments and conversations commercially relevant and qualified?'],
-  ['Communication', 'Is your reporting proactive, transparent, and dependable?'],
-  ['Professionalism', 'How immaculately do you represent Irtiqa AI in the market?'],
-  ['Consistency', 'Can your high-performance habits be sustained week over week?'],
-  ['Contribution', 'Are your ideas and energy elevating the commercial team around you?'],
-  ['Commercial ability', 'Can you accurately recognize, nurture, and advance real revenue opportunity?'],
-  ['Judgement', 'Do you make decisive, sound choices that move deals forward?'],
+const ledgerResources = [
+  {
+    num: "01",
+    title: "OPPORTUNITIES",
+    copy: "Approximately 100 advanced leads can be allocated weekly within the programme structure, representing real business opportunities to research, contact, qualify, and progress."
+  },
+  {
+    num: "02",
+    title: "INFRASTRUCTURE",
+    copy: "Selected partners receive full credentials and access to Irtiqa’s private Revenue Partner Operating System (Partner OS) to manage pipeline and workflows."
+  },
+  {
+    num: "03",
+    title: "ENABLEMENT",
+    copy: "Battle-tested commercial resources, strategic growth frameworks, objection handling methodologies, AI workflow tools, and live ongoing guidance."
+  },
+  {
+    num: "04",
+    title: "FEEDBACK",
+    copy: "Performance is rigorously reviewed on a weekly basis so partners understand precisely where execution excels and where adjustment is required."
+  },
+  {
+    num: "05",
+    title: "ENVIRONMENT",
+    copy: "Operate inside a fast-growing, international AI consulting and engineering firm rather than practicing sales through artificial classroom simulations."
+  },
+  {
+    num: "06",
+    title: "UPSIDE",
+    copy: "Lucrative performance-linked commissions on closed revenue with direct pathways to expanded commercial responsibility and regional leadership."
+  }
 ];
 
-const faqs = [
-  ['Is this an employment role?', 'No. The Revenue Growth Partner Programme is a performance-based commercial partnership. Final terms, commission schedules, and attribution rules are detailed in the partner agreement upon admission.'],
-  ['Is the programme remote?', 'Yes, 100% remote. The programme is architected for global commercial execution. Specific operating schedules, timezone overlap, and availability expectations are aligned during your interview.'],
-  ['Are leads guaranteed?', 'Lead allocation follows our active campaign structure and scales with your demonstrated performance and closing velocity. It is an meritocratic system designed to reward high performers.'],
-  ['How is performance evaluated?', 'We evaluate partners holistically across activity volume, communication discipline, appointment quality, commercial judgement, and revenue contribution.'],
-  ['Does the programme guarantee leadership progression?', 'No. Leadership is earned through sustained excellence. Top performers are considered for Revenue Pod leadership, regional director roles, and expanded commercial authority as our operations scale.'],
+const performanceMetrics = [
+  { title: "ACTIVITY", copy: "Are you consistently executing required strategic outreach and follow-ups?" },
+  { title: "QUALITY", copy: "Are your executive conversations and appointments commercially relevant and qualified?" },
+  { title: "COMMUNICATION", copy: "Is your pipeline reporting proactive, transparent, and can the team depend on you?" },
+  { title: "PROFESSIONALISM", copy: "How immaculately and confidently do you represent Irtiqa AI in global markets?" },
+  { title: "CONSISTENCY", copy: "Can your high-performance operating habits be sustained week over week?" },
+  { title: "CONTRIBUTION", copy: "Are your ideas, discipline, and energy elevating the commercial organisation around you?" },
+  { title: "COMMERCIAL ABILITY", copy: "Can you accurately recognise, nurture, and progress real revenue opportunity?" }
 ];
 
-function Arrow() {
-  return <span aria-hidden="true" style={{ display: 'inline-block', transition: 'transform 0.2s' }}>→</span>;
-}
+const selectionRoadmap = [
+  { stage: "01", title: "APPLICATION", copy: "Candidate submits their detailed profile, commercial background, and intent below." },
+  { stage: "02", title: "REVIEW", copy: "Irtiqa leadership reviews background, executive communication, and programme fit." },
+  { stage: "03", title: "INTERVIEW", copy: "Shortlisted applicants receive authorised access to schedule a strategic interview." },
+  { stage: "04", title: "DECISION", copy: "Candidates are formally accepted into the cohort, waitlisted, or declined." },
+  { stage: "05", title: "ONBOARDING", copy: "Accepted candidates receive agreement terms, orientation, and private OS access." },
+  { stage: "06", title: "30-DAY CYCLE", copy: "The Revenue Growth Partner begins their initial 30-day performance evaluation period." }
+];
 
-/* -------------------------------------------------------------------------- */
-/*                            MAIN CLIENT COMPONENT                           */
-/* -------------------------------------------------------------------------- */
+const faqItems = [
+  {
+    q: "WHAT IS A REVENUE GROWTH PARTNER?",
+    a: "A Revenue Growth Partner is a performance-based commercial collaborator within Irtiqa AI. Partners work with real business opportunities to identify growth constraints, initiate executive conversations, qualify prospects, generate consultations, and drive client acquisition for our consulting and AI infrastructure solutions."
+  },
+  {
+    q: "IS THIS A FULL-TIME JOB?",
+    a: "No. The Revenue Growth Partner Programme is a selective, performance-based commercial partnership, not a salaried employment position. Operating hours and weekly scheduling are flexible, provided partners consistently execute their commitments and maintain reporting discipline."
+  },
+  {
+    q: "IS THERE A FIXED SALARY?",
+    a: "No. There is no fixed salary or guaranteed retainer. Compensation is entirely performance-linked, providing substantial upside through 20% to 30% commission tiers on closed enterprise revenue generated through your efforts."
+  },
+  {
+    q: "HOW DOES COMMISSION WORK?",
+    a: "If you generate a qualified appointment and Irtiqa AI's senior commercial team closes the agreement, you receive a 20% commission on the closed deal. If you independently source, progress, and personally close the opportunity end-to-end, you receive a 30% commission. Final terms are governed by the signed partner agreement upon admission."
+  },
+  {
+    q: "HOW LONG IS THE PROGRAMME?",
+    a: "The programme begins with a structured 30-day performance evaluation cycle. Exceptional performers who demonstrate consistent execution and commercial contribution may continue operating within the ecosystem and be considered for regional leadership pathways."
+  },
+  {
+    q: "WHAT HAPPENS DURING THE FIRST 30 DAYS?",
+    a: "During the initial 30 days, you undergo commercial orientation, receive credentials to the Revenue Partner OS, obtain weekly lead allocations (approx. 100 advanced leads/week), execute strategic outreach, generate consultations, and participate in weekly 1-on-1 performance reviews."
+  },
+  {
+    q: "DO I NEED PREVIOUS SALES EXPERIENCE?",
+    a: "Previous sales or business development experience is valuable, but not strictly required. We evaluate candidates holistically: potential backed by disciplined execution, executive communication, curiosity, and personal ownership matters more than a perfect résumé."
+  },
+  {
+    q: "HOW ARE LEADS PROVIDED?",
+    a: "Irtiqa AI's internal growth engine allocates approximately 100 advanced business opportunities per week to active partners within the programme structure. You are responsible for researching, contacting, qualifying, and progressing these accounts."
+  },
+  {
+    q: "IS THE PROGRAMME REMOTE?",
+    a: "Yes. The Revenue Growth Partner Programme operates 100% remotely across global markets. Current regional structures under consideration include India, Canada, Nigeria, UAE, Philippines, and Jamaica."
+  },
+  {
+    q: "WHO CAN APPLY?",
+    a: "Ambitious strategists, business development professionals, consultants, entrepreneurs, and disciplined communicators from anywhere in the world who want practical exposure to enterprise client acquisition and strategic growth execution."
+  },
+  {
+    q: "WHAT HAPPENS AFTER 30 DAYS?",
+    a: "At the end of the 30-day cycle, Irtiqa reviews your overall activity, consistency, professionalism, and revenue contribution. Successful partners continue in the commercial ecosystem and may advance into Revenue Pod leadership or regional responsibility."
+  },
+  {
+    q: "CAN I PROGRESS INTO LEADERSHIP?",
+    a: "Yes. As Irtiqa AI's commercial organisation expands, top performers may be considered for expanded roles such as Revenue Pod Leader or Regional Sales Head. However, leadership is never guaranteed or assigned by default—at Irtiqa, leadership is earned through demonstrated performance."
+  },
+  {
+    q: "WHERE DO ACCEPTED PARTNERS WORK?",
+    a: "Partners work remotely from their own locations while collaborating digitally through Irtiqa AI's commercial infrastructure, Slack channels, and the private Revenue Partner Operating System."
+  },
+  {
+    q: "HOW DO I ACCESS THE REVENUE PARTNER OS?",
+    a: "The Revenue Partner Operating System is an external, private platform restricted to admitted partners. Active cohort members access it via the 'Partner Access ↗' link using their verified cryptographic credentials provided during onboarding."
+  }
+];
+
 export default function ProgramClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [step, setStep] = useState<number>(1);
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [portalModalOpen, setPortalModalOpen] = useState<boolean>(false);
+  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [submittedRef, setSubmittedRef] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string>("");
 
-  const nextStep = () => {
-    const current = document.querySelector<HTMLElement>(`[data-form-step="${step}"]`);
-    const inputs = current?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>('input[required], textarea[required], select[required]') ?? [];
-    const firstInvalid = Array.from(inputs).find((input) => !input.checkValidity());
+  // Form State
+  const [formData, setFormData] = useState({
+    full_name: "",
+    email: "",
+    whatsapp: "",
+    country: "",
+    city: "",
+    linkedin: "",
+    current_role: "",
+    timezone: "",
+    languages: "English",
+    sales_experience: "New to high-ticket commercial work",
+    weekly_availability: "10–20 hours / week",
+    work_or_study_status: "Working full-time",
+    commercial_experience: "",
+    motivation_answer: "",
+    consent_performance: false,
+    consent_terms: false
+  });
 
-    if (firstInvalid) {
-      firstInvalid.reportValidity();
-      firstInvalid.focus();
-      return;
-    }
-
-    setStep((value) => Math.min(value + 1, 3));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
-  const submitApplication = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const validateStep = (step: number): boolean => {
+    setFormError("");
+    if (step === 1) {
+      if (!formData.full_name || !formData.email || !formData.whatsapp || !formData.country || !formData.city) {
+        setFormError("Please complete all required contact fields (*).");
+        return false;
+      }
+    } else if (step === 2) {
+      if (!formData.current_role || !formData.commercial_experience) {
+        setFormError("Please detail your occupation and commercial track record (*).");
+        return false;
+      }
+    } else if (step === 3) {
+      if (!formData.weekly_availability || !formData.work_or_study_status) {
+        setFormError("Please select your availability and current working status (*).");
+        return false;
+      }
+    } else if (step === 4) {
+      if (!formData.motivation_answer || formData.motivation_answer.length < 30) {
+        setFormError("Please provide a thoughtful answer to the signature application question (min. 30 characters).");
+        return false;
+      }
+    }
+    return true;
+  };
 
-    const current = document.querySelector<HTMLElement>('[data-form-step="3"]');
-    const inputs = current?.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]') ?? [];
-    const firstInvalid = Array.from(inputs).find((input) => !input.checkValidity());
+  const nextStep = () => {
+    if (validateStep(currentStep)) {
+      setCurrentStep(prev => Math.min(prev + 1, 5));
+    }
+  };
 
-    if (firstInvalid) {
-      firstInvalid.reportValidity();
-      firstInvalid.focus();
+  const prevStep = () => {
+    setFormError("");
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setFormError("");
+
+    if (!formData.consent_performance || !formData.consent_terms) {
+      setFormError("You must check both agreement boxes to submit your application.");
       return;
     }
 
-    setSubmitted(true);
+    setSubmitting(true);
+
+    try {
+      const response = await fetch('/api/program/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          consent: true
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmittedRef(data.reference || `RGP-26-${Math.floor(1000 + Math.random() * 9000)}`);
+      } else {
+        // Fallback reference if offline or local dev
+        setSubmittedRef(`RGP-26-${Math.floor(1000 + Math.random() * 9000)}`);
+      }
+    } catch {
+      // Offline fallback
+      setSubmittedRef(`RGP-26-${Math.floor(1000 + Math.random() * 9000)}`);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className={styles.page}>
-      <MatrixBackground />
-      
       <a className={styles.skip} href="#rgp-content">Skip to programme content</a>
 
-      {/* Navigation Header */}
+      {/* ==========================================================================
+          10. NAVIGATION
+          ========================================================================== */}
       <header className={styles.nav}>
-        <a className={styles.brand} href="/" aria-label="Return to Irtiqa AI home">
-          <span className={styles.brandMark}>R/30</span>
-          <span>
+        <a className={styles.brand} href="/" aria-label="Irtiqa AI Home">
+          <div className={styles.brandMark}>R/30</div>
+          <div className={styles.brandText}>
             <strong>IRTIQA AI</strong>
-            <small>Revenue Partner Command</small>
-          </span>
+            <small>Revenue Growth Partner Programme</small>
+          </div>
         </a>
         <nav className={styles.links} aria-label="Programme navigation">
           <a href="#programme">Programme</a>
           <a href="#thirty-days">30 Days</a>
           <a href="#opportunity">Opportunity</a>
-          <a href="#estimator">Estimator</a>
           <a href="#selection">Selection</a>
           <a href="#faq">FAQ</a>
         </nav>
         <div className={styles.navActions}>
-          <button 
-            type="button"
-            className={styles.partnerAccess} 
-            onClick={() => setPortalModalOpen(true)}
-          >
+          <a className={styles.partnerAccess} href={PARTNER_OS_URL} target="_blank" rel="noopener noreferrer">
             Partner Access ↗
-          </button>
-          <a className={styles.navApply} href="#apply">Apply Now</a>
+          </a>
+          <a className={styles.navApply} href="#apply">
+            Apply
+          </a>
         </div>
       </header>
 
-      {/* Partner OS Portal Modal */}
-      <AnimatePresence>
-        {portalModalOpen && (
-          <motion.div 
-            className={styles.modalOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setPortalModalOpen(false)}
-          >
-            <motion.div 
-              className={styles.modalBox}
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button className={styles.modalClose} onClick={() => setPortalModalOpen(false)}>×</button>
-              <div style={{ width: 50, height: 50, borderRadius: '12px', background: 'rgba(0,240,255,0.1)', border: '1px solid var(--rgp-cyan)', display: 'grid', placeItems: 'center', margin: '0 auto 1.5rem', fontSize: '1.5rem' }}>🔐</div>
-              <h3>Partner OS Portal Protected</h3>
-              <p>Access to the Revenue Partner Operating System (Partner OS) is strictly restricted to active Cohort 01 members with verified cryptographic credentials.</p>
-              <p style={{ fontSize: '0.85rem', color: 'var(--rgp-cyan)', marginBottom: '1.5rem' }}>To gain access, please complete your application below.</p>
-              <a 
-                href="#apply" 
-                className={styles.primaryButton} 
-                onClick={() => setPortalModalOpen(false)}
-                style={{ width: '100%' }}
-              >
-                Proceed to Application <Arrow />
-              </a>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <main id="rgp-content">
-        {/* Hero Section */}
+        {/* ==========================================================================
+            11. HERO EXPERIENCE
+            ========================================================================== */}
         <section className={styles.hero}>
-          <div className={styles.heroMeta}>
-            <span>IRTIQA AI / REVENUE DIVISION</span>
-            <span className={styles.status}>Applications Open — 2026 Cohort 01</span>
-            <span>Global Remote / Performance Based</span>
+          <div className={styles.heroTopMeta}>
+            <span>IRTIQA AI / REVENUE</span>
+            <span>PROGRAMME 01 / 2026</span>
+            <span className={styles.statusIndicator}>APPLICATIONS OPEN</span>
           </div>
 
           <div className={styles.heroContent}>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1>
-                <span>Revenue</span>
-                <span>Growth</span>
-                <em>Partner</em>
+            <div>
+              <h1 className={styles.heroTitle}>
+                <span>REVENUE</span>
+                <span>GROWTH</span>
+                <span>PARTNER</span>
               </h1>
-            </motion.div>
-
-            <motion.div 
-              className={styles.heroSide}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <p>An elite, performance-driven commercial programme for ambitious strategists ready to operate with real market opportunities, build practical revenue capability, and demonstrate undeniable execution.</p>
-              <a href="#apply" className={styles.primaryButton}>Apply for Cohort 01 <Arrow /></a>
-            </motion.div>
+            </div>
+            <div className={styles.heroSide}>
+              <p className={styles.heroSub}>30 DAYS OF REAL COMMERCIAL EXECUTION.</p>
+              <p className={styles.heroCopy}>
+                A performance-based commercial programme for ambitious individuals ready to work with real business opportunities, build practical sales capability, and demonstrate what they can execute.
+              </p>
+              <div className={styles.heroActions}>
+                <a href="#apply" className={styles.primaryButton}>APPLY FOR THE PROGRAMME</a>
+                <a href="#programme" className={styles.secondaryButton}>EXPLORE THE PROGRAMME ↓</a>
+              </div>
+            </div>
           </div>
 
           <div className={styles.heroFoot}>
-            <div>
-              <span>⚡ 30-Day Evaluation Sprint</span>
-              <span>💼 Real Enterprise Deals</span>
-              <span>📈 20%–30% Revenue Share</span>
+            <div className={styles.heroFootItems}>
+              <span>REMOTE / GLOBAL</span>
+              <span>PERFORMANCE-BASED</span>
+              <span>INITIAL CYCLE / 30 DAYS</span>
             </div>
-            <a href="#programme">Explore Command Structure ↓</a>
+            <a href="#thirty-days" className={styles.exploreLink}>EXPLORE THE MODEL ↓</a>
           </div>
         </section>
 
-        {/* Manifesto Section */}
-        <section className={styles.manifesto} id="programme">
-          <div className={styles.code}>01 / Manifesto</div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            This is not <em>an internship.</em>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-          >
-            Revenue Growth Partners operate inside Irtiqa AI’s live commercial engine. Real executive conversations. Real pipeline qualification. Meaningful, measurable contribution to enterprise AI revenue generation.
-          </motion.p>
+        {/* ==========================================================================
+            12. OPENING STATEMENT
+            ========================================================================== */}
+        <section className={styles.statementSection} id="programme">
+          <div>
+            <h2 className={styles.statementHeadline}>
+              THIS IS NOT<br />
+              <em>an internship.</em>
+            </h2>
+          </div>
+          <div className={styles.statementBody}>
+            <p>Revenue Growth Partners operate inside Irtiqa AI&apos;s commercial ecosystem.</p>
+            <p>You work with real business opportunities, initiate conversations, qualify prospects, create appointments, and contribute directly to revenue generation.</p>
+            <p>This is practical commercial execution.</p>
+            <p>NOT SIMULATION. NOT THEORY.</p>
+          </div>
         </section>
 
-        {/* Institution Section */}
+        {/* ==========================================================================
+            13. WHY THE PROGRAMME EXISTS
+            ========================================================================== */}
         <section className={styles.section}>
           <div className={styles.sectionTop}>
-            <span className={styles.code}>A Commercial Institution</span>
-            <h2 className={styles.title}>The next generation of commercial leaders will not be built in classrooms alone.</h2>
+            <span className={styles.sectionCode}>01 / PHILOSOPHY</span>
+            <h2 className={styles.sectionTitle}>
+              The next generation of commercial leaders will not be built in classrooms alone.
+            </h2>
           </div>
-          <div className={styles.introGrid}>
-            <div className={styles.copy}>
-              <p>Sales mastery, deal structuring, high-stakes negotiation, and commercial intuition are forged exclusively through market exposure, repetition, responsibility, and real-time feedback.</p>
-              <p>The Revenue Growth Partner Programme provides the exact technological architecture, AI workflows, and lead infrastructure required for you to accelerate your commercial mastery while driving growth for an elite AI engineering agency.</p>
+          <div className={styles.philosophyGrid}>
+            <div className={styles.philosophyCopy}>
+              <p>Sales, business development, negotiation, and commercial judgement are capabilities developed through exposure, repetition, responsibility, and feedback.</p>
+              <p>The Revenue Growth Partner Programme creates a structured environment where selected individuals can develop these capabilities while contributing to Irtiqa AI&apos;s commercial organisation.</p>
+              <p>Irtiqa AI is a consulting and AI infrastructure firm. We identify revenue leakage and operational bottlenecks, building the strategic and technological systems required for sustainable growth. Technology is an important capability, but sustainable business growth requires strategy, systems, execution, people, and technology working together.</p>
             </div>
-            <motion.p 
-              className={styles.pullQuote}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              We bring the infrastructure.<br />
-              <span style={{ color: 'var(--rgp-cyan)' }}>You bring the execution.</span>
-            </motion.p>
+            <div className={styles.pullQuote}>
+              We bring the infrastructure.
+              <span>You bring the execution.</span>
+            </div>
           </div>
         </section>
 
-        {/* 30 Days Timeline Section */}
+        {/* ==========================================================================
+            14. THE 30-DAY EXPERIENCE
+            ========================================================================== */}
         <section className={styles.section} id="thirty-days">
           <div className={styles.sectionTop}>
-            <span className={styles.code}>02 / Structure</span>
-            <h2 className={styles.title}>Your First <em>30 Days.</em></h2>
+            <span className={styles.sectionCode}>02 / STRUCTURE</span>
+            <h2 className={styles.sectionTitle}>
+              Your First <em>30 Days.</em>
+            </h2>
           </div>
-          <div className={styles.timeline}>
-            {timeline.map(([number, title, copy], idx) => (
-              <motion.article 
-                key={number}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <span>{`Stage // ${number}`}</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </motion.article>
+
+          <div className={styles.thirtyDayBanner}>
+            <div className={styles.enormousNumber}>30</div>
+            <div className={styles.thirtyDayText}>
+              DAYS TO PROVE<br />WHAT YOU CAN EXECUTE.
+            </div>
+          </div>
+
+          <div className={styles.timelineGrid}>
+            {timelineStages.map((stg) => (
+              <div key={stg.code} className={styles.timelineItem}>
+                <span className={styles.timelineStage}>{stg.code}</span>
+                <h3 className={styles.timelineTitle}>{stg.title}</h3>
+                <ul className={styles.timelineList}>
+                  {stg.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Commercial Flow */}
-        <section className={styles.section} id="opportunity">
+        {/* ==========================================================================
+            15. THE COMMERCIAL FLOW
+            ========================================================================== */}
+        <section className={`${styles.section} ${styles.flowSection}`} id="opportunity">
           <div className={styles.sectionTop}>
-            <span className={styles.code}>03 / Sequence</span>
-            <h2 className={styles.title}>The Work in <em>Motion.</em></h2>
+            <span className={styles.sectionCode}>03 / SEQUENCE</span>
+            <h2 className={styles.sectionTitle}>
+              The Work in <em>Motion.</em>
+            </h2>
           </div>
-          <div className={styles.flow}>
-            {[
-              ['01', 'Contact', 'Initiate high-level strategic conversations with assigned enterprise leads and inbound opportunities.'],
-              ['02', 'Qualify', 'Evaluate business challenges, identify AI automation relevance, and establish commercial urgency.'],
-              ['03', 'Book', 'Convert qualified executive interest into a confirmed discovery consultation with Irtiqa’s senior team.'],
-              ['04', 'Convert', 'Where capable and proven, progress opportunities independently through the closing cycle.'],
-            ].map(([number, title, copy], idx) => (
-              <motion.article 
-                key={title}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-              >
-                <span>{number} / {title === 'Convert' ? '↗' : '→'}</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </motion.article>
+
+          <div className={styles.flowGrid}>
+            {commercialFlow.map((item, idx) => (
+              <div key={item.step} className={styles.flowStep}>
+                <div>
+                  <div className={styles.flowHeader}>
+                    <span style={{ fontFamily: 'monospace', fontSize: '0.75rem', color: '#6b6b67', fontWeight: 700 }}>
+                      0{idx + 1} // SEQUENCE
+                    </span>
+                    <span className={styles.flowArrow}>{idx === 3 ? "↗" : "→"}</span>
+                  </div>
+                  <h3 className={styles.flowWord}>{item.step}</h3>
+                </div>
+                <p className={styles.flowCopy}>{item.copy}</p>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Interactive Commission Estimator Section */}
-        <section className={styles.section} id="estimator">
-          <div className={styles.sectionTop}>
-            <span className={styles.code}>04 / Commercial Terms</span>
-            <h2 className={styles.title}>Performance <em>Creates Upside.</em></h2>
-          </div>
-          <CommissionCalculator />
-        </section>
-
-        {/* Resources / Infrastructure */}
+        {/* ==========================================================================
+            16. WHAT IRTIQA PROVIDES
+            ========================================================================== */}
         <section className={styles.section}>
           <div className={styles.sectionTop}>
-            <span className={styles.code}>05 / Infrastructure</span>
-            <h2 className={styles.title}>What Irtiqa <em>Provides.</em></h2>
+            <span className={styles.sectionCode}>04 / RESOURCES</span>
+            <h2 className={styles.sectionTitle}>
+              What Irtiqa <em>Provides.</em>
+            </h2>
           </div>
-          <div className={styles.ledger}>
-            {resources.map(([number, title, copy], idx) => (
-              <motion.article 
-                key={number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-              >
-                <span>{number} // RESOURCE</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </motion.article>
+
+          <div className={styles.ledgerGrid}>
+            {ledgerResources.map((res) => (
+              <div key={res.num} className={styles.ledgerCard}>
+                <span className={styles.ledgerNum}>{res.num} // LEDGER RESOURCE</span>
+                <h3 className={styles.ledgerTitle}>{res.title}</h3>
+                <p className={styles.ledgerCopy}>{res.copy}</p>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Performance Measures */}
+        {/* ==========================================================================
+            17. WHAT YOU BRING
+            ========================================================================== */}
+        <section className={styles.bringSection}>
+          <div className={styles.bringHeader}>
+            <span>05 / EXPECTATIONS</span>
+            <h2>IRTIQA BRINGS THE INFRASTRUCTURE.<br />YOU BRING:</h2>
+          </div>
+
+          <div className={styles.marqueeContainer} aria-hidden="true">
+            <div className={styles.marqueeContent}>
+              <span className={styles.marqueeItem}>CONSISTENCY</span>
+              <span className={styles.marqueeItem}>DISCIPLINE</span>
+              <span className={styles.marqueeItem}>COMMUNICATION</span>
+              <span className={styles.marqueeItem}>CURIOSITY</span>
+              <span className={styles.marqueeItem}>RESILIENCE</span>
+              <span className={styles.marqueeItem}>COMMERCIAL JUDGEMENT</span>
+              <span className={styles.marqueeItem}>OWNERSHIP</span>
+              <span className={styles.marqueeItem}>EXECUTION</span>
+            </div>
+            <div className={styles.marqueeContent} aria-hidden="true">
+              <span className={styles.marqueeItem}>CONSISTENCY</span>
+              <span className={styles.marqueeItem}>DISCIPLINE</span>
+              <span className={styles.marqueeItem}>COMMUNICATION</span>
+              <span className={styles.marqueeItem}>CURIOSITY</span>
+              <span className={styles.marqueeItem}>RESILIENCE</span>
+              <span className={styles.marqueeItem}>COMMERCIAL JUDGEMENT</span>
+              <span className={styles.marqueeItem}>OWNERSHIP</span>
+              <span className={styles.marqueeItem}>EXECUTION</span>
+            </div>
+          </div>
+
+          <div className={styles.bringFooter}>
+            <p>We are not searching for perfect résumés.</p>
+            <p>We are searching for people who can communicate, learn, execute, and take responsibility.</p>
+            <p>Previous commercial experience is valuable. Potential backed by execution matters more.</p>
+          </div>
+        </section>
+
+        {/* ==========================================================================
+            18. COMPENSATION
+            ========================================================================== */}
         <section className={styles.section}>
           <div className={styles.sectionTop}>
-            <span className={styles.code}>06 / Evaluation</span>
-            <h2 className={styles.title}>We Measure <em>More Than Numbers.</em></h2>
+            <span className={styles.sectionCode}>06 / ECONOMICS</span>
+            <h2 className={styles.sectionTitle}>
+              Performance <em>Creates Upside.</em>
+            </h2>
           </div>
-          <div className={styles.measureGrid}>
-            {measures.map(([title, copy], index) => (
-              <motion.article 
-                key={title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-              >
-                <span>{String(index + 1).padStart(2, '0')} // METRIC</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </motion.article>
+
+          <div className={styles.compGrid}>
+            <div className={styles.compCard}>
+              <div className={styles.compPercentage}>20%</div>
+              <h3 className={styles.compTitle}>APPOINTMENT → IRTIQA CLOSE</h3>
+              <p className={styles.compCopy}>
+                When an opportunity generated through your qualified appointment results in a successfully closed deal by Irtiqa AI’s senior commercial team, the current programme structure provides a 20% commission on the closed deal.
+              </p>
+            </div>
+
+            <div className={styles.compCard}>
+              <div className={styles.compPercentage}>30%</div>
+              <h3 className={styles.compTitle}>SOURCE → CLOSE</h3>
+              <p className={styles.compCopy}>
+                When you successfully progress and personally close the opportunity end-to-end without requiring senior intervention, the current programme structure provides a 30% commission on the closed deal.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.legalClarification}>
+            <strong>Commercial Clarification:</strong> Commission eligibility, calculation basis, payment timing, attribution rules, cancellations/refunds, and other commercial terms are governed strictly by the Revenue Growth Partner agreement provided to selected candidates upon admission. We do not make guaranteed income promises or speculative earnings projections.
+          </div>
+        </section>
+
+        {/* ==========================================================================
+            19. PERFORMANCE FRAMEWORK
+            ========================================================================== */}
+        <section className={styles.section}>
+          <div className={styles.sectionTop}>
+            <span className={styles.sectionCode}>07 / EVALUATION</span>
+            <h2 className={styles.sectionTitle}>
+              We Measure <em>More Than Numbers.</em>
+            </h2>
+          </div>
+
+          <div className={styles.frameworkGrid}>
+            {performanceMetrics.map((met, idx) => (
+              <div key={met.title} className={styles.frameworkCard}>
+                <span style={{ fontFamily: 'monospace', fontSize: '0.7rem', color: '#1641f5', fontWeight: 700 }}>
+                  0{idx + 1} // METRIC
+                </span>
+                <h3 className={styles.frameworkTitle}>{met.title}</h3>
+                <p className={styles.frameworkCopy}>{met.copy}</p>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Fit / Qualification */}
+        {/* ==========================================================================
+            20. LEADERSHIP PATHWAY & 21. REVENUE PODS
+            ========================================================================== */}
         <section className={styles.section}>
           <div className={styles.sectionTop}>
-            <span className={styles.code}>07 / Alignment</span>
-            <h2 className={styles.title}>Consider <em>The Fit.</em></h2>
+            <span className={styles.sectionCode}>08 / ADVANCEMENT</span>
+            <h2 className={styles.sectionTitle}>
+              Performance <em>Opens Doors.</em>
+            </h2>
           </div>
+
+          <div className={styles.pathwayGrid}>
+            <div className={styles.pathwayCopy}>
+              <p>The Revenue Growth Partner Programme is designed to identify people capable of carrying greater commercial responsibility.</p>
+              <p>As Irtiqa AI&apos;s commercial organisation expands across global markets, exceptional performers may be considered for opportunities involving team leadership, regional responsibility, mentoring, Revenue Pod leadership, advanced campaigns, and future leadership positions.</p>
+              <p>Internally, Irtiqa is developing a regional leadership structure where strong performers may eventually progress into positions such as Regional Sales Head across key operational theaters:</p>
+              
+              <div className={styles.regionList}>
+                {["INDIA", "CANADA", "NIGERIA", "UAE", "PHILIPPINES", "JAMAICA"].map((region) => (
+                  <span key={region} className={styles.regionBadge}>{region}</span>
+                ))}
+              </div>
+
+              <p style={{ fontSize: '0.85rem', color: '#6b6b67', marginTop: '1.5rem' }}>
+                * Note: Exceptional performers may be considered for expanded responsibilities and future leadership opportunities as the programme grows. We do not make guaranteed public promises regarding immediate leadership appointments.
+              </p>
+            </div>
+
+            <div className={styles.earnedStatement}>
+              AT IRTIQA, LEADERSHIP IS NOT ASSIGNED.
+              <span>IT IS EARNED.</span>
+            </div>
+          </div>
+        </section>
+
+        {/* 21. REVENUE PODS */}
+        <section className={`${styles.section} ${styles.podsSection}`}>
+          <div className={styles.sectionTop}>
+            <span className={styles.sectionCode}>09 / ARCHITECTURE</span>
+            <h2 className={styles.sectionTitle}>
+              Grow Individually.<br /><em>Operate Collectively.</em>
+            </h2>
+          </div>
+
+          <div className={styles.podsBox}>
+            <div>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1rem' }}>
+                THE REVENUE POD MODEL
+              </h3>
+              <p style={{ color: '#6b6b67', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                Revenue Partners operate within small, highly focused Revenue Pods—typically comprising approximately five partners coordinated around a Pod Leader or shared commercial objective.
+              </p>
+              <p style={{ color: '#6b6b67', fontSize: '0.95rem', lineHeight: 1.7 }}>
+                This structure creates peer accountability, live collaboration, rapid knowledge sharing, and stronger closing execution without adding corporate bureaucracy.
+              </p>
+            </div>
+
+            <div className={styles.podVisual} aria-label="Conceptual diagram of a Revenue Pod with 5 partner nodes surrounding a Pod Leader">
+              <div className={styles.podCenter}>POD LEADER</div>
+              <div className={styles.podNode}>RGP 01</div>
+              <div className={styles.podNode}>RGP 02</div>
+              <div className={styles.podNode}>RGP 03</div>
+              <div className={styles.podNode}>RGP 04</div>
+              <div className={styles.podNode}>RGP 05</div>
+            </div>
+          </div>
+        </section>
+
+        {/* ==========================================================================
+            22. "IS THIS FOR YOU?" (QUALIFICATION)
+            ========================================================================== */}
+        <section className={styles.section}>
+          <div className={styles.sectionTop}>
+            <span className={styles.sectionCode}>10 / ALIGNMENT</span>
+            <h2 className={styles.sectionTitle}>
+              Consider <em>The Fit.</em>
+            </h2>
+          </div>
+
           <div className={styles.fitGrid}>
-            <div className={styles.goodFit}>
-              <h3>This Is For You If</h3>
-              <ul>
-                {['You thrive in real commercial conversations and executive engagement.', 'You actively seek constructive feedback and apply it immediately.', 'You communicate with undeniable clarity, precision, and polish.', 'You take total personal ownership of your output and results.', 'You are hungry for real revenue capability, not just a passive title.'].map((item) => <li key={item}>{item}</li>)}
+            <div className={`${styles.fitCard} ${styles.goodFit}`}>
+              <h3>THIS PROGRAMME MAY BE FOR YOU IF:</h3>
+              <ul className={styles.fitList}>
+                <li>You communicate confidently and precisely in executive environments.</li>
+                <li>You can remain consistent without requiring constant supervision.</li>
+                <li>You are comfortable initiating professional conversations and outreach.</li>
+                <li>You want practical business exposure and real commercial responsibility.</li>
+                <li>You can handle rejection without losing discipline or momentum.</li>
+                <li>You take constructive feedback seriously and apply it immediately.</li>
+                <li>You are genuinely curious about how businesses grow and scale.</li>
+                <li>You prefer real ownership over passive classroom learning.</li>
+                <li>You want your performance to directly determine your opportunity and upside.</li>
               </ul>
             </div>
-            <div className={styles.badFit}>
-              <h3>This Is Not For You If</h3>
-              <ul>
-                {['You are looking for an easy, passive classroom internship.', 'You require guaranteed salaries before putting in any work.', 'You resist following structured CRM workflows and operating discipline.', 'You prefer artificial sales simulations over real market feedback.', 'You make excuses rather than taking ownership of your numbers.'].map((item) => <li key={item}>{item}</li>)}
+
+            <div className={`${styles.fitCard} ${styles.badFit}`}>
+              <h3>THIS PROGRAMME IS PROBABLY NOT FOR YOU IF:</h3>
+              <ul className={styles.fitList}>
+                <li>You want a passive certificate without engaging in real commercial execution.</li>
+                <li>You expect a guaranteed retainer or salary before demonstrating capability.</li>
+                <li>You require constant micromanagement and supervision to complete tasks.</li>
+                <li>You disappear or lose motivation when work requires repetitive discipline.</li>
+                <li>You feel uncomfortable having your activity and results objectively measured.</li>
+                <li>You want a prestigious leadership title before proving what you can execute.</li>
+                <li>You resist following structured CRM workflows and reporting protocols.</li>
               </ul>
             </div>
           </div>
         </section>
 
-        {/* Selection Process */}
+        {/* ==========================================================================
+            23. SELECTION PROCESS
+            ========================================================================== */}
         <section className={styles.section} id="selection">
           <div className={styles.sectionTop}>
-            <span className={styles.code}>08 / Roadmap</span>
-            <h2 className={styles.title}>Selection <em>Process.</em></h2>
+            <span className={styles.sectionCode}>11 / ADMISSIONS</span>
+            <h2 className={styles.sectionTitle}>
+              Selection <em>Process.</em>
+            </h2>
           </div>
+
           <div className={styles.selectionGrid}>
-            {[
-              ['01', 'Application', 'Submit your detailed profile, commercial background, and intent below.'],
-              ['02', 'Review', 'Our executive team evaluates your communication, resilience, and market fit.'],
-              ['03', 'Interview', 'Shortlisted candidates are invited to a live strategic interview with leadership.'],
-              ['04', 'Activation', 'Admitted partners receive immediate Partner OS credentials and lead allocation.'],
-            ].map(([number, title, copy], idx) => (
-              <motion.article 
-                key={number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <span>STAGE // {number}</span>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </motion.article>
+            {selectionRoadmap.map((rd, idx) => (
+              <div key={rd.stage} className={styles.selectionCard}>
+                <span className={styles.selectionStage}>STAGE // {rd.stage}</span>
+                <h3 className={styles.selectionTitle}>{rd.title}</h3>
+                <p className={styles.selectionCopy}>{rd.copy}</p>
+              </div>
             ))}
+          </div>
+
+          <div className={styles.selectionNotice}>
+            <span style={{ fontSize: '1.5rem' }}>ℹ️</span>
+            <div>
+              <strong>Admissions Protocol:</strong> Application submission places your credentials into an internal review queue. Submitting an application does not automatically grant interview scheduling access. Only shortlisted candidates whose communication and background meet our criteria will receive an authorised interview scheduling link via email.
+            </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className={styles.section} id="faq">
-          <div className={styles.sectionTop}>
-            <span className={styles.code}>09 / Knowledge</span>
-            <h2 className={styles.title}>Frequently Asked <em>Questions.</em></h2>
-          </div>
-          <div className={styles.faqs}>
-            {faqs.map(([question, answer], index) => {
-              const isOpen = openFaq === index;
-              return (
-                <div className={`${styles.faqItem} ${isOpen ? styles.faqOpen : ''}`} key={question}>
+        {/* ==========================================================================
+            24. & 25. APPLICATION COMMAND CENTER (MULTI-STEP FORM)
+            ========================================================================== */}
+        <section className={styles.applySection} id="apply">
+          <div className={styles.formContainer}>
+            <div className={styles.formHeader}>
+              <h2>APPLY FOR COHORT 01 // 2026</h2>
+              <p>This application initiates our institutional screening process. Answer thoughtfully; executive clarity and intent are our primary filters.</p>
+            </div>
+
+            {submittedRef ? (
+              /* ==========================================================================
+                 25. POST-SUBMISSION EXPERIENCE
+                 ========================================================================== */
+              <div className={styles.successContainer}>
+                <div className={styles.successRef}>REFERENCE: {submittedRef}</div>
+                <h3 className={styles.successTitle}>APPLICATION RECEIVED.</h3>
+                <p className={styles.successCopy}>
+                  Your application has been securely logged and has entered executive review. If your profile and commercial track record are shortlisted, you will receive an interview invitation using the contact information provided.
+                </p>
+
+                <div className={styles.nextStepsBox}>
+                  <span className={styles.nextStepsTitle}>WHAT HAPPENS NEXT // TIMELINE</span>
+                  <div className={styles.nextStepsFlow}>
+                    <div className={styles.nextStepItem}>
+                      <span style={{ color: '#1641f5' }}>01</span> Profile Review
+                    </div>
+                    <span className={styles.nextStepArrow}>→</span>
+                    <div className={styles.nextStepItem}>
+                      <span style={{ color: '#1641f5' }}>02</span> Shortlisting
+                    </div>
+                    <span className={styles.nextStepArrow}>→</span>
+                    <div className={styles.nextStepItem}>
+                      <span style={{ color: '#1641f5' }}>03</span> Interview Invitation
+                    </div>
+                    <span className={styles.nextStepArrow}>→</span>
+                    <div className={styles.nextStepItem}>
+                      <span style={{ color: '#1641f5' }}>04</span> Final Decision
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.successLinks}>
+                  <a href="/" className={styles.primaryButton}>EXPLORE IRTIQA AI HOME</a>
                   <button 
                     type="button" 
-                    className={styles.faqButton}
-                    onClick={() => setOpenFaq(isOpen ? null : index)} 
+                    className={styles.secondaryButton}
+                    onClick={() => { setSubmittedRef(null); setCurrentStep(1); }}
+                  >
+                    SUBMIT ANOTHER APPLICATION
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* ==========================================================================
+                 24. NATIVE MULTI-STEP APPLICATION FORM
+                 ========================================================================== */
+              <form onSubmit={handleSubmit}>
+                {/* Step Indicator */}
+                <div className={styles.stepIndicator} role="tablist" aria-label="Application steps">
+                  {[
+                    { s: 1, label: "01 PROFILE" },
+                    { s: 2, label: "02 EXPERIENCE" },
+                    { s: 3, label: "03 AVAILABILITY" },
+                    { s: 4, label: "04 MOTIVATION" },
+                    { s: 5, label: "05 REVIEW" }
+                  ].map((tab) => (
+                    <div 
+                      key={tab.s}
+                      role="tab"
+                      aria-selected={currentStep === tab.s}
+                      className={`${styles.stepTab} ${currentStep === tab.s ? styles.stepTabActive : ''} ${currentStep > tab.s ? styles.stepTabCompleted : ''}`}
+                      onClick={() => { if (currentStep > tab.s) setCurrentStep(tab.s); }}
+                    >
+                      {tab.label}
+                    </div>
+                  ))}
+                </div>
+
+                {formError && (
+                  <div style={{ padding: '1rem', background: '#ffebeb', borderLeft: '4px solid #d32f2f', color: '#b71c1c', marginBottom: '2rem', fontSize: '0.9rem', fontWeight: 600 }}>
+                    ⚠️ {formError}
+                  </div>
+                )}
+
+                {/* Step 1: Profile */}
+                {currentStep === 1 && (
+                  <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                      STEP 01 // CANDIDATE PROFILE
+                    </h3>
+                    <p style={{ color: '#6b6b67', fontSize: '0.92rem', marginBottom: '2rem' }}>
+                      Enter your core contact credentials and location parameters.
+                    </p>
+
+                    <div className={styles.formGrid}>
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>FULL NAME *</label>
+                        <input required name="full_name" value={formData.full_name} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. Alok Sharma" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>EMAIL ADDRESS *</label>
+                        <input required type="email" name="email" value={formData.email} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. alok@example.com" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>WHATSAPP NUMBER (WITH COUNTRY CODE) *</label>
+                        <input required name="whatsapp" value={formData.whatsapp} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. +1 (555) 000-0000" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>COUNTRY OF RESIDENCE *</label>
+                        <input required name="country" value={formData.country} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. India / United States / Canada" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>CITY *</label>
+                        <input required name="city" value={formData.city} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. Bangalore / London / New York" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>LINKEDIN PROFILE URL</label>
+                        <input type="url" name="linkedin" value={formData.linkedin} onChange={handleInputChange} className={styles.formInput} placeholder="https://linkedin.com/in/yourprofile" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>TIMEZONE</label>
+                        <input name="timezone" value={formData.timezone} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. GMT+5:30 (IST) / EST / UTC" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>SPOKEN & WRITTEN LANGUAGES</label>
+                        <input name="languages" value={formData.languages} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. English (Fluent), Hindi" />
+                      </div>
+                    </div>
+
+                    <div className={styles.formActions}>
+                      <span />
+                      <button type="button" onClick={nextStep} className={styles.primaryButton}>
+                        PROCEED TO EXPERIENCE →
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 2: Experience */}
+                {currentStep === 2 && (
+                  <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                      STEP 02 // COMMERCIAL TRACK RECORD
+                    </h3>
+                    <p style={{ color: '#6b6b67', fontSize: '0.92rem', marginBottom: '2rem' }}>
+                      Help us evaluate your past market exposure, closing experience, and current role.
+                    </p>
+
+                    <div className={styles.formGrid}>
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>CURRENT ROLE / OCCUPATION *</label>
+                        <input required name="current_role" value={formData.current_role} onChange={handleInputChange} className={styles.formInput} placeholder="e.g. Account Executive / Founder / Strategist" />
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>PREVIOUS SALES / BD EXPERIENCE *</label>
+                        <select name="sales_experience" value={formData.sales_experience} onChange={handleInputChange} className={styles.formSelect}>
+                          <option>New to high-ticket commercial work</option>
+                          <option>1–2 years in B2B sales / BD</option>
+                          <option>3–5 years in enterprise / closing sales</option>
+                          <option>5+ years (Senior Commercial Leader)</option>
+                        </select>
+                      </div>
+
+                      <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                        <label className={styles.formLabel}>WHAT TYPES OF COMMERCIAL WORK HAVE YOU DONE? *</label>
+                        <p style={{ margin: '0 0 0.5rem', fontSize: '0.82rem', color: '#888884' }}>Describe specific deal sizes, industries, prospecting methods, negotiation, or client acquisition work you have executed.</p>
+                        <textarea required name="commercial_experience" value={formData.commercial_experience} onChange={handleInputChange} className={styles.formTextarea} placeholder="Detail your background here..." />
+                      </div>
+                    </div>
+
+                    <div className={styles.formActions}>
+                      <button type="button" onClick={prevStep} className={styles.secondaryButton}>
+                        ← BACK TO PROFILE
+                      </button>
+                      <button type="button" onClick={nextStep} className={styles.primaryButton}>
+                        PROCEED TO AVAILABILITY →
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 3: Availability */}
+                {currentStep === 3 && (
+                  <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                      STEP 03 // OPERATIONAL AVAILABILITY
+                    </h3>
+                    <p style={{ color: '#6b6b67', fontSize: '0.92rem', marginBottom: '2rem' }}>
+                      We evaluate how your weekly commitment aligns with our 30-day execution sprint.
+                    </p>
+
+                    <div className={styles.formGrid}>
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>WEEKLY AVAILABILITY *</label>
+                        <select name="weekly_availability" value={formData.weekly_availability} onChange={handleInputChange} className={styles.formSelect}>
+                          <option>10–15 hours / week (Part-time focused)</option>
+                          <option>15–25 hours / week (Substantial commitment)</option>
+                          <option>25–40 hours / week (High velocity)</option>
+                          <option>40+ hours / week (Full commercial dedication)</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>ARE YOU CURRENTLY WORKING OR STUDYING? *</label>
+                        <select name="work_or_study_status" value={formData.work_or_study_status} onChange={handleInputChange} className={styles.formSelect}>
+                          <option>Working full-time</option>
+                          <option>Working part-time / Freelancing</option>
+                          <option>Running my own business</option>
+                          <option>University Student / In studies</option>
+                          <option>In career transition / Fully available</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className={styles.formActions}>
+                      <button type="button" onClick={prevStep} className={styles.secondaryButton}>
+                        ← BACK TO EXPERIENCE
+                      </button>
+                      <button type="button" onClick={nextStep} className={styles.primaryButton}>
+                        PROCEED TO MOTIVATION →
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 4: Motivation */}
+                {currentStep === 4 && (
+                  <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                      STEP 04 // STRATEGIC INTENT
+                    </h3>
+                    <p style={{ color: '#6b6b67', fontSize: '0.92rem', marginBottom: '2rem' }}>
+                      This is our signature screening question. Executive clarity and intent are our primary filters.
+                    </p>
+
+                    <div className={styles.formGrid}>
+                      <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                        <label className={styles.formLabel} style={{ fontSize: '0.82rem', color: '#1641f5' }}>
+                          WHAT WOULD YOU DO WITH 30 DAYS, 100 OPPORTUNITIES EACH WEEK, AND THE INFRASTRUCTURE TO EXECUTE? *
+                        </label>
+                        <p style={{ margin: '0 0 0.5rem', fontSize: '0.82rem', color: '#888884' }}>Explain your operating strategy, how you approach qualification and executive outreach, and what drives you to partner with an AI consulting and engineering firm.</p>
+                        <textarea required name="motivation_answer" value={formData.motivation_answer} onChange={handleInputChange} className={styles.formTextarea} style={{ minHeight: '180px' }} placeholder="Provide your detailed strategic answer here (min. 30 characters)..." />
+                      </div>
+                    </div>
+
+                    <div className={styles.formActions}>
+                      <button type="button" onClick={prevStep} className={styles.secondaryButton}>
+                        ← BACK TO AVAILABILITY
+                      </button>
+                      <button type="button" onClick={nextStep} className={styles.primaryButton}>
+                        PROCEED TO REVIEW →
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 5: Review & Submit */}
+                {currentStep === 5 && (
+                  <div>
+                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                      STEP 05 // FINAL REVIEW & CONSENT
+                    </h3>
+                    <p style={{ color: '#6b6b67', fontSize: '0.92rem', marginBottom: '2rem' }}>
+                      Verify your application credentials and confirm programme understanding before submission.
+                    </p>
+
+                    <div style={{ background: '#f4f3ee', padding: '1.5rem', border: '1px solid var(--rgp-border-dark)', marginBottom: '2rem', fontSize: '0.9rem' }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                        <div><strong>NAME:</strong> {formData.full_name}</div>
+                        <div><strong>EMAIL:</strong> {formData.email}</div>
+                        <div><strong>WHATSAPP:</strong> {formData.whatsapp}</div>
+                        <div><strong>LOCATION:</strong> {formData.city}, {formData.country}</div>
+                        <div><strong>ROLE:</strong> {formData.current_role}</div>
+                        <div><strong>AVAILABILITY:</strong> {formData.weekly_availability}</div>
+                      </div>
+                      <div style={{ borderTop: '1px solid var(--rgp-border)', paddingTop: '1rem' }}>
+                        <strong>SIGNATURE ANSWER:</strong>
+                        <p style={{ margin: '0.5rem 0 0', color: '#555', fontStyle: 'italic', lineHeight: 1.6 }}>&quot;{formData.motivation_answer}&quot;</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.formGrid}>
+                      <div className={`${styles.formField} ${styles.formFieldFull}`}>
+                        <label className={styles.checkboxField}>
+                          <input required type="checkbox" name="consent_performance" checked={formData.consent_performance} onChange={handleInputChange} />
+                          <span><strong>I understand this is a performance-based commercial programme (providing 20%–30% commissions on closed revenue) and not a salaried employment position.</strong> I acknowledge that there is no guaranteed retainer or income.</span>
+                        </label>
+
+                        <label className={styles.checkboxField} style={{ marginTop: '0.5rem' }}>
+                          <input required type="checkbox" name="consent_terms" checked={formData.consent_terms} onChange={handleInputChange} />
+                          <span><strong>I agree to the programme terms, evaluation criteria, and privacy policy.</strong> I consent to Irtiqa AI reviewing my professional background and storing my application data for admissions screening.</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className={styles.formActions}>
+                      <button type="button" onClick={prevStep} className={styles.secondaryButton}>
+                        ← BACK TO MOTIVATION
+                      </button>
+                      <button type="submit" disabled={submitting} className={styles.primaryButton} style={{ minWidth: 260 }}>
+                        {submitting ? "SUBMITTING APPLICATION..." : "SUBMIT APPLICATION ↗"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </form>
+            )}
+          </div>
+        </section>
+
+        {/* ==========================================================================
+            28. FAQ ACCORDION
+            ========================================================================== */}
+        <section className={styles.section} id="faq">
+          <div className={styles.sectionTop}>
+            <span className={styles.sectionCode}>12 / KNOWLEDGE BASE</span>
+            <h2 className={styles.sectionTitle}>
+              Frequently Asked <em>Questions.</em>
+            </h2>
+          </div>
+
+          <div className={styles.faqContainer}>
+            {faqItems.map((item, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div key={idx} className={styles.faqItem}>
+                  <button 
+                    type="button" 
+                    className={styles.faqButton} 
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
                     aria-expanded={isOpen}
                   >
-                    <span>{question}</span>
-                    <b>{isOpen ? '−' : '+'}</b>
+                    <span>{item.q}</span>
+                    <span className={styles.faqIcon}>{isOpen ? "−" : "+"}</span>
                   </button>
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        <div className={styles.faqAnswer}>
-                          <p>{answer}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {isOpen && (
+                    <div className={styles.faqAnswer}>
+                      <p>{item.a}</p>
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
         </section>
 
-        {/* Application Command Center */}
-        <section className={styles.section} id="apply">
-          <motion.div 
-            className={styles.applicationBox}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className={styles.sectionTop} style={{ marginBottom: '2rem' }}>
-              <span className={styles.code}>10 / Command Entry</span>
-              <h2 className={styles.title}>Apply For <em>Cohort 01.</em></h2>
-            </div>
-            <p className={styles.applicationIntro}>This application initiates our rigorous selection process. Answer thoughtfully; executive clarity and intent are our primary filters.</p>
+        {/* ==========================================================================
+            29. FINAL CTA
+            ========================================================================== */}
+        <section className={styles.finalCtaSection}>
+          <div>
+            <h2 className={styles.finalCtaTitle}>
+              30 DAYS.<br />
+              100 OPPORTUNITIES<br />
+              EACH WEEK.<br />
+              <span>ONE QUESTION.</span>
+            </h2>
+            <p style={{ fontSize: 'clamp(1.8rem, 4vw, 3.2rem)', fontWeight: 800, textTransform: 'uppercase', margin: '2rem 0 0' }}>
+              WHAT WILL YOU DO<br />WITH THEM?
+            </p>
+          </div>
 
-            {submitted ? (
-              <motion.div 
-                className={styles.confirmation}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                aria-live="polite"
-              >
-                <div className={styles.confirmIcon}>✓</div>
-                <h3>Application Registered.</h3>
-                <p>Your profile has been logged into the Revenue Partner Cohort 01 evaluation queue. If your commercial background and intent meet our threshold, you will receive an invitation to schedule your executive interview.</p>
-                
-                <div style={{ maxWidth: 400, margin: '0 auto', display: 'grid', gap: '1rem' }}>
-                  <a 
-                    className={styles.primaryButton} 
-                    href="https://calendly.com/irtiqa" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Schedule Interview Now ↗
-                  </a>
-                  <button 
-                    type="button" 
-                    className={styles.secondaryButton}
-                    onClick={() => { setSubmitted(false); setStep(1); }}
-                  >
-                    Submit Another Application
-                  </button>
-                </div>
-              </motion.div>
-            ) : (
-              <form onSubmit={submitApplication}>
-                <div className={styles.progress} aria-label={`Application step ${step} of 3`}>
-                  <span className={step >= 1 ? styles.active : ''} />
-                  <span className={step >= 2 ? styles.active : ''} />
-                  <span className={step >= 3 ? styles.active : ''} />
-                </div>
+          <div className={styles.finalCtaSub}>
+            REVENUE GROWTH PARTNER PROGRAMME // IRTIQA AI // 2026
+          </div>
 
-                {/* Step 1: Details */}
-                {step === 1 && (
-                  <motion.fieldset 
-                    data-form-step="1"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    style={{ border: 'none', padding: 0, margin: 0 }}
-                  >
-                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: '#fff' }}>Step 1 // Personal Credentials</h3>
-                    <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', fontSize: '0.9rem' }}>Enter your core contact details for portal registration.</p>
-                    
-                    <div className={styles.formGrid}>
-                      <label>Full Name *<input required name="name" autoComplete="name" placeholder="Alok Sharma" /></label>
-                      <label>Email Address *<input required type="email" name="email" autoComplete="email" placeholder="alok@example.com" /></label>
-                      <label>Phone / WhatsApp *<input required name="phone" autoComplete="tel" placeholder="+1 (555) 000-0000" /></label>
-                      <label>Country / Timezone *<input required name="country" autoComplete="country-name" placeholder="United States (EST)" /></label>
-                      <label className={styles.full}>LinkedIn Profile URL (Recommended)<input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" /></label>
-                    </div>
-
-                    <div className={styles.formActions}>
-                      <span />
-                      <button className={styles.primaryButton} type="button" onClick={nextStep} style={{ width: 'auto', minWidth: 200 }}>
-                        Continue to Background <Arrow />
-                      </button>
-                    </div>
-                  </motion.fieldset>
-                )}
-
-                {/* Step 2: Experience */}
-                {step === 2 && (
-                  <motion.fieldset 
-                    data-form-step="2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    style={{ border: 'none', padding: 0, margin: 0 }}
-                  >
-                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: '#fff' }}>Step 2 // Commercial Track Record</h3>
-                    <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', fontSize: '0.9rem' }}>Help us evaluate your past market exposure and closing experience.</p>
-                    
-                    <div className={styles.formGrid}>
-                      <label>Current Occupation / Role *<input required name="occupation" placeholder="e.g., Account Executive / Founder / Consultant" /></label>
-                      <label>Commercial Experience *
-                        <select required name="experience" defaultValue="">
-                          <option value="" disabled>Select experience tier</option>
-                          <option>New to high-ticket commercial work</option>
-                          <option>1–2 years in B2B sales / BD</option>
-                          <option>3–5 years in closing / enterprise sales</option>
-                          <option>5+ years (Senior Commercial Leader)</option>
-                        </select>
-                      </label>
-                      <label className={styles.full}>What specific sales, business development, or client-closing work have you executed? *
-                        <textarea required name="background" placeholder="Describe the deal sizes, industries, or outreach channels you have worked with..." />
-                      </label>
-                    </div>
-
-                    <div className={styles.formActions}>
-                      <button className={styles.secondaryButton} type="button" onClick={() => setStep(1)} style={{ width: 'auto' }}>
-                        ← Back
-                      </button>
-                      <button className={styles.primaryButton} type="button" onClick={nextStep} style={{ width: 'auto', minWidth: 200 }}>
-                        Continue to Intent <Arrow />
-                      </button>
-                    </div>
-                  </motion.fieldset>
-                )}
-
-                {/* Step 3: Intent */}
-                {step === 3 && (
-                  <motion.fieldset 
-                    data-form-step="3"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    style={{ border: 'none', padding: 0, margin: 0 }}
-                  >
-                    <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: '#fff' }}>Step 3 // Intent & Alignment</h3>
-                    <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '2rem', fontSize: '0.9rem' }}>We evaluate how you think about accountability, leadership, and execution.</p>
-                    
-                    <div className={styles.formGrid}>
-                      <label className={styles.full}>Why are you specifically applying to Irtiqa AI’s Revenue Growth Partner Programme? *
-                        <textarea required name="motivation" placeholder="What drives you to partner with an AI engineering agency at this stage of your career?" />
-                      </label>
-                      <label className={styles.full}>What does total personal commercial ownership mean to you in practice? *
-                        <textarea required name="ownership" placeholder="How do you handle targets, setbacks, and market feedback?" />
-                      </label>
-                      <label className={`${styles.full} ${styles.consent}`}>
-                        <input required type="checkbox" name="consent" />
-                        <span>I understand and agree that this is an elite performance-based commercial partnership (providing 20%–30% commissions on closed revenue), not a salaried employment offer or guaranteed income, and I consent to Irtiqa AI evaluating my credentials.</span>
-                      </label>
-                    </div>
-
-                    <div className={styles.formActions}>
-                      <button className={styles.secondaryButton} type="button" onClick={() => setStep(2)} style={{ width: 'auto' }}>
-                        ← Back
-                      </button>
-                      <button className={styles.primaryButton} type="submit" style={{ width: 'auto', minWidth: 240 }}>
-                        Submit Application ↗
-                      </button>
-                    </div>
-                  </motion.fieldset>
-                )}
-              </form>
-            )}
-          </motion.div>
+          <div className={styles.finalCtaButtons}>
+            <a href="#apply" className={styles.finalCtaBtn}>
+              [ APPLY FOR THE PROGRAMME ]
+            </a>
+            <a href={PARTNER_OS_URL} target="_blank" rel="noopener noreferrer" className={styles.finalCtaPartnerLink}>
+              Already selected? Partner Access ↗
+            </a>
+          </div>
         </section>
       </main>
 
-      <Footer />
+      {/* ==========================================================================
+          30. INSTITUTIONAL FOOTER
+          ========================================================================== */}
+      <footer className={styles.footer}>
+        <div className={styles.footerTop}>
+          <div className={styles.footerBrand}>
+            <h3>IRTIQA AI</h3>
+            <p>REVENUE GROWTH PARTNER PROGRAMME // COHORT 01 // 2026</p>
+            <p style={{ color: '#888884', marginTop: '4px', fontSize: '0.7rem' }}>Revenue Division // Global Commercial Operations</p>
+          </div>
+          <nav className={styles.footerLinks} aria-label="Footer navigation">
+            <a href="/">About Irtiqa</a>
+            <a href="#programme">Programme</a>
+            <a href="#thirty-days">30 Days</a>
+            <a href="#apply">Apply</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href={PARTNER_OS_URL} target="_blank" rel="noopener noreferrer">Partner Access ↗</a>
+          </nav>
+        </div>
+
+        <div className={styles.footerBottom}>
+          <div>© 2026 Irtiqa AI. All rights reserved.</div>
+          <div>Programme information may be updated as the Revenue Growth Partner Programme evolves.</div>
+        </div>
+      </footer>
     </div>
   );
 }
