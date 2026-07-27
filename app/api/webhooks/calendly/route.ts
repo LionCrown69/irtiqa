@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email';
 import { getConfirmationEmailHtmlLight } from '@/emails/templates';
+import { pushToGoogleSheet } from '@/lib/google-sheets';
 
 // NOTE: You'll need to set your Calendly Webhook Signing Key in your environment variables.
 const CALENDLY_WEBHOOK_SIGNING_KEY = process.env.CALENDLY_WEBHOOK_SIGNING_KEY;
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
       
       // 1. Extract Custom Questions
       let companyName = "Your Company";
-      let companyWebsite = "#";
+      let companyWebsite = "Not Provided";
       let refId = payload.tracking?.utm_campaign || Math.random().toString(36).substring(2, 8).toUpperCase();
       
       if (payload.questions_and_answers && Array.isArray(payload.questions_and_answers)) {
@@ -82,6 +83,18 @@ export async function POST(req: Request) {
         to: inviteeEmail,
         subject: "Your Revenue Audit is Confirmed — Irtiqa AI",
         html,
+      });
+
+      // Push to Google Sheets Marketing List
+      await pushToGoogleSheet({
+        name: inviteeName,
+        email: inviteeEmail,
+        companyName: companyName,
+        companyWebsite: companyWebsite !== "#" ? companyWebsite : "",
+        meetingDate: meetingDateStr,
+        meetingTime: meetingTimeStr,
+        refId: refId,
+        source: "Calendly Webhook"
       });
 
       // --- REMINDER SCHEDULING ---

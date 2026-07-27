@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BookingConfirmation from './BookingConfirmation';
 import {
   bookSlot,
@@ -30,10 +30,41 @@ const BookSection: React.FC = () => {
     revenue: '',
     challenge: ''
   });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'rejected'>('idle');
   const [step, setStep] = useState<'details' | 'picker'>('details');
   const [errorMessage, setErrorMessage] = useState('');
   const [bookingData, setBookingData] = useState<BookingData | null>(null);
+
+  // UI for Rejection State
+  if (status === 'rejected') {
+    return (
+      <section className="py-32 bg-[#0C0C0B] text-[#FAFAF8] relative overflow-hidden" id="book">
+        <div className="max-w-3xl mx-auto px-6 text-center relative z-10 animate-fade-in-up">
+          <div className="w-20 h-20 bg-[#1A1A18] rounded-full flex items-center justify-center mx-auto mb-8 border border-[#242422]">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EBE7D6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ fontFamily: 'var(--display)' }}>
+            Application Reviewed
+          </h2>
+          <p className="text-xl text-[#888884] mb-8 leading-relaxed">
+            Currently, our custom systems are engineered specifically for businesses generating $20k+/mo in baseline revenue.
+          </p>
+          <div className="p-6 bg-[#1A1A18] border border-[#242422] rounded-xl text-left max-w-xl mx-auto mb-10 shadow-lg">
+            <h3 className="text-[#FAFAF8] font-bold mb-2">Next Steps</h3>
+            <p className="text-[#888884] text-sm leading-relaxed">
+              We have dispatched an email to <strong className="text-[#FAFAF8]">{formData.email}</strong> with a free roadmap outlining how to optimize your organic outbound and pipeline velocity to hit the threshold. 
+            </p>
+          </div>
+          <button 
+            onClick={() => setStatus('idle')}
+            className="px-8 py-4 bg-[#FAFAF8] text-[#0C0C0B] font-bold rounded-lg hover:bg-[#EBE7D6] transition-all"
+          >
+            Return to Homepage
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   // Picker state
   const [availableDates, setAvailableDates] = useState<string[]>([]);
@@ -42,6 +73,11 @@ const BookSection: React.FC = () => {
   const [selectedSlot, setSelectedSlot] = useState<BookingSlot | null>(null);
   const [isLoadingSlots, setIsLoadingSlots] = useState(false);
   const [challengeSelect, setChallengeSelect] = useState<string>('');
+  const [userTimezone, setUserTimezone] = useState<string>('Asia/Calcutta');
+
+  useEffect(() => {
+    setUserTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Calcutta");
+  }, []);
 
   const handleChallengeSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -113,6 +149,20 @@ const BookSection: React.FC = () => {
     setErrorMessage('');
 
     try {
+      // 1. APPLICATION EVALUATION (Backend Check)
+      const evalRes = await fetch('/api/bookings/evaluate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const evalData = await evalRes.json();
+      
+      if (evalData.status === "rejected") {
+        setStatus("rejected");
+        return; // Halt the booking flow entirely
+      }
+
+      // 2. BLOCK CALENDAR SLOT (Passed Evaluation)
       console.log('Finalizing booking for:', selectedSlot.date, selectedSlot.time);
       const result = await bookSlot(selectedSlot, {
         name: formData.name,
@@ -144,30 +194,27 @@ const BookSection: React.FC = () => {
         reference: result.reference
       });
 
-      // Zero-Backend API Email Dispatch
+      // Native Booking API Dispatch (Replaces Web3Forms)
       try {
-        await fetch('https://api.web3forms.com/submit', {
+        await fetch('/api/bookings/create', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            access_key: "1b26453e-2075-4ef6-b0c2-d4a33e4487bc",
-            subject: `New Growth Audit Booked: ${formData.company}`,
-            from_name: "Irtiqa Booking System",
-            "Audit Date": result.slot.date,
-            "Audit Time": result.slot.time,
-            Name: formData.name,
-            Email: formData.email,
-            Company: formData.company,
-            Revenue: formData.revenue,
-            Challenge: formData.challenge,
-            Reference: result.reference
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            revenue: formData.revenue,
+            challenge: formData.challenge,
+            date: result.slot.date,
+            time: result.slot.time,
+            timezone: userTimezone,
+            reference: result.reference
           })
         });
       } catch (e) {
-        console.warn('Email dispatch failed:', e);
+        console.warn('Native booking dispatch failed:', e);
       }
 
       setStatus('success');
@@ -180,21 +227,46 @@ const BookSection: React.FC = () => {
 
 
   return (
-    <section id="book">
+    <section id="work-with-irtiqa" style={{ position: 'relative' }}>
+      <div id="book" style={{ position: 'absolute', top: '-100px' }} />
       <div className="book-inner">
         {status === 'success' ? (
           <BookingConfirmation formData={formData} booking={bookingData || undefined} />
         ) : (
           <>
             <div className="reveal">
-              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Free Audit Call</div>
-              <h2 className="book-title">Book your free<br /><em>Audit Call.</em></h2>
-              <p className="book-sub desktop-only">One hour, maximum depth. Even if you decide we aren\'t the right fit, you will walk away knowing exactly where your business is leaking revenue and what to do about it. That is worth the hour regardless. Within 24 hours, you receive a custom Growth Report.</p>
-              <p className="book-sub mobile-only">Free 1-hour audit. Leave with a clear leakage map and next steps.</p>
+              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>WORK WITH IRTIQA</div>
+              <h2 className="book-title">Two distinct ways to<br /><em>engage our firm.</em></h2>
+              <p className="book-sub desktop-only">Whether you need standalone strategic advisory, custom AI infrastructure build out, or a selective long-term operating partnership, choose the pathway that aligns with your stage.</p>
+              <p className="book-sub mobile-only">Choose your engagement model: Standard Build or Cohort 02.</p>
+
+              {/* Dual Funnel Selection Cards */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', margin: '40px 0 48px', textAlign: 'left' }}>
+                <div style={{ background: 'var(--w2)', padding: '24px', borderRadius: '10px', border: '2px solid #1641F5', boxShadow: '0 8px 24px rgba(22,65,245,0.08)' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>OPTION 01 // ACTIVE FUNNEL BELOW</div>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>Standard Engagement & Advisory</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--sub)', lineHeight: '1.5', marginBottom: '16px' }}>For businesses seeking custom AI architecture, revenue pipeline diagnosis, or operational engineering without equity dilution.</p>
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5' }}>↓ Complete form below to schedule consultation</div>
+                </div>
+
+                <div style={{ background: '#0C0C0B', padding: '24px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#60A5FA', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>OPTION 02 // SELECTIVE ADMISSION</div>
+                    <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Cohort 02 Operating Partnership</h3>
+                    <p style={{ fontSize: '0.9rem', color: '#9CA3AF', lineHeight: '1.5', marginBottom: '16px' }}>For founders building credible companies who want an embedded operating growth partner and long-term alignment.</p>
+                  </div>
+                  <a href="/cohort-02" style={{ background: '#1641F5', color: '#fff', fontSize: '13px', fontWeight: 700, padding: '10px 16px', borderRadius: '6px', textAlign: 'center', textDecoration: 'none', display: 'block', transition: 'background 0.2s' }}>
+                    Apply to Cohort 02 ↗
+                  </a>
+                </div>
+              </div>
             </div>
 
             {step === 'details' ? (
               <form className="book-form book-compact reveal d2" onSubmit={handleGoToPicker}>
+                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--ink)', marginBottom: '20px', borderBottom: '1px solid rgba(12,12,11,0.08)', paddingBottom: '12px' }}>
+                  Option 01: Schedule a Systems Consultation & Roadmap Discussion
+                </div>
                 <div className="form-grid">
                   <div className="form-field">
                     <label className="form-label">Full Name</label>
@@ -283,7 +355,7 @@ const BookSection: React.FC = () => {
                   )}
                 </div>
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
-                  {isLoadingSlots ? 'Loading Calendar...' : "Show Me Where I'm Leaking Revenue →"}
+                  {isLoadingSlots ? 'Loading Calendar...' : "Schedule Systems Consultation →"}
                 </button>
 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
@@ -307,6 +379,27 @@ const BookSection: React.FC = () => {
                     <h3>Select Date & Time</h3>
                     <p className="picker-subtitle">Anytime between 9:00 AM - 5:30 PM</p>
                   </div>
+                </div>
+
+                <div style={{ padding: '0 2rem', marginBottom: '1.5rem', textAlign: 'left' }}>
+                  <label className="form-label" style={{ fontSize: '0.85rem' }}>Your Timezone</label>
+                  <select
+                    className="form-select"
+                    value={userTimezone}
+                    onChange={(e) => setUserTimezone(e.target.value)}
+                    style={{ padding: '0.5rem', fontSize: '0.9rem', marginBottom: '0.5rem', width: '100%', maxWidth: '300px' }}
+                  >
+                    <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                    <option value="America/Denver">Mountain Time (MT)</option>
+                    <option value="America/Chicago">Central Time (CT)</option>
+                    <option value="America/New_York">Eastern Time (ET)</option>
+                    <option value="Europe/London">London (GMT)</option>
+                    <option value="Europe/Berlin">Central Europe (CET)</option>
+                    <option value="Asia/Dubai">Dubai (GST)</option>
+                    <option value="Asia/Calcutta">India (IST)</option>
+                    <option value="Asia/Singapore">Singapore (SGT)</option>
+                    <option value="Australia/Sydney">Sydney (AEST)</option>
+                  </select>
                 </div>
 
                 <div className="picker-calendly-layout">

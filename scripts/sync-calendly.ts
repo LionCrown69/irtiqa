@@ -73,7 +73,8 @@ async function syncCalendlyEvents() {
     // 3. Get Active Scheduled Events
     // Note: status=active ensures we don't email canceled events
     // sort=start_time:desc gets the most recent ones first
-    const eventsRes = await fetchCalendly(`https://api.calendly.com/scheduled_events?user=${userUri}&status=active&sort=start_time:desc`);
+    const yesterdayIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const eventsRes = await fetchCalendly(`https://api.calendly.com/scheduled_events?user=${userUri}&status=active&min_start_time=${yesterdayIso}&sort=start_time:desc&count=100`);
     const events = eventsRes.collection;
 
     console.log(`Found ${events.length} active events.`);
@@ -89,10 +90,10 @@ async function syncCalendlyEvents() {
       // but for 1-on-1s, processing the event once is sufficient.
       // To be strictly safe, we track invitee URIs instead of event URIs.
       
-      // Strict safety lock: Only process events booked in the last 24 hours
-      const createdDate = new Date(event.created_at);
-      const cutoffDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
-      if (createdDate < cutoffDate) {
+      // We only skip events that have already happened
+      const d = new Date(event.start_time);
+      const now = Date.now();
+      if (d.getTime() < now) {
          continue;
       }
 
@@ -103,6 +104,15 @@ async function syncCalendlyEvents() {
       for (const invitee of invitees) {
         const inviteeUri = invitee.uri;
         let state = processedEvents[inviteeUri] || { confirmed: false, reminded_12hr: false, reminded_5min: false };
+
+        // ANTI-SPAM SAFEGUARD: If this person booked more than 3 hours ago, we assume they 
+        // already received their confirmation from the old system. We silently mark them as 
+        // confirmed so we don't spam them with a duplicate, but we STILL process them for reminders!
+        const createdDate = new Date(event.created_at);
+        const hoursSinceBooking = (now - createdDate.getTime()) / (1000 * 60 * 60);
+        if (hoursSinceBooking > 3 && !state.confirmed) {
+            state.confirmed = true;
+        }
 
         const inviteeEmail = invitee.email;
         const inviteeName = invitee.name;
@@ -120,8 +130,9 @@ async function syncCalendlyEvents() {
         }
 
         const d = new Date(event.start_time);
-        const meetingDateStr = d.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        const meetingTimeStr = d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+        const timeZone = invitee.timezone || "UTC";
+        const meetingDateStr = new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(d);
+        const meetingTimeStr = new Intl.DateTimeFormat('en-US', { timeZone, hour: '2-digit', minute: '2-digit' }).format(d);
 
         const locationData = event.location;
         const joinUrl = locationData?.join_url || invitee.join_url || "https://calendly.com/irtiqa";
@@ -147,7 +158,6 @@ async function syncCalendlyEvents() {
           clientEmail: inviteeEmail
         };
 
-        const now = Date.now();
         const timeUntilMeetingMs = d.getTime() - now;
         const hoursUntilMeeting = timeUntilMeetingMs / (1000 * 60 * 60);
 
@@ -160,8 +170,8 @@ async function syncCalendlyEvents() {
           sentCount++;
         }
 
-        // 2. 12-Hour Reminder Email
-        if (state.confirmed && !state.reminded_12hr && hoursUntilMeeting <= 12 && hoursUntilMeeting > 0) {
+        // 2. 12-Hour Reminder Email (Strictly only send if between 11 and 12.1 hours away)
+        if (state.confirmed && !state.reminded_12hr && hoursUntilMeeting <= 12.1 && hoursUntilMeeting > 11) {
           console.log(`📧 Sending 12-hour reminder to: ${inviteeEmail}`);
           const html = getReminderEmailHtml12hr(props);
           await sendEmail({ to: inviteeEmail, subject: "Action Required: Prep for your Audit Call — Irtiqa AI", html });
@@ -169,8 +179,8 @@ async function syncCalendlyEvents() {
           sentCount++;
         }
 
-        // 3. 5-Minute Reminder Email
-        if (state.confirmed && !state.reminded_5min && hoursUntilMeeting <= (5 / 60) && hoursUntilMeeting > 0) {
+        // 3. 5-Minute Reminder Email (Strictly only send if between 0 and 15 minutes away)
+        if (state.confirmed && !state.reminded_5min && hoursUntilMeeting <= (15 / 60) && hoursUntilMeeting > 0) {
           console.log(`📧 Sending 5-minute reminder to: ${inviteeEmail}`);
           const html = getReminderEmailHtml5min(props);
           await sendEmail({ to: inviteeEmail, subject: "Starting Now: Your Revenue Audit", html });

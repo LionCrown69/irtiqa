@@ -51,44 +51,44 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   const problems = [
     {
       num: '01',
-      title: 'Silent Revenue Leakage',
-      desc: 'Most businesses don\'t lose revenue dramatically. They lose it quietly when leads vanish due to unclear routing and ownership.'
+      title: 'Operational Capacity Ceilings',
+      desc: 'Revenue plateaus when operational systems fail to support scale. We identify and resolve the structural bottlenecks capping organizational growth.'
     },
     {
       num: '02',
-      title: 'Follow-up breaks when it matters most',
-      desc: 'Warm conversations go cold because the internal machinery to follow up consistently doesn\'t exist. Money is left on the table.'
+      title: 'Inefficient Resource Allocation',
+      desc: 'High-value human capital is often wasted on repetitive follow-up and data entry. We deploy autonomous systems to maximize workforce efficiency.'
     },
     {
       num: '03',
-      title: 'Your team is doing work systems should own',
-      desc: 'Scheduling, data entry, qualification, CRM updates, handoffs — hours spent here are hours not spent on revenue-generating activities.'
+      title: 'Executive Time Misallocation',
+      desc: 'When leadership is mired in operational labor and manual pipeline management, strategic growth initiatives suffer. We engineer systems that return executive time.'
     },
     {
       num: '04',
-      title: 'More leads into a broken machine is waste',
-      desc: 'If the revenue journey is inefficient, extra traffic just increases your cost of acquisition while leakage stays exactly the same.'
+      title: 'Suboptimal CAC and Pipeline Friction',
+      desc: 'Structural flaws in the conversion journey inflate Customer Acquisition Cost (CAC). We streamline the pipeline to maximize ROI on acquisition capital.'
     },
     {
       num: '05',
-      title: 'The founder becomes the bottleneck',
-      desc: 'When one person carries sales, ops, delivery, and strategy, growth stalls — not because demand is low, but because infrastructure is missing.'
+      title: 'Fragmented Technology Stacks',
+      desc: 'Disjointed software deployments create data silos and require manual intervention. We architect centralized, autonomous ecosystems.'
     }
   ];
 
   return (
-    <section id="problem">
+    <section id="problem-section" style={{ background: 'var(--w2)', borderBottom: '1px solid rgba(12,12,11,0.08)' }}>
       <div className="problem-layout">
         <div>
-          <div className="section-chip reveal">The Problem</div>
+          <div className="section-chip reveal" style={{ background: 'rgba(22,65,245,0.08)', color: '#1641F5', borderColor: 'rgba(22,65,245,0.2)' }}>PROPRIETARY METHODOLOGY // INTELLECTUAL PROPERTY</div>
           <h2 className="problem-title reveal d1">
-            Most {industry ? industry.title.toLowerCase() : 'businesses'} don’t lose revenue dramatically. They lose it <em>quietly.</em>
+            The Revenue Operations Model™: <em>Diagnostic Rigor.</em>
           </h2>
           <p className="problem-desc reveal d2 desktop-only">
-            The real issue is rarely marketing. It’s revenue operations infrastructure: routing, follow-up, qualification, booking, onboarding, and retention — disconnected, manual, or nonexistent{location ? ` in ${location.name}` : ''}.
+            Before we deploy custom AI infrastructure or enter an operating partnership, we conduct a structural audit of your commercial economics. Our diagnostic calculator quantifies where operational friction and slow response velocity are capping your growth.
           </p>
           <p className="problem-desc reveal d2 mobile-only">
-            Revenue leaks at routing, follow-up, and booking{location ? ` in ${location.name}` : ''}.
+            Growth stalls when operational complexity outpaces system capabilities{location ? ` in ${location.name}` : ''}.
           </p>
 
           <div className="problem-points reveal d3">

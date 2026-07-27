@@ -3,7 +3,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { sendEmail } from '../src/lib/email.js';
 import { getConfirmationEmailHtmlLight } from '../src/emails/templates.js';
-import { getReminderEmailHtml12hr, getReminderEmailHtml5min } from '../src/emails/reminder-templates.js';
+import { getReminderEmailHtml12hr, getReminderEmailHtml5min, getAuthorityEmailHtml48hr } from '../src/emails/reminder-templates.js';
+import { getShadowAuditEmailHtml } from '../src/emails/shadow-audit-template.js';
+import { getRejectionEmailHtml } from '../src/emails/rejection-template.js';
 
 // Load .env since this runs outside Next.js
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -21,7 +23,7 @@ if (fs.existsSync(envPath)) {
   });
 }
 
-const TARGET_EMAIL = "14050spsalokmishra@gmail.com";
+const TARGET_EMAIL = "lioncrown077@gmail.com";
 
 async function testAllEmails() {
   console.log(`📤 Sending all 3 test emails to ${TARGET_EMAIL}...`);
@@ -52,17 +54,33 @@ async function testAllEmails() {
     const html1 = getConfirmationEmailHtmlLight(props);
     await sendEmail({ to: TARGET_EMAIL, subject: "Your Revenue Audit is Confirmed — Irtiqa AI (TEST)", html: html1 });
 
-    // 2. 12-Hour Reminder
-    console.log("2. Sending 12-Hour Reminder Email...");
-    const html2 = getReminderEmailHtml12hr(props);
-    await sendEmail({ to: TARGET_EMAIL, subject: "Action Required: Prep for your Audit Call — Irtiqa AI (TEST)", html: html2 });
+    // 2. 48-Hour Authority Drip
+    console.log("2. Sending 48-Hour Authority Drip Email...");
+    const html2 = getAuthorityEmailHtml48hr(props, "Founder is bottleneck");
+    await sendEmail({ to: TARGET_EMAIL, subject: "Private Breakdown: Scaling Your Operations — Irtiqa AI (TEST)", html: html2 });
 
-    // 3. 5-Minute Reminder
-    console.log("3. Sending 5-Minute Reminder Email...");
-    const html3 = getReminderEmailHtml5min(props);
-    await sendEmail({ to: TARGET_EMAIL, subject: "Starting Now: Your Revenue Audit (TEST)", html: html3 });
+    // 3. 24-Hour Shadow Audit Drip
+    console.log("3. Sending 24-Hour Shadow Audit Email...");
+    const auditResults = { hasPixel: false, hasAnalytics: false, hasClearCta: false, titleOptimized: false, loadSpeedStatus: "Analyzed" };
+    const html3 = getShadowAuditEmailHtml("Alok", "test-agency.com", auditResults);
+    await sendEmail({ to: TARGET_EMAIL, subject: "We just audited your website — Irtiqa AI (TEST)", html: html3 });
 
-    console.log("✅ All 3 test emails sent successfully!");
+    // 4. 12-Hour Reminder
+    console.log("4. Sending 12-Hour Reminder Email...");
+    const html4 = getReminderEmailHtml12hr(props);
+    await sendEmail({ to: TARGET_EMAIL, subject: "Action Required: Prep for your Audit Call — Irtiqa AI (TEST)", html: html4 });
+
+    // 5. 5-Minute Reminder
+    console.log("5. Sending 5-Minute Reminder Email...");
+    const html5 = getReminderEmailHtml5min(props);
+    await sendEmail({ to: TARGET_EMAIL, subject: "Starting Now: Your Revenue Audit (TEST)", html: html5 });
+
+    // 6. Rejection Email (For leads under $5k/mo)
+    console.log("6. Sending Rejection Email...");
+    const html6 = getRejectionEmailHtml("Alok");
+    await sendEmail({ to: TARGET_EMAIL, subject: "Regarding your application for Irtiqa AI (TEST)", html: html6 });
+
+    console.log("✅ All 6 test emails sent successfully!");
 
   } catch (error) {
     console.error("❌ Error sending test emails:", error);

@@ -2,93 +2,77 @@ import React from 'react';
 import { TestimonialsColumn, type TestimonialsColumnItem } from './ui/testimonials-columns-1';
 
 const TestimonialsSection: React.FC = () => {
-  const testimonials: TestimonialsColumnItem[] = [
+  const scopes: TestimonialsColumnItem[] = [
     {
-      text: 'What surprised me most was how much thinking went into understanding our business before anything was built. The audit alone changed how I understood where we were losing revenue. The systems came after — and they work — but the clarity from the process was the real value.',
-      name: 'Marcus K.',
-      role: 'Founder, Enterprise Advisory Group'
+      text: 'Audited existing sales pipelines and engineered an autonomous qualification intake engine, replacing robotic SDR scripts with diagnostic executive routing.',
+      name: 'B2B Advisory Firm',
+      role: 'Commercial Architecture & Intake Scope'
     },
     {
-      text: 'Before Irtiqa, replies sat for hours and we leaked high-intent leads daily. After launch, first-response speed and appointment quality improved in the same month.',
-      name: 'Ayaan K.',
-      role: 'Founder, Growth Advisory'
+      text: 'Deployed custom data synchronization and automated appointment scheduling across fragmented CRM tools, removing manual admin and improving SLA compliance.',
+      name: 'Multi-Location Healthcare Practice',
+      role: 'Infrastructure & SLA Automation Scope'
     },
     {
-      text: 'What changed most was consistency. Every lead now gets the same clean journey from inquiry to booking without depending on team memory.',
-      name: 'Nour A.',
-      role: 'Operations Director, Real Estate Group'
+      text: 'Partnered alongside management to restructure the commercial model, optimize customer acquisition economics, and deploy sovereign internal operating tools.',
+      name: 'Emerging Agritech Company',
+      role: 'Operating Growth Partnership'
     },
     {
-      text: 'We stopped buying more traffic to fix a follow-up problem. Irtiqa fixed the pipeline first, and revenue per lead started moving upward.',
-      name: 'Tariq M.',
-      role: 'Managing Partner, B2B Consultancy'
+      text: 'Architected automated follow-up sequences and multi-channel reactivation workflows to recover stalled enterprise inquiries without adding sales headcount.',
+      name: 'Custom Software Development Firm',
+      role: 'Pipeline Recovery & Nurture Scope'
     },
     {
-      text: 'Our front desk used to chase confirmations manually. Now reminders and reactivation run in the background, and no-shows are no longer a weekly fire drill.',
-      name: 'Laila N.',
-      role: 'Clinic Director, Multi-Specialty Practice'
+      text: 'Standardized lead qualification protocols and built centralized executive reporting dashboards, providing real-time attribution and pipeline clarity.',
+      name: 'Commercial Real Estate Brokerage',
+      role: 'Data Centralization & Systems Build'
     },
     {
-      text: 'The handoff between inbox, CRM, and calendar used to break every day. Irtiqa connected the stack so the team can focus on actual client work.',
-      name: 'Daniel T.',
-      role: 'COO, Premium Service Brand'
+      text: 'Engineered sovereign internal portals for executive collaboration, replacing third-party SaaS dependency with proprietary operational software.',
+      name: 'Specialized Legal Advisory',
+      role: 'Sovereign Technical Implementation'
     },
     {
-      text: 'We finally have visibility across every stage. It is clear where leads are, what triggered, and where money would have leaked before.',
-      name: 'Amna S.',
-      role: 'Operations Lead, Advisory Firm'
+      text: 'Executed comprehensive operational audit to map revenue leakage points, leading to a complete redesign of client intake and onboarding workflows.',
+      name: 'Enterprise Consulting Studio',
+      role: 'Operational Audit & Strategy Scope'
     },
     {
-      text: 'Most vendors sold automation tasks. Irtiqa designed operating logic around revenue goals, which is why outcomes felt different from week one.',
-      name: 'Hassan T.',
-      role: 'Managing Director, Growth Studio'
-    },
-    {
-      text: 'Our team no longer waits for someone to remember the next step. The system drives follow-through automatically and bookings stay stable.',
-      name: 'Nadia R.',
-      role: 'Client Success Director, Private Clinic Group'
-    },
-    {
-      text: 'We expected better admin efficiency. We got that plus stronger conversion flow, cleaner attribution, and better calendar utilization.',
-      name: 'Faris M.',
-      role: 'Founder, Service Business Portfolio'
-    },
-    {
-      text: 'The biggest win is confidence. We can scale lead volume now without fearing operational breakdown in qualification and follow-up.',
-      name: 'Samar R.',
-      role: 'Head of Revenue Operations'
-    },
-    {
-      text: 'Instead of adding more coordinators, we fixed process sequencing and message timing. That single change improved close quality noticeably.',
-      name: 'Imran H.',
-      role: 'Director, Appointment Team'
-    },
-    {
-      text: 'It feels like moving from a manual office to a productized operation. Fewer misses, faster action, and clearer reporting.',
-      name: 'Yusra F.',
-      role: 'COO, Multi-Location Services'
+      text: 'Integrated automated voice and web intake agents with calendar dispatch systems, ensuring continuous 24/7 lead qualification across global time zones.',
+      name: 'Logistics & Operations Group',
+      role: 'Autonomous Systems Integration'
     }
   ];
 
-  const firstColumn = testimonials.slice(0, 4);
-  const secondColumn = testimonials.slice(4, 8);
-  const thirdColumn = testimonials.slice(8, 12);
+  const col1 = scopes.slice(0, 3);
+  const col2 = scopes.slice(3, 6);
+  const col3 = scopes.slice(6, 8);
 
   return (
-    <section id="testimonials">
-      <div className="testi-header testi-columns-header reveal">
-        <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Client Results</div>
-        <h2 className="testi-title">What operators <em>actually say.</em></h2>
-        <p className="testi-columns-sub">
-          Real feedback from teams that replaced manual follow-up with systemized operations.
+    <section id="companies" style={{ padding: '120px 24px', background: 'var(--w2)', borderBottom: '1px solid rgba(12,12,11,0.08)', overflow: 'hidden' }}>
+      <div style={{ maxWidth: '1080px', margin: '0 auto', textAlign: 'left', marginBottom: '64px' }}>
+        <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
+          05 / SELECTED COMPANIES & SCOPES OF WORK
+        </div>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: '16px' }}>
+          Building across sectors.<br />
+          <em>Delivering concrete operational capability.</em>
+        </h2>
+        <p style={{ fontSize: '1.15rem', color: 'var(--sub)', maxWidth: '720px', lineHeight: '1.7' }}>
+          Our protagonist is company building. Whether working on an agritech company, a service business, or a technology firm, we apply rigorous diagnostic principles and custom engineering to remove growth constraints.
         </p>
       </div>
 
-      <div className="testi-columns-wrap reveal d1" aria-label="Client testimonials rolling cards">
-        <div className="testi-columns-mask">
-          <TestimonialsColumn testimonials={firstColumn} duration={58} />
-          <TestimonialsColumn testimonials={secondColumn} className="testi-columns-mid" duration={64} reverse />
-          <TestimonialsColumn testimonials={thirdColumn} className="testi-columns-last" duration={70} />
+      <div className="tc1-grid" style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+        <TestimonialsColumn testimonials={col1} duration={48} />
+        <TestimonialsColumn testimonials={col2} duration={56} reverse={true} />
+        <TestimonialsColumn testimonials={col3} duration={52} />
+      </div>
+
+      <div style={{ maxWidth: '1080px', margin: '56px auto 0', textAlign: 'center' }}>
+        <div style={{ fontSize: '13px', color: 'var(--sub)', background: 'var(--w1)', padding: '16px 24px', borderRadius: '8px', border: '1px solid rgba(12,12,11,0.08)', display: 'inline-block' }}>
+          Every implementation is custom-scoped. We do not use placeholder metrics or generic templates. <strong>We build for the company in front of us.</strong>
         </div>
       </div>
     </section>

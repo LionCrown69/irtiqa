@@ -43,30 +43,6 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
       
       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; margin: 0 auto;">
         
-        <!-- Sender Strip -->
-        <tr>
-          <td style="padding-bottom: 16px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td align="left" valign="middle">
-                  <table border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="36" height="36" align="center" valign="middle" style="background-color: #0C0C0B; border-radius: 50%; color: #FAFAF8; font-size: 10px; font-weight: bold;">IA</td>
-                      <td style="padding-left: 10px;">
-                        <div style="font-size: 13px; font-weight: 600; color: #1A1A18; line-height: 1.2;">Irtiqa AI Agency</div>
-                        <div style="font-size: 11px; color: #BEBBB3; line-height: 1.2;">office@irtiqaaiagency.com</div>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td align="right" valign="middle" style="font-size: 11px; color: #BEBBB3;">
-                  ${props.emailDate}
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
         <!-- Main Card (Curvy) -->
         <tr>
           <td>
@@ -79,15 +55,15 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                   <table border="0" cellspacing="0" cellpadding="0" style="background-color: #f0ede8; border: 1px solid #BEBBB3; border-radius: 100px; margin-bottom: 20px;">
                     <tr>
                       <td style="padding: 5px 12px 5px 9px; font-size: 10px; font-weight: 600; color: #6B6B67; text-transform: uppercase;">
-                        <span style="display:inline-block; width:6px; height:6px; background-color:#1641F5; border-radius:50%; margin-right:6px;"></span> Booking Confirmed
+                        <span style="display:inline-block; width:6px; height:6px; background-color:#1641F5; border-radius:50%; margin-right:6px;"></span> Audit Secured
                       </td>
                     </tr>
                   </table>
                   <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 700; color: #0C0C0B; line-height: 1.25; letter-spacing: -0.5px;">
-                    You're in, <span style="color: #BEBBB3;">${props.firstName}.</span><br />Audit locked.
+                    Growth Audit Secured, <span style="color: #BEBBB3;">${props.firstName}.</span><br />Prepare for scale.
                   </h1>
                   <p style="margin: 0; font-size: 13px; color: #6B6B67; line-height: 1.7;">
-                    We've reserved your slot. Our team is already looking forward to mapping your revenue opportunity with you.
+                    Your exclusive session is officially locked in. Our partners are preparing to map the exact operational bottlenecks currently capping your valuation.
                   </p>
                 </td>
               </tr>
@@ -100,7 +76,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                     <tr>
                       <td style="border-left: 2px solid #BEBBB3; padding: 4px 0 4px 16px;">
                         <p style="margin: 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">
-                          Hey <strong style="font-weight: 600; color: #1A1A18; font-style: normal;">${props.firstName}</strong> — most businesses sit on revenue leaks for months without ever knowing where they are. You've already done the hard part by showing up. We'll do the rest on the call.
+                          Hey <strong style="font-weight: 600; color: #1A1A18; font-style: normal;">${props.firstName}</strong> — most businesses bleed revenue for months without ever realizing exactly where the leaks are in their acquisition pipeline. By securing this audit, you've just taken the single most important step toward scaling your top-line revenue. We will handle the heavy lifting from here.
                         </p>
                       </td>
                     </tr>
@@ -115,7 +91,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                             <td width="40" valign="top">
                               <table width="40" height="40" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px solid #BEBBB3; border-radius: 50%;">
                                 <tr>
-                                  <td align="center" valign="middle"><img src="https://img.icons8.com/ios/50/3a3a36/calendar--v1.png" width="18" height="18" style="display:block;" alt="calendar" /></td>
+                                  <td align="center" valign="middle" style="font-size:16px;">🗓️</td>
                                 </tr>
                               </table>
                             </td>
@@ -127,7 +103,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                         </table>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px solid #BEBBB3; border-radius: 12px;">
                           <tr>
-                            <td width="30" align="center" valign="middle" style="padding: 10px 0 10px 14px;"><img src="https://img.icons8.com/ios/50/6b6861/link--v1.png" width="14" height="14" style="display:block;" alt="link" /></td>
+                            <td width="30" align="center" valign="middle" style="padding: 10px 0 10px 14px; font-size: 12px;">🔗</td>
                             <td style="padding: 10px 14px 10px 10px;"><a href="${props.meetingLink}" style="font-size: 11px; color: #1A1A18; font-weight: 500; text-decoration: none;">${props.meetingLink}</a></td>
                           </tr>
                         </table>
@@ -181,10 +157,10 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #F4F3EE; border: 1px solid #ECEAE2; border-radius: 16px; margin-bottom: 24px;">
                     <tr>
                       <td style="padding: 18px 20px;">
-                        <table width="36" height="36" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px solid #BEBBB3; border-radius: 50%; margin-bottom: 12px;"><tr><td align="center" valign="middle"><img src="https://img.icons8.com/ios/50/3a3a36/survey.png" width="16" height="16" alt="survey" /></td></tr></table>
-                        <div style="font-size: 14px; font-weight: 700; color: #0C0C0B; margin-bottom: 6px;">Help us prep for your audit</div>
-                        <div style="font-size: 12px; color: #6B6B67; line-height: 1.65; margin-bottom: 14px;">Take 3 minutes to share details about ${props.companyName} and drop any helpful files (pricing sheets, CRM exports, etc.) — optional, but it makes us more prepared.</div>
-                        <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" style="border: 1px solid #BEBBB3; border-radius: 100px;"><a href="${props.surveyLink}" style="display: block; padding: 9px 18px; color: #1A1A18; font-size: 12px; font-weight: 600; text-decoration: none;">Share Details & Files &rarr;</a></td></tr></table>
+                        <table width="36" height="36" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border: 1px solid #BEBBB3; border-radius: 50%; margin-bottom: 12px;"><tr><td align="center" valign="middle" style="font-size: 14px;">📝</td></tr></table>
+                        <div style="font-size: 14px; font-weight: 700; color: #0C0C0B; margin-bottom: 6px;">Gain an Unfair Advantage Before the Session</div>
+                        <div style="font-size: 12px; color: #6B6B67; line-height: 1.65; margin-bottom: 14px;">Take exactly 3 minutes to drop us some context about ${props.companyName}'s current margins and sales cycle. Businesses that fill this out uncover significantly more revenue gaps during our live session. Don't skip this.</div>
+                        <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" style="border: 1px solid #BEBBB3; border-radius: 100px;"><a href="${props.surveyLink}" style="display: block; padding: 9px 18px; color: #1A1A18; font-size: 12px; font-weight: 600; text-decoration: none;">Secure Your Advantage &rarr;</a></td></tr></table>
                       </td>
                     </tr>
                   </table>
@@ -196,7 +172,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #BEBBB3; border-radius: 50%; font-size: 10px; font-weight: 700; color: #BEBBB3; text-align: center; line-height: 24px;">1</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">Map your revenue gaps</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">Where leads, follow-ups, or ops are losing you money — without jargon.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">Diagnose the Bleed</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">We pinpoint exactly where your leads, follow-ups, and operational systems are leaking capital.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -206,7 +182,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #BEBBB3; border-radius: 50%; font-size: 10px; font-weight: 700; color: #BEBBB3; text-align: center; line-height: 24px;">2</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">Show you what's fixable first</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">A clear priority list. Which systems drive maximum revenue impact.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">Prioritize the Quick Wins</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">A ruthless priority breakdown showing you which AI systems will drive immediate cash flow.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -216,7 +192,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #BEBBB3; border-radius: 50%; font-size: 10px; font-weight: 700; color: #BEBBB3; text-align: center; line-height: 24px;">3</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">You get a plan. No pressure.</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">Concrete roadmap whether we work together or not.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18; margin-bottom: 2px;">Hand over the Blueprint</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">You leave with a concrete architectural roadmap to scale your revenue, whether we work together or not.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -228,7 +204,7 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                       <td style="padding: 14px 16px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td width="16" valign="top"><img src="https://img.icons8.com/ios/50/6b6861/info--v1.png" width="16" height="16" alt="info" /></td>
+                            <td width="16" valign="top" style="font-size: 14px;">ℹ️</td>
                             <td style="padding-left: 12px; font-size: 12px; color: #6B6B67; line-height: 1.65;"><strong style="color: #1A1A18; font-weight: 600;">One thing before the call —</strong> have a rough sense of your monthly leads and where your biggest bottleneck is. That's it. We handle everything else.</td>
                           </tr>
                         </table>
@@ -240,16 +216,29 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                   <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-bottom: 12px;">
                     <tr><td align="center" style="background-color: #0C0C0B; border-radius: 100px;"><a href="${props.meetingLink}" style="display: block; padding: 14px 20px; color: #ffffff; font-size: 13px; font-weight: 700; text-decoration: none;">Join Your Revenue Audit &rarr;</a></td></tr>
                   </table>
-                  <div style="text-align: center; font-size: 11px; color: #BEBBB3; margin-bottom: 28px;">Need to reschedule? <a href="${props.rescheduleLink}" style="color: #1641F5; text-decoration: underline;">Click here</a> or reply to this email.</div>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 28px; border-top: 1px solid #ECEAE2; padding-top: 20px;">
+                    <tr>
+                      <td align="center">
+                        <div style="font-size: 11px; color: #BEBBB3; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Manage Your Booking</div>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center">
+                              <a href="${props.rescheduleLink}" style="display: inline-block; padding: 10px 24px; border: 1px solid #BEBBB3; border-radius: 100px; color: #1A1A18; font-size: 11px; font-weight: 600; text-decoration: none; background-color: #FAFAF8;">Reschedule Time</a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
 
                   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid #ECEAE2; padding-top: 24px;">
                     <tr>
                       <td>
-                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">Looking forward to seeing you on the call, ${props.firstName}. This one conversation could change how your business operates.</p>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">Get ready, ${props.firstName}. This one conversation is going to fundamentally shift how your business operates.</p>
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
                             <td width="38" height="38" align="center" valign="middle" style="background-color: #F4F3EE; border: 1px solid #BEBBB3; border-radius: 50%; font-size: 11px; font-weight: 700; color: #BEBBB3;">IA</td>
-                            <td style="padding-left: 10px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18;">The Irtiqa Team</div></td>
+                            <td style="padding-left: 10px;"><div style="font-size: 13px; font-weight: 600; color: #1A1A18;">Irtiqa Growth Partners</div></td>
                           </tr>
                         </table>
                       </td>
@@ -270,8 +259,6 @@ export function getConfirmationEmailHtmlLight(props: ConfirmationEmailProps) {
                     <a href="mailto:office@irtiqaaiagency.com" style="color: #BEBBB3; text-decoration: none;">Contact</a>
                     <span style="color: #BEBBB3; margin: 0 6px;">&middot;</span>
                     <a href="${props.rescheduleLink}" style="color: #BEBBB3; text-decoration: none;">Reschedule</a>
-                    <span style="color: #BEBBB3; margin: 0 6px;">&middot;</span>
-                    <a href="${props.unsubscribeLink}" style="color: #BEBBB3; text-decoration: none;">Cancel</a>
                   </div>
                 </td>
               </tr>
@@ -327,30 +314,6 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
       
       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; margin: 0 auto;">
         
-        <!-- Sender Strip -->
-        <tr>
-          <td style="padding-bottom: 16px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td align="left" valign="middle">
-                  <table border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="36" height="36" align="center" valign="middle" style="background-color: #f0ede8; border-radius: 50%; color: #0c0c0b; font-size: 10px; font-weight: bold;">IA</td>
-                      <td style="padding-left: 10px;">
-                        <div style="font-size: 13px; font-weight: 600; color: #c8c4bc; line-height: 1.2;">Irtiqa AI Agency</div>
-                        <div style="font-size: 11px; color: #6B6B67; line-height: 1.2;">office@irtiqaaiagency.com</div>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td align="right" valign="middle" style="font-size: 11px; color: #6B6B67;">
-                  ${props.emailDate}
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-
         <!-- Main Card -->
         <tr>
           <td>
@@ -363,15 +326,15 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                   <table border="0" cellspacing="0" cellpadding="0" style="background-color: rgba(240, 237, 232, 0.06); border: 1px solid rgba(240, 237, 232, 0.1); border-radius: 100px; margin-bottom: 20px;">
                     <tr>
                       <td style="padding: 5px 12px 5px 9px; font-size: 10px; font-weight: 600; color: rgba(240, 237, 232, 0.6); text-transform: uppercase;">
-                        <span style="display:inline-block; width:6px; height:6px; background-color:#6ee7b7; border-radius:50%; margin-right:6px;"></span> Booking Confirmed
+                        <span style="display:inline-block; width:6px; height:6px; background-color:#6ee7b7; border-radius:50%; margin-right:6px;"></span> Audit Secured
                       </td>
                     </tr>
                   </table>
                   <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 700; color: #f0ede8; line-height: 1.25; letter-spacing: -0.5px;">
-                    You're in, <span style="color: #a8a8a0;">${props.firstName}.</span><br />Audit locked.
+                    Audit Secured, <span style="color: #a8a8a0;">${props.firstName}.</span><br />Prepare for impact.
                   </h1>
                   <p style="margin: 0; font-size: 13px; color: #6B6B67; line-height: 1.7;">
-                    We've reserved your slot. Our team is already looking forward to mapping your revenue opportunity with you.
+                    Your exclusive slot is officially locked in. We are about to map out the exact revenue bottlenecks holding back your growth.
                   </p>
                 </td>
               </tr>
@@ -384,7 +347,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                     <tr>
                       <td style="border-left: 2px solid #2a2a28; padding: 4px 0 4px 16px;">
                         <p style="margin: 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">
-                          Hey <strong style="font-weight: 600; color: #c8c4bc; font-style: normal;">${props.firstName}</strong> — most businesses sit on revenue leaks for months without ever knowing where they are. You've already done the hard part by showing up. We'll do the rest on the call.
+                          Hey <strong style="font-weight: 600; color: #c8c4bc; font-style: normal;">${props.firstName}</strong> — most businesses bleed revenue for months without ever realizing exactly where the leaks are. By securing this audit, you've just taken the single most important step toward scaling your operations. We will handle the heavy lifting from here.
                         </p>
                       </td>
                     </tr>
@@ -399,7 +362,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                             <td width="40" valign="top">
                               <table width="40" height="40" border="0" cellspacing="0" cellpadding="0" style="background-color: #191918; border: 1px solid #2a2a28; border-radius: 50%;">
                                 <tr>
-                                  <td align="center" valign="middle"><img src="https://img.icons8.com/ios/50/c8c4bc/calendar--v1.png" width="18" height="18" style="display:block;" alt="calendar" /></td>
+                                  <td align="center" valign="middle" style="font-size: 16px;">🗓️</td>
                                 </tr>
                               </table>
                             </td>
@@ -411,7 +374,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                         </table>
                         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #191918; border: 1px solid #2a2a28; border-radius: 12px;">
                           <tr>
-                            <td width="30" align="center" valign="middle" style="padding: 10px 0 10px 14px;"><img src="https://img.icons8.com/ios/50/6b6861/link--v1.png" width="14" height="14" style="display:block;" alt="link" /></td>
+                            <td width="30" align="center" valign="middle" style="padding: 10px 0 10px 14px; font-size: 12px;">🔗</td>
                             <td style="padding: 10px 14px 10px 10px;"><a href="${props.meetingLink}" style="font-size: 11px; color: #a8a8a0; font-weight: 500; text-decoration: none;">${props.meetingLink}</a></td>
                           </tr>
                         </table>
@@ -465,10 +428,10 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #111110; border: 1px solid #2a2a28; border-radius: 16px; margin-bottom: 24px;">
                     <tr>
                       <td style="padding: 18px 20px;">
-                        <table width="36" height="36" border="0" cellspacing="0" cellpadding="0" style="background-color: #191918; border: 1px solid #2a2a28; border-radius: 50%; margin-bottom: 12px;"><tr><td align="center" valign="middle"><img src="https://img.icons8.com/ios/50/c8c4bc/survey.png" width="16" height="16" alt="survey" /></td></tr></table>
-                        <div style="font-size: 14px; font-weight: 700; color: #f0ede8; margin-bottom: 6px;">Help us prep for your audit</div>
-                        <div style="font-size: 12px; color: #6B6B67; line-height: 1.65; margin-bottom: 14px;">Take 3 minutes to share details about ${props.companyName} and drop any helpful files (pricing sheets, CRM exports, etc.) — optional, but it makes us more prepared.</div>
-                        <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" style="border: 1px solid #3d3d3a; border-radius: 100px;"><a href="${props.surveyLink}" style="display: block; padding: 9px 18px; color: #c8c4bc; font-size: 12px; font-weight: 600; text-decoration: none;">Share Details & Files &rarr;</a></td></tr></table>
+                        <table width="36" height="36" border="0" cellspacing="0" cellpadding="0" style="background-color: #191918; border: 1px solid #2a2a28; border-radius: 50%; margin-bottom: 12px;"><tr><td align="center" valign="middle" style="font-size: 14px;">📝</td></tr></table>
+                        <div style="font-size: 14px; font-weight: 700; color: #f0ede8; margin-bottom: 6px;">Gain an Unfair Advantage Before the Call</div>
+                        <div style="font-size: 12px; color: #6B6B67; line-height: 1.65; margin-bottom: 14px;">Take exactly 3 minutes to drop us some context about ${props.companyName}. It's optional, but businesses that fill this out uncover significantly more revenue gaps during our live session. Don't skip this.</div>
+                        <table border="0" cellspacing="0" cellpadding="0"><tr><td align="center" style="border: 1px solid #3d3d3a; border-radius: 100px;"><a href="${props.surveyLink}" style="display: block; padding: 9px 18px; color: #c8c4bc; font-size: 12px; font-weight: 600; text-decoration: none;">Secure Your Advantage &rarr;</a></td></tr></table>
                       </td>
                     </tr>
                   </table>
@@ -480,7 +443,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #2a2a28; border-radius: 50%; font-size: 10px; font-weight: 700; color: #6B6B67; text-align: center; line-height: 24px;">1</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">Map your revenue gaps</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">Where leads, follow-ups, or ops are losing you money — without jargon.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">Diagnose the Bleed</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">We pinpoint exactly where your leads, follow-ups, and operational systems are leaking capital.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -490,7 +453,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #2a2a28; border-radius: 50%; font-size: 10px; font-weight: 700; color: #6B6B67; text-align: center; line-height: 24px;">2</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">Show you what's fixable first</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">A clear priority list. Which systems drive maximum revenue impact.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">Prioritize the Quick Wins</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">A ruthless priority breakdown showing you which AI systems will drive immediate cash flow.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -500,7 +463,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                           <tr>
                             <td width="24" valign="top"><div style="width: 24px; height: 24px; border: 1px solid #2a2a28; border-radius: 50%; font-size: 10px; font-weight: 700; color: #6B6B67; text-align: center; line-height: 24px;">3</div></td>
-                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">You get a plan. No pressure.</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">Concrete roadmap whether we work together or not.</div></td>
+                            <td valign="top" style="padding-left: 12px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc; margin-bottom: 2px;">Hand over the Blueprint</div><div style="font-size: 11px; color: #6B6B67; line-height: 1.6;">You leave with a concrete architectural roadmap to scale your revenue, whether we work together or not.</div></td>
                           </tr>
                         </table>
                       </td>
@@ -512,7 +475,7 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                       <td style="padding: 14px 16px;">
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td width="16" valign="top"><img src="https://img.icons8.com/ios/50/6b6861/info--v1.png" width="16" height="16" alt="info" /></td>
+                            <td width="16" valign="top" style="font-size: 14px;">ℹ️</td>
                             <td style="padding-left: 12px; font-size: 12px; color: #6B6B67; line-height: 1.65;"><strong style="color: #BEBBB3; font-weight: 600;">One thing before the call —</strong> have a rough sense of your monthly leads and where your biggest bottleneck is. That's it. We handle everything else.</td>
                           </tr>
                         </table>
@@ -523,16 +486,29 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
                   <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-bottom: 12px;">
                     <tr><td align="center" style="background-color: #f0ede8; border-radius: 100px;"><a href="${props.meetingLink}" style="display: block; padding: 14px 20px; color: #0c0c0b; font-size: 13px; font-weight: 700; text-decoration: none;">Join Your Revenue Audit &rarr;</a></td></tr>
                   </table>
-                  <div style="text-align: center; font-size: 11px; color: #3d3d3a; margin-bottom: 28px;">Need to reschedule? <a href="${props.rescheduleLink}" style="color: #1641F5; text-decoration: underline;">Click here</a> or reply to this email.</div>
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 28px; border-top: 1px solid #1c1c1a; padding-top: 20px;">
+                    <tr>
+                      <td align="center">
+                        <div style="font-size: 11px; color: #6B6B67; margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Manage Your Booking</div>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center">
+                              <a href="${props.rescheduleLink}" style="display: inline-block; padding: 10px 24px; border: 1px solid #3d3d3a; border-radius: 100px; color: #c8c4bc; font-size: 11px; font-weight: 600; text-decoration: none; background-color: #111110;">Reschedule Time</a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
 
                   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid #1c1c1a; padding-top: 24px;">
                     <tr>
                       <td>
-                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">Looking forward to seeing you on the call, ${props.firstName}. This one conversation could change how your business operates.</p>
+                        <p style="margin: 0 0 16px 0; font-size: 13px; color: #6B6B67; line-height: 1.8; font-style: italic;">Get ready, ${props.firstName}. This one conversation is going to fundamentally shift how your business operates.</p>
                         <table border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td width="38" height="38" align="center" valign="middle" style="background-color: #191918; border: 1px solid #2a2a28; border-radius: 50%; font-size: 11px; font-weight: 700; color: #BEBBB3;">IA</td>
-                            <td style="padding-left: 10px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc;">The Irtiqa Team</div></td>
+                            <td width="38" height="38" align="center" valign="middle" style="background-color: #111110; border: 1px solid #2a2a28; border-radius: 50%; font-size: 11px; font-weight: 700; color: #6B6B67;">IA</td>
+                            <td style="padding-left: 10px;"><div style="font-size: 13px; font-weight: 600; color: #c8c4bc;">Irtiqa Growth Partners</div></td>
                           </tr>
                         </table>
                       </td>
@@ -541,20 +517,18 @@ export function getConfirmationEmailHtmlDark(props: ConfirmationEmailProps) {
 
                 </td>
               </tr>
-
+              
               <!-- Footer -->
               <tr>
-                <td align="center" style="padding: 20px 24px; border-top: 1px solid #0C0C0B; background-color: #0c0c0b; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
+                <td align="center" style="padding: 20px 24px; border-top: 1px solid #1c1c1a; background-color: #0c0c0b; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
                   <div style="font-size: 12px; font-weight: 700; color: #3d3d3a; letter-spacing: 0.3px; margin-bottom: 3px;">irtiqa</div>
-                  <div style="font-size: 10px; color: #2a2a28; margin-bottom: 12px;">Revenue infrastructure for serious businesses.</div>
+                  <div style="font-size: 10px; color: #3d3d3a; margin-bottom: 12px;">Revenue infrastructure for serious businesses.</div>
                   <div style="font-size: 10px;">
                     <a href="https://irtiqaaiagency.com" style="color: #3d3d3a; text-decoration: none;">Website</a>
-                    <span style="color: #222220; margin: 0 6px;">&middot;</span>
+                    <span style="color: #1c1c1a; margin: 0 6px;">&middot;</span>
                     <a href="mailto:office@irtiqaaiagency.com" style="color: #3d3d3a; text-decoration: none;">Contact</a>
-                    <span style="color: #222220; margin: 0 6px;">&middot;</span>
+                    <span style="color: #1c1c1a; margin: 0 6px;">&middot;</span>
                     <a href="${props.rescheduleLink}" style="color: #3d3d3a; text-decoration: none;">Reschedule</a>
-                    <span style="color: #222220; margin: 0 6px;">&middot;</span>
-                    <a href="${props.unsubscribeLink}" style="color: #3d3d3a; text-decoration: none;">Cancel</a>
                   </div>
                 </td>
               </tr>

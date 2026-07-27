@@ -134,18 +134,38 @@ const useLuxuryMotion = () => {
       });
     });
 
-    const updateSectionParallax = () => {
-      const vh = window.innerHeight || 1;
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const center = rect.top + rect.height * 0.5;
-        const offset = (center - vh * 0.5) / vh;
-        section.style.setProperty('--section-shift', `${(-offset * 28).toFixed(2)}px`);
+    let sectionCache: { el: HTMLElement; top: number; height: number }[] = [];
+    let heroCache: { top: number; height: number } | null = null;
+    let vh = 1;
+
+    const cachePositions = () => {
+      vh = window.innerHeight || 1;
+      const scrollY = window.scrollY;
+
+      sectionCache = sections.map(el => {
+        const rect = el.getBoundingClientRect();
+        return { el, top: rect.top + scrollY, height: rect.height };
       });
 
       if (hero) {
-        const heroRect = hero.getBoundingClientRect();
-        const heroProgress = Math.max(0, Math.min(1, -heroRect.top / Math.max(heroRect.height, 1)));
+        const rect = hero.getBoundingClientRect();
+        heroCache = { top: rect.top + scrollY, height: rect.height };
+      }
+    };
+
+    const updateSectionParallax = () => {
+      const scrollY = window.scrollY;
+      
+      sectionCache.forEach((cache) => {
+        const currentTop = cache.top - scrollY;
+        const center = currentTop + cache.height * 0.5;
+        const offset = (center - vh * 0.5) / vh;
+        cache.el.style.setProperty('--section-shift', `${(-offset * 28).toFixed(2)}px`);
+      });
+
+      if (hero && heroCache) {
+        const currentTop = heroCache.top - scrollY;
+        const heroProgress = Math.max(0, Math.min(1, -currentTop / Math.max(heroCache.height, 1)));
         hero.style.setProperty('--hero-progress', heroProgress.toFixed(3));
         hero.style.setProperty('--hero-lift', `${(-heroProgress * 36).toFixed(2)}px`);
         hero.style.setProperty('--hero-fade', `${(1 - heroProgress * 0.55).toFixed(3)}`);
@@ -164,16 +184,26 @@ const useLuxuryMotion = () => {
       });
     };
 
+    const onResize = () => {
+      cachePositions();
+      updateSectionParallax();
+    };
+
+    cachePositions();
     updateSectionParallax();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onResize);
+
+    // Re-cache once after fonts/images load
+    setTimeout(cachePositions, 500);
+    setTimeout(cachePositions, 2000);
 
     cleanups.push(() => {
       if (scrollRaf) {
         cancelAnimationFrame(scrollRaf);
       }
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('resize', onResize);
     });
 
     return () => {

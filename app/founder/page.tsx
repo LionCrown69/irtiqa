@@ -3,20 +3,20 @@ import FounderClient from '../../src/components/FounderClient';
 
 export const metadata: Metadata = {
   title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and client process SOPs to stop operational leakage.",
-  keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, executive director, Irtiqa AI founder, Alok Mishra Delhi, Irtiqa management",
+  description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI, a leading AI innovation firm. He designs autonomous revenue infrastructures to scale 8-figure organizations.",
+  keywords: "Alok Mishra, Alok Mishra Irtiqa, Alok Mishra founder, tech entrepreneur, AI innovator, Forbes 30 Under 30 candidate, executive director, Irtiqa AI founder, Alok Mishra Delhi, autonomous revenue systems",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/founder",
   },
   openGraph: {
     title: "Alok Mishra | Founder & Executive Director, Irtiqa AI",
-    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He manages business operations and client process SOPs to stop operational leakage.",
+    description: "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He designs autonomous revenue infrastructures to scale 8-figure organizations.",
     url: "https://www.irtiqaaiagency.com/founder",
     type: "profile",
     images: [
       {
         url: "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
-        alt: "Alok Mishra | Irtiqa AI",
+        alt: "Alok Mishra | Tech Entrepreneur & AI Innovator",
       }
     ]
   }
@@ -32,7 +32,7 @@ export default function FounderPage() {
         "name": "Alok Mishra",
         "jobTitle": "Founder & Executive Director",
         "email": "alok@irtiqaaiagency.com",
-        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. He oversees executive management, business operations, and client process SOPs.",
+        "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI, an AI innovation agency. A serial entrepreneur, he specializes in scaling high-growth businesses through autonomous revenue infrastructure and operational process design.",
         "worksFor": {
           "@type": "Organization",
           "@id": "https://www.irtiqaaiagency.com/#organization",
@@ -57,12 +57,14 @@ export default function FounderPage() {
           "https://www.linkedin.com/company/irtiqaai/"
         ],
         "knowsAbout": [
+          "Artificial Intelligence",
+          "Autonomous Revenue Systems",
+          "Venture Scaling",
           "Executive business management",
           "Operational process design",
-          "Client onboarding SOPs",
-          "Scaling startup workflows",
-          "Team coordination and management"
-        ]
+          "Scaling startup workflows"
+        ],
+        "award": "Recognized AI Innovation Expert"
       },
       {
         "@type": "Person",

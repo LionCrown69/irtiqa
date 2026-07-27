@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface ServicesProps {
   industry?: {
@@ -16,115 +17,106 @@ interface ServicesProps {
 }
 
 const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
-  const layers = [
+  const modes = [
     {
       num: '01',
-      tag: 'Find the Leaks',
-      title: 'We audit where revenue is leaving your business',
-      desc: 'We go through your entire lead journey — how inquiries arrive, how they are handled, where they go cold. We find every point where money is quietly walking out.',
-      metrics: ['Lead journey mapping', 'Leakage identification', 'Impact reports']
+      tag: 'Advisory',
+      title: 'Strategy, growth, commercial architecture and operational problem-solving.',
+      desc: 'Companies engage Irtiqa to diagnose operational constraints, model commercial economics, and design scalable business architectures. We provide executive-level clarity on market positioning, customer acquisition economics, and internal team structuring.',
+      capabilities: ['Commercial Strategy & Positioning', 'Revenue Pipeline Diagnosis', 'Organisational & Operational Design', 'Executive Growth Advisory']
     },
     {
       num: '02',
-      tag: 'Fix the Gaps',
-      title: 'We design the systems that close them',
-      desc: 'Once we know where the leakage is, we design the specific infrastructure to fix it. Every recommendation is built around your business — not a template.',
-      metrics: ['Custom solution design', 'Technology scoping', 'Workflow mapping']
+      tag: 'Infrastructure',
+      title: 'AI systems, automation, revenue infrastructure and custom operational technology.',
+      desc: 'We engineer and deploy autonomous operational tools that remove manual friction. From AI-driven client acquisition engines and instant intake routing to custom CRM centralization, we build the proprietary technology required to scale without overhead.',
+      capabilities: ['Custom AI Architecture & Agents', 'Autonomous Revenue Intake Systems', 'CRM & Data Centralization', 'Custom Internal Operational Software']
     },
     {
       num: '03',
-      tag: 'Build the Infrastructure',
-      title: 'We deploy it and make it run',
-      desc: 'We build and integrate everything ourselves. You do not manage vendors or navigate tools. We own the delivery from design to live system.',
-      metrics: ['API engineering', 'CRM & pipeline setup', 'End-to-end testing']
-    },
-    {
-      num: '04',
-      tag: 'Stay and Operate',
-      title: 'We remain your partner as the business evolves',
-      desc: 'We do not hand over and disappear. We monitor, optimise, and evolve the infrastructure alongside your business. First month always included.',
-      metrics: ['Proactive optimization', 'Continuous support', 'First month included']
+      tag: 'Operating Partnerships',
+      title: 'Long-term involvement with selected companies where Irtiqa can materially influence growth.',
+      desc: 'For businesses where deeper involvement makes sense, Irtiqa works alongside management as an extension of the founding team across strategy, growth, operations, technology, and organisational development—aligning through shared equity or revenue upside.',
+      capabilities: ['Embedded Commercial Execution', 'Co-Building Technical Roadmap', 'Shared Equity / Upside Alignment', 'Direct Access via Cohort 02 Selection']
     }
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const layersElements = document.querySelectorAll('.infra-pillar-grid .layer');
-            layersElements.forEach((layer, i) => {
-              setTimeout(() => layer.classList.add('active'), i * 180);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
-    const sec = document.querySelector('#services');
-    if (sec) observer.observe(sec);
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="services">
-      <div className="infra-top reveal">
-        <div className="infra-kicker-line">Revenue Infrastructure</div>
-      </div>
-
-      <div className="infra-header reveal">
-        <h2 className="infra-title">The Irtiqa Revenue Operations Model™ {industry ? `for ${industry.title}` : ''}</h2>
-        <p className="infra-sub desktop-only">Four connected pillars that take a stranger to a loyal client — automatically, intelligently, and at scale{location ? ` in ${location.name}` : ''}.</p>
-        <p className="infra-sub mobile-only">Four connected pillars that automate your lead-to-client pipeline{location ? ` in ${location.name}` : ''}.</p>
-        <div className="infra-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          System Status: <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#10B981', fontWeight: 600 }}>
-            <span className="status-dot-pulse" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block', boxShadow: '0 0 8px #10B981' }}></span>
-            Active
-          </span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
+    <section id="services" style={{ padding: '120px 24px', background: 'var(--w2)', borderBottom: '1px solid rgba(12,12,11,0.08)' }}>
+      <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'left', marginBottom: '64px' }}>
+          <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
+            02 / HOW WE WORK
+          </div>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: '16px' }}>
+            One firm. Different levels of involvement.
+          </h2>
+          <p style={{ fontSize: '1.15rem', color: 'var(--sub)', maxWidth: '700px', lineHeight: '1.7' }}>
+            We adapt our engagement structure to the specific stage and priorities of your business—whether you require targeted strategic advisory, custom infrastructure engineering, or an embedded operating growth partner.
+          </p>
         </div>
-      </div>
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes statusPulse {
-          0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-          70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-          100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-        .status-dot-pulse {
-          animation: statusPulse 2s infinite;
-        }
-        .infra-pillar-grid .layer {
-          transition: all 0.4s var(--ease);
-        }
-        .infra-pillar-grid .layer:hover {
-          transform: translateY(-4px);
-          border-color: rgba(22, 65, 245, 0.2);
-          box-shadow: 0 12px 30px rgba(12, 12, 11, 0.04);
-        }
-      ` }} />
 
-      <div className="infra-pillar-grid reveal d1">
-        {layers.map(({ num, tag, title, desc, metrics }) => (
-          <article key={num} className="layer reveal d1" data-num={num}>
-            <div className="layer-num">{num}</div>
-            <div className="layer-tag">{tag}</div>
-            <h3 className="layer-title">{title}</h3>
-            <p className="layer-desc">{desc}</p>
-            <div className="layer-metrics">
-              {metrics.map((metric, i) => (
-                <span key={i}>{metric}</span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+          {modes.map((mode) => (
+            <motion.div
+              key={mode.num}
+              whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(12,12,11,0.06)', borderColor: 'rgba(22,65,245,0.3)' }}
+              style={{
+                background: 'var(--w1)',
+                padding: '40px',
+                borderRadius: '12px',
+                border: '1px solid rgba(12,12,11,0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'border-color 0.2s ease'
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', background: 'rgba(22,65,245,0.08)', padding: '6px 12px', borderRadius: '100px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    {mode.tag}
+                  </span>
+                  <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--sub)' }}>{mode.num}</span>
+                </div>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '16px', lineHeight: '1.4', letterSpacing: '-0.01em' }}>
+                  {mode.title}
+                </h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--sub)', lineHeight: '1.7', marginBottom: '28px' }}>
+                  {mode.desc}
+                </p>
+              </div>
 
-      <div className="infra-cta reveal d4">
-        <a href="#book" className="btn-fill">Book Free Audit Call</a>
-        <span className="cta-note">Audit call → Growth Report in 24 hours → build roadmap.</span>
+              <div>
+                <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--ink)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '12px', borderTop: '1px solid rgba(12,12,11,0.08)', paddingTop: '16px' }}>
+                  Core Capabilities
+                </div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {mode.capabilities.map((cap) => (
+                    <li key={cap} style={{ fontSize: '13px', color: 'var(--sub)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#1641F5', flexShrink: 0 }} />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: '56px', padding: '32px', background: 'var(--w1)', borderRadius: '12px', border: '1px solid rgba(12,12,11,0.08)', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '20px' }}>
+          <div>
+            <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>
+              Ready to explore an Operating Partnership?
+            </h4>
+            <p style={{ fontSize: '0.95rem', color: 'var(--sub)', margin: 0 }}>
+              Periodically, Irtiqa selects a limited number of companies for structured evaluation and potential long-term operating partnerships via Cohort 02.
+            </p>
+          </div>
+          <a href="/cohort-02" className="btn-fill" style={{ fontSize: '14px', padding: '12px 24px', flexShrink: 0 }}>
+            Explore Cohort 02 Selection ↗
+          </a>
+        </div>
       </div>
     </section>
   );

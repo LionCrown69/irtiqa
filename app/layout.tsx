@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
-  description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
-  keywords: "revenue operations infrastructure, AI revenue infrastructure, CRM automation, AI CRM automation, agentic AI systems for business, multi-agent AI business systems, revenue leakage detection, silent revenue leakage, AI receptionist, autonomous outreach system, AI powered CRM automation",
+  title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
+  description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
+  keywords: "Growth Partner, AI Infrastructure, Scale to 8 Figures, Autonomous Revenue Systems, Elite Operations Partner, Business Valuation Scaling",
   applicationName: "Irtiqa AI",
   authors: [{ name: "Alok Mishra", url: "https://www.linkedin.com/in/alokmishra-" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
-    description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
+    title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
+    description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
     type: "website",
     siteName: "Irtiqa AI",
     locale: "en_US",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
-    description: "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
+    title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
+    description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo-solid.png"],
   },
 };
@@ -75,21 +75,24 @@ export default function RootLayout({
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
                   "email": "hello@irtiqaaiagency.com",
-                  "description": "Irtiqa AI is the growth partner service businesses build on to stop revenue leakage. We find where your business is quietly losing revenue — and we build the infrastructure that stops it.",
+                  "description": "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
                   "knowsAbout": [
-                    "Revenue operations infrastructure",
-                    "Agentic AI systems for business",
-                    "Multi-agent AI business systems",
-                    "Multi-model AI infrastructure",
-                    "Revenue leakage detection",
-                    "AI receptionist and front desk systems",
-                    "Autonomous outreach and appointment setting",
-                    "CRM and pipeline automation"
+                    "Revenue Infrastructure",
+                    "Scaling Operations",
+                    "Business Valuation Scaling",
+                    "Autonomous Systems",
+                    "Growth Partnerships",
+                    "AI Architectures",
+                    "Revenue Leakage Elimination"
                   ],
                   "areaServed": [
+                    { "@type": "City", "name": "New York" },
+                    { "@type": "City", "name": "London" },
+                    { "@type": "City", "name": "Dubai" },
+                    { "@type": "City", "name": "Singapore" },
+                    { "@type": "Place", "name": "Silicon Valley" },
                     { "@type": "Country", "name": "United States" },
-                    { "@type": "Country", "name": "United Kingdom" },
-                    { "@type": "Place", "name": "Europe" }
+                    { "@type": "Country", "name": "United Kingdom" }
                   ],
                   "sameAs": [
                     "https://www.wikidata.org/wiki/Q140042854",
@@ -106,30 +109,30 @@ export default function RootLayout({
                   ],
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",
-                    "name": "Irtiqa AI Service Catalog",
+                    "name": "Irtiqa AI Infrastructure Catalog",
                     "itemListElement": [
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "AI Automation Services",
-                          "url": "https://www.irtiqaaiagency.com/ai-automation-services.html"
+                          "name": "Autonomous Growth Infrastructure",
+                          "url": "https://www.irtiqaaiagency.com/growth-infrastructure"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Lead Follow-Up Automation",
-                          "url": "https://www.irtiqaaiagency.com/lead-follow-up-automation.html"
+                          "name": "Scale from 7 to 8 Figures",
+                          "url": "https://www.irtiqaaiagency.com/scale"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "AI Revenue Operations Systems",
-                          "url": "https://www.irtiqaaiagency.com/revenue-operations-ai.html"
+                          "name": "Revenue Operations Architectures",
+                          "url": "https://www.irtiqaaiagency.com/revenue-operations-ai"
                         }
                       }
                     ]
@@ -139,7 +142,7 @@ export default function RootLayout({
                   "@type": "Person",
                   "@id": "https://www.irtiqaaiagency.com/founder/#person",
                   "name": "Alok Mishra",
-                  "jobTitle": "Founder & Company Owner",
+                  "jobTitle": "Founder & Executive Director",
                   "email": "alok@irtiqaaiagency.com",
                   "url": "https://www.irtiqaaiagency.com/founder",
                   "sameAs": [
@@ -151,7 +154,7 @@ export default function RootLayout({
                   "worksFor": {
                     "@id": "https://www.irtiqaaiagency.com/#organization"
                   },
-                  "description": "Alok Mishra is the Founder and Company Owner at Irtiqa AI. He designs custom revenue operations infrastructure and agentic AI systems to stop silent revenue leakage."
+                  "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. A recognized AI innovator, he designs custom autonomous revenue infrastructures to scale 5, 6, and 7-figure organizations to their maximum valuation."
                 },
                 {
                   "@type": "WebSite",
@@ -170,8 +173,8 @@ export default function RootLayout({
                   "@type": "WebPage",
                   "@id": "https://www.irtiqaaiagency.com/#webpage",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "Stop Revenue Leakage | Irtiqa AI — Growth Partner for Service Businesses",
-                  "description": "Irtiqa AI finds where your business is losing revenue and builds the infrastructure that stops it. Free audit call — personalised report in 24 hours.",
+                  "name": "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
+                  "description": "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
                   "isPartOf": {
                     "@id": "https://www.irtiqaaiagency.com/#website"
                   },

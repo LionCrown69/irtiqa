@@ -9,17 +9,6 @@ import useMobileLenis from '../hooks/useMobileLenis';
 import useLuxuryMotion from '../hooks/useLuxuryMotion';
 
 export default function FounderClient() {
-  const [navHeight, setNavHeight] = useState(68);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const newHeight = window.scrollY > 60 ? 58 : 68;
-      setNavHeight(newHeight);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useScrollReveal();
   useMobileLenis();
@@ -40,7 +29,7 @@ export default function FounderClient() {
   return (
     <div className="App" style={{ backgroundColor: 'var(--w)', color: 'var(--ink)' }}>
       <ProgressBar />
-      <Navigation navHeight={navHeight} />
+      <Navigation />
       
       <main className="lux-main">
         {/* ─── HERO SECTION ─── */}
@@ -132,20 +121,23 @@ export default function FounderClient() {
                   AM
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>Management & Process</span>
+                  <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--b)', background: 'var(--b-lo)', padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '6px' }}>AI Innovation & Scaling</span>
                   <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', fontWeight: 400, color: 'var(--ink)', marginBottom: '2px', letterSpacing: '-0.01em', lineHeight: 1.1 }}>Alok Mishra</h2>
                   <span style={{ fontSize: '13px', color: 'var(--sub)', fontWeight: 500 }}>Founder & Executive Director</span>
                 </div>
               </div>
               
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--sub)', fontWeight: 300 }}>
-                Alok handles executive management, business operations, and client process SOPs at Irtiqa. A founder of 9 previous ventures, he evaluates workflows, designs operational systems, and makes strategic decisions to ensure seamless client delivery.
+                Alok leads Irtiqa AI's vision and executive management. A serial entrepreneur and founder of 9 previous ventures, he specializes in designing autonomous revenue infrastructures that scale high-growth organizations to 8-figures and maximize enterprise valuation.
               </p>
 
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: 'auto', marginBottom: '8px' }}>
                 <span className="founder-pill active">
                   <span style={{ width: '4px', height: '4px', background: 'var(--b)', borderRadius: '50%' }}></span>
-                  9 Startups Built
+                  Serial Entrepreneur
+                </span>
+                <span className="founder-pill">
+                  AI Infrastructure
                 </span>
                 <span className="founder-pill">
                   19 y/o
