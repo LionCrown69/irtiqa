@@ -77,15 +77,15 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
   ];
 
   return (
-    <section id="problem-section" style={{ background: 'var(--w2)', borderBottom: '1px solid rgba(12,12,11,0.08)' }}>
+    <section id="problem">
       <div className="problem-layout">
         <div>
-          <div className="section-chip reveal" style={{ background: 'rgba(22,65,245,0.08)', color: '#1641F5', borderColor: 'rgba(22,65,245,0.2)' }}>PROPRIETARY METHODOLOGY // INTELLECTUAL PROPERTY</div>
+          <div className="section-chip reveal">Operational Challenges</div>
           <h2 className="problem-title reveal d1">
-            The Revenue Operations Model™: <em>Diagnostic Rigor.</em>
+            Operational Constraints Limit <em>Pipeline Scalability.</em>
           </h2>
           <p className="problem-desc reveal d2 desktop-only">
-            Before we deploy custom AI infrastructure or enter an operating partnership, we conduct a structural audit of your commercial economics. Our diagnostic calculator quantifies where operational friction and slow response velocity are capping your growth.
+            The primary inhibitor of enterprise growth is rarely demand generation. It is inefficient operational architecture: lead routing, qualification SLA compliance, data syncing, and retention management. Without autonomous infrastructure{location ? ` in ${location.name}` : ''}, scaling becomes cost-prohibitive.
           </p>
           <p className="problem-desc reveal d2 mobile-only">
             Growth stalls when operational complexity outpaces system capabilities{location ? ` in ${location.name}` : ''}.

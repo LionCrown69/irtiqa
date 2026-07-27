@@ -227,46 +227,21 @@ const BookSection: React.FC = () => {
 
 
   return (
-    <section id="work-with-irtiqa" style={{ position: 'relative' }}>
-      <div id="book" style={{ position: 'absolute', top: '-100px' }} />
+    <section id="book">
       <div className="book-inner">
         {status === 'success' ? (
           <BookingConfirmation formData={formData} booking={bookingData || undefined} />
         ) : (
           <>
             <div className="reveal">
-              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>WORK WITH IRTIQA</div>
-              <h2 className="book-title">Two distinct ways to<br /><em>engage our firm.</em></h2>
-              <p className="book-sub desktop-only">Whether you need standalone strategic advisory, custom AI infrastructure build out, or a selective long-term operating partnership, choose the pathway that aligns with your stage.</p>
-              <p className="book-sub mobile-only">Choose your engagement model: Standard Build or Cohort 02.</p>
-
-              {/* Dual Funnel Selection Cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', margin: '40px 0 48px', textAlign: 'left' }}>
-                <div style={{ background: 'var(--w2)', padding: '24px', borderRadius: '10px', border: '2px solid #1641F5', boxShadow: '0 8px 24px rgba(22,65,245,0.08)' }}>
-                  <div style={{ fontSize: '11px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>OPTION 01 // ACTIVE FUNNEL BELOW</div>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>Standard Engagement & Advisory</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--sub)', lineHeight: '1.5', marginBottom: '16px' }}>For businesses seeking custom AI architecture, revenue pipeline diagnosis, or operational engineering without equity dilution.</p>
-                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5' }}>↓ Complete form below to schedule consultation</div>
-                </div>
-
-                <div style={{ background: '#0C0C0B', padding: '24px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#60A5FA', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>OPTION 02 // SELECTIVE ADMISSION</div>
-                    <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Cohort 02 Operating Partnership</h3>
-                    <p style={{ fontSize: '0.9rem', color: '#9CA3AF', lineHeight: '1.5', marginBottom: '16px' }}>For founders building credible companies who want an embedded operating growth partner and long-term alignment.</p>
-                  </div>
-                  <a href="/cohort-02" style={{ background: '#1641F5', color: '#fff', fontSize: '13px', fontWeight: 700, padding: '10px 16px', borderRadius: '6px', textAlign: 'center', textDecoration: 'none', display: 'block', transition: 'background 0.2s' }}>
-                    Apply to Cohort 02 ↗
-                  </a>
-                </div>
-              </div>
+              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Operations Assessment</div>
+              <h2 className="book-title">Request a Systems<br /><em>Consultation.</em></h2>
+              <p className="book-sub desktop-only">A comprehensive 60-minute analysis of your current technical architecture. Our lead engineers will identify SLA degradation points and outline the autonomous integrations required to optimize your pipeline. Following the consultation, you will receive a formal Technical Architecture Proposal.</p>
+              <p className="book-sub mobile-only">Schedule a 60-minute technical architecture analysis.</p>
             </div>
 
             {step === 'details' ? (
               <form className="book-form book-compact reveal d2" onSubmit={handleGoToPicker}>
-                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--ink)', marginBottom: '20px', borderBottom: '1px solid rgba(12,12,11,0.08)', paddingBottom: '12px' }}>
-                  Option 01: Schedule a Systems Consultation & Roadmap Discussion
-                </div>
                 <div className="form-grid">
                   <div className="form-field">
                     <label className="form-label">Full Name</label>

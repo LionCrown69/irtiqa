@@ -1,71 +1,52 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const WhySection: React.FC = () => {
   return (
-    <section id="partnerships" style={{ padding: '120px 24px', background: 'var(--w1)', borderBottom: '1px solid rgba(12,12,11,0.08)' }}>
-      <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', alignItems: 'center' }}>
-          <div>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>
-              04 / OPERATING PARTNERSHIPS
-            </div>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', lineHeight: '1.2', marginBottom: '24px' }}>
-              An Operating Growth Partner.<br />
-              <span style={{ color: '#1641F5' }}>Not a Vendor.</span>
-            </h2>
-            <p style={{ fontSize: '1.15rem', color: 'var(--sub)', lineHeight: '1.7', marginBottom: '20px' }}>
-              We could remain an external consulting and AI infrastructure firm. But the businesses we believe in most create a different opportunity.
-            </p>
-            <p style={{ fontSize: '1.15rem', color: 'var(--sub)', lineHeight: '1.7', marginBottom: '32px' }}>
-              Instead of optimizing for the value of a short-term engagement, we align ourselves with the long-term value of the company. Instead of thinking like a vendor, we think alongside the people building the business.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="/cohort-02" className="btn-fill" style={{ fontSize: '14px', padding: '14px 28px' }}>
-                Apply to Cohort 02 ↗
-              </a>
-              <a href="#work-with-irtiqa" className="btn-outline" style={{ fontSize: '14px', padding: '14px 28px' }}>
-                Standard Engagement ↓
-              </a>
-            </div>
+    <section id="why">
+      <div className="why-layout">
+        <div>
+          <div className="section-chip reveal">Why Irtiqa</div>
+          <h2 className="why-title reveal d1">A partner. Not a <em>product.</em></h2>
+          
+          <p className="why-desc reveal d2 desktop-only">
+            Most businesses that struggle with revenue leakage do not have a tool problem. They have a clarity problem — nobody has sat down with them and mapped exactly where the money is going.
+          </p>
+          <p className="why-desc reveal d2 mobile-only">
+            Clarity first, tools second. We map where your money is going before we build anything.
+          </p>
+
+          <div className="why-slogan reveal d3 desktop-only">
+            That is what Irtiqa does first. Before we build anything, we audit. Before we recommend anything, we understand your specific situation.
+          </div>
+          <div className="why-slogan reveal d3 mobile-only">
+            Audit first. Build second. Results always.
+          </div>
+          
+          <a href="#book" className="btn-fill reveal d4" style={{ width: 'fit-content', marginTop: '28px' }}>
+            Book Free Audit Call
+          </a>
+        </div>
+
+        <div className="reveal d2" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Card 1 */}
+          <div className="rebrand-card">
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: 'var(--ink)', marginBottom: '10px' }}>Custom Infrastructure</h3>
+            <p style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.7' }}>Everything we build is specific to you. We do not install generic systems. We design infrastructure around how your business actually works, your clients, your team, and your commercial goals.</p>
+          </div>
+          
+          {/* Card 2 */}
+          <div className="rebrand-card">
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: 'var(--ink)', marginBottom: '10px' }}>A Partner Who Stays</h3>
+            <p style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.7' }}>We know you have probably seen this before — tools that get built, handed over, and stop working the moment something changes. That is not what we do. We stay. We maintain. We are invested in the result because our model only works if yours does.</p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <motion.div whileHover={{ x: 6 }} style={{ background: 'var(--w2)', padding: '32px', borderRadius: '12px', border: '1px solid rgba(12,12,11,0.08)' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>
-                ALIGNMENT PRINCIPLE 01
-              </div>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '10px' }}>
-                Extension of the Founding Team
-              </h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--sub)', lineHeight: '1.7', margin: 0 }}>
-                We work alongside management across strategy, revenue optimization, sales systems, AI infrastructure, and organizational structure. We do not replace founders; we strengthen the institutional capability around them.
-              </p>
-            </motion.div>
-
-            <motion.div whileHover={{ x: 6 }} style={{ background: 'var(--w2)', padding: '32px', borderRadius: '12px', border: '1px solid rgba(12,12,11,0.08)' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>
-                ALIGNMENT PRINCIPLE 02
-              </div>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '10px' }}>
-                Customized Equity & Upside Structures
-              </h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--sub)', lineHeight: '1.7', margin: 0 }}>
-                We do not enforce a rigid universal percentage or present ourselves as a conventional venture fund. For companies where shared ownership is appropriate, terms are structured individually based on stage, scope of involvement, and long-term synergy.
-              </p>
-            </motion.div>
-
-            <motion.div whileHover={{ x: 6 }} style={{ background: 'var(--w2)', padding: '32px', borderRadius: '12px', border: '1px solid rgba(12,12,11,0.08)' }}>
-              <div style={{ fontSize: '11px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>
-                ALIGNMENT PRINCIPLE 03
-              </div>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '10px' }}>
-                A Builder Philosophy That Stays
-              </h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--sub)', lineHeight: '1.7', margin: 0 }}>
-                Traditional vendors build a deliverable and walk away. Because our operating partnerships align our success with yours, when new operational bottlenecks emerge as the company scales, we remain embedded to solve them.
-              </p>
-            </motion.div>
+          {/* Card 3 (Case Study) */}
+          <div className="rebrand-card rebrand-card-accent">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+              <span style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--b)', background: 'rgba(22,65,245,0.08)', padding: '2px 8px', borderRadius: '4px' }}>CASE STUDY</span>
+            </div>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: 'var(--ink)', marginBottom: '10px' }}>Missed Lead Recovery</h3>
+            <p style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.7' }}>We partnered with a clinic leaking €11,000/mo through missed after-hours inquiries. Designed autonomous callback routing & follow-up recovery. Recovered <strong>€8,500 in booking value</strong> in the first 30 days.</p>
           </div>
         </div>
       </div>

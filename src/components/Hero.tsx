@@ -1,5 +1,33 @@
-import React from 'react';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, animate, Variants } from 'framer-motion';
+
+const Counter = ({ from, to, delay, animateValue = true }: { from: number; to: number; delay: number; animateValue?: boolean }) => {
+  const nodeRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!animateValue) {
+      if (nodeRef.current) {
+        nodeRef.current.textContent = to.toString();
+      }
+      return;
+    }
+
+    const node = nodeRef.current;
+    if (node) {
+      const controls = animate(from, to, {
+        duration: 2.2,
+        delay: delay,
+        ease: [0.16, 1, 0.3, 1], // ease out cubic
+        onUpdate(value) {
+          node.textContent = Math.round(value).toString();
+        },
+      });
+      return () => controls.stop();
+    }
+  }, [from, to, delay, animateValue]);
+
+  return <span className="count-h" ref={nodeRef}>{from}</span>;
+};
 
 interface HeroProps {
   industry?: {
@@ -23,26 +51,26 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
   const opacityGrid = useTransform(scrollY, [0, 400], [0.35, 0]);
 
   const mobileHighlights = [
-    { label: 'Advisory', value: 'Strategy & Growth' },
-    { label: 'Infrastructure', value: 'AI & Revenue Systems' },
-    { label: 'Partnerships', value: 'Long-Term Alignment' }
+    { label: 'Reply speed', value: '< 5 min' },
+    { label: 'Coverage', value: '24/7' },
+    { label: 'Delivery path', value: 'Audit to Build' }
   ] as const;
 
   const mobileStoryCards = [
     {
       step: '01',
-      title: 'Strategic Assessment',
-      body: 'Diagnosing operational constraints across strategy, technology, and commercial systems.'
+      title: 'A lead lands on the page',
+      body: 'Leads are captured, qualified, and routed instantly.'
     },
     {
       step: '02',
-      title: 'Infrastructure & AI Deployment',
-      body: 'Engineering autonomous revenue architectures and internal tools that scale.'
+      title: 'Momentum keeps moving',
+      body: 'Follow-up and reminders keep intent active.'
     },
     {
       step: '03',
-      title: 'Long-Term Operating Alignment',
-      body: 'Partnering alongside management to execute growth and build institutional value.'
+      title: 'The discovery call gets booked',
+      body: 'Qualified prospects book without manual chasing.'
     }
   ] as const;
 
@@ -70,7 +98,8 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
   };
 
   return (
-    <section id="hero" style={{ position: 'relative', overflow: 'hidden', paddingBottom: '40px' }}>
+    <section id="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+
       {/* Dynamic Background Effects */}
       <motion.div
         className="hero-grid"
@@ -148,85 +177,98 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         animate="show"
         style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
       >
-        <motion.div variants={itemVariants} className="hero-eyebrow" style={{ opacity: 1, animation: 'none', marginBottom: '32px', letterSpacing: '0.08em', fontSize: '0.75rem', fontWeight: 700, color: '#1641F5', background: 'rgba(22,65,245,0.06)', padding: '6px 16px', borderRadius: '100px', border: '1px solid rgba(22,65,245,0.15)' }}>
+
+
+        <motion.div variants={itemVariants} className="hero-eyebrow" style={{ opacity: 1, animation: 'none', marginBottom: '32px' }}>
           <motion.span
             className="hero-eyebrow-dot"
             animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
             style={{
-              display: 'inline-block',
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              backgroundColor: '#1641F5',
-              marginRight: '8px',
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          IRTIQA // CONSULTING • AI INFRASTRUCTURE • OPERATING GROWTH PARTNERSHIPS
+          Built for {industry ? `${industry.title} operations in ${location?.name || 'your region'}` : 'Mid-Market and Enterprise Organizations'}
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none', textAlign: 'center', maxWidth: '1050px', marginBottom: '24px' }}>
+        <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
           {industry || location ? (
             <>
               <span className="hero-h1-line hero-h1-line-main">
-                {industry ? `Building ${industry.name} Infrastructure` : 'Building the infrastructure'}
+                {industry ? `Autonomous ${industry.name} Infrastructure` : 'Deploying Autonomous Revenue'}
               </span>
               <em className="hero-h1-accent">
-                {location ? `in ${location.name}.` : 'behind ambitious companies.'}
+                {location ? `in ${location.name}.` : 'Infrastructure.'}
               </em>
+              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">
+                Engineered for Scale.
+              </span>
             </>
           ) : (
             <>
-              <span className="hero-h1-line hero-h1-line-main">Building the infrastructure</span>
-              <em className="hero-h1-accent" style={{ display: 'block', fontStyle: 'normal', color: '#1641F5' }}>behind ambitious companies.</em>
+              <span className="hero-h1-line hero-h1-line-main">Deploying Autonomous Revenue</span>
+              <em className="hero-h1-accent">Infrastructure.</em>
+              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">Engineered for Scale.</span>
             </>
           )}
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="hero-sub" style={{ opacity: 1, animation: 'none', textAlign: 'center', maxWidth: '720px', fontSize: '1.2rem', lineHeight: '1.7', color: 'var(--sub)', margin: '0 auto 36px' }}>
-          Irtiqa works with founders and businesses to solve growth constraints across strategy, technology, revenue and operations.<br/><br/>
-          <strong style={{ color: 'var(--ink)' }}>We advise. We build. And with selected companies, we partner for the long term.</strong>
+        <motion.p variants={itemVariants} className="hero-sub desktop-only" style={{ opacity: 1, animation: 'none' }}>
+          <strong>We engineer, integrate, and manage autonomous operational systems.</strong><br/>
+          We deploy custom AI architectures that maximize pipeline velocity, ensure SLA compliance, and reduce manual overhead across your organization. {industry ? `Optimizing ${industry.name}.` : ''}
         </motion.p>
 
-        <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none', display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '48px' }}>
+        <motion.p variants={itemVariants} className="hero-sub mobile-only" style={{ opacity: 1, animation: 'none' }}>
+          <strong>We engineer, integrate, and manage autonomous operational systems.</strong><br/>
+          We deploy custom AI architectures to maximize pipeline velocity and reduce manual overhead.
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
           <motion.a
-            whileHover={{ scale: 1.04, y: -2, boxShadow: "0 14px 48px rgba(22,65,245,0.35)" }}
+            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 14px 48px rgba(22,65,245,0.35)" }}
             whileTap={{ scale: 0.98 }}
-            href="#work-with-irtiqa"
+            href="#book"
             className="btn-fill primary-cta"
-            style={{ transition: 'none', padding: '14px 28px', fontSize: '15px', fontWeight: 600 }}
+            style={{ transition: 'none' }} // Disabled CSS transition to favor framer
           >
-            Work With Irtiqa
+            Book Free Audit Call
             <motion.svg
               whileHover={{ x: 4 }}
-              width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ marginLeft: '8px' }}
+              width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
             >
               <path d="M2 7h10M7 2l5 5-5 5" />
             </motion.svg>
           </motion.a>
           <motion.a
-            whileHover={{ scale: 1.02, backgroundColor: "rgba(22,65,245,0.08)", borderColor: "rgba(22,65,245,0.4)" }}
+            whileHover={{ scale: 1.02, backgroundColor: "var(--w2)", borderColor: "rgba(12,12,11,0.2)", color: "var(--ink)" }}
             whileTap={{ scale: 0.98 }}
-            href="/cohort-02"
+            href="#process"
             className="btn-outline"
-            style={{ transition: 'none', padding: '14px 28px', fontSize: '15px', fontWeight: 600, borderColor: 'rgba(22,65,245,0.25)', color: '#1641F5', background: 'transparent' }}
+            style={{ transition: 'none' }}
           >
-            Apply to Cohort 02 ↗
+            See How It Works
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.02, borderColor: "var(--b)", color: "var(--b)" }}
+            whileTap={{ scale: 0.98 }}
+            href="/program"
+            className="btn-outline"
+            style={{ transition: 'none' }}
+          >
+            Revenue Partners Programme
           </motion.a>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="hero-mobile-proof" style={{ opacity: 1, animation: 'none', letterSpacing: '0.12em', fontSize: '0.75rem', fontWeight: 700, color: 'var(--sub)', textTransform: 'uppercase', textAlign: 'center', marginBottom: '32px' }}>
-          STRATEGY • TECHNOLOGY • COMMERCIAL SYSTEMS • LONG-TERM ALIGNMENT
+        <motion.div variants={itemVariants} className="hero-mobile-proof" style={{ opacity: 1, animation: 'none' }}>
+          37% faster response | 42% less admin | 28% more bookings
         </motion.div>
 
         {/* Keeping original mobile layout to maintain their mobile experience */}
-        <motion.div variants={itemVariants} className="hero-mobile-immersive" style={{ opacity: 1, animation: 'none', width: '100%', maxWidth: '900px' }}>
+        <motion.div variants={itemVariants} className="hero-mobile-immersive" style={{ opacity: 1, animation: 'none' }}>
           <div className="hero-mobile-panel">
             <div className="hero-mobile-panel-top">
-              <span>Institutional Involvement</span>
-              <strong>Built to scale businesses</strong>
+              <span>Mobile booking flow</span>
+              <strong>Built to guide the reader</strong>
             </div>
             <div className="hero-mobile-highlights">
               {mobileHighlights.map((item) => (
@@ -237,13 +279,13 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
               ))}
             </div>
             <div className="hero-mobile-panel-note">
-              Scroll to explore our three commercial modes of engagement.
+              Scroll to see how intent turns into booked calls.
             </div>
           </div>
           <div className="hero-mobile-story">
             {mobileStoryCards.map((card, index) => (
               <article key={card.step} className={`hero-mobile-story-card reveal d${index + 1}`}>
-                <span className="hero-mobile-story-step">Mode {card.step}</span>
+                <span className="hero-mobile-story-step">Step {card.step}</span>
                 <h3>{card.title}</h3>
                 <p>{card.body}</p>
               </article>
@@ -254,30 +296,32 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
         <motion.div
           variants={itemVariants}
           className="hero-stats"
-          style={{ opacity: 1, animation: 'none', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', width: '100%', maxWidth: '1080px', marginTop: '20px' }}
+          style={{ opacity: 1, animation: 'none' }}
         >
-          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)", borderColor: "rgba(12,12,11,0.15)" }} style={{ padding: '24px 20px', border: '1px solid rgba(12,12,11,0.08)', borderRadius: '8px', background: 'var(--w2)', textAlign: 'left' }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>01 / Advisory</div>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>Strategy & Growth</div>
-            <div style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.5' }}>Commercial architecture, revenue modeling, and operational problem-solving.</div>
+          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
+            <div className="hstat-val">
+              <Counter from={30} to={37} delay={0.6} animateValue={!isMobile} />
+              <span className="hstat-unit">%</span>
+            </div>
+            <div className="hstat-label">Faster Lead Response</div>
           </motion.div>
-
-          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)", borderColor: "rgba(12,12,11,0.15)" }} style={{ padding: '24px 20px', border: '1px solid rgba(12,12,11,0.08)', borderRadius: '8px', background: 'var(--w2)', textAlign: 'left' }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>02 / Infrastructure</div>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>AI & Systems Build</div>
-            <div style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.5' }}>Autonomous AI workflows, custom revenue technology, and operational automation.</div>
+          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
+            <div className="hstat-val">
+              <Counter from={35} to={42} delay={0.78} animateValue={!isMobile} />
+              <span className="hstat-unit">%</span>
+            </div>
+            <div className="hstat-label">Less Manual Admin</div>
           </motion.div>
-
-          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)", borderColor: "rgba(12,12,11,0.15)" }} style={{ padding: '24px 20px', border: '1px solid rgba(12,12,11,0.08)', borderRadius: '8px', background: 'var(--w2)', textAlign: 'left' }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>03 / Partnerships</div>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>Operating Alignment</div>
-            <div style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.5' }}>Long-term involvement and shared ownership where we materially influence growth.</div>
+          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
+            <div className="hstat-val">
+              <Counter from={22} to={28} delay={0.96} animateValue={!isMobile} />
+              <span className="hstat-unit">%</span>
+            </div>
+            <div className="hstat-label">More Conversions</div>
           </motion.div>
-
-          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)", borderColor: "rgba(12,12,11,0.15)" }} style={{ padding: '24px 20px', border: '1px solid rgba(12,12,11,0.08)', borderRadius: '8px', background: 'var(--w2)', textAlign: 'left' }}>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#1641F5', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px' }}>04 / Cohort 02</div>
-            <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--ink)', marginBottom: '6px' }}>Selective Selection</div>
-            <div style={{ fontSize: '13px', color: 'var(--sub)', lineHeight: '1.5' }}>A structured company-building initiative for founders scaling credible businesses.</div>
+          <motion.div className="hstat" whileHover={{ backgroundColor: "var(--w3)" }}>
+            <div className="hstat-val" style={{ fontSize: '28px', letterSpacing: '-.01em' }}>24/7</div>
+            <div className="hstat-label">Operational Coverage</div>
           </motion.div>
         </motion.div>
       </motion.div>
@@ -286,3 +330,4 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
 };
 
 export default Hero;
+

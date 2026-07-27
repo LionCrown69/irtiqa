@@ -50,12 +50,11 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'What We Do', href: '/#what-we-do' },
-    { label: 'Partnerships', href: '/#partnerships' },
-    { label: 'Cohort 02', href: '/cohort-02' },
-    { label: 'Companies', href: '/#companies' },
-    { label: 'Insights', href: '/blog' },
-    { label: 'About', href: '/founder' }
+    { label: 'Infrastructure', href: '/#services' },
+    { label: 'How It Works', href: '/#process' },
+    { label: 'Results', href: '/#results' },
+    { label: 'Proof', href: '/#testimonials' },
+    { label: 'Insights', href: '/blog' }
   ];
 
   const menuVariants: Variants = {
@@ -73,7 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
   return (
     <>
       <nav style={{ height: `${navHeight}px`, zIndex: 100 }}>
-        <a href="/" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>
+        <a href="#" className="nav-logo" onClick={() => setMobileMenuOpen(false)}>
           <BrandLogo size="sm" showWordmark={true} />
         </a>
         
@@ -84,13 +83,10 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
         </ul>
         
         {!isMobile && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }} className="nav-btn-desktop">
-            <a href="/cohort-02" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', textDecoration: 'none', padding: '8px 14px', border: '1px solid rgba(12,12,11,0.15)', borderRadius: '4px', transition: 'all 0.2s ease' }}>
-              Apply to Cohort 02
-            </a>
-            <a href="/#work-with-irtiqa" className="nav-btn">
-              <span className="nav-btn-dot" style={{ backgroundColor: '#1641F5', boxShadow: '0 0 8px #1641F5' }}></span>
-              Work With Irtiqa
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
+            <a href="#book" className="nav-btn">
+              <span className="nav-btn-dot" style={{ backgroundColor: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
+              Free Audit Call
             </a>
           </div>
         )}
@@ -132,14 +128,11 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
               >
-                <a href="/cohort-02" className="btn-outline" style={{ width: '100%', textAlign: 'center' }} onClick={() => setMobileMenuOpen(false)}>
-                  Apply to Cohort 02
-                </a>
-                <a href="/#work-with-irtiqa" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
-                  Work With Irtiqa
+                <a href="#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
+                  Book Free Audit Call
                 </a>
                 <span style={{ fontSize: '10px', color: 'var(--sub)', letterSpacing: '0.04em', textAlign: 'center' }}>
-                  Consulting · AI Infrastructure · Operating Partnerships
+                  No commitment · 1 hour · Revenue map included
                 </span>
               </motion.div>
             </div>
