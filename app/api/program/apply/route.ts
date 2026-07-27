@@ -90,7 +90,7 @@ export async function POST(req: Request) {
 
       await sendEmail({
         to: "lioncrown077@gmail.com",
-        subject: `[RGP COHORT 01] Application Received: ${full_name} (${reference})`,
+        subject: `[RGP PROGRAMME 2026] Application Received: ${full_name} (${reference})`,
         html: ownerHtml
       });
     } catch (emailErr) {

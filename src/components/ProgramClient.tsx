@@ -125,7 +125,7 @@ const selectionRoadmap = [
   { stage: "01", title: "APPLICATION", copy: "Candidate submits their detailed profile, commercial background, and intent below." },
   { stage: "02", title: "REVIEW", copy: "Irtiqa leadership reviews background, executive communication, and programme fit." },
   { stage: "03", title: "INTERVIEW", copy: "Shortlisted applicants receive authorised access to schedule a strategic interview." },
-  { stage: "04", title: "DECISION", copy: "Candidates are formally accepted into the cohort, waitlisted, or declined." },
+  { stage: "04", title: "DECISION", copy: "Candidates are formally admitted into the active partner ecosystem, waitlisted, or declined." },
   { stage: "05", title: "ONBOARDING", copy: "Accepted candidates receive agreement terms, orientation, and private OS access." },
   { stage: "06", title: "30-DAY CYCLE", copy: "The Revenue Growth Partner begins their initial 30-day performance evaluation period." }
 ];
@@ -185,7 +185,7 @@ const faqItems = [
   },
   {
     q: "HOW DO I ACCESS THE REVENUE PARTNER OS?",
-    a: "The Revenue Partner Operating System is an external, private platform restricted to admitted partners. Active cohort members access it via the 'Partner Access ↗' link using their verified cryptographic credentials provided during onboarding."
+    a: "The Revenue Partner Operating System is an external, private platform restricted to admitted partners. Active partner members access it via the 'Partner Access ↗' link using their verified cryptographic credentials provided during onboarding."
   }
 ];
 
@@ -739,7 +739,7 @@ export default function ProgramClient() {
         <section className={styles.applySection} id="apply">
           <div className={styles.formContainer}>
             <div className={styles.formHeader}>
-              <h2>APPLY FOR COHORT 01 // 2026</h2>
+              <h2>APPLY FOR THE PROGRAMME // 2026</h2>
               <p>This application initiates our institutional screening process. Answer thoughtfully; executive clarity and intent are our primary filters.</p>
             </div>
 
@@ -1126,7 +1126,7 @@ export default function ProgramClient() {
         <div className={styles.footerTop}>
           <div className={styles.footerBrand}>
             <h3>IRTIQA AI</h3>
-            <p>REVENUE GROWTH PARTNER PROGRAMME // COHORT 01 // 2026</p>
+            <p>REVENUE GROWTH PARTNER PROGRAMME // ONGOING ADMISSIONS // 2026</p>
             <p style={{ color: '#888884', marginTop: '4px', fontSize: '0.7rem' }}>Revenue Division // Global Commercial Operations</p>
           </div>
           <nav className={styles.footerLinks} aria-label="Footer navigation">
