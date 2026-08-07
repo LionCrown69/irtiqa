@@ -10,13 +10,13 @@
 
 .ambientGlow1 {
   position: fixed;
-  top: -10%;
-  left: -10%;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 70%);
+  top: -20%;
+  left: 0%;
+  width: 80vw;
+  height: 80vw;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.04) 0%, rgba(249, 115, 22, 0) 60%);
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   z-index: 0;
   animation: float 20s ease-in-out infinite alternate;
   pointer-events: none;
@@ -24,13 +24,13 @@
 
 .ambientGlow2 {
   position: fixed;
-  bottom: -20%;
+  bottom: -30%;
   right: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0) 70%);
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.03) 0%, rgba(249, 115, 22, 0) 60%);
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   z-index: 0;
   animation: float 25s ease-in-out infinite alternate-reverse;
   pointer-events: none;
@@ -231,29 +231,49 @@
 }
 .glassCard {
   background: #ffffff;
-  border: 1px solid rgba(12, 12, 11, 0.06);
-  border-radius: 20px;
-  padding: 56px;
-  box-shadow: 0 12px 32px rgba(12, 12, 11, 0.04), 0 2px 6px rgba(12, 12, 11, 0.02);
+  border: 1px solid rgba(12, 12, 11, 0.08);
+  border-radius: 16px;
+  padding: 64px 48px;
+  box-shadow: 0 24px 48px -12px rgba(12, 12, 11, 0.05), 0 4px 12px rgba(12, 12, 11, 0.02);
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
 }
 .formHeader {
   text-align: center;
 }
-.formTitle {
-  font-size: 32px;
+.eyebrow {
+  font-family: var(--ui, 'Outfit', sans-serif);
+  font-size: 11px;
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #f97316;
+  margin-bottom: 24px;
+  display: block;
+}
+.formTitle {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--ink, #0C0C0B);
-  margin: 0 0 12px;
+  margin: 0 0 16px;
+}
+.gradientText {
+  font-style: italic;
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 .formDesc {
-  font-size: 14px;
+  font-family: var(--ui, 'Outfit', sans-serif);
+  font-size: 15px;
   line-height: 1.6;
   color: var(--sub, #6B6B67);
   margin: 0;
@@ -268,46 +288,49 @@
 }
 .inputLabel {
   display: block;
+  font-family: var(--ui, 'Outfit', sans-serif);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--sub, #6B6B67);
   margin-bottom: 8px;
 }
 .inputField {
   width: 100%;
-  background: var(--w, #FAFAF8);
-  border: 1px solid rgba(12, 12, 11, 0.1);
-  border-radius: 8px;
-  padding: 16px;
+  background: transparent;
+  border: 1px solid rgba(12, 12, 11, 0.15);
+  border-radius: 6px;
+  padding: 14px 16px;
   font-size: 15px;
   color: var(--ink, #0C0C0B);
   outline: none;
   transition: all 0.2s ease;
-  font-family: inherit;
+  font-family: var(--ui, 'Outfit', sans-serif);
 }
-textarea.inputField {
-  resize: vertical;
-  min-height: 100px;
+.inputField:hover {
+  border-color: rgba(12, 12, 11, 0.3);
 }
 .inputField::placeholder {
   color: var(--dim, #BEBBB3);
 }
 .inputField:focus {
   border-color: #f97316;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.08);
+  background: transparent;
+  box-shadow: 0 0 0 1px #f97316;
 }
 .submitBtn {
   width: 100%;
   background: var(--ink, #0C0C0B);
   color: var(--w, #FAFAF8);
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 16px;
-  font-size: 14px;
+  font-size: 13px;
+  font-family: var(--ui, 'Outfit', sans-serif);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: 12px;
@@ -317,8 +340,9 @@ textarea.inputField {
   gap: 8px;
 }
 .submitBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(12, 12, 11, 0.15);
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(12, 12, 11, 0.15);
 }
 .submitBtn:active {
   transform: translateY(0);
