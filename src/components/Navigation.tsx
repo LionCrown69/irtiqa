@@ -86,7 +86,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
             <a href="#book" className="nav-btn">
               <span className="nav-btn-dot" style={{ backgroundColor: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
-              Free Audit Call
+              Start a Conversation
             </a>
           </div>
         )}
@@ -129,7 +129,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
               >
                 <a href="#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
-                  Book Free Audit Call
+                  Start a Conversation
                 </a>
                 <span style={{ fontSize: '10px', color: 'var(--sub)', letterSpacing: '0.04em', textAlign: 'center' }}>
                   No commitment · 1 hour · Revenue map included

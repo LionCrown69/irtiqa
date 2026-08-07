@@ -19,31 +19,31 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   const layers = [
     {
       num: '01',
-      tag: 'Operational Auditing',
-      title: 'We analyze systemic friction across the revenue pipeline',
-      desc: 'We conduct a comprehensive audit of your client acquisition and retention workflows to quantify manual overhead and identify precise points of SLA degradation.',
-      metrics: ['Systems Architecture Mapping', 'SLA Compliance Review', 'Overhead Quantification']
+      tag: 'Strategy',
+      title: 'Business & Growth Strategy',
+      desc: 'Growth stalls without defined direction. We assess market position, clarify the revenue model, and map the precise sequence of initiatives required to compound capital.',
+      metrics: ['Market Positioning', 'Unit Economic Modeling', 'Resource Allocation']
     },
     {
       num: '02',
-      tag: 'Custom AI Architecture',
-      title: 'We engineer integrated automation frameworks',
-      desc: 'We design custom autonomous systems tailored to your specific operational constraints. Our architectures are built for security, scalability, and seamless data synchronization.',
-      metrics: ['Integration Architecture Design', 'Security & Compliance Scoping', 'Workflow Automation Schematics']
+      tag: 'Infrastructure',
+      title: 'Commercial Infrastructure',
+      desc: 'Demand is frequently lost to internal friction. We map the buyer journey and construct operational workflows that capture, qualify, and route intent without manual intervention.',
+      metrics: ['CRM Architecture', 'Routing Logic', 'Pipeline Velocity']
     },
     {
       num: '03',
-      tag: 'System Deployment',
-      title: 'We execute end-to-end technical implementation',
-      desc: 'We handle the complete development and integration of the autonomous infrastructure. We deliver a fully centralized, live operational system without relying on third-party vendors.',
-      metrics: ['Custom API Engineering', 'CRM Centralization', 'Quality Assurance Testing']
+      tag: 'Operations',
+      title: 'Operational Excellence',
+      desc: 'Processes dependent on human memory break at scale. We eliminate capacity ceilings by centralizing data, standardizing handoffs, and deploying systems that return executive time.',
+      metrics: ['Process Mapping', 'Handoff Standardization', 'SOP Formalization']
     },
     {
       num: '04',
-      tag: 'Managed Services',
-      title: 'We provide ongoing optimization and SLA management',
-      desc: 'We do not simply hand over code. We actively monitor, maintain, and optimize your revenue infrastructure to ensure continuous performance and system reliability.',
-      metrics: ['Performance Monitoring', 'SLA Management', 'Continuous System Optimization']
+      tag: 'Automation',
+      title: 'AI Infrastructure',
+      desc: 'Technology follows strategy. We integrate auditable, deterministic artificial intelligence architectures to handle repetitive analysis and process execution.',
+      metrics: ['Deterministic Workflows', 'Data Extraction', 'Custom API Integration']
     }
   ];
 
@@ -72,19 +72,13 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
   return (
     <section id="services">
       <div className="infra-top reveal">
-        <div className="infra-kicker-line">Revenue Infrastructure</div>
+        <div className="infra-kicker-line">Capabilities Overview</div>
       </div>
 
       <div className="infra-header reveal">
-        <h2 className="infra-title">The Irtiqa Operations Framework™ {industry ? `for ${industry.title}` : ''}</h2>
-        <p className="infra-sub desktop-only">A comprehensive methodology for engineering, integrating, and managing autonomous revenue systems{location ? ` across ${location.name}` : ''}.</p>
-        <p className="infra-sub mobile-only">A comprehensive framework for autonomous system integration{location ? ` across ${location.name}` : ''}.</p>
-        <div className="infra-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          System Status: <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#10B981', fontWeight: 600 }}>
-            <span className="status-dot-pulse" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981', display: 'inline-block', boxShadow: '0 0 8px #10B981' }}></span>
-            Active
-          </span> • Coverage: <span>24/7</span> • Automation Depth: <span>Full</span>
-        </div>
+        <h2 className="infra-title">Comprehensive Execution Architecture</h2>
+        <p className="infra-sub desktop-only">Four core pillars engineered to resolve structural friction and scale operations.</p>
+        <p className="infra-sub mobile-only">Four core pillars engineered to scale operations.</p>
       </div>
       
       <style dangerouslySetInnerHTML={{ __html: `
@@ -123,8 +117,7 @@ const ServicesSection: React.FC<ServicesProps> = ({ industry, location }) => {
       </div>
 
       <div className="infra-cta reveal d4">
-        <a href="#book" className="btn-fill">Request an Operations Assessment</a>
-        <span className="cta-note">Initial Consultation → Technical Proposal in 24 hours → Implementation.</span>
+        <a href="#book" className="btn-fill">Start a Conversation</a>
       </div>
     </section>
   );

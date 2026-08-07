@@ -188,39 +188,33 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
               boxShadow: '0 0 0 3px rgba(22,65,245,0.15)',
             }}
           />
-          Built for {industry ? `${industry.title} operations in ${location?.name || 'your region'}` : 'Mid-Market and Enterprise Organizations'}
+          Strategy, executed — not just advised.
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="hero-h1" style={{ opacity: 1, animation: 'none' }}>
           {industry || location ? (
             <>
               <span className="hero-h1-line hero-h1-line-main">
-                {industry ? `Autonomous ${industry.name} Infrastructure` : 'Deploying Autonomous Revenue'}
+                {industry ? `A strategy and execution firm for ${industry.name}` : 'A strategy and execution firm'}
               </span>
               <em className="hero-h1-accent">
-                {location ? `in ${location.name}.` : 'Infrastructure.'}
+                {location ? `in ${location.name}.` : 'for enterprises built to last.'}
               </em>
-              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">
-                Engineered for Scale.
-              </span>
             </>
           ) : (
             <>
-              <span className="hero-h1-line hero-h1-line-main">Deploying Autonomous Revenue</span>
-              <em className="hero-h1-accent">Infrastructure.</em>
-              <span className="hero-h1-line hero-h1-line-main h1-muted-compact">Engineered for Scale.</span>
+              <span className="hero-h1-line hero-h1-line-main">A strategy and execution firm</span>
+              <em className="hero-h1-accent">for enterprises built to last.</em>
             </>
           )}
         </motion.h1>
 
         <motion.p variants={itemVariants} className="hero-sub desktop-only" style={{ opacity: 1, animation: 'none' }}>
-          <strong>We engineer, integrate, and manage autonomous operational systems.</strong><br/>
-          We deploy custom AI architectures that maximize pipeline velocity, ensure SLA compliance, and reduce manual overhead across your organization. {industry ? `Optimizing ${industry.name}.` : ''}
+          We engineer, integrate, and manage the operational architecture that drives sustained growth. {industry ? `Optimizing ${industry.name}.` : ''}
         </motion.p>
 
         <motion.p variants={itemVariants} className="hero-sub mobile-only" style={{ opacity: 1, animation: 'none' }}>
-          <strong>We engineer, integrate, and manage autonomous operational systems.</strong><br/>
-          We deploy custom AI architectures to maximize pipeline velocity and reduce manual overhead.
+          We engineer, integrate, and manage the operational architecture that drives sustained growth.
         </motion.p>
 
         <motion.div variants={itemVariants} className="hero-ctas" style={{ opacity: 1, animation: 'none' }}>
@@ -231,7 +225,7 @@ const Hero: React.FC<HeroProps> = ({ industry, location }) => {
             className="btn-fill primary-cta"
             style={{ transition: 'none' }} // Disabled CSS transition to favor framer
           >
-            Book Free Audit Call
+            Start a Conversation
             <motion.svg
               whileHover={{ x: 4 }}
               width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"

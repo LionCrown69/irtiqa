@@ -80,15 +80,15 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
     <section id="problem">
       <div className="problem-layout">
         <div>
-          <div className="section-chip reveal">Operational Challenges</div>
+          <div className="section-chip reveal">The Problem</div>
           <h2 className="problem-title reveal d1">
-            Operational Constraints Limit <em>Pipeline Scalability.</em>
+            Internal Systems Cannot Bear the Weight of <em>Their Own Ambition.</em>
           </h2>
           <p className="problem-desc reveal d2 desktop-only">
-            The primary inhibitor of enterprise growth is rarely demand generation. It is inefficient operational architecture: lead routing, qualification SLA compliance, data syncing, and retention management. Without autonomous infrastructure{location ? ` in ${location.name}` : ''}, scaling becomes cost-prohibitive.
+            Most businesses that fail to scale do not fail because the market rejected them. They fail because their internal systems create structural friction that consumes executive time and acquisition capital. Irtiqa AI identifies where this friction occurs and engineers the infrastructure to eliminate it.
           </p>
           <p className="problem-desc reveal d2 mobile-only">
-            Growth stalls when operational complexity outpaces system capabilities{location ? ` in ${location.name}` : ''}.
+            Structural friction consumes executive time and acquisition capital.
           </p>
 
           <div className="problem-points reveal d3">
@@ -108,7 +108,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
           <div className="cost-stack">
             {/* Interactive Calculator Inputs */}
             <div className="calculator-panel">
-              <div className="cost-title" style={{ margin: 0, color: 'var(--ink)' }}>Leakage Calculator</div>
+              <div className="cost-title" style={{ margin: 0, color: 'var(--ink)' }}>Friction Cost Calculator</div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>
@@ -160,7 +160,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
 
             {/* Dynamic Results Display */}
             <div className="cost-visual">
-              <div className="cost-title">Calculated Monthly Leakage</div>
+              <div className="cost-title">Calculated Operational Friction</div>
               
               <div className="cost-row">
                 <div>
@@ -195,7 +195,7 @@ const ProblemSection: React.FC<ProblemProps> = ({ industry, location }) => {
               </div>
 
               <div className="cost-total">
-                <span className="cost-total-label">Total Est. Monthly Leakage</span>
+                <span className="cost-total-label">Total Est. Monthly Friction</span>
                 <span className="cost-total-val">−${totalLeakage.toLocaleString()}</span>
               </div>
             </div>

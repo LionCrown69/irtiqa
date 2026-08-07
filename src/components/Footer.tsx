@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
     { label: 'Infrastructure', href: '/#services' },
     { label: 'Results', href: '/#results' },
     { label: 'How It Works', href: '/#process' },
-    { label: 'Audit Call', href: '/audit' }
+    { label: 'Start a Conversation', href: '/#book' }
   ];
 
   const companyLinks = [
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 12 19.79 19.79 0 0 1 1.13 3.4a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.15 1.07.435 2.12.83 3.13a2 2 0 0 1-.45 2.11L7 9.91a16 16 0 0 0 6 6l1.72-1.72a2 2 0 0 1 2.11-.45c1.01.395 2.06.68 3.13.83A2 2 0 0 1 22 16.92z" />
         </svg>
       ),
-      text: 'Book a Discovery Call',
+      text: 'Start a Conversation',
       href: '#book',
     },
     {
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
               <BrandLogo size="sm" showWordmark={true} showArabic={true} lightText={false} />
             </div>
             <p className="irtiqa-footer-tagline">
-              We find where your business is quietly losing revenue — and we build the infrastructure that stops it.
+              A strategy and execution firm for enterprises built to last.
             </p>
             
             {/* Newsletter form */}
@@ -192,11 +192,11 @@ const Footer: React.FC = () => {
         <div className="irtiqa-footer-bottom">
           <div className="irtiqa-footer-bottom-info">
             <span className="irtiqa-footer-copy">© {year} Irtiqa AI. All rights reserved.</span>
-            <span className="irtiqa-footer-slogan">Operational intelligence for service businesses.</span>
+            <span className="irtiqa-footer-slogan">Strategy, executed — not just advised.</span>
           </div>
           
           <a href="/audit" className="irtiqa-footer-audit-cta">
-            Book Free Audit Call
+            Start a Conversation
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

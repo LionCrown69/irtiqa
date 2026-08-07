@@ -234,10 +234,10 @@ const BookSection: React.FC = () => {
         ) : (
           <>
             <div className="reveal">
-              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Operations Assessment</div>
-              <h2 className="book-title">Request a Systems<br /><em>Consultation.</em></h2>
-              <p className="book-sub desktop-only">A comprehensive 60-minute analysis of your current technical architecture. Our lead engineers will identify SLA degradation points and outline the autonomous integrations required to optimize your pipeline. Following the consultation, you will receive a formal Technical Architecture Proposal.</p>
-              <p className="book-sub mobile-only">Schedule a 60-minute technical architecture analysis.</p>
+              <div className="section-chip" style={{ justifyContent: 'center', display: 'flex' }}>Contact</div>
+              <h2 className="book-title">Start a<br /><em>Conversation.</em></h2>
+              <p className="book-sub desktop-only">We do not sell pre-packaged software. Every engagement begins with a conversation to determine if there is a structural fit between our operating model and your commercial objectives. Following your inquiry, a senior member of the firm will reach out to schedule an initial diagnostic review.</p>
+              <p className="book-sub mobile-only">Schedule a conversation to determine structural fit.</p>
             </div>
 
             {step === 'details' ? (
@@ -330,7 +330,7 @@ const BookSection: React.FC = () => {
                   )}
                 </div>
                 <button type="submit" className="form-submit" disabled={isLoadingSlots}>
-                  {isLoadingSlots ? 'Loading Calendar...' : "Schedule Systems Consultation →"}
+                  {isLoadingSlots ? 'Loading Calendar...' : "Start a Conversation →"}
                 </button>
 
                 <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
