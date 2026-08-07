@@ -52,6 +52,7 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
   const navLinks = [
     { label: 'Infrastructure', href: '/#services' },
     { label: 'How It Works', href: '/#process' },
+    { label: 'Cohort 02', href: '/cohort-2' },
     { label: 'Results', href: '/#results' },
     { label: 'Proof', href: '/#testimonials' },
     { label: 'Insights', href: '/blog' }
