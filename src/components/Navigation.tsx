@@ -84,7 +84,10 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
         
         {!isMobile && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }} className="nav-btn-desktop">
-            <a href="#book" className="nav-btn">
+            <a href="https://irtiqa-revenue-partner-workspace.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--sub)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--ink)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--sub)'}>
+              Partner OS ↗
+            </a>
+            <a href="/#book" className="nav-btn">
               <span className="nav-btn-dot" style={{ backgroundColor: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
               Start a Conversation
             </a>
@@ -128,8 +131,11 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', width: '100%' }}
               >
-                <a href="#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
+                <a href="/#book" className="btn-fill mobile-drawer-cta" onClick={() => setMobileMenuOpen(false)}>
                   Start a Conversation
+                </a>
+                <a href="https://irtiqa-revenue-partner-workspace.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--sub)', textDecoration: 'none', marginTop: '8px' }} onClick={() => setMobileMenuOpen(false)}>
+                  Partner OS ↗
                 </a>
                 <span style={{ fontSize: '10px', color: 'var(--sub)', letterSpacing: '0.04em', textAlign: 'center' }}>
                   No commitment · 1 hour · Revenue map included

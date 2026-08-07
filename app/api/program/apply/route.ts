@@ -89,7 +89,7 @@ export async function POST(req: Request) {
       `;
 
       await sendEmail({
-        to: "lioncrown077@gmail.com",
+        to: "connect@irtiqaaiagency.com",
         subject: `[RGP PROGRAMME 2026] Application Received: ${full_name} (${reference})`,
         html: ownerHtml
       });

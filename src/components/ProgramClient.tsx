@@ -2,8 +2,10 @@
 
 import React, { FormEvent, useState } from 'react';
 import styles from './ProgramClient.module.css';
+import Navigation from './Navigation';
+import Footer from './Footer';
 
-const PARTNER_OS_URL = "https://partner.irtiqaaiagency.com";
+const PARTNER_OS_URL = "https://irtiqa-revenue-partner-workspace.vercel.app/";
 
 const timelineStages = [
   {
@@ -303,33 +305,7 @@ export default function ProgramClient() {
     <div className={styles.page}>
       <a className={styles.skip} href="#rgp-content">Skip to programme content</a>
 
-      {/* ==========================================================================
-          10. NAVIGATION
-          ========================================================================== */}
-      <header className={styles.nav}>
-        <a className={styles.brand} href="/" aria-label="Irtiqa AI Home">
-          <div className={styles.brandMark}>R/30</div>
-          <div className={styles.brandText}>
-            <strong>IRTIQA AI</strong>
-            <small>Revenue Growth Partner Programme</small>
-          </div>
-        </a>
-        <nav className={styles.links} aria-label="Programme navigation">
-          <a href="#programme">Programme</a>
-          <a href="#thirty-days">30 Days</a>
-          <a href="#opportunity">Opportunity</a>
-          <a href="#selection">Selection</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div className={styles.navActions}>
-          <a className={styles.partnerAccess} href={PARTNER_OS_URL} target="_blank" rel="noopener noreferrer">
-            Partner Access ↗
-          </a>
-          <a className={styles.navApply} href="#apply">
-            Apply
-          </a>
-        </div>
-      </header>
+      <Navigation navHeight={80} />
 
       <main id="rgp-content">
         {/* ==========================================================================
@@ -1122,29 +1098,7 @@ export default function ProgramClient() {
       {/* ==========================================================================
           30. INSTITUTIONAL FOOTER
           ========================================================================== */}
-      <footer className={styles.footer}>
-        <div className={styles.footerTop}>
-          <div className={styles.footerBrand}>
-            <h3>IRTIQA AI</h3>
-            <p>REVENUE GROWTH PARTNER PROGRAMME // ONGOING ADMISSIONS // 2026</p>
-            <p style={{ color: '#888884', marginTop: '4px', fontSize: '0.7rem' }}>Revenue Division // Global Commercial Operations</p>
-          </div>
-          <nav className={styles.footerLinks} aria-label="Footer navigation">
-            <a href="/">About Irtiqa</a>
-            <a href="#programme">Programme</a>
-            <a href="#thirty-days">30 Days</a>
-            <a href="#apply">Apply</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href={PARTNER_OS_URL} target="_blank" rel="noopener noreferrer">Partner Access ↗</a>
-          </nav>
-        </div>
-
-        <div className={styles.footerBottom}>
-          <div>© 2026 Irtiqa AI. All rights reserved.</div>
-          <div>Programme information may be updated as the Revenue Growth Partner Programme evolves.</div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
