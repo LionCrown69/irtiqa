@@ -7,10 +7,10 @@ export async function POST(req: Request) {
     const body = await req.json();
     
     // Validate required fields
-    const { fullName, email, companyUrl, description } = body;
+    const { fullName, email, linkedin } = body;
 
-    if (!fullName || !email || !companyUrl || !description) {
-      return NextResponse.json({ success: false, error: "Please fill out all required fields." }, { status: 400 });
+    if (!fullName || !email) {
+      return NextResponse.json({ success: false, error: "Name and Email are required." }, { status: 400 });
     }
 
     // Generate waitlist reference code: CW2-XXXX
@@ -22,8 +22,7 @@ export async function POST(req: Request) {
       created_at: new Date().toISOString(),
       fullName,
       email,
-      companyUrl,
-      description
+      linkedin: linkedin || 'Not Provided'
     };
 
     // Attempt to store in Upstash Redis if configured
@@ -45,14 +44,9 @@ export async function POST(req: Request) {
           </div>
           
           <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-            <p style="margin: 0 0 12px; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 120px;">Name:</strong> ${fullName}</p>
-            <p style="margin: 0 0 12px; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 120px;">Email:</strong> ${email}</p>
-            <p style="margin: 0 0 12px; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 120px;">Company URL:</strong> <a href="${companyUrl}" target="_blank" style="color: #1641f5;">${companyUrl}</a></p>
-          </div>
-          
-          <h3 style="margin: 24px 0 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #10B981;">Business Details</h3>
-          <div style="background: rgba(255,255,255,0.02); padding: 20px; border-radius: 8px; border-left: 3px solid #1641f5; font-size: 14px; line-height: 1.6; color: #d1d5db;">
-            ${description.replace(/\n/g, '<br/>')}
+            <p style="margin: 0 0 12px; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 90px;">Name:</strong> ${fullName}</p>
+            <p style="margin: 0 0 12px; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 90px;">Email:</strong> ${email}</p>
+            <p style="margin: 0; font-size: 15px;"><strong style="color: #a3a3a3; font-weight: 500; display: inline-block; width: 90px;">LinkedIn:</strong> <a href="${linkedin || '#'}" target="_blank" style="color: #1641f5;">${linkedin || 'Not Provided'}</a></p>
           </div>
           
           <p style="font-size: 12px; color: #666; margin-top: 32px; font-family: monospace;">Entry recorded at ${new Date().toUTCString()}</p>

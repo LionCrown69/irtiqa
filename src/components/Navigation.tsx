@@ -79,7 +79,31 @@ const Navigation: React.FC<NavigationProps> = ({ navHeight: initialNavHeight = 6
         
         <ul className="nav-links">
           {navLinks.map((link) => (
-            <li key={link.label}><a href={link.href}>{link.label}</a></li>
+            <li key={link.label}>
+              {link.label === 'Cohort 02' ? (
+                <a href={link.href} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="orangeStar" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f97316" />
+                        <stop offset="100%" stopColor="#fbd38d" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" fill="url(#orangeStar)" />
+                  </svg>
+                  <span style={{ 
+                    background: 'linear-gradient(135deg, #f97316 0%, #fbd38d 100%)', 
+                    WebkitBackgroundClip: 'text', 
+                    WebkitTextFillColor: 'transparent',
+                    fontWeight: 700
+                  }}>
+                    {link.label}
+                  </span>
+                </a>
+              ) : (
+                <a href={link.href}>{link.label}</a>
+              )}
+            </li>
           ))}
         </ul>
         
