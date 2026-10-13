@@ -521,27 +521,50 @@ p.lead {
   width: 100%;
 }
 
-/* R/30 Sub-Brand Scoped Accents */
-.r30-section {
-  position: relative;
-  background-color: #FAF9F6;
-  border-top: 1px solid var(--color-gold);
-  border-bottom: 1px solid var(--color-gold);
+/* Practice Area & Pathway Cards (McKinsey / Blackstone Styling) */
+.practice-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-hairline);
+  border-top: 2px solid var(--color-blue-deep);
+  padding: 2rem;
+  border-radius: var(--radius-subtle);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.r30-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #8C6B32;
-  border: 1px solid var(--color-gold);
-  padding: 0.3rem 0.65rem;
-  background: #FFFBF3;
+.practice-card:hover {
+  border-top-color: var(--color-gold);
+  box-shadow: 0 10px 24px rgba(12, 35, 64, 0.06);
+  transform: translateY(-2px);
+}
+
+.practice-card.featured {
+  background: #FAF9F6;
+  border-top: 3px solid var(--color-gold);
+}
+
+.pathway-step {
+  background: #FFFFFF;
+  border: 1px solid var(--color-hairline);
+  border-left: 3px solid var(--color-blue-primary);
+  padding: 1.75rem;
+  border-radius: var(--radius-subtle);
+  position: relative;
+}
+
+.pathway-step:hover {
+  border-left-color: var(--color-gold);
+}
+
+.pathway-number {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
 }
 
 /* Accessibility & Print Defaults */
