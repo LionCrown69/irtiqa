@@ -2,11 +2,11 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
-  description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
-  keywords: "Growth Partner, AI Infrastructure, Scale to 8 Figures, Autonomous Revenue Systems, Elite Operations Partner, Business Valuation Scaling",
-  applicationName: "Irtiqa AI",
-  authors: [{ name: "Alok Mishra", url: "https://www.linkedin.com/in/alokmishra-" }],
+  title: "IRTIQA | Strategic Growth & Transformation",
+  description: "Irtiqa helps businesses transform Strategy, Operations, Revenue and Technology into scalable growth. A multidisciplinary strategic institution working across corporate advisory, capital structuring, market access and the R/30 Revenue Partner network.",
+  keywords: "Strategic Growth, Corporate Transformation, Operating Model Design, Revenue Architecture, AI Strategy, Capital Formation, R/30 Revenue Partner Program",
+  applicationName: "IRTIQA",
+  authors: [{ name: "IRTIQA Executive Leadership" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   alternates: {
     canonical: "https://www.irtiqaaiagency.com/",
@@ -18,30 +18,30 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
-    description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
+    title: "IRTIQA | Strategic Growth & Transformation",
+    description: "Irtiqa helps businesses transform Strategy, Operations, Revenue and Technology into scalable growth. At the intersection of strategy, execution, capital, markets, revenue and technology.",
     type: "website",
-    siteName: "Irtiqa AI",
+    siteName: "IRTIQA",
     locale: "en_US",
     alternateLocale: "en_GB",
     url: "https://www.irtiqaaiagency.com/",
     images: [
       {
         url: "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
-        alt: "Irtiqa AI logo",
+        alt: "IRTIQA Corporate Mark",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
-    description: "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
+    title: "IRTIQA | Strategic Growth & Transformation",
+    description: "Irtiqa helps businesses transform Strategy, Operations, Revenue and Technology into scalable growth.",
     images: ["https://www.irtiqaaiagency.com/irtiqa-logo-solid.png"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c0c0b",
+  themeColor: "#0C2340",
 };
 
 export default function RootLayout({
@@ -56,7 +56,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/irtiqa-logo-solid.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         
         <script
           type="application/ld+json"
