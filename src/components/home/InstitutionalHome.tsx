@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { initializeAttribution, AttributionData } from '../../lib/attribution';
+import InstitutionalHeader from '../layout/InstitutionalHeader';
+import InstitutionalFooter from '../layout/InstitutionalFooter';
 
 interface PracticeArea {
   number: string;
@@ -158,34 +160,7 @@ export default function InstitutionalHome() {
     <div className="institutional-site-root" style={{ background: '#FFFFFF', color: '#111111' }}>
       
       {/* 1. INSTITUTIONAL MASTHEAD & GLOBAL NAVIGATION */}
-      <header style={{ borderBottom: '1px solid var(--color-hairline)', background: '#FFFFFF', position: 'sticky', top: 0, zIndex: 100 }}>
-        <div className="ap-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '82px' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <span style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 700, letterSpacing: '0.04em', color: 'var(--color-blue-deep)' }}>
-                IRTIQA
-              </span>
-            </Link>
-            <span style={{ color: 'var(--color-gold)', fontWeight: 600, fontSize: '0.85rem' }}>|</span>
-            <span style={{ fontSize: '0.6875rem', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-graphite)', fontWeight: 600 }}>
-              Strategic Growth &amp; Transformation
-            </span>
-          </div>
-
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-            <a href="#approach" className="link-gold" style={{ fontSize: '0.875rem' }}>Our Approach</a>
-            <a href="#practice-areas" className="link-gold" style={{ fontSize: '0.875rem' }}>Capabilities</a>
-            <a href="#how-we-work" className="link-gold" style={{ fontSize: '0.875rem' }}>How We Work</a>
-            <a href="#markets" className="link-gold" style={{ fontSize: '0.875rem' }}>Markets &amp; Alliances</a>
-            <Link href="/partners" className="link-gold" style={{ fontSize: '0.875rem', color: 'var(--color-gold)', fontWeight: 700 }}>
-              Revenue Partners (R/30)
-            </Link>
-            <a href="#mandate" className="btn btn-primary" style={{ padding: '0.6rem 1.35rem', fontSize: '0.875rem' }}>
-              Discuss a Mandate
-            </a>
-          </nav>
-        </div>
-      </header>
+      <InstitutionalHeader />
 
       {/* 2. EDITORIAL HERO (BCG / Blackstone / McKinsey Authority) */}
       <section style={{ padding: '6rem 0 5rem 0', borderBottom: '1px solid var(--color-hairline)', background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAF8 100%)' }}>
@@ -733,73 +708,7 @@ export default function InstitutionalHome() {
       </section>
 
       {/* 9. INSTITUTIONAL FOOTER & MANDATORY REGULATORY NOTICE */}
-      <footer style={{ background: '#0C2340', color: '#FFFFFF', padding: '5rem 0 2.5rem 0' }}>
-        <div className="ap-container">
-          <div className="ap-grid-12" style={{ paddingBottom: '3.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-            <div className="ap-col-4">
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, letterSpacing: '0.04em', color: '#FFFFFF', marginBottom: '0.5rem' }}>
-                IRTIQA
-              </div>
-              <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--color-gold-pale)', marginBottom: '1.25rem' }}>
-                Strategic Growth &amp; Transformation
-              </div>
-              <p style={{ fontSize: '0.875rem', color: '#9EB0C5', lineHeight: 1.65 }}>
-                A multidisciplinary strategic institution working at the intersection of strategy, execution, capital, markets, revenue, and technology.
-              </p>
-            </div>
-
-            <div className="ap-col-2">
-              <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold-pale)', marginBottom: '1rem', fontWeight: 700 }}>
-                Approach
-              </div>
-              <ul style={{ listStyle: 'none', fontSize: '0.875rem', lineHeight: 2.1, color: '#C8D4E2' }}>
-                <li><a href="#approach" style={{ color: 'inherit', textDecoration: 'none' }}>The Four Pillars</a></li>
-                <li><a href="#practice-areas" style={{ color: 'inherit', textDecoration: 'none' }}>Practice Areas</a></li>
-                <li><a href="#how-we-work" style={{ color: 'inherit', textDecoration: 'none' }}>How We Work</a></li>
-                <li><a href="#markets" style={{ color: 'inherit', textDecoration: 'none' }}>Markets &amp; Alliances</a></li>
-              </ul>
-            </div>
-
-            <div className="ap-col-3">
-              <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold-pale)', marginBottom: '1rem', fontWeight: 700 }}>
-                Programs &amp; Portals
-              </div>
-              <ul style={{ listStyle: 'none', fontSize: '0.875rem', lineHeight: 2.1, color: '#C8D4E2' }}>
-                <li><Link href="/partners" style={{ color: 'inherit', textDecoration: 'none' }}>R/30 Revenue Partners</Link></li>
-                <li><a href="#markets" style={{ color: 'inherit', textDecoration: 'none' }}>Strategic Joint Ventures</a></li>
-                <li><a href="#mandate" style={{ color: 'inherit', textDecoration: 'none' }}>Discuss a Mandate</a></li>
-              </ul>
-            </div>
-
-            <div className="ap-col-3">
-              <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold-pale)', marginBottom: '1rem', fontWeight: 700 }}>
-                Governance &amp; Status
-              </div>
-              <div style={{ fontSize: '0.8125rem', color: '#9EB0C5', lineHeight: 1.7 }}>
-                <div>Entity: IRTIQA GROUP</div>
-                <div>Status: <span className="status-badge tbc" style={{ background: 'rgba(255,255,255,0.08)', color: '#C8D4E2', border: '1px solid rgba(255,255,255,0.2)' }}>TO BE CONFIRMED</span></div>
-                <div style={{ marginTop: '0.5rem' }}>Release: Strategic Growth &amp; Transformation</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mandatory Non-Negotiable Regulatory Disclaimer */}
-          <div style={{ paddingTop: '2.5rem', fontSize: '0.8125rem', color: '#8899AC', lineHeight: 1.7 }}>
-            <p style={{ marginBottom: '1.25rem' }}>
-              <strong>REGULATORY NOTICE:</strong> Irtiqa provides strategic advisory, capital-formation support, transaction support and investment structuring support. Irtiqa is NOT represented as a regulated investment adviser, broker, fund manager, securities intermediary or investment bank unless authorization is explicitly verified. No communications or materials provided herein constitute an offer to buy or sell securities, nor financial, legal, or investment advice. Irtiqa does not guarantee financial returns, capital funding, or commercial outcomes.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', color: '#6A7D94' }}>
-              <div>&copy; {new Date().getFullYear()} IRTIQA. All rights reserved. Strictly confidential &amp; proprietary.</div>
-              <div style={{ display: 'flex', gap: '1.5rem' }}>
-                <span>Privacy Policy</span>
-                <span>Terms of Engagement</span>
-                <span>Regulatory Notice</span>
-                <span>Accessibility</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <InstitutionalFooter />
     </div>
   );
 }

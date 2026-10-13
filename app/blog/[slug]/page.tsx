@@ -2,8 +2,8 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-import Navigation from '../../../src/components/Navigation';
-import Footer from '../../../src/components/Footer';
+import InstitutionalHeader from '../../../src/components/layout/InstitutionalHeader';
+import InstitutionalFooter from '../../../src/components/layout/InstitutionalFooter';
 import PeopleAlsoAsk from '../../../src/components/PeopleAlsoAsk';
 import { getPostBySlug, getBlogSlugs, getAllPosts } from '../../../lib/mdx';
 import { getFaqsForCategory } from '../../../lib/faq';
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   try {
     const post = getPostBySlug(params.slug);
     return {
-      title: `${post.title} | Irtiqa AI Insights`,
+      title: `${post.title} | IRTIQA Executive Insights`,
       description: post.description || post.excerpt,
       openGraph: {
         title: post.title,
@@ -155,7 +155,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <Navigation navHeight={68} />
+      <InstitutionalHeader />
 
       {/* ─── ARTICLE HERO ─── */}
       <header
@@ -298,36 +298,28 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             backgroundColor: 'var(--w2)'
           }}
         >
-          <p style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '2px', color: catColor, marginBottom: '16px', fontFamily: 'var(--ui)' }}>
-            Free Growth Audit
-          </p>
-          <h3 style={{ fontFamily: 'var(--serif)', fontSize: '2rem', fontWeight: 400, marginBottom: '14px', letterSpacing: '-0.02em', color: 'var(--ink)' }}>
-            Ready to find where you're leaking revenue?
+          <div className="eyebrow" style={{ color: 'var(--color-gold)', marginBottom: '14px' }}>
+            MANDATE ASSESSMENT
+          </div>
+          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 600, marginBottom: '14px', letterSpacing: '-0.02em', color: 'var(--color-blue-deep)' }}>
+            Evaluate your enterprise growth architecture.
           </h3>
-          <p style={{ color: 'var(--sub)', fontSize: '0.95rem', fontFamily: 'var(--ui)', marginBottom: '32px', maxWidth: '420px', margin: '0 auto 32px' }}>
-            One hour. We map your pipeline, identify silent leakage, and hand you the exact infrastructure to fix it.
+          <p style={{ color: 'var(--color-graphite)', fontSize: '0.95rem', marginBottom: '28px', maxWidth: '480px', margin: '0 auto 28px', lineHeight: 1.6 }}>
+            Consult with Irtiqa leadership on corporate strategy, operating models, commercial partnerships, or technology transformation.
           </p>
-          <a
-            href="/#book"
+          <Link
+            href="/contact"
+            className="btn btn-primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              background: '#1641F5',
-              color: '#fff',
-              padding: '13px 28px',
-              borderRadius: '10px',
-              fontWeight: 600,
-              fontSize: '0.92rem',
-              fontFamily: 'var(--ui)',
-              textDecoration: 'none',
+              padding: '0.85rem 1.75rem',
+              fontSize: '0.9375rem',
             }}
           >
-            Book Free Audit Call
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 7h10M7 2l5 5-5 5" />
-            </svg>
-          </a>
+            Discuss a Mandate &rarr;
+          </Link>
         </div>
       </main>
 
@@ -454,7 +446,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         }
       `}</style>
 
-      <Footer />
+      <InstitutionalFooter />
     </div>
   );
 }

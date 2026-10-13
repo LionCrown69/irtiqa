@@ -68,32 +68,33 @@ export default function RootLayout({
                 {
                   "@type": "Organization",
                   "@id": "https://www.irtiqaaiagency.com/#organization",
-                  "name": "Irtiqa AI",
+                  "name": "IRTIQA",
                   "founder": {
                     "@id": "https://www.irtiqaaiagency.com/founder/#person"
                   },
-                  "alternateName": ["Irtiqa"],
+                  "alternateName": ["Irtiqa Group", "IRTIQA Strategic Growth & Transformation"],
                   "url": "https://www.irtiqaaiagency.com/",
                   "logo": "https://www.irtiqaaiagency.com/irtiqa-logo-solid.png",
                   "email": "hello@irtiqaaiagency.com",
-                  "description": "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
+                  "description": "Irtiqa is a multidisciplinary strategic growth and transformation institution working across strategy, operations, revenue, technology, capital formation, and market expansion.",
                   "knowsAbout": [
-                    "Revenue Infrastructure",
-                    "Scaling Operations",
-                    "Business Valuation Scaling",
-                    "Autonomous Systems",
-                    "Growth Partnerships",
-                    "AI Architectures",
-                    "Revenue Leakage Elimination"
+                    "Corporate Strategy & Growth",
+                    "Operating Model Transformation",
+                    "Revenue Architecture",
+                    "Technology Strategy & AI Advisory",
+                    "Market Access & Trade",
+                    "Capital Formation Support",
+                    "Strategic Joint Ventures",
+                    "R/30 Revenue Partner Program"
                   ],
                   "areaServed": [
-                    { "@type": "City", "name": "New York" },
                     { "@type": "City", "name": "London" },
                     { "@type": "City", "name": "Dubai" },
+                    { "@type": "City", "name": "New York" },
                     { "@type": "City", "name": "Singapore" },
-                    { "@type": "Place", "name": "Silicon Valley" },
-                    { "@type": "Country", "name": "United States" },
-                    { "@type": "Country", "name": "United Kingdom" }
+                    { "@type": "Country", "name": "United Kingdom" },
+                    { "@type": "Country", "name": "United Arab Emirates" },
+                    { "@type": "Country", "name": "United States" }
                   ],
                   "sameAs": [
                     "https://www.wikidata.org/wiki/Q140042854",
@@ -103,37 +104,61 @@ export default function RootLayout({
                   "contactPoint": [
                     {
                       "@type": "ContactPoint",
-                      "contactType": "sales",
+                      "contactType": "advisory",
                       "email": "hello@irtiqaaiagency.com",
                       "availableLanguage": ["English"]
                     }
                   ],
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",
-                    "name": "Irtiqa AI Infrastructure Catalog",
+                    "name": "Irtiqa Strategic Capabilities & Practices",
                     "itemListElement": [
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Autonomous Growth Infrastructure",
-                          "url": "https://www.irtiqaaiagency.com/growth-infrastructure"
+                          "name": "Strategy & Economic Advisory",
+                          "url": "https://www.irtiqaaiagency.com/capabilities"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Scale from 7 to 8 Figures",
-                          "url": "https://www.irtiqaaiagency.com/scale"
+                          "name": "Operations & Transformation",
+                          "url": "https://www.irtiqaaiagency.com/capabilities"
                         }
                       },
                       {
                         "@type": "Offer",
                         "itemOffered": {
                           "@type": "Service",
-                          "name": "Revenue Operations Architectures",
-                          "url": "https://www.irtiqaaiagency.com/revenue-operations-ai"
+                          "name": "Revenue & Commercial Development",
+                          "url": "https://www.irtiqaaiagency.com/capabilities"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Technology, AI & Intelligence",
+                          "url": "https://www.irtiqaaiagency.com/capabilities"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Market Access, Trade & Expansion",
+                          "url": "https://www.irtiqaaiagency.com/markets"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "R/30 Strategic Revenue Partner Program",
+                          "url": "https://www.irtiqaaiagency.com/partners"
                         }
                       }
                     ]
@@ -155,13 +180,13 @@ export default function RootLayout({
                   "worksFor": {
                     "@id": "https://www.irtiqaaiagency.com/#organization"
                   },
-                  "description": "Alok Mishra is the Founder & Executive Director of Irtiqa AI. A recognized AI innovator, he designs custom autonomous revenue infrastructures to scale 5, 6, and 7-figure organizations to their maximum valuation."
+                  "description": "Alok Mishra is the Founder & Executive Director of Irtiqa, advising enterprises on strategic growth, operating model transformation, and commercial execution systems."
                 },
                 {
                   "@type": "WebSite",
                   "@id": "https://www.irtiqaaiagency.com/#website",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "Irtiqa AI",
+                  "name": "IRTIQA",
                   "publisher": {
                     "@id": "https://www.irtiqaaiagency.com/#organization"
                   },
@@ -174,8 +199,8 @@ export default function RootLayout({
                   "@type": "WebPage",
                   "@id": "https://www.irtiqaaiagency.com/#webpage",
                   "url": "https://www.irtiqaaiagency.com/",
-                  "name": "Irtiqa AI | Elite Growth Partner & Revenue Infrastructure",
-                  "description": "Irtiqa AI is the growth partner that 5 to 8-figure service businesses build on. We deploy autonomous revenue infrastructure to scale operations without expanding headcount.",
+                  "name": "IRTIQA | Strategic Growth & Transformation",
+                  "description": "Irtiqa helps enterprises transform Strategy, Operations, Revenue and Technology into scalable growth.",
                   "isPartOf": {
                     "@id": "https://www.irtiqaaiagency.com/#website"
                   },

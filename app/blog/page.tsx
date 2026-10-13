@@ -1,29 +1,29 @@
 import React from 'react';
 import Link from 'next/link';
-import Navigation from '../../src/components/Navigation';
-import Footer from '../../src/components/Footer';
+import InstitutionalHeader from '../../src/components/layout/InstitutionalHeader';
+import InstitutionalFooter from '../../src/components/layout/InstitutionalFooter';
 import { getAllPosts, getFeaturedPost } from '../../lib/mdx';
 
 export const metadata = {
-  title: 'Irtiqa AI Insights — Revenue Operations, Agentic AI, Growth Architecture',
-  description: 'Deep-dive analysis on revenue leakage, AI infrastructure for service businesses, booking systems, CRM automation, and growth consulting.',
+  title: 'IRTIQA Executive Insights — Strategy, Transformation & Operations',
+  description: 'Authoritative research, monographs, and briefings on corporate strategy, operating models, revenue architecture, and enterprise intelligence.',
   openGraph: {
-    title: 'Irtiqa AI Insights',
-    description: 'Deep-dive research on AI infrastructure, revenue leakage, and growth systems for serious service businesses.',
+    title: 'IRTIQA Executive Insights',
+    description: 'Authoritative research and briefings on corporate strategy, operating models, and technology transformation.',
     type: 'website',
   },
 };
 
 const categoryColors: Record<string, string> = {
-  'Revenue Leakage': '#1641F5',
-  'AI Infrastructure': '#7C3AED',
-  'Booking Systems': '#059669',
-  'CRM & Follow-Up': '#D97706',
-  'Lead Generation': '#DC2626',
-  'Growth Consulting': '#0891B2',
-  'Industry Insights': '#BE185D',
-  'Agentic AI': '#7C3AED',
-  'Operations': '#059669',
+  'Revenue Leakage': '#14335E',
+  'AI Infrastructure': '#0C2340',
+  'Booking Systems': '#2D5541',
+  'CRM & Follow-Up': '#8C6B32',
+  'Lead Generation': '#7C2D12',
+  'Growth Consulting': '#1E3A8A',
+  'Industry Insights': '#4C1D95',
+  'Agentic AI': '#0C2340',
+  'Operations': '#2D5541',
 };
 
 function getCategoryColor(cat: string): string {
@@ -62,75 +62,46 @@ export default function BlogIndex() {
   const rest = posts.filter((p) => p.slug !== featured?.slug);
 
   return (
-    <div style={{ backgroundColor: 'var(--w)', color: 'var(--ink)', minHeight: '100vh' }}>
-      <Navigation navHeight={68} />
+    <div style={{ backgroundColor: '#FFFFFF', color: 'var(--color-ink)', minHeight: '100vh' }}>
+      <InstitutionalHeader />
 
       {/* ─── HERO HEADER ─── */}
       <header
         style={{
-          paddingTop: '140px',
-          paddingBottom: '80px',
-          padding: '140px 24px 80px',
+          padding: '6rem 24px 4rem',
           maxWidth: '1200px',
           margin: '0 auto',
-          borderBottom: '1px solid var(--rule)',
+          borderBottom: '1px solid var(--color-hairline)',
         }}
       >
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '5px 14px',
-            border: '1px solid rgba(22,65,245,0.3)',
-            borderRadius: '20px',
-            fontSize: '0.78rem',
-            fontWeight: 600,
-            color: '#1641F5',
-            textTransform: 'uppercase',
-            letterSpacing: '1.5px',
-            marginBottom: '28px',
-          }}
-        >
-          <span
-            style={{
-              width: '6px',
-              height: '6px',
-              borderRadius: '50%',
-              background: '#1641F5',
-              display: 'inline-block',
-            }}
-          />
-          Irtiqa AI Insights
+        <div className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '1.25rem' }}>
+          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-gold)' }} />
+          RESEARCH &bull; MONOGRAPHS &bull; BRIEFINGS
         </div>
 
         <h1
           style={{
-            fontFamily: 'var(--serif)',
-            fontSize: 'clamp(3rem, 6vw, 5.5rem)',
-            fontWeight: 400,
-            lineHeight: 1.05,
-            marginBottom: '28px',
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(2.75rem, 5vw, 4.25rem)',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            marginBottom: '20px',
             letterSpacing: '-0.02em',
+            color: 'var(--color-blue-deep)',
           }}
         >
-          Research that turns
-          <br />
-          <em style={{ color: '#1641F5', fontStyle: 'italic' }}>revenue leakage</em>
-          <br />
-          into infrastructure.
+          Institutional intelligence for strategic transformation.
         </h1>
         <p
+          className="lead"
           style={{
             fontSize: '1.15rem',
-            color: 'var(--sub)',
-            maxWidth: '580px',
-            lineHeight: 1.7,
-            fontFamily: 'var(--ui)',
+            color: 'var(--color-graphite)',
+            maxWidth: '680px',
+            lineHeight: 1.65,
           }}
         >
-          Deep analysis on AI systems, booking automation, CRM architecture, lead generation,
-          and the operational infrastructure that makes serious service businesses scale.
+          Research and executive analysis examining operating models, revenue architectures, enterprise intelligence, and the structural dynamics of market expansion.
         </p>
 
         {/* Cluster nav pills */}
@@ -452,57 +423,28 @@ export default function BlogIndex() {
               color: 'var(--ink)'
             }}
           >
-            Stop reading. Start fixing.
+            Institutional Mandate Assessment
           </h3>
-          <p style={{ color: 'var(--sub)', fontSize: '1rem', fontFamily: 'var(--ui)', marginBottom: '36px', maxWidth: '480px', margin: '0 auto 36px' }}>
-            One hour. We map every point where your pipeline is leaking revenue and give you the exact infrastructure to fix it.
+          <p style={{ color: 'var(--color-graphite)', fontSize: '1rem', marginBottom: '32px', maxWidth: '480px', margin: '0 auto 32px', lineHeight: 1.6 }}>
+            Consult with Irtiqa leadership on corporate strategy, operating models, commercial partnerships, or technology transformation.
           </p>
-          <a
-            href="/#book"
+          <Link
+            href="/contact"
+            className="btn btn-primary"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '10px',
-              background: '#1641F5',
-              color: '#fff',
-              padding: '14px 32px',
-              borderRadius: '10px',
-              fontWeight: 600,
-              fontSize: '0.95rem',
-              fontFamily: 'var(--ui)',
-              textDecoration: 'none',
-              letterSpacing: '-0.01em',
+              gap: '8px',
+              padding: '0.85rem 1.75rem',
+              fontSize: '0.9375rem',
             }}
           >
-            Book Free Audit Call
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 7h10M7 2l5 5-5 5" />
-            </svg>
-          </a>
+            Discuss a Mandate &rarr;
+          </Link>
         </section>
       </main>
 
-      <style>{`
-        .featured-card:hover {
-          border-color: rgba(22,65,245,0.3) !important;
-          transform: translateY(-2px);
-        }
-        .blog-card:hover {
-          border-color: rgba(22,65,245,0.2) !important;
-          background: var(--w3) !important;
-          transform: translateY(-2px);
-        }
-        @media (max-width: 768px) {
-          .featured-card {
-            grid-template-columns: 1fr !important;
-          }
-          .featured-card > div:last-child {
-            display: none !important;
-          }
-        }
-      `}</style>
-
-      <Footer />
+      <InstitutionalFooter />
     </div>
   );
 }
