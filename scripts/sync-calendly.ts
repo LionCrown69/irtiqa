@@ -23,11 +23,59 @@ if (fs.existsSync(envPath)) {
 }
 
 const token = process.env.CALENDLY_PAT;
-const redis = Redis.fromEnv();
+let redis: Redis | null = null;
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  try {
+    redis = Redis.fromEnv();
+  } catch (e) {
+    console.warn("⚠️ Could not initialize Redis client, using local file storage fallback.");
+  }
+}
 
 if (!token) {
   console.error("❌ ERROR: CALENDLY_PAT not found in .env");
   process.exit(1);
+}
+
+// Local file fallback path
+const dataDir = path.resolve(__dirname, '../data');
+const processedEventsFilePath = path.join(dataDir, 'processed-events.json');
+
+function ensureDataDir() {
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+}
+
+function loadLocalProcessedEvents(): Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }> {
+  try {
+    ensureDataDir();
+    if (fs.existsSync(processedEventsFilePath)) {
+      const raw = fs.readFileSync(processedEventsFilePath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        const map: Record<string, any> = {};
+        parsed.forEach(uri => {
+          map[uri] = { confirmed: true, reminded_12hr: false, reminded_5min: false };
+        });
+        return map;
+      }
+      return parsed;
+    }
+  } catch (err) {
+    console.warn("⚠️ Error reading local processed-events.json fallback:", err);
+  }
+  return {};
+}
+
+function saveLocalProcessedEvents(data: Record<string, any>) {
+  try {
+    ensureDataDir();
+    fs.writeFileSync(processedEventsFilePath, JSON.stringify(data, null, 2), 'utf-8');
+    console.log("💾 Processed events persisted locally to data/processed-events.json");
+  } catch (err) {
+    console.error("❌ Error writing local processed-events.json:", err);
+  }
 }
 
 // Helper to fetch JSON from Calendly
@@ -49,21 +97,29 @@ async function syncCalendlyEvents() {
 
   // State tracking: record which emails each invitee has received
   let processedEvents: Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }> = {};
-  
-  try {
-    const raw = await redis.get('processed_events');
-    if (raw) {
-      if (Array.isArray(raw)) {
-        raw.forEach(uri => {
-          processedEvents[uri] = { confirmed: true, reminded_12hr: false, reminded_5min: false };
-        });
-      } else {
-        processedEvents = raw as Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }>;
+  let redisAvailable = false;
+
+  if (redis) {
+    try {
+      const raw = await redis.get('processed_events');
+      if (raw) {
+        if (Array.isArray(raw)) {
+          raw.forEach(uri => {
+            processedEvents[uri] = { confirmed: true, reminded_12hr: false, reminded_5min: false };
+          });
+        } else {
+          processedEvents = raw as Record<string, { confirmed: boolean, reminded_12hr: boolean, reminded_5min: boolean }>;
+        }
       }
+      redisAvailable = true;
+    } catch(e) {
+      console.warn("⚠️ Warning: Upstash Redis unreachable. Falling back to local file storage.", (e as any)?.message);
     }
-  } catch(e) {
-    console.error("Error fetching processed events from Redis", e);
   }
+
+  // Merge with local storage fallback if Redis was empty or failed
+  const localEvents = loadLocalProcessedEvents();
+  processedEvents = { ...localEvents, ...processedEvents };
 
   try {
     // 2. Get User URI
@@ -71,13 +127,11 @@ async function syncCalendlyEvents() {
     const userUri = userRes.resource.uri;
 
     // 3. Get Active Scheduled Events
-    // Note: status=active ensures we don't email canceled events
-    // sort=start_time:desc gets the most recent ones first
     const yesterdayIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     const eventsRes = await fetchCalendly(`https://api.calendly.com/scheduled_events?user=${userUri}&status=active&min_start_time=${yesterdayIso}&sort=start_time:desc&count=100`);
     const events = eventsRes.collection;
 
-    console.log(`Found ${events.length} active events.`);
+    console.log(`📅 Found ${events.length} active events on Calendly.`);
 
     let sentCount = 0;
 
@@ -85,12 +139,6 @@ async function syncCalendlyEvents() {
     for (const event of events) {
       const eventUri = event.uri;
       
-      // If we already sent an email for this event, skip it.
-      // Note: An event can have multiple invitees (if it's a group event), 
-      // but for 1-on-1s, processing the event once is sufficient.
-      // To be strictly safe, we track invitee URIs instead of event URIs.
-      
-      // We only skip events that have already happened
       const d = new Date(event.start_time);
       const now = Date.now();
       if (d.getTime() < now) {
@@ -105,9 +153,6 @@ async function syncCalendlyEvents() {
         const inviteeUri = invitee.uri;
         let state = processedEvents[inviteeUri] || { confirmed: false, reminded_12hr: false, reminded_5min: false };
 
-        // ANTI-SPAM SAFEGUARD: If this person booked more than 3 hours ago, we assume they 
-        // already received their confirmation from the old system. We silently mark them as 
-        // confirmed so we don't spam them with a duplicate, but we STILL process them for reminders!
         const createdDate = new Date(event.created_at);
         const hoursSinceBooking = (now - createdDate.getTime()) / (1000 * 60 * 60);
         if (hoursSinceBooking > 3 && !state.confirmed) {
@@ -118,7 +163,7 @@ async function syncCalendlyEvents() {
         const inviteeName = invitee.name;
         
         let companyName = "Your Company";
-        let companyWebsite = "#";
+        let companyWebsite = "Not Provided";
         let refId = invitee.tracking?.utm_campaign || Math.random().toString(36).substring(2, 8).toUpperCase();
         
         if (invitee.questions_and_answers && Array.isArray(invitee.questions_and_answers)) {
@@ -129,7 +174,6 @@ async function syncCalendlyEvents() {
           }
         }
 
-        const d = new Date(event.start_time);
         const timeZone = invitee.timezone || "UTC";
         const meetingDateStr = new Intl.DateTimeFormat('en-US', { timeZone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(d);
         const meetingTimeStr = new Intl.DateTimeFormat('en-US', { timeZone, hour: '2-digit', minute: '2-digit' }).format(d);
@@ -170,7 +214,7 @@ async function syncCalendlyEvents() {
           sentCount++;
         }
 
-        // 2. 12-Hour Reminder Email (Strictly only send if between 11 and 12.1 hours away)
+        // 2. 12-Hour Reminder Email
         if (state.confirmed && !state.reminded_12hr && hoursUntilMeeting <= 12.1 && hoursUntilMeeting > 11) {
           console.log(`📧 Sending 12-hour reminder to: ${inviteeEmail}`);
           const html = getReminderEmailHtml12hr(props);
@@ -179,7 +223,7 @@ async function syncCalendlyEvents() {
           sentCount++;
         }
 
-        // 3. 5-Minute Reminder Email (Strictly only send if between 0 and 15 minutes away)
+        // 3. 5-Minute Reminder Email
         if (state.confirmed && !state.reminded_5min && hoursUntilMeeting <= (15 / 60) && hoursUntilMeeting > 0) {
           console.log(`📧 Sending 5-minute reminder to: ${inviteeEmail}`);
           const html = getReminderEmailHtml5min(props);
@@ -192,8 +236,17 @@ async function syncCalendlyEvents() {
       }
     }
 
-    // 5. Save updated processed list back to Redis
-    await redis.set('processed_events', processedEvents);
+    // 5. Always persist to local file
+    saveLocalProcessedEvents(processedEvents);
+
+    // 6. Try saving to Redis if available
+    if (redis && redisAvailable) {
+      try {
+        await redis.set('processed_events', processedEvents);
+      } catch (err) {
+        console.warn("⚠️ Could not write to Redis, local file backup retained:", (err as any)?.message);
+      }
+    }
 
     console.log(`\n✅ Sync complete. Sent ${sentCount} new emails.`);
 

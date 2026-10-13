@@ -2,20 +2,97 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { initializeAttribution, getAttribution, AttributionData } from '../../lib/attribution';
+import { initializeAttribution, AttributionData } from '../../lib/attribution';
+
+interface SubmissionResult {
+  referenceId: string;
+  partnerFullName: string;
+  partnerEmail: string;
+  calendlyUrl: string;
+}
 
 export default function R30PartnerPage() {
   const [attribution, setAttribution] = useState<AttributionData | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
+
+  // Form State
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [geography, setGeography] = useState('');
+  const [industries, setIndustries] = useState('');
+  const [experience, setExperience] = useState('');
+  const [origination, setOrigination] = useState('');
+  const [availability, setAvailability] = useState('FULL_TIME');
 
   useEffect(() => {
     const data = initializeAttribution();
     setAttribution(data);
+
+    // Load Calendly script in advance for instant embed rendering
+    if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const payload = {
+        partnerFullName: fullName,
+        partnerEmail: email,
+        partnerPhone: phone,
+        geography,
+        industries,
+        experience,
+        origination,
+        availability,
+        attribution_ref: attribution?.partnerRef || 'DIRECT',
+        utm_source: attribution?.utmSource || 'organic',
+        utm_campaign: attribution?.utmCampaign || 'none'
+      };
+
+      const res = await fetch('/api/partners/apply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+
+      setSubmissionResult({
+        referenceId: data.referenceId,
+        partnerFullName: data.partnerFullName,
+        partnerEmail: data.partnerEmail,
+        calendlyUrl: data.calendlyUrl
+      });
+
+      // Smooth scroll to booking container
+      setTimeout(() => {
+        const el = document.getElementById('partner-booking-view');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+
+    } catch (err: any) {
+      console.error("Partner application error:", err);
+      setErrorMessage(err.message || 'An unexpected error occurred. Please contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,7 +126,7 @@ export default function R30PartnerPage() {
         </div>
       </header>
 
-      {/* Attribution Indicator (If ?ref= parameter detected) */}
+      {/* Attribution Indicator */}
       {attribution?.partnerRef && (
         <div style={{ background: '#FAF6ED', borderBottom: '1px solid var(--color-gold)', padding: '0.5rem 0', fontSize: '0.8125rem', textAlign: 'center', color: '#8C6B32' }}>
           Referral Session Active &bull; Credited to Partner ID: <strong>{attribution.partnerRef}</strong>
@@ -87,16 +164,11 @@ export default function R30PartnerPage() {
             </div>
 
             <div className="ap-col-4">
-              {/* R/30 Brand Mark SVG Container */}
               <div className="panel-tinted" style={{ textAlign: 'center', padding: '2.5rem 2rem', background: '#FFFFFF' }}>
                 <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ margin: '0 auto 1.5rem auto' }}>
-                  {/* Outer Ring: Partnership */}
                   <circle cx="60" cy="60" r="50" stroke="#0F2A5F" strokeWidth="3" />
-                  {/* Diagonal: Momentum (rising slash) */}
                   <line x1="26" y1="94" x2="94" y2="26" stroke="#0F2A5F" strokeWidth="3" strokeLinecap="round" />
-                  {/* Node: Origin at start of diagonal */}
                   <circle cx="26" cy="94" r="5" fill="#0F2A5F" />
-                  {/* Brass Diamond: Value at leading edge */}
                   <polygon points="94,18 102,26 94,34 86,26" fill="#B08D57" />
                 </svg>
 
@@ -115,7 +187,7 @@ export default function R30PartnerPage() {
         </div>
       </section>
 
-      {/* 2. PROGRAM POSITIONING & WHO IT IS FOR */}
+      {/* 2. PROGRAM POSITIONING */}
       <section style={{ padding: '4.5rem 0', borderBottom: '1px solid var(--color-hairline)' }}>
         <div className="ap-container">
           <div className="section-opener">
@@ -165,7 +237,7 @@ export default function R30PartnerPage() {
         </div>
       </section>
 
-      {/* 3. SETTER-TO-CLOSER TRACEABILITY PIPELINE */}
+      {/* 3. SETTER-TO-CLOSER TRACEABILITY */}
       <section id="pipeline" style={{ padding: '5rem 0', background: 'var(--color-panel-tint)', borderBottom: '1px solid var(--color-hairline)' }}>
         <div className="ap-container">
           <div className="section-opener">
@@ -224,7 +296,7 @@ export default function R30PartnerPage() {
         </div>
       </section>
 
-      {/* 4. FIVE STRUCTURAL REQUIREMENTS (Internal Proposal Synthesis) */}
+      {/* 4. FIVE STRUCTURAL REQUIREMENTS */}
       <section id="infrastructure" style={{ padding: '5rem 0', borderBottom: '1px solid var(--color-hairline)' }}>
         <div className="ap-container">
           <div className="section-opener">
@@ -277,7 +349,7 @@ export default function R30PartnerPage() {
         </div>
       </section>
 
-      {/* 5. BALANCED SCORECARD & IRTIQA OS STATUS */}
+      {/* 5. BALANCED SCORECARD & IRTIQA OS */}
       <section id="scorecard" style={{ padding: '5rem 0', background: '#FAFAFA', borderBottom: '1px solid var(--color-hairline)' }}>
         <div className="ap-container">
           <div className="section-opener">
@@ -370,70 +442,10 @@ export default function R30PartnerPage() {
               </div>
             </div>
           </div>
-
-          {/* Irtiqa OS Platform Status Table */}
-          <div style={{ marginTop: '3.5rem' }}>
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '1rem', color: 'var(--color-blue-deep)' }}>
-              Irtiqa OS &bull; Internal Platform Status Matrix
-            </h3>
-            <div className="table-responsive">
-              <table className="institutional-table">
-                <thead>
-                  <tr>
-                    <th style={{ width: '40%' }}>Platform Capability</th>
-                    <th style={{ width: '30%' }}>Operational Level</th>
-                    <th style={{ width: '30%' }}>Release Designation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Lead Distribution &amp; Routing</td>
-                    <td>Operational in core hubs</td>
-                    <td><span className="status-badge current">CURRENT</span></td>
-                  </tr>
-                  <tr>
-                    <td>Activity Tracking &amp; Logging</td>
-                    <td>Active on central instances</td>
-                    <td><span className="status-badge current">CURRENT</span></td>
-                  </tr>
-                  <tr>
-                    <td>Qualification &amp; Appointments Engine</td>
-                    <td>Verified across inbound / outbound</td>
-                    <td><span className="status-badge current">CURRENT</span></td>
-                  </tr>
-                  <tr>
-                    <td>Pipeline Management &amp; Stages</td>
-                    <td>Internal deployment phase</td>
-                    <td><span className="status-badge proposed">PROPOSED</span></td>
-                  </tr>
-                  <tr>
-                    <td>Setter &rarr; Closer Digital Handoff</td>
-                    <td>Architecture drafted</td>
-                    <td><span className="status-badge proposed">PROPOSED</span></td>
-                  </tr>
-                  <tr>
-                    <td>Opportunity Tracking &amp; Executive Reporting</td>
-                    <td>In structured review</td>
-                    <td><span className="status-badge proposed">PROPOSED</span></td>
-                  </tr>
-                  <tr>
-                    <td>Commission Visibility &amp; Calculation Engine</td>
-                    <td>Specification in progress</td>
-                    <td><span className="status-badge planned">PLANNED</span></td>
-                  </tr>
-                  <tr>
-                    <td>Enterprise Operational Visibility Dashboard</td>
-                    <td>Planned for cohort expansion</td>
-                    <td><span className="status-badge planned">PLANNED</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 6. REVENUE PARTNER APPLICATION FORM WITH ATTRIBUTION */}
+      {/* 6. PARTNER APPLICATION & LIVE CALENDLY SCHEDULING FLOW */}
       <section id="apply" style={{ padding: '5.5rem 0', borderBottom: '1px solid var(--color-hairline)' }}>
         <div className="ap-container">
           <div className="section-opener">
@@ -441,88 +453,195 @@ export default function R30PartnerPage() {
             <span className="eyebrow">Selection &amp; Onboarding</span>
             <h2>Apply to the R/30 Revenue Partner Network</h2>
             <p className="lead">
-              We review applications on a rolling basis. Onboarding target: 24&ndash;48 hours from acceptance.
+              Complete the intake dossier below. Qualified applicants proceed directly to book their 20-minute Partner Qualification Briefing.
             </p>
           </div>
 
           <div className="ap-grid-12">
             <div className="ap-col-8">
-              {submitted ? (
-                <div className="panel-tinted" style={{ padding: '3rem', textAlign: 'center', borderLeft: '3px solid var(--color-gold)' }}>
-                  <span className="editorial-numeral editorial-numeral-md" style={{ marginBottom: '1rem' }}>&check;</span>
-                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>Application Received</h3>
-                  <p style={{ maxWidth: '540px', margin: '0 auto 1.5rem auto', color: 'var(--color-graphite)' }}>
-                    Your dossier has been routed to our Partner Selection Committee. If your commercial profile aligns with our active industry clusters, an executive briefing will be scheduled within our 24&ndash;48 hour SLA window.
+              {submissionResult ? (
+                /* LIVE BOOKING INTERFACE */
+                <div id="partner-booking-view" className="panel-tinted" style={{ padding: '2.5rem', borderLeft: '3px solid var(--color-gold)', background: '#FFFFFF' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--color-hairline)', paddingBottom: '1.25rem', marginBottom: '1.5rem' }}>
+                    <div>
+                      <span className="status-badge proposed" style={{ marginBottom: '0.5rem' }}>DOSSIER RECEIVED</span>
+                      <h3 style={{ fontSize: '1.5rem', color: 'var(--color-blue-deep)', margin: 0 }}>
+                        Welcome, {submissionResult.partnerFullName}
+                      </h3>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-graphite)', marginTop: '0.25rem' }}>
+                        Partner Reference Code: <strong>{submissionResult.referenceId}</strong>
+                      </div>
+                    </div>
+
+                    <a 
+                      href={submissionResult.calendlyUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="btn btn-primary"
+                      style={{ fontSize: '0.875rem', padding: '0.65rem 1.25rem' }}
+                    >
+                      Open in Full Window &rarr;
+                    </a>
+                  </div>
+
+                  <p style={{ fontSize: '0.9375rem', color: 'var(--color-graphite)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                    Select an executive time slot below to conduct your qualification briefing with Irtiqa practice leadership. Your details and reference code have been automatically attached.
                   </p>
-                  <div style={{ fontSize: '0.8125rem', color: 'var(--color-blue-deep)' }}>
-                    Reference Tag: <strong>{attribution?.partnerRef || 'DIRECT-APPLY'}</strong>
+
+                  {/* EMBEDDED CALENDLY IFRAME WIDGET */}
+                  <div style={{ minHeight: '680px', width: '100%', border: '1px solid var(--color-hairline)', borderRadius: '4px', overflow: 'hidden', background: '#FAFAFA' }}>
+                    <iframe
+                      src={submissionResult.calendlyUrl}
+                      width="100%"
+                      height="700"
+                      frameBorder="0"
+                      title="Schedule R/30 Partner Qualification Call"
+                      style={{ border: 'none' }}
+                    />
+                  </div>
+
+                  <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', color: 'var(--color-graphite)' }}>
+                    <span>Confirmation dispatched to: <strong>{submissionResult.partnerEmail}</strong></span>
+                    <button 
+                      type="button" 
+                      onClick={() => setSubmissionResult(null)} 
+                      style={{ background: 'none', border: 'none', color: 'var(--color-blue-primary)', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.8125rem' }}
+                    >
+                      Submit Another Application
+                    </button>
                   </div>
                 </div>
               ) : (
+                /* INTAKE FORM */
                 <form onSubmit={handleSubmit} className="panel-tinted" style={{ padding: '2.5rem' }}>
-                  {/* Hidden Traceability Inputs */}
-                  <input type="hidden" name="attribution_ref" value={attribution?.partnerRef || ''} />
-                  <input type="hidden" name="utm_source" value={attribution?.utmSource || ''} />
-                  <input type="hidden" name="utm_campaign" value={attribution?.utmCampaign || ''} />
+                  {errorMessage && (
+                    <div style={{ background: '#FEE2E2', border: '1px solid #DC2626', color: '#991B1B', padding: '0.85rem 1rem', borderRadius: '4px', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+                      {errorMessage}
+                    </div>
+                  )}
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="partnerFullName">Full Legal Name <span className="required">*</span></label>
-                      <input type="text" id="partnerFullName" required className="form-input" placeholder="e.g. Marcus Thorne" />
+                      <input 
+                        type="text" 
+                        id="partnerFullName" 
+                        required 
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="form-input" 
+                        placeholder="e.g. Marcus Thorne" 
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="form-label" htmlFor="partnerEmail">Professional Email <span className="required">*</span></label>
-                      <input type="email" id="partnerEmail" required className="form-input" placeholder="name@domain.com" />
+                      <input 
+                        type="email" 
+                        id="partnerEmail" 
+                        required 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="form-input" 
+                        placeholder="name@domain.com" 
+                      />
                     </div>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div className="form-group">
                       <label className="form-label" htmlFor="partnerPhone">Direct Contact Number <span className="required">*</span></label>
-                      <input type="tel" id="partnerPhone" required className="form-input" placeholder="+44 20 7946 0912" />
+                      <input 
+                        type="tel" 
+                        id="partnerPhone" 
+                        required 
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="form-input" 
+                        placeholder="+44 20 7946 0912" 
+                      />
                     </div>
 
                     <div className="form-group">
                       <label className="form-label" htmlFor="geography">Primary Operating Geography <span className="required">*</span></label>
-                      <select id="geography" required className="form-select">
+                      <select 
+                        id="geography" 
+                        required 
+                        value={geography}
+                        onChange={(e) => setGeography(e.target.value)}
+                        className="form-select"
+                      >
                         <option value="">Select Primary Region</option>
-                        <option value="UK_EUROPE">United Kingdom &amp; Europe</option>
-                        <option value="NORTH_AMERICA">North America (US &amp; Canada)</option>
-                        <option value="MIDDLE_EAST">Middle East &amp; GCC</option>
-                        <option value="APAC">Asia-Pacific</option>
-                        <option value="GLOBAL">Cross-Border / Multi-Regional</option>
+                        <option value="UK & Europe">United Kingdom &amp; Europe</option>
+                        <option value="North America">North America (US &amp; Canada)</option>
+                        <option value="Middle East & GCC">Middle East &amp; GCC</option>
+                        <option value="Asia-Pacific">Asia-Pacific</option>
+                        <option value="Cross-Border Global">Cross-Border / Multi-Regional</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="industries">Target Industries &amp; Executive Networks <span className="required">*</span></label>
-                    <input type="text" id="industries" required className="form-input" placeholder="e.g. Private Equity, Industrial Supply, Enterprise SaaS, Cross-Border Logistics" />
-                    <span className="form-helper">Specify where you currently possess active executive relationships.</span>
+                    <input 
+                      type="text" 
+                      id="industries" 
+                      required 
+                      value={industries}
+                      onChange={(e) => setIndustries(e.target.value)}
+                      className="form-input" 
+                      placeholder="e.g. Private Equity, Industrial Supply, Enterprise SaaS, Cross-Border Logistics" 
+                    />
+                    <span className="form-helper">Specify where you currently possess active enterprise relationships.</span>
                   </div>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="experience">Professional Background &amp; Commercial Track Record <span className="required">*</span></label>
-                    <textarea id="experience" rows={4} required className="form-textarea" placeholder="Detail your background in commercial development, advisory origination, enterprise sales, or executive leadership." />
+                    <textarea 
+                      id="experience" 
+                      rows={4} 
+                      required 
+                      value={experience}
+                      onChange={(e) => setExperience(e.target.value)}
+                      className="form-textarea" 
+                      placeholder="Detail your background in commercial development, advisory origination, enterprise sales, or executive leadership." 
+                    />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="origination">Origination Strategy <span className="required">*</span></label>
-                    <textarea id="origination" rows={3} required className="form-textarea" placeholder="How do you intend to identify and surface qualified enterprise mandates for Irtiqa?" />
+                    <textarea 
+                      id="origination" 
+                      rows={3} 
+                      required 
+                      value={origination}
+                      onChange={(e) => setOrigination(e.target.value)}
+                      className="form-textarea" 
+                      placeholder="How do you intend to surface qualified enterprise mandates for Irtiqa's capability platform?" 
+                    />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label" htmlFor="availability">Weekly Operating Allocation</label>
-                    <select id="availability" className="form-select">
+                    <select 
+                      id="availability" 
+                      value={availability}
+                      onChange={(e) => setAvailability(e.target.value)}
+                      className="form-select"
+                    >
                       <option value="FULL_TIME">Full-Time Commercial Commitment (35+ hrs/wk)</option>
                       <option value="SUBSTANTIAL">Substantial Allocation (20-30 hrs/wk)</option>
                       <option value="STRATEGIC_ORIGINATION">Selective Strategic Origination / Non-Executive</option>
                     </select>
                   </div>
 
-                  <button type="submit" className="btn btn-gold" style={{ width: '100%', padding: '0.9rem', fontSize: '1rem' }}>
-                    Submit R/30 Partner Dossier
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="btn btn-gold" 
+                    style={{ width: '100%', padding: '0.95rem', fontSize: '1rem', cursor: isSubmitting ? 'wait' : 'pointer', opacity: isSubmitting ? 0.75 : 1 }}
+                  >
+                    {isSubmitting ? 'Transmitting Dossier & Launching Calendar...' : 'Submit Partner Dossier & Schedule Briefing &rarr;'}
                   </button>
 
                   <div style={{ fontSize: '0.75rem', color: 'var(--color-graphite)', textAlign: 'center', marginTop: '1rem' }}>
@@ -541,13 +660,21 @@ export default function R30PartnerPage() {
                 </p>
               </div>
 
-              <div className="card-authoritative" style={{ background: '#FFFFFF' }}>
+              <div className="card-authoritative" style={{ background: '#FFFFFF', marginBottom: '1.5rem' }}>
                 <span className="eyebrow" style={{ color: 'var(--color-blue-primary)' }}>Internal SLA</span>
                 <h4 style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>24&ndash;48 Hours</h4>
                 <p style={{ fontSize: '0.875rem', color: 'var(--color-graphite)', lineHeight: 1.55, marginBottom: '0.5rem' }}>
                   Target turnaround from approved interview to system credentials, corporate email issuance, and pipeline briefing.
                 </p>
                 <span className="status-badge proposed">PROPOSED SLA / INTERNAL TARGET</span>
+              </div>
+
+              <div className="panel-tinted">
+                <span className="eyebrow" style={{ color: 'var(--color-blue-deep)' }}>Immediate Scheduling</span>
+                <h4 style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>No Lag Between Application &amp; Call</h4>
+                <p style={{ fontSize: '0.8125rem', color: 'var(--color-graphite)', margin: 0, lineHeight: 1.5 }}>
+                  Upon submitting your dossier, you can select your qualification time slot immediately via our embedded calendar.
+                </p>
               </div>
             </div>
           </div>
